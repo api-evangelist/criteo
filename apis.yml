@@ -7,9 +7,9 @@ apis:
     tags:
       - Retail
       - Media
-    humanURL: ' https://developers.criteo.com/retail-media/docs/welcome-to-criteo'
+    humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
     properties:
-      - url: ' https://developers.criteo.com/retail-media/docs/welcome-to-criteo'
+      - url: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
         type: Documentation
     description: >-
       The Criteo Retail Media API helps you unlock a range of possibilities to
@@ -26,7 +26,7 @@ type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2025-03-01'
-modified: '2025-03-01'
+modified: '2026-03-16'
 position: Consumer
 description: >-
   The Criteo Retail Media API helps you unlock a range of possibilities to help
@@ -37,5 +37,5 @@ description: >-
   grow their marketing business. 
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
 specificationVersion: '0.19'
