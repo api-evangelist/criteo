@@ -5,8 +5,8 @@ apis:
   - aid: criteo:criteo
     name: Criteo
     tags:
-      - Retail
       - Media
+      - Retail
     humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
     properties:
       - url: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
@@ -19,8 +19,8 @@ apis:
       marketing partners, agencies, brands and retailers grow their marketing business.
 name: Criteo
 tags:
-  - Retail
   - Media
+  - Retail
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
