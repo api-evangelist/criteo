@@ -1,42 +1,50 @@
 # Criteo (criteo)
-The Criteo Retail Media API helps you unlock a range of possibilities to help you enhance your media performance from any platform. Our suite of tools empowers you to seamlessly create, launch, and monitor your campaigns, providing a comprehensive view of your performance. Our APIs have been been instrumental in helping our marketing partners, agencies, brands and retailers grow their marketing business. 
+
+Criteo is a global commerce media company best known for its Retail Media platform, enabling retailers, brands, agencies, and partners to create, launch, and measure on-site and off-site retail media campaigns. Criteo's APIs provide programmatic access to campaign management, audience segmentation, line item bidding and budgeting, retailer catalogs, balances and billing, and demand-side and supply-side reporting. Criteo APIs use OAuth 2.0 with client credentials, authorization code, and PKCE flows.
 
 **URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/criteo/refs/heads/main/apis.yml)
 
 ## Scope
 
-- **Type:** Index 
-- **Position:** Consumer 
-- **Access:** 3rd-Party 
+- **Type:** Index
+- **Position:** Consuming
+- **Access:** 3rd-Party
+- **x-type:** company
 
-## Tags:
+## Tags
 
- - Retail, Media
+- Advertising, Audiences, Campaigns, Catalog, Commerce, Display Advertising, Marketing, Media, OAuth 2.0, Reporting, Retail, Retail Media
 
 ## Timestamps
 
-- **Created:** 2025-03-01 
-- **Modified:** 2025-03-01 
+- **Created:** 2025-03-01
+- **Modified:** 2026-04-28
 
 ## APIs
 
-### Criteo
-The Criteo Retail Media API helps you unlock a range of possibilities to help you enhance your media performance from any platform. Our suite of tools empowers you to seamlessly create, launch, and monitor your campaigns, providing a comprehensive view of your performance. Our APIs have been been instrumental in helping our marketing partners, agencies, brands and retailers grow their marketing business. 
+### Criteo Retail Media API
 
-**Human URL:** [ https://developers.criteo.com/retail-media/docs/welcome-to-criteo]( https://developers.criteo.com/retail-media/docs/welcome-to-criteo)
+REST API for creating and managing retail media campaigns, line items, audiences, retailer catalogs, demand-side and supply-side analytics, and balances and billing.
 
+- [Documentation](https://developers.criteo.com/retail-media/docs/welcome-to-criteo)
+- [Reference](https://developers.criteo.com/retail-media/reference)
+- [Changelog](https://developers.criteo.com/retail-media/changelog)
 
-#### Tags:
+### Criteo Marketing Solutions API
 
- - Retail, Media
+Programmatic access to Criteo's commerce media platform for advertisers and agencies, covering advertiser accounts, campaigns, audiences, creatives, and analytics.
 
-#### Properties
+- [Documentation](https://developers.criteo.com/marketing-solutions/docs/welcome)
+- [Reference](https://developers.criteo.com/marketing-solutions/reference)
 
-- [Documentation]( https://developers.criteo.com/retail-media/docs/welcome-to-criteo)
+## Common Properties
+
+- [Website](https://www.criteo.com/)
+- [Developer Portal](https://developers.criteo.com/)
+- [Sign Up](https://developers.criteo.com/signup)
+- [Support](https://support.criteo.com/)
 
 ## Maintainers
 
 **FN:** Kin Lane
-
-**Email:** info@apievangelist.com
-
+**Email:** kin@apievangelist.com
