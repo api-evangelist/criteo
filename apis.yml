@@ -101,6 +101,11 @@ common:
     url: https://www.criteo.com/privacy/
   - type: TermsOfService
     url: https://www.criteo.com/legal/
+  - type: Integrations
+    url: https://www.criteo.com/partners/
+integrations:
+  - name: Criteo
+  - name: Simon AI
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
