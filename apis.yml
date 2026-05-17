@@ -1,6 +1,6 @@
 aid: criteo
 name: Criteo
-x-type: company
+kind: company
 description: >-
   Criteo is a global commerce media company best known for its Retail Media
   platform, enabling retailers, brands, agencies, and partners to create,
