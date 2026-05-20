@@ -85,6 +85,10 @@ apis:
       - Creatives
       - Marketing Solutions
 common:
+  - type: GitHubOrganization
+    url: https://github.com/criteo
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/criteo
   - type: Website
     url: https://www.criteo.com/
   - type: DeveloperPortal
