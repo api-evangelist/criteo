@@ -107,6 +107,8 @@ common:
     url: https://www.criteo.com/legal/
   - type: Integrations
     url: https://www.criteo.com/partners/
+  - type: LLMsTxt
+    url: https://developers.criteo.com/llms.txt
 integrations:
   - name: Criteo
   - name: Simon AI
