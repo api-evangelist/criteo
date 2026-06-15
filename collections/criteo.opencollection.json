@@ -1,0 +1,721 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Criteo Retail Media API",
+    "version": "2026-01"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/oauth2/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Generate access token"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List accessible accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-01/retail-media/accounts"
+          },
+          "docs": "List accessible accounts"
+        },
+        {
+          "info": {
+            "name": "Get account by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-01/retail-media/accounts/:accountId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get account by id"
+        },
+        {
+          "info": {
+            "name": "Add brands to account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-01/retail-media/account-management/accounts/:accountId/brands/add",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Add brands to account"
+        },
+        {
+          "info": {
+            "name": "Remove brands from account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-01/retail-media/account-management/accounts/:accountId/brands/remove",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove brands from account"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Campaigns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List campaigns by account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-01/retail-media/accounts/:accountId/campaigns",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List campaigns by account"
+        },
+        {
+          "info": {
+            "name": "Create campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-01/retail-media/accounts/:accountId/campaigns",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create campaign"
+        },
+        {
+          "info": {
+            "name": "Get campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-01/retail-media/campaigns/:campaignId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get campaign"
+        },
+        {
+          "info": {
+            "name": "Update campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.criteo.com/2026-01/retail-media/campaigns/:campaignId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update campaign"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "LineItems",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List preferred line items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-01/retail-media/campaigns/:campaignId/preferred-line-items",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List preferred line items"
+        },
+        {
+          "info": {
+            "name": "Create preferred line item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-01/retail-media/campaigns/:campaignId/preferred-line-items",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create preferred line item"
+        },
+        {
+          "info": {
+            "name": "List auction line items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-01/retail-media/campaigns/:campaignId/auction-line-items",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List auction line items"
+        },
+        {
+          "info": {
+            "name": "Create auction line item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-01/retail-media/campaigns/:campaignId/auction-line-items",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create auction line item"
+        },
+        {
+          "info": {
+            "name": "Get line item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-01/retail-media/line-items/:lineItemId",
+            "params": [
+              {
+                "name": "lineItemId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get line item"
+        },
+        {
+          "info": {
+            "name": "Update line item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.criteo.com/2026-01/retail-media/line-items/:lineItemId",
+            "params": [
+              {
+                "name": "lineItemId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update line item"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List promoted products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-01/retail-media/line-items/:lineItemId/products",
+            "params": [
+              {
+                "name": "lineItemId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List promoted products"
+        },
+        {
+          "info": {
+            "name": "Add promoted products",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-01/retail-media/line-items/:lineItemId/products/append",
+            "params": [
+              {
+                "name": "lineItemId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Add promoted products"
+        },
+        {
+          "info": {
+            "name": "Remove promoted products",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.criteo.com/2026-01/retail-media/line-items/:lineItemId/products/delete",
+            "params": [
+              {
+                "name": "lineItemId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove promoted products"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Keywords",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List keywords",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-01/retail-media/line-items/:lineItemId/keywords",
+            "params": [
+              {
+                "name": "lineItemId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List keywords"
+        },
+        {
+          "info": {
+            "name": "Add/remove keywords in bulk",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-01/retail-media/line-items/:lineItemId/keywords/add-remove",
+            "params": [
+              {
+                "name": "lineItemId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Add/remove keywords in bulk"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Balances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List balances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-01/retail-media/accounts/:accountId/balances",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List balances"
+        },
+        {
+          "info": {
+            "name": "Create balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-01/retail-media/accounts/:accountId/balances",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create balance"
+        },
+        {
+          "info": {
+            "name": "Get campaigns by balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-01/retail-media/balances/:balanceId/campaigns",
+            "params": [
+              {
+                "name": "balanceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get campaigns by balance"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate campaigns report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-01/retail-media/reports/campaigns",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate campaigns report"
+        },
+        {
+          "info": {
+            "name": "Generate line items report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-01/retail-media/reports/line-items",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate line items report"
+        },
+        {
+          "info": {
+            "name": "Get report status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-01/retail-media/reports/:reportId/status",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get report status"
+        },
+        {
+          "info": {
+            "name": "Get report output",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-01/retail-media/reports/:reportId/output",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get report output"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Catalogs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Request catalog export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-01/retail-media/accounts/:accountId/catalogs",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Request catalog export"
+        },
+        {
+          "info": {
+            "name": "Get catalog status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-01/retail-media/catalogs/:catalogId/status",
+            "params": [
+              {
+                "name": "catalogId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get catalog status"
+        },
+        {
+          "info": {
+            "name": "Get catalog output",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-01/retail-media/catalogs/:catalogId/output",
+            "params": [
+              {
+                "name": "catalogId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get catalog output"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-01/retail-media/categories"
+          },
+          "docs": "Search categories"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Audiences",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create audience segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-01/retail-media/accounts/:accountId/audience-segments/create",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create audience segment"
+        },
+        {
+          "info": {
+            "name": "Search audience segments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-01/retail-media/accounts/:accountId/audience-segments/search",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Search audience segments"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
