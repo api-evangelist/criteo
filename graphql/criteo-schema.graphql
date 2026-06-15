@@ -1,0 +1,1154 @@
+"""
+Criteo GraphQL Schema
+Derived from Criteo Retail Media API and Marketing Solutions API REST surfaces.
+Covers retail media campaigns, audiences, catalog, reporting, and marketing solutions.
+"""
+
+# ===========================================================================
+# Scalars
+# ===========================================================================
+
+scalar DateTime
+scalar Date
+scalar JSON
+scalar BigInt
+scalar Decimal
+
+# ===========================================================================
+# Enums
+# ===========================================================================
+
+enum CampaignStatus {
+  ACTIVE
+  PAUSED
+  ENDED
+  DRAFT
+  ARCHIVED
+}
+
+enum LineItemStatus {
+  ACTIVE
+  PAUSED
+  ENDED
+  PENDING
+  REJECTED
+  ARCHIVED
+}
+
+enum BidStrategy {
+  MANUAL
+  TARGET_ROAS
+  TARGET_CPA
+  MAXIMIZE_CLICKS
+  MAXIMIZE_CONVERSIONS
+}
+
+enum BudgetType {
+  DAILY
+  TOTAL
+  UNCAPPED
+}
+
+enum GoalType {
+  AWARENESS
+  CONSIDERATION
+  CONVERSION
+  RETARGETING
+  ACQUISITION
+}
+
+enum AdFormat {
+  BANNER
+  SPONSORED_PRODUCT
+  SPONSORED_BRAND
+  VIDEO
+  NATIVE
+  DISPLAY
+  OFFSITE
+}
+
+enum AudienceType {
+  RETARGETING
+  LOOKALIKE
+  CONTEXTUAL
+  CUSTOMER_LIST
+  IN_MARKET
+  COMMERCE
+  CUSTOM
+}
+
+enum AudienceStatus {
+  ACTIVE
+  INACTIVE
+  BUILDING
+  READY
+  EXPIRED
+}
+
+enum ReportType {
+  CAMPAIGN
+  LINE_ITEM
+  AD_SET
+  PRODUCT
+  AUDIENCE
+  BRAND
+  CATEGORY
+  KEYWORD
+}
+
+enum ReportMetric {
+  IMPRESSIONS
+  CLICKS
+  CONVERSIONS
+  REVENUE
+  SPEND
+  CTR
+  CPC
+  CPM
+  ROAS
+  AOV
+  UNITS_SOLD
+  NEW_CUSTOMERS
+  ATTRIBUTED_REVENUE
+  VIEW_THROUGH_CONVERSIONS
+  CLICK_THROUGH_CONVERSIONS
+}
+
+enum Granularity {
+  HOURLY
+  DAILY
+  WEEKLY
+  MONTHLY
+  TOTAL
+}
+
+enum CatalogProductStatus {
+  ACTIVE
+  INACTIVE
+  OUT_OF_STOCK
+  DISCONTINUED
+  PENDING_REVIEW
+}
+
+enum CreativeStatus {
+  ACTIVE
+  PAUSED
+  PENDING_REVIEW
+  REJECTED
+  ARCHIVED
+}
+
+enum CreativeType {
+  IMAGE
+  VIDEO
+  HTML5
+  DYNAMIC
+  NATIVE
+  CAROUSEL
+}
+
+enum TargetingType {
+  KEYWORD
+  CATEGORY
+  PRODUCT
+  AUDIENCE
+  CONTEXTUAL
+  GEO
+  DEVICE
+}
+
+enum DeviceType {
+  DESKTOP
+  MOBILE
+  TABLET
+  ALL
+}
+
+enum PartnerType {
+  RETAILER
+  BRAND
+  AGENCY
+  NETWORK
+}
+
+enum AccountStatus {
+  ACTIVE
+  SUSPENDED
+  PENDING
+  CLOSED
+}
+
+enum SortOrder {
+  ASC
+  DESC
+}
+
+enum TransactionType {
+  CHARGE
+  CREDIT
+  REFUND
+  ADJUSTMENT
+}
+
+enum FrequencyCapUnit {
+  HOUR
+  DAY
+  WEEK
+  MONTH
+}
+
+# ===========================================================================
+# Core Resource Types
+# ===========================================================================
+
+"""An advertiser account on the Criteo platform."""
+type Advertiser {
+  id: ID!
+  name: String!
+  status: AccountStatus!
+  currency: String!
+  timezone: String!
+  country: String
+  website: String
+  industry: String
+  partner: Partner
+  campaigns(first: Int, after: String, status: CampaignStatus): CampaignConnection!
+  audiences(first: Int, after: String): AudienceConnection!
+  creatives(first: Int, after: String): CreativeConnection!
+  balances: [Balance!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A retailer partner in the Criteo Retail Media ecosystem."""
+type Retailer {
+  id: ID!
+  name: String!
+  status: AccountStatus!
+  country: String
+  currency: String!
+  website: String
+  catalogs(first: Int, after: String): CatalogConnection!
+  adPlacements: [AdPlacement!]!
+  balances: [Balance!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A partner (agency, retailer, brand, or network) in the Criteo ecosystem."""
+type Partner {
+  id: ID!
+  name: String!
+  type: PartnerType!
+  status: AccountStatus!
+  currency: String!
+  country: String
+  advertisers(first: Int, after: String): AdvertiserConnection!
+  retailers(first: Int, after: String): RetailerConnection!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A retail media campaign."""
+type Campaign {
+  id: ID!
+  name: String!
+  status: CampaignStatus!
+  goal: GoalType
+  budget: Budget!
+  startDate: Date
+  endDate: Date
+  advertiser: Advertiser!
+  retailer: Retailer
+  lineItems(first: Int, after: String, status: LineItemStatus): LineItemConnection!
+  adSets(first: Int, after: String): AdSetConnection!
+  spend: Decimal
+  impressions: BigInt
+  clicks: BigInt
+  conversions: BigInt
+  roas: Decimal
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A line item within a campaign defining bid, budget, and targeting."""
+type LineItem {
+  id: ID!
+  name: String!
+  status: LineItemStatus!
+  campaign: Campaign!
+  budget: Budget!
+  bidStrategy: BidStrategy!
+  maxBid: Decimal
+  targetRoas: Decimal
+  targetCpa: Decimal
+  startDate: Date
+  endDate: Date
+  targeting: Targeting!
+  adSets(first: Int, after: String): AdSetConnection!
+  format: AdFormat!
+  spend: Decimal
+  impressions: BigInt
+  clicks: BigInt
+  conversions: BigInt
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""An ad set grouping creatives and targeting within a campaign."""
+type AdSet {
+  id: ID!
+  name: String!
+  campaign: Campaign!
+  lineItem: LineItem
+  targeting: Targeting!
+  creatives(first: Int, after: String): CreativeConnection!
+  frequencyCap: FrequencyCap
+  startDate: Date
+  endDate: Date
+  spend: Decimal
+  impressions: BigInt
+  clicks: BigInt
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Budget configuration for a campaign or line item."""
+type Budget {
+  type: BudgetType!
+  amount: Decimal
+  currency: String!
+  spent: Decimal
+  remaining: Decimal
+}
+
+"""Targeting configuration for line items and ad sets."""
+type Targeting {
+  audiences: [AudienceSegment!]!
+  keywords: [Keyword!]!
+  categories: [Category!]!
+  products: [TargetedProduct!]!
+  geoTargets: [GeoTarget!]!
+  devices: [DeviceType!]!
+  excludedAudiences: [AudienceSegment!]!
+  dayParting: [DayPartingSlot!]!
+}
+
+"""A frequency cap limiting how often ads are shown."""
+type FrequencyCap {
+  impressions: Int!
+  unit: FrequencyCapUnit!
+  value: Int!
+}
+
+"""An audience segment for targeting."""
+type AudienceSegment {
+  id: ID!
+  name: String!
+  type: AudienceType!
+  status: AudienceStatus!
+  advertiser: Advertiser
+  size: BigInt
+  lookbackWindowDays: Int
+  description: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A keyword used for targeting."""
+type Keyword {
+  id: ID!
+  text: String!
+  matchType: String!
+  bid: Decimal
+  status: String!
+}
+
+"""A product category for targeting or catalog organization."""
+type Category {
+  id: ID!
+  name: String!
+  parentCategory: Category
+  childCategories: [Category!]!
+  productCount: Int
+  level: Int!
+}
+
+"""A product targeted within an ad set or line item."""
+type TargetedProduct {
+  productId: String!
+  sku: String
+  name: String
+  bid: Decimal
+}
+
+"""A geographic targeting unit."""
+type GeoTarget {
+  id: ID!
+  name: String!
+  type: String!
+  countryCode: String!
+  region: String
+  city: String
+  postalCode: String
+}
+
+"""A day-parting slot for time-based ad delivery."""
+type DayPartingSlot {
+  dayOfWeek: Int!
+  startHour: Int!
+  endHour: Int!
+}
+
+# ===========================================================================
+# Catalog Types
+# ===========================================================================
+
+"""A product catalog managed by a retailer."""
+type Catalog {
+  id: ID!
+  name: String!
+  retailer: Retailer!
+  productCount: Int!
+  lastSyncedAt: DateTime
+  products(first: Int, after: String, status: CatalogProductStatus): CatalogProductConnection!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A product in a retailer's catalog."""
+type CatalogProduct {
+  id: ID!
+  sku: String!
+  name: String!
+  description: String
+  brand: String
+  category: Category
+  price: Decimal!
+  salePrice: Decimal
+  currency: String!
+  imageUrl: String
+  productUrl: String
+  status: CatalogProductStatus!
+  inventory: Int
+  gtin: String
+  mpn: String
+  attributes: JSON
+  catalog: Catalog!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ===========================================================================
+# Creative Types
+# ===========================================================================
+
+"""A creative asset used in ad delivery."""
+type Creative {
+  id: ID!
+  name: String!
+  type: CreativeType!
+  status: CreativeStatus!
+  format: AdFormat!
+  advertiser: Advertiser!
+  width: Int
+  height: Int
+  fileUrl: String
+  thumbnailUrl: String
+  clickUrl: String
+  impressionTracker: String
+  clickTracker: String
+  adSets(first: Int, after: String): AdSetConnection!
+  reviewNotes: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""An ad placement slot on a retailer's property."""
+type AdPlacement {
+  id: ID!
+  name: String!
+  retailer: Retailer!
+  format: AdFormat!
+  width: Int
+  height: Int
+  pageType: String
+  position: String
+  isActive: Boolean!
+}
+
+# ===========================================================================
+# Reporting Types
+# ===========================================================================
+
+"""A report request and its results."""
+type Report {
+  id: ID!
+  type: ReportType!
+  status: String!
+  startDate: Date!
+  endDate: Date!
+  granularity: Granularity!
+  metrics: [ReportMetric!]!
+  dimensions: [String!]!
+  filters: JSON
+  rows: [ReportRow!]!
+  totalRows: Int!
+  generatedAt: DateTime
+  createdAt: DateTime!
+}
+
+"""A single row of report data."""
+type ReportRow {
+  dimensions: JSON!
+  metrics: ReportMetrics!
+}
+
+"""Aggregated performance metrics."""
+type ReportMetrics {
+  impressions: BigInt
+  clicks: BigInt
+  conversions: BigInt
+  revenue: Decimal
+  spend: Decimal
+  ctr: Decimal
+  cpc: Decimal
+  cpm: Decimal
+  roas: Decimal
+  aov: Decimal
+  unitsSold: Int
+  newCustomers: Int
+  attributedRevenue: Decimal
+  viewThroughConversions: Int
+  clickThroughConversions: Int
+}
+
+# ===========================================================================
+# Financial Types
+# ===========================================================================
+
+"""Account balance information."""
+type Balance {
+  accountId: ID!
+  accountType: String!
+  currency: String!
+  totalBalance: Decimal!
+  availableBalance: Decimal!
+  reservedBalance: Decimal!
+  updatedAt: DateTime!
+}
+
+"""A billing transaction record."""
+type Transaction {
+  id: ID!
+  type: TransactionType!
+  amount: Decimal!
+  currency: String!
+  description: String
+  referenceId: String
+  campaign: Campaign
+  lineItem: LineItem
+  occurredAt: DateTime!
+  createdAt: DateTime!
+}
+
+"""An invoice for billing purposes."""
+type Invoice {
+  id: ID!
+  invoiceNumber: String!
+  advertiser: Advertiser!
+  amount: Decimal!
+  currency: String!
+  status: String!
+  issuedDate: Date!
+  dueDate: Date!
+  paidDate: Date
+  lineItems: [InvoiceLineItem!]!
+  downloadUrl: String
+}
+
+"""A line item on an invoice."""
+type InvoiceLineItem {
+  description: String!
+  quantity: Decimal!
+  unitPrice: Decimal!
+  totalAmount: Decimal!
+  campaignName: String
+  periodStart: Date
+  periodEnd: Date
+}
+
+# ===========================================================================
+# Connection / Pagination Types
+# ===========================================================================
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+  totalCount: Int
+}
+
+type AdvertiserConnection {
+  edges: [AdvertiserEdge!]!
+  pageInfo: PageInfo!
+}
+
+type AdvertiserEdge {
+  node: Advertiser!
+  cursor: String!
+}
+
+type RetailerConnection {
+  edges: [RetailerEdge!]!
+  pageInfo: PageInfo!
+}
+
+type RetailerEdge {
+  node: Retailer!
+  cursor: String!
+}
+
+type PartnerConnection {
+  edges: [PartnerEdge!]!
+  pageInfo: PageInfo!
+}
+
+type PartnerEdge {
+  node: Partner!
+  cursor: String!
+}
+
+type CampaignConnection {
+  edges: [CampaignEdge!]!
+  pageInfo: PageInfo!
+}
+
+type CampaignEdge {
+  node: Campaign!
+  cursor: String!
+}
+
+type LineItemConnection {
+  edges: [LineItemEdge!]!
+  pageInfo: PageInfo!
+}
+
+type LineItemEdge {
+  node: LineItem!
+  cursor: String!
+}
+
+type AdSetConnection {
+  edges: [AdSetEdge!]!
+  pageInfo: PageInfo!
+}
+
+type AdSetEdge {
+  node: AdSet!
+  cursor: String!
+}
+
+type AudienceConnection {
+  edges: [AudienceEdge!]!
+  pageInfo: PageInfo!
+}
+
+type AudienceEdge {
+  node: AudienceSegment!
+  cursor: String!
+}
+
+type CreativeConnection {
+  edges: [CreativeEdge!]!
+  pageInfo: PageInfo!
+}
+
+type CreativeEdge {
+  node: Creative!
+  cursor: String!
+}
+
+type CatalogConnection {
+  edges: [CatalogEdge!]!
+  pageInfo: PageInfo!
+}
+
+type CatalogEdge {
+  node: Catalog!
+  cursor: String!
+}
+
+type CatalogProductConnection {
+  edges: [CatalogProductEdge!]!
+  pageInfo: PageInfo!
+}
+
+type CatalogProductEdge {
+  node: CatalogProduct!
+  cursor: String!
+}
+
+# ===========================================================================
+# Input Types
+# ===========================================================================
+
+input BudgetInput {
+  type: BudgetType!
+  amount: Decimal
+  currency: String!
+}
+
+input FrequencyCapInput {
+  impressions: Int!
+  unit: FrequencyCapUnit!
+  value: Int!
+}
+
+input GeoTargetInput {
+  countryCode: String!
+  region: String
+  city: String
+  postalCode: String
+}
+
+input TargetingInput {
+  audienceIds: [ID!]
+  excludedAudienceIds: [ID!]
+  keywords: [KeywordInput!]
+  categoryIds: [ID!]
+  productSkus: [String!]
+  geoTargets: [GeoTargetInput!]
+  devices: [DeviceType!]
+}
+
+input KeywordInput {
+  text: String!
+  matchType: String!
+  bid: Decimal
+}
+
+input CreateCampaignInput {
+  name: String!
+  advertiserId: ID!
+  retailerId: ID
+  goal: GoalType
+  budget: BudgetInput!
+  startDate: Date
+  endDate: Date
+}
+
+input UpdateCampaignInput {
+  name: String
+  status: CampaignStatus
+  budget: BudgetInput
+  startDate: Date
+  endDate: Date
+}
+
+input CreateLineItemInput {
+  name: String!
+  campaignId: ID!
+  budget: BudgetInput!
+  bidStrategy: BidStrategy!
+  maxBid: Decimal
+  targetRoas: Decimal
+  targetCpa: Decimal
+  format: AdFormat!
+  startDate: Date
+  endDate: Date
+  targeting: TargetingInput
+}
+
+input UpdateLineItemInput {
+  name: String
+  status: LineItemStatus
+  budget: BudgetInput
+  bidStrategy: BidStrategy
+  maxBid: Decimal
+  targetRoas: Decimal
+  targetCpa: Decimal
+  startDate: Date
+  endDate: Date
+  targeting: TargetingInput
+}
+
+input CreateAdSetInput {
+  name: String!
+  campaignId: ID!
+  lineItemId: ID
+  targeting: TargetingInput
+  frequencyCap: FrequencyCapInput
+  startDate: Date
+  endDate: Date
+}
+
+input UpdateAdSetInput {
+  name: String
+  targeting: TargetingInput
+  frequencyCap: FrequencyCapInput
+  startDate: Date
+  endDate: Date
+}
+
+input CreateAudienceInput {
+  name: String!
+  advertiserId: ID!
+  type: AudienceType!
+  lookbackWindowDays: Int
+  description: String
+  sourceAudienceIds: [ID!]
+}
+
+input UpdateAudienceInput {
+  name: String
+  status: AudienceStatus
+  lookbackWindowDays: Int
+  description: String
+}
+
+input CreateCreativeInput {
+  name: String!
+  advertiserId: ID!
+  type: CreativeType!
+  format: AdFormat!
+  fileUrl: String
+  clickUrl: String!
+  impressionTracker: String
+  clickTracker: String
+  width: Int
+  height: Int
+}
+
+input UpdateCreativeInput {
+  name: String
+  status: CreativeStatus
+  clickUrl: String
+  impressionTracker: String
+  clickTracker: String
+}
+
+input ReportRequestInput {
+  type: ReportType!
+  advertiserId: ID
+  retailerId: ID
+  campaignIds: [ID!]
+  lineItemIds: [ID!]
+  startDate: Date!
+  endDate: Date!
+  granularity: Granularity!
+  metrics: [ReportMetric!]!
+  dimensions: [String!]
+  filters: JSON
+}
+
+input CampaignFilterInput {
+  status: CampaignStatus
+  startDateFrom: Date
+  startDateTo: Date
+  endDateFrom: Date
+  endDateTo: Date
+  retailerId: ID
+}
+
+input LineItemFilterInput {
+  status: LineItemStatus
+  format: AdFormat
+  bidStrategy: BidStrategy
+}
+
+input CatalogProductFilterInput {
+  status: CatalogProductStatus
+  brand: String
+  categoryId: ID
+  minPrice: Decimal
+  maxPrice: Decimal
+  inStock: Boolean
+}
+
+# ===========================================================================
+# Mutation Payloads
+# ===========================================================================
+
+type CampaignPayload {
+  campaign: Campaign
+  errors: [UserError!]!
+}
+
+type LineItemPayload {
+  lineItem: LineItem
+  errors: [UserError!]!
+}
+
+type AdSetPayload {
+  adSet: AdSet
+  errors: [UserError!]!
+}
+
+type AudiencePayload {
+  audience: AudienceSegment
+  errors: [UserError!]!
+}
+
+type CreativePayload {
+  creative: Creative
+  errors: [UserError!]!
+}
+
+type ReportPayload {
+  report: Report
+  errors: [UserError!]!
+}
+
+type DeletePayload {
+  id: ID
+  success: Boolean!
+  errors: [UserError!]!
+}
+
+type UserError {
+  field: String
+  message: String!
+  code: String
+}
+
+# ===========================================================================
+# Query Root
+# ===========================================================================
+
+type Query {
+  """Fetch a single advertiser by ID."""
+  advertiser(id: ID!): Advertiser
+
+  """List all accessible advertisers."""
+  advertisers(
+    first: Int
+    after: String
+    status: AccountStatus
+    partnerId: ID
+  ): AdvertiserConnection!
+
+  """Fetch a single retailer by ID."""
+  retailer(id: ID!): Retailer
+
+  """List all accessible retailers."""
+  retailers(
+    first: Int
+    after: String
+    status: AccountStatus
+    partnerId: ID
+  ): RetailerConnection!
+
+  """Fetch a single partner by ID."""
+  partner(id: ID!): Partner
+
+  """List all accessible partners."""
+  partners(
+    first: Int
+    after: String
+    type: PartnerType
+  ): PartnerConnection!
+
+  """Fetch a single campaign by ID."""
+  campaign(id: ID!): Campaign
+
+  """List campaigns for an advertiser."""
+  campaigns(
+    advertiserId: ID!
+    first: Int
+    after: String
+    filter: CampaignFilterInput
+  ): CampaignConnection!
+
+  """Fetch a single line item by ID."""
+  lineItem(id: ID!): LineItem
+
+  """List line items for a campaign."""
+  lineItems(
+    campaignId: ID!
+    first: Int
+    after: String
+    filter: LineItemFilterInput
+  ): LineItemConnection!
+
+  """Fetch a single ad set by ID."""
+  adSet(id: ID!): AdSet
+
+  """List ad sets for a campaign."""
+  adSets(
+    campaignId: ID!
+    first: Int
+    after: String
+  ): AdSetConnection!
+
+  """Fetch a single audience segment by ID."""
+  audience(id: ID!): AudienceSegment
+
+  """List audience segments for an advertiser."""
+  audiences(
+    advertiserId: ID!
+    first: Int
+    after: String
+    type: AudienceType
+    status: AudienceStatus
+  ): AudienceConnection!
+
+  """Fetch a single creative by ID."""
+  creative(id: ID!): Creative
+
+  """List creatives for an advertiser."""
+  creatives(
+    advertiserId: ID!
+    first: Int
+    after: String
+    type: CreativeType
+    format: AdFormat
+    status: CreativeStatus
+  ): CreativeConnection!
+
+  """Fetch a single catalog by ID."""
+  catalog(id: ID!): Catalog
+
+  """List catalogs for a retailer."""
+  catalogs(
+    retailerId: ID!
+    first: Int
+    after: String
+  ): CatalogConnection!
+
+  """Fetch a single catalog product by ID."""
+  catalogProduct(id: ID!): CatalogProduct
+
+  """List products in a catalog."""
+  catalogProducts(
+    catalogId: ID!
+    first: Int
+    after: String
+    filter: CatalogProductFilterInput
+  ): CatalogProductConnection!
+
+  """Search products in a catalog."""
+  searchCatalogProducts(
+    catalogId: ID!
+    query: String!
+    first: Int
+    after: String
+  ): CatalogProductConnection!
+
+  """Fetch a category by ID."""
+  category(id: ID!): Category
+
+  """List top-level categories."""
+  categories(retailerId: ID): [Category!]!
+
+  """Fetch a report by ID."""
+  report(id: ID!): Report
+
+  """Get account balances for an advertiser."""
+  balances(advertiserId: ID!): [Balance!]!
+
+  """List transactions for an advertiser."""
+  transactions(
+    advertiserId: ID!
+    first: Int
+    after: String
+    type: TransactionType
+    startDate: Date
+    endDate: Date
+  ): [Transaction!]!
+
+  """List invoices for an advertiser."""
+  invoices(
+    advertiserId: ID!
+    first: Int
+    after: String
+    startDate: Date
+    endDate: Date
+  ): [Invoice!]!
+
+  """Fetch a single invoice by ID."""
+  invoice(id: ID!): Invoice
+
+  """List ad placements available for a retailer."""
+  adPlacements(retailerId: ID!): [AdPlacement!]!
+
+  """List available geo targets."""
+  geoTargets(
+    countryCode: String
+    query: String
+    type: String
+  ): [GeoTarget!]!
+}
+
+# ===========================================================================
+# Mutation Root
+# ===========================================================================
+
+type Mutation {
+  """Create a new retail media campaign."""
+  createCampaign(input: CreateCampaignInput!): CampaignPayload!
+
+  """Update an existing campaign."""
+  updateCampaign(id: ID!, input: UpdateCampaignInput!): CampaignPayload!
+
+  """Archive (soft-delete) a campaign."""
+  deleteCampaign(id: ID!): DeletePayload!
+
+  """Pause a campaign."""
+  pauseCampaign(id: ID!): CampaignPayload!
+
+  """Activate a paused campaign."""
+  activateCampaign(id: ID!): CampaignPayload!
+
+  """Create a new line item within a campaign."""
+  createLineItem(input: CreateLineItemInput!): LineItemPayload!
+
+  """Update an existing line item."""
+  updateLineItem(id: ID!, input: UpdateLineItemInput!): LineItemPayload!
+
+  """Delete a line item."""
+  deleteLineItem(id: ID!): DeletePayload!
+
+  """Pause a line item."""
+  pauseLineItem(id: ID!): LineItemPayload!
+
+  """Activate a paused line item."""
+  activateLineItem(id: ID!): LineItemPayload!
+
+  """Create a new ad set."""
+  createAdSet(input: CreateAdSetInput!): AdSetPayload!
+
+  """Update an existing ad set."""
+  updateAdSet(id: ID!, input: UpdateAdSetInput!): AdSetPayload!
+
+  """Delete an ad set."""
+  deleteAdSet(id: ID!): DeletePayload!
+
+  """Attach a creative to an ad set."""
+  addCreativeToAdSet(adSetId: ID!, creativeId: ID!): AdSetPayload!
+
+  """Remove a creative from an ad set."""
+  removeCreativeFromAdSet(adSetId: ID!, creativeId: ID!): AdSetPayload!
+
+  """Create a new audience segment."""
+  createAudience(input: CreateAudienceInput!): AudiencePayload!
+
+  """Update an existing audience segment."""
+  updateAudience(id: ID!, input: UpdateAudienceInput!): AudiencePayload!
+
+  """Delete an audience segment."""
+  deleteAudience(id: ID!): DeletePayload!
+
+  """Create a new creative asset."""
+  createCreative(input: CreateCreativeInput!): CreativePayload!
+
+  """Update an existing creative."""
+  updateCreative(id: ID!, input: UpdateCreativeInput!): CreativePayload!
+
+  """Delete a creative."""
+  deleteCreative(id: ID!): DeletePayload!
+
+  """Request a performance report to be generated."""
+  requestReport(input: ReportRequestInput!): ReportPayload!
+}
