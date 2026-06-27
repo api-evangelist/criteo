@@ -92,7 +92,7 @@ common:
   url: https://developers.criteo.com/
 - type: Documentation
   url: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
-- type: SignUp
+- type: Signup
   url: https://developers.criteo.com/signup
 - type: SupportCenter
   url: https://support.criteo.com/
@@ -104,7 +104,7 @@ common:
   url: https://www.criteo.com/legal/
 - type: Integrations
   url: https://www.criteo.com/partners/
-- type: LLMsTxt
+- type: LlmsText
   url: https://developers.criteo.com/llms.txt
 integrations:
 - name: Criteo
