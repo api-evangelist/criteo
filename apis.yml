@@ -82,6 +82,8 @@ apis:
   - Creatives
   - Marketing Solutions
 common:
+- type: OAuthScopes
+  url: scopes/criteo-scopes.yml
 - type: GitHubOrganization
   url: https://github.com/criteo
 - type: LinkedIn

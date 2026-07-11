@@ -1,0 +1,98 @@
+generated: '2026-07-11'
+method: searched
+source: openapi/criteo-openapi.yml
+docs: https://developers.criteo.com/retail-media/docs/create-your-app
+note: Criteo expresses API permissions as application "domains" chosen when creating
+  an API app in the developer portal, each set to a No access / Read / Manage authorization
+  level, rather than as OAuth scope strings passed in the token request (see
+  https://developers.criteo.com/retail-media/docs/create-your-app and
+  https://developers.criteo.com/marketing-solutions/docs/create-your-app).
+schemes:
+- name: OAuth2ClientCredentials
+  source: openapi/criteo-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.criteo.com/oauth2/token
+  - flow: authorizationCode
+    authorizationUrl: https://consent.criteo.com/authorize
+    tokenUrl: https://api.criteo.com/oauth2/token
+scopes:
+- scope: Accounts
+  description: 'Retail Media domain: manages permissions to endpoints responsible
+    for describing accounts'' entities, with their properties and relationships,
+    like parent/child accounts. Authorization levels: No access / Read / Manage
+    (Manage requires prior activation by a Criteo contact).'
+  sources:
+  - https://developers.criteo.com/retail-media/docs/create-your-app
+- scope: Analytics
+  description: 'Retail Media domain: manages permissions to generate reporting data
+    for campaigns & line-items, considering desired list of dimensions & metrics.
+    Authorization levels: No access / Read.'
+  sources:
+  - https://developers.criteo.com/retail-media/docs/create-your-app
+- scope: Audiences
+  description: 'Retail Media domain: manages permissions to check/manage audiences
+    available to campaigns. Authorization levels: No access / Read / Manage.'
+  sources:
+  - https://developers.criteo.com/retail-media/docs/create-your-app
+- scope: Balances
+  description: 'Retail Media domain: manages permissions to endpoints responsible
+    for configuring and retrieving balance entities, which define spending limits
+    applied across campaigns. Authorization levels: No access / Read / Manage
+    (Manage requires prior activation by a Criteo contact).'
+  sources:
+  - https://developers.criteo.com/retail-media/docs/create-your-app
+- scope: Billing
+  description: 'Retail Media domain: manages permissions to generate billing data
+    for campaigns & line items for a retailer partner. Authorization levels: No
+    access / Read (Read requires prior activation by a Criteo contact).'
+  sources:
+  - https://developers.criteo.com/retail-media/docs/create-your-app
+- scope: Campaigns
+  description: 'Retail Media domain: manages permissions to endpoints responsible
+    for campaigns management, including line-items, balances and creatives.
+    Authorization levels: No access / Read / Manage.'
+  sources:
+  - https://developers.criteo.com/retail-media/docs/create-your-app
+- scope: Catalog
+  description: 'Retail Media domain: manages permissions to check/manage products
+    catalogs. Authorization levels: No access / Read / Manage.'
+  sources:
+  - https://developers.criteo.com/retail-media/docs/create-your-app
+- scope: Analytics (Marketing Solutions)
+  description: 'Marketing Solutions (Commerce Growth) domain: generate custom
+    reports; slice and dice your data across marketing goals and channels,
+    including App, Web, and Store campaigns. Authorization levels: No access /
+    Read.'
+  sources:
+  - https://developers.criteo.com/marketing-solutions/docs/create-your-app
+- scope: Audiences (Marketing Solutions)
+  description: 'Marketing Solutions (Commerce Growth) domain: create, update, or
+    delete your audiences using your own CRM segments, Criteo''s or your lists
+    from a third party. Authorization levels: No access / Read / Manage.'
+  sources:
+  - https://developers.criteo.com/marketing-solutions/docs/create-your-app
+- scope: Campaigns (Marketing Solutions)
+  description: 'Marketing Solutions (Commerce Growth) domain: create and edit
+    campaigns, ad sets, as well as update settings like CPCs. Authorization
+    levels: No access / Read / Manage.'
+  sources:
+  - https://developers.criteo.com/marketing-solutions/docs/create-your-app
+- scope: Catalog (Marketing Solutions)
+  description: 'Marketing Solutions (Commerce Growth) domain: add and edit your
+    product details. Authorization levels: No access / Read / Manage.'
+  sources:
+  - https://developers.criteo.com/marketing-solutions/docs/create-your-app
+- scope: Creatives (Marketing Solutions)
+  description: 'Marketing Solutions (Commerce Growth) domain: create your own or
+    use third-party creative that is displayed by an external creative provider
+    at display time; access, add, or edit creative from the API. Authorization
+    levels: No access / Read / Manage.'
+  sources:
+  - https://developers.criteo.com/marketing-solutions/docs/create-your-app
+- scope: Product recommendations configuration (Marketing Solutions)
+  description: 'Marketing Solutions (Commerce Growth) domain: product
+    recommendations configuration; access must be requested. Authorization
+    levels: No access / Read / Manage.'
+  sources:
+  - https://developers.criteo.com/marketing-solutions/docs/create-your-app
