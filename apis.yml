@@ -82,6 +82,14 @@ apis:
   - Creatives
   - Marketing Solutions
 common:
+- type: TrustCenter
+  url: security/criteo-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/criteo-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/criteo-domain-security.yml
+- type: Authentication
+  url: authentication/criteo-authentication.yml
 - type: OAuthScopes
   url: scopes/criteo-scopes.yml
 - type: GitHubOrganization

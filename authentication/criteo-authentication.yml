@@ -1,0 +1,22 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/criteo-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+  - clientCredentials
+schemes:
+- name: OAuth2ClientCredentials
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.criteo.com/oauth2/token
+    scopes: 0
+  - flow: authorizationCode
+    authorizationUrl: https://consent.criteo.com/authorize
+    tokenUrl: https://api.criteo.com/oauth2/token
+    scopes: 0
+  sources:
+  - openapi/criteo-openapi.yml
