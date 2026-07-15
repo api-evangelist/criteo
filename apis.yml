@@ -82,6 +82,8 @@ apis:
   - Creatives
   - Marketing Solutions
 common:
+- type: AgenticAccess
+  url: agentic-access/criteo-agentic-access.yml
 - type: TrustCenter
   url: security/criteo-trust-center.yml
 - type: VulnerabilityDisclosure
