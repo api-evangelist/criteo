@@ -1,0 +1,94 @@
+openapi: 3.1.0
+info:
+  title: Criteo Retail Media Accounts Reports API
+  description: 'Criteo Retail Media programmatic API for campaign management, audiences,
+
+    line items, products, keywords, balances, catalogs, categories and
+
+    reporting. Endpoint inventory drawn from https://developers.criteo.com.
+
+    '
+  version: 2026-01
+  contact:
+    name: Criteo Developers
+    url: https://developers.criteo.com
+servers:
+- url: https://api.criteo.com
+  description: Production
+security:
+- OAuth2ClientCredentials: []
+tags:
+- name: Reports
+paths:
+  /2026-01/retail-media/reports/campaigns:
+    post:
+      summary: Generate campaigns report
+      operationId: createCampaignsReport
+      tags:
+      - Reports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Report job
+  /2026-01/retail-media/reports/line-items:
+    post:
+      summary: Generate line items report
+      operationId: createLineItemsReport
+      tags:
+      - Reports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Report job
+  /2026-01/retail-media/reports/{reportId}/status:
+    get:
+      summary: Get report status
+      operationId: getReportStatus
+      tags:
+      - Reports
+      parameters:
+      - in: path
+        name: reportId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Status
+  /2026-01/retail-media/reports/{reportId}/output:
+    get:
+      summary: Get report output
+      operationId: getReportOutput
+      tags:
+      - Reports
+      parameters:
+      - in: path
+        name: reportId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Report output
+components:
+  securitySchemes:
+    OAuth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.criteo.com/oauth2/token
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: https://consent.criteo.com/authorize
+          tokenUrl: https://api.criteo.com/oauth2/token
+          scopes: {}

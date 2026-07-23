@@ -1,0 +1,57 @@
+openapi: 3.1.0
+info:
+  title: Criteo Retail Media Accounts Authentication API
+  description: 'Criteo Retail Media programmatic API for campaign management, audiences,
+
+    line items, products, keywords, balances, catalogs, categories and
+
+    reporting. Endpoint inventory drawn from https://developers.criteo.com.
+
+    '
+  version: 2026-01
+  contact:
+    name: Criteo Developers
+    url: https://developers.criteo.com
+servers:
+- url: https://api.criteo.com
+  description: Production
+security:
+- OAuth2ClientCredentials: []
+tags:
+- name: Authentication
+paths:
+  /oauth2/token:
+    post:
+      summary: Generate access token
+      operationId: getToken
+      tags:
+      - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                grant_type:
+                  type: string
+                client_id:
+                  type: string
+                client_secret:
+                  type: string
+      responses:
+        '200':
+          description: Token
+components:
+  securitySchemes:
+    OAuth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.criteo.com/oauth2/token
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: https://consent.criteo.com/authorize
+          tokenUrl: https://api.criteo.com/oauth2/token
+          scopes: {}

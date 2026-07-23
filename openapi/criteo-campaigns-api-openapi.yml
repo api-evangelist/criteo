@@ -1,0 +1,104 @@
+openapi: 3.1.0
+info:
+  title: Criteo Retail Media Accounts Campaigns API
+  description: 'Criteo Retail Media programmatic API for campaign management, audiences,
+
+    line items, products, keywords, balances, catalogs, categories and
+
+    reporting. Endpoint inventory drawn from https://developers.criteo.com.
+
+    '
+  version: 2026-01
+  contact:
+    name: Criteo Developers
+    url: https://developers.criteo.com
+servers:
+- url: https://api.criteo.com
+  description: Production
+security:
+- OAuth2ClientCredentials: []
+tags:
+- name: Campaigns
+paths:
+  /2026-01/retail-media/accounts/{accountId}/campaigns:
+    get:
+      summary: List campaigns by account
+      operationId: getCampaignsByAccount
+      tags:
+      - Campaigns
+      parameters:
+      - in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Campaigns
+    post:
+      summary: Create campaign
+      operationId: createCampaign
+      tags:
+      - Campaigns
+      parameters:
+      - in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Created
+  /2026-01/retail-media/campaigns/{campaignId}:
+    get:
+      summary: Get campaign
+      operationId: getCampaign
+      tags:
+      - Campaigns
+      parameters:
+      - in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Campaign
+    patch:
+      summary: Update campaign
+      operationId: updateCampaign
+      tags:
+      - Campaigns
+      parameters:
+      - in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated
+components:
+  securitySchemes:
+    OAuth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.criteo.com/oauth2/token
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: https://consent.criteo.com/authorize
+          tokenUrl: https://api.criteo.com/oauth2/token
+          scopes: {}

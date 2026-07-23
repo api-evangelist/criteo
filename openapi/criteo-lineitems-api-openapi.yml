@@ -1,0 +1,139 @@
+openapi: 3.1.0
+info:
+  title: Criteo Retail Media Accounts LineItems API
+  description: 'Criteo Retail Media programmatic API for campaign management, audiences,
+
+    line items, products, keywords, balances, catalogs, categories and
+
+    reporting. Endpoint inventory drawn from https://developers.criteo.com.
+
+    '
+  version: 2026-01
+  contact:
+    name: Criteo Developers
+    url: https://developers.criteo.com
+servers:
+- url: https://api.criteo.com
+  description: Production
+security:
+- OAuth2ClientCredentials: []
+tags:
+- name: LineItems
+paths:
+  /2026-01/retail-media/campaigns/{campaignId}/preferred-line-items:
+    get:
+      summary: List preferred line items
+      operationId: getPreferredLineItems
+      tags:
+      - LineItems
+      parameters:
+      - in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Preferred line items
+    post:
+      summary: Create preferred line item
+      operationId: createPreferredLineItem
+      tags:
+      - LineItems
+      parameters:
+      - in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Created
+  /2026-01/retail-media/campaigns/{campaignId}/auction-line-items:
+    get:
+      summary: List auction line items
+      operationId: getAuctionLineItems
+      tags:
+      - LineItems
+      parameters:
+      - in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Auction line items
+    post:
+      summary: Create auction line item
+      operationId: createAuctionLineItem
+      tags:
+      - LineItems
+      parameters:
+      - in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Created
+  /2026-01/retail-media/line-items/{lineItemId}:
+    get:
+      summary: Get line item
+      operationId: getLineItem
+      tags:
+      - LineItems
+      parameters:
+      - in: path
+        name: lineItemId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Line item
+    patch:
+      summary: Update line item
+      operationId: updateLineItem
+      tags:
+      - LineItems
+      parameters:
+      - in: path
+        name: lineItemId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated
+components:
+  securitySchemes:
+    OAuth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.criteo.com/oauth2/token
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: https://consent.criteo.com/authorize
+          tokenUrl: https://api.criteo.com/oauth2/token
+          scopes: {}

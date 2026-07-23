@@ -1,0 +1,88 @@
+openapi: 3.1.0
+info:
+  title: Criteo Retail Media Accounts API
+  description: 'Criteo Retail Media programmatic API for campaign management, audiences,
+
+    line items, products, keywords, balances, catalogs, categories and
+
+    reporting. Endpoint inventory drawn from https://developers.criteo.com.
+
+    '
+  version: 2026-01
+  contact:
+    name: Criteo Developers
+    url: https://developers.criteo.com
+servers:
+- url: https://api.criteo.com
+  description: Production
+security:
+- OAuth2ClientCredentials: []
+tags:
+- name: Accounts
+paths:
+  /2026-01/retail-media/accounts:
+    get:
+      summary: List accessible accounts
+      operationId: getAccounts
+      tags:
+      - Accounts
+      responses:
+        '200':
+          description: Accounts
+  /2026-01/retail-media/accounts/{accountId}:
+    get:
+      summary: Get account by id
+      operationId: getAccount
+      tags:
+      - Accounts
+      parameters:
+      - in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Account
+  /2026-01/retail-media/account-management/accounts/{accountId}/brands/add:
+    post:
+      summary: Add brands to account
+      operationId: addBrandsToAccount
+      tags:
+      - Accounts
+      parameters:
+      - in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Brands added
+  /2026-01/retail-media/account-management/accounts/{accountId}/brands/remove:
+    post:
+      summary: Remove brands from account
+      operationId: removeBrandsFromAccount
+      tags:
+      - Accounts
+      parameters:
+      - in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Brands removed
+components:
+  securitySchemes:
+    OAuth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.criteo.com/oauth2/token
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: https://consent.criteo.com/authorize
+          tokenUrl: https://api.criteo.com/oauth2/token
+          scopes: {}

@@ -1,0 +1,84 @@
+openapi: 3.1.0
+info:
+  title: Criteo Retail Media Accounts Balances API
+  description: 'Criteo Retail Media programmatic API for campaign management, audiences,
+
+    line items, products, keywords, balances, catalogs, categories and
+
+    reporting. Endpoint inventory drawn from https://developers.criteo.com.
+
+    '
+  version: 2026-01
+  contact:
+    name: Criteo Developers
+    url: https://developers.criteo.com
+servers:
+- url: https://api.criteo.com
+  description: Production
+security:
+- OAuth2ClientCredentials: []
+tags:
+- name: Balances
+paths:
+  /2026-01/retail-media/accounts/{accountId}/balances:
+    get:
+      summary: List balances
+      operationId: getBalances
+      tags:
+      - Balances
+      parameters:
+      - in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Balances
+    post:
+      summary: Create balance
+      operationId: createBalance
+      tags:
+      - Balances
+      parameters:
+      - in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Created
+  /2026-01/retail-media/balances/{balanceId}/campaigns:
+    get:
+      summary: Get campaigns by balance
+      operationId: getCampaignsByBalance
+      tags:
+      - Balances
+      parameters:
+      - in: path
+        name: balanceId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Campaigns
+components:
+  securitySchemes:
+    OAuth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.criteo.com/oauth2/token
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: https://consent.criteo.com/authorize
+          tokenUrl: https://api.criteo.com/oauth2/token
+          scopes: {}

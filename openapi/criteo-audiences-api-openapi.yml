@@ -1,0 +1,70 @@
+openapi: 3.1.0
+info:
+  title: Criteo Retail Media Accounts Audiences API
+  description: 'Criteo Retail Media programmatic API for campaign management, audiences,
+
+    line items, products, keywords, balances, catalogs, categories and
+
+    reporting. Endpoint inventory drawn from https://developers.criteo.com.
+
+    '
+  version: 2026-01
+  contact:
+    name: Criteo Developers
+    url: https://developers.criteo.com
+servers:
+- url: https://api.criteo.com
+  description: Production
+security:
+- OAuth2ClientCredentials: []
+tags:
+- name: Audiences
+paths:
+  /2026-01/retail-media/accounts/{accountId}/audience-segments/create:
+    post:
+      summary: Create audience segment
+      operationId: createAudienceSegment
+      tags:
+      - Audiences
+      parameters:
+      - in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Created
+  /2026-01/retail-media/accounts/{accountId}/audience-segments/search:
+    get:
+      summary: Search audience segments
+      operationId: searchAudienceSegments
+      tags:
+      - Audiences
+      parameters:
+      - in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Segments
+components:
+  securitySchemes:
+    OAuth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.criteo.com/oauth2/token
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: https://consent.criteo.com/authorize
+          tokenUrl: https://api.criteo.com/oauth2/token
+          scopes: {}
