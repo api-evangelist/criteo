@@ -10,7 +10,20 @@ description: Criteo is a global commerce media company best known for its Retail
   authorization code, and PKCE flows and ship with a published Swagger specification
   and Postman collection.
 url: https://raw.githubusercontent.com/api-evangelist/criteo/refs/heads/main/apis.yml
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/criteo.png
 tags:
 - Advertising
 - Audiences
@@ -33,13 +46,13 @@ position: Consuming
 apis:
 - aid: criteo:criteo-retail-media-api
   name: Criteo Retail Media API
-  description: The Criteo Retail Media API is a REST API that lets retailers, brands,
-    and agencies build retail media campaigns programmatically. It exposes operations
-    for creating and updating campaigns and line items, managing audiences and audience
-    algebra nodes, configuring partner and retailer accounts, browsing the retailer
-    product catalog, and retrieving demand-side and supply-side analytics including
-    balances and billing reports. Authentication uses OAuth 2.0 client credentials,
-    authorization code, or authorization code with PKCE.
+  description: >-
+    The Criteo Retail Media API is a REST API that lets retailers, brands, and agencies build retail media
+    campaigns programmatically. It exposes operations for creating and updating campaigns and line items,
+    managing audiences and audience algebra nodes, configuring partner and retailer accounts, browsing
+    the retailer product catalog, and retrieving demand-side and supply-side analytics including balances
+    and billing reports. Authentication uses OAuth 2.0 client credentials, authorization code, or authorization
+    code with PKCE.
   humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
   properties:
   - type: Documentation
@@ -61,10 +74,10 @@ apis:
   - Retail Media
 - aid: criteo:criteo-marketing-solutions-api
   name: Criteo Marketing Solutions API
-  description: The Criteo Marketing Solutions API provides programmatic access to
-    Criteo's commerce media platform for advertisers and agencies running acquisition
-    and retention campaigns. It covers advertiser accounts, campaigns and budgets,
-    audience targeting, creative management, analytics, and Criteo's Commerce Growth
+  description: >-
+    The Criteo Marketing Solutions API provides programmatic access to Criteo's commerce media platform
+    for advertisers and agencies running acquisition and retention campaigns. It covers advertiser accounts,
+    campaigns and budgets, audience targeting, creative management, analytics, and Criteo's Commerce Growth
     and Commerce Max products.
   humanURL: https://developers.criteo.com/marketing-solutions/docs/welcome
   properties:
@@ -81,6 +94,105 @@ apis:
   - Campaigns
   - Creatives
   - Marketing Solutions
+- aid: criteo:criteo-accounts-api
+  name: Criteo Accounts API
+  description: The Accounts API from Criteo — 4 operation(s) for accounts.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-accounts-api-openapi.yml
+- aid: criteo:criteo-audiences-api
+  name: Criteo Audiences API
+  description: The Audiences API from Criteo — 2 operation(s) for audiences.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  tags:
+  - Audiences
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-audiences-api-openapi.yml
+- aid: criteo:criteo-authentication-api
+  name: Criteo Authentication API
+  description: The Authentication API from Criteo — 1 operation(s) for authentication.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-authentication-api-openapi.yml
+- aid: criteo:criteo-balances-api
+  name: Criteo Balances API
+  description: The Balances API from Criteo — 2 operation(s) for balances.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  tags:
+  - Balances
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-balances-api-openapi.yml
+- aid: criteo:criteo-campaigns-api
+  name: Criteo Campaigns API
+  description: The Campaigns API from Criteo — 2 operation(s) for campaigns.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  tags:
+  - Campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-campaigns-api-openapi.yml
+- aid: criteo:criteo-catalogs-api
+  name: Criteo Catalogs API
+  description: The Catalogs API from Criteo — 3 operation(s) for catalogs.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  tags:
+  - Catalogs
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-catalogs-api-openapi.yml
+- aid: criteo:criteo-categories-api
+  name: Criteo Categories API
+  description: The Categories API from Criteo — 1 operation(s) for categories.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  tags:
+  - Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-categories-api-openapi.yml
+- aid: criteo:criteo-keywords-api
+  name: Criteo Keywords API
+  description: The Keywords API from Criteo — 2 operation(s) for keywords.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  tags:
+  - Keywords
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-keywords-api-openapi.yml
+- aid: criteo:criteo-lineitems-api
+  name: Criteo LineItems API
+  description: The LineItems API from Criteo — 3 operation(s) for lineitems.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  tags:
+  - LineItems
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-lineitems-api-openapi.yml
+- aid: criteo:criteo-products-api
+  name: Criteo Products API
+  description: The Products API from Criteo — 3 operation(s) for products.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-products-api-openapi.yml
+- aid: criteo:criteo-reports-api
+  name: Criteo Reports API
+  description: The Reports API from Criteo — 4 operation(s) for reports.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-reports-api-openapi.yml
 common:
 - type: AgenticAccess
   url: agentic-access/criteo-agentic-access.yml
