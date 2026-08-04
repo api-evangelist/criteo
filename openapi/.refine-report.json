@@ -1,0 +1,34 @@
+{
+  "provider": "criteo",
+  "sources": [
+    "criteo-accounts-api-openapi.yml",
+    "criteo-audiences-api-openapi.yml",
+    "criteo-authentication-api-openapi.yml",
+    "criteo-balances-api-openapi.yml",
+    "criteo-campaigns-api-openapi.yml",
+    "criteo-catalogs-api-openapi.yml",
+    "criteo-categories-api-openapi.yml",
+    "criteo-keywords-api-openapi.yml",
+    "criteo-lineitems-api-openapi.yml",
+    "criteo-products-api-openapi.yml",
+    "criteo-reports-api-openapi.yml"
+  ],
+  "outputs": [
+    "criteo-accounts-api-openapi.yml",
+    "criteo-audiences-api-openapi.yml",
+    "criteo-authentication-api-openapi.yml",
+    "criteo-balances-api-openapi.yml",
+    "criteo-campaigns-api-openapi.yml",
+    "criteo-catalogs-api-openapi.yml",
+    "criteo-categories-api-openapi.yml",
+    "criteo-keywords-api-openapi.yml",
+    "criteo-lineitems-api-openapi.yml",
+    "criteo-products-api-openapi.yml",
+    "criteo-reports-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
