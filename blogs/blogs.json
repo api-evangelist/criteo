@@ -9,10 +9,13 @@
       "method": "feed"
     },
     {
-      "source": "https://support.criteo.com/",
-      "error": "URLError"
+      "source": "https://developers.criteo.com/retail-media/docs/welcome-to-criteo",
+      "feed_url": "https://developers.criteo.com/retail-media/docs/welcome-to-criteo",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 38,
-  "fetched": "2026-08-06T14:08:46Z"
+  "post_count": 43,
+  "fetched": "2026-08-15T12:22:01Z"
 }
