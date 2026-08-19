@@ -1,14 +1,62 @@
-generated: '2026-07-11'
+generated: '2026-08-13'
 method: searched
 probe: true
 source: https://security.criteo.com/
 url: https://security.criteo.com/
+platform: SafeBase
+http_status: 200
+fetched: '2026-08-13'
+
 certifications:
 - SOC 2
-- ISO 27001
+- SOC 2 Type 1
+- SOC 2 Type 2
+- ISO/IEC 27001
+
+documents_listed:
+  reports:
+  - Pentest Report
+  - SOC 2 Report
+  assurance_reports:
+  - ISO/IEC 27001
+  - SOC 2 Type 1
+  - SOC 2 Type 2
+  policies:
+  - Acceptable Use Policy
+  - Access Control Policy
+  - Asset Management Policy
+  - Data Management Policy
+  - Data Protection Policy
+  - Data Security Policy
+  - Encryption Policy
+  - Third Party Management Policy
+
+program_areas:
+- Incident Response (designated response personnel, incident reporting process, Security Operations Center)
+- Risk Management (risk assessments, third-party risk management, data access/impact levels)
+- Asset Management (asset classification, hardware/software inventories, secure asset disposal)
+- Training (phishing, secure development, security awareness)
+
+access_model:
+  public_documents: partial
+  gated: true
+  detail: >-
+    The trust center NAMES its certifications and policies publicly, which is what makes the
+    compliance posture verifiable, but the artefacts themselves (SOC 2 report, pentest report,
+    ISO certificate, the policy set) sit behind a "Start your security review" / "Get access"
+    request flow. Documents are labelled Public or Private; the substantive assurance reports
+    are Private.
+
+not_published:
+  fedramp: false
+  hipaa: false
+  pci_dss: false
+  csa_star: false
+  note: >-
+    No FedRAMP, HIPAA, PCI DSS or CSA STAR attestation is listed — consistent with an
+    advertising-technology provider that does not process cardholder or protected health data.
+
 evidence:
 - source: https://security.criteo.com/
-  keywords:
-  - soc 2
-  - iso/iec 27001
-  - trust center
+  status: 200
+  keywords: [soc 2, soc 2 type 1, soc 2 type 2, iso/iec 27001, trust center, pentest report, incident response]

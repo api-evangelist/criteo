@@ -1,0 +1,12 @@
+{
+    "issuer": "https://api.criteo.com",
+    "authorization_endpoint": "https://consent.criteo.com/request",
+    "token_endpoint": "https://api.criteo.com/oauth2/token",
+    "response_types_supported": [
+        "code"
+    ],
+    "grant_types_supported": [
+        "authorization_code",
+        "refresh_token"
+    ]
+}

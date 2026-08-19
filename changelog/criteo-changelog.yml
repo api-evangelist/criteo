@@ -1,0 +1,110 @@
+generated: '2026-08-13'
+method: searched
+source:
+- https://developers.criteo.com/retail-media/changelog
+- https://developers.criteo.com/marketing-solutions/changelog
+- https://developers.criteo.com/retailer-integration/changelog
+machine_readable_source:
+- https://developers.criteo.com/retail-media/changelog/changelog.md
+- https://developers.criteo.com/marketing-solutions/changelog/changelog.md
+note: >-
+  Criteo maintains a separate changelog per product. Entries are labelled by VERSION rather
+  than by date — the label is the release train (e.g. "2026.07 Version") and the date is
+  implied by the release schedule in lifecycle/criteo-lifecycle.yml. Only the experimental
+  entries carry a calendar label. Each entry is tagged, and "Breaking Change" is an explicit
+  tag, which makes the breaking-vs-additive split machine-legible. Recent window captured
+  below; the live changelogs remain the source of truth.
+
+scheme:
+  versioning: date-based stable versions (YYYY-MM), two per year
+  entry_label: version train name, or month for experimental releases
+  tags: [New releases, Breaking Change, Experimental]
+  breaking_changes_flagged: true
+  dated_entries: partial
+  rss: null
+  rss_note: No RSS/Atom feed is published for either changelog.
+
+current_version: '2026-07'
+previous_version: '2026-01'
+
+changelogs:
+- product: Retail Media
+  url: https://developers.criteo.com/retail-media/changelog
+  entries:
+  - label: August 2026
+    tags: [Experimental]
+    breaking: false
+    highlights:
+    - >-
+      Line Item Core — a new set of type-agnostic line item endpoints in Experimental. One
+      contract for every campaign type: pass a campaignId and the API infers the line item
+      type, with type-specific settings carried in a details object (initial support:
+      Onsite Display Auction via onsiteDisplayDetails).
+    - 'New: POST /line-items, PATCH /line-items/{line-item-id}, POST /line-items/demand-search, POST /line-items/supply-search'
+  - label: 2026.07 Version
+    tags: [New releases, Breaking Change]
+    breaking: true
+    highlights:
+    - >-
+      Versioning policy change — moved to two stable versions per year (January and July) and
+      a three-tier release model (Experimental / Release Candidate / Stable), replacing the
+      previous Preview + Stable two-tier system.
+    - >-
+      BREAKING — Retailer Search: targeting eligibility is now reported per budget model.
+      `isAvailable` removed; use `budgetModelAvailabilities`.
+    - >-
+      BREAKING — Real-Time Performance: `billableImpressions` and `billableClicks` renamed to
+      `impressions` and `clicks`.
+    - 'New: AI Assistant page type — target AI Assistant placements via `aiAssistant` in the line item `pageTypes` field.'
+  - label: 2026.01 Version
+    tags: [New releases]
+    breaking: false
+  - label: 2025.10 Version
+    tags: [New releases]
+    breaking: false
+  - label: 2025.07 Version
+    tags: [New releases]
+    breaking: false
+  - label: 2025.04 Version
+    tags: [New releases, Breaking Change]
+    breaking: true
+- product: Marketing Solutions
+  url: https://developers.criteo.com/marketing-solutions/changelog
+  entries:
+  - label: 2026.07 Version
+    tags: [New releases]
+    breaking: false
+    highlights:
+    - Versioning policy change to two stable versions per year and the three-tier release model.
+    - >-
+      Product Boost — five new endpoints controlling which products are featured in ads at the
+      ad and dataset level (GET/POST/DELETE on /ads/{ad-id}/product-boost[/{product-set-id}]
+      and GET /dataset/{dataset-id}/product-boost).
+    - >-
+      Ad Sets — new `budget.pacingBehavior` field, and two new
+      `attributionConfiguration.attributionMethod` values: `googleAnalytics` and `sftp`.
+    - >-
+      Commerce Grid Audience Segments — new endpoints to create, update, delete and search
+      segments and manage contact-list membership.
+  - label: 2026.01 Version
+    tags: [New releases]
+    breaking: false
+  - label: 2025.10 Version
+    tags: [New releases]
+    breaking: false
+  - label: 2025.07 Version
+    tags: [New releases]
+    breaking: false
+  - label: 2025.04 Version
+    tags: [New releases]
+    breaking: false
+- product: Retailer Integration
+  url: https://developers.criteo.com/retailer-integration/changelog
+  entries: []
+  note: Captured as a surface; entries not enumerated in this pass.
+
+summary:
+  changelogs: 3
+  entries_captured: 11
+  breaking_entries: 2
+  most_recent: August 2026 (Experimental — Line Item Core)

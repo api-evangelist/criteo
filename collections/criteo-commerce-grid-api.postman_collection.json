@@ -1,0 +1,1007 @@
+{
+  "item": [
+    {
+      "id": "b9ce4945-fd7e-4f64-9400-ea17729c2a96",
+      "name": "Gateway",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c31d1fae-b8e9-4d43-956d-21916dc87f9c",
+          "name": "/2026-01/commerce-grid/me",
+          "request": {
+            "name": "/2026-01/commerce-grid/me",
+            "description": {
+              "content": "Get information about the currently logged application",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "2026-01",
+                "commerce-grid",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.criteo.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8b6bb7c5-59c3-46b0-a65e-b37ea1fca671",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2026-01",
+                    "commerce-grid",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"attributes\": {\n      \"applicationId\": 8107,\n      \"criteoService\": \"string\",\n      \"description\": \"string\",\n      \"name\": \"string\",\n      \"organizationId\": 6914\n    },\n    \"type\": \"string\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"validation\"\n    },\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"validation\"\n    }\n  ],\n  \"warnings\": [\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"availability\"\n    },\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"validation\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "46018ab9-2c1d-4a56-8f84-f6c708ca712b",
+      "name": "Segment",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9a3fd29d-3443-45e1-b9e4-0d9bafaac901",
+          "name": "/2026-01/commerce-grid/audience-segments",
+          "request": {
+            "name": "/2026-01/commerce-grid/audience-segments",
+            "description": {
+              "content": "Updates the properties of all segments with a valid configuration, and returns the full segments. For those that cannot be updated, one or multiple errors are returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "2026-01",
+                "commerce-grid",
+                "audience-segments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.criteo.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": [\n    {\n      \"attributes\": {\n        \"description\": {\n          \"value\": \"<string>\"\n        },\n        \"name\": \"<string>\"\n      },\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"attributes\": {\n        \"description\": {\n          \"value\": \"<string>\"\n        },\n        \"name\": \"<string>\"\n      },\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "60decd0b-5ea1-469e-964a-a07a3c37d5e1",
+              "name": "Success or partial success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2026-01",
+                    "commerce-grid",
+                    "audience-segments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"attributes\": {\n        \"description\": {\n          \"value\": \"<string>\"\n        },\n        \"name\": \"<string>\"\n      },\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"attributes\": {\n        \"description\": {\n          \"value\": \"<string>\"\n        },\n        \"name\": \"<string>\"\n      },\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"attributes\": {\n        \"contactList\": {},\n        \"createdAt\": \"2021-01-28T10:42:39.104Z\",\n        \"dataProviderId\": \"string\",\n        \"description\": \"string\",\n        \"name\": \"string\",\n        \"remoteId\": \"string\",\n        \"type\": \"Unknown\",\n        \"updatedAt\": \"1952-07-05T04:55:49.736Z\"\n      },\n      \"id\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"attributes\": {\n        \"contactList\": {},\n        \"createdAt\": \"1993-02-03T01:12:32.964Z\",\n        \"dataProviderId\": \"string\",\n        \"description\": \"string\",\n        \"name\": \"string\",\n        \"remoteId\": \"string\",\n        \"type\": \"Unknown\",\n        \"updatedAt\": \"1963-08-15T10:16:44.641Z\"\n      },\n      \"id\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"deprecation\"\n    },\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"access-control\"\n    }\n  ],\n  \"warnings\": [\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"unknown\"\n    },\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"validation\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8266490f-8a03-456c-810b-7abc7747a08d",
+          "name": "/2026-01/commerce-grid/audience-segments/{audience-segment-id}/contact-list/add-remove",
+          "request": {
+            "name": "/2026-01/commerce-grid/audience-segments/{audience-segment-id}/contact-list/add-remove",
+            "description": {
+              "content": "Add/remove identifiers to or from a Commerce Grid audience segment of type Contact List.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "2026-01",
+                "commerce-grid",
+                "audience-segments",
+                ":audience-segment-id",
+                "contact-list",
+                "add-remove"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<int64>",
+                  "key": "audience-segment-id",
+                  "description": "(Required) The ID of the audience segment of type contact list to amend"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.criteo.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"identifiers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"operation\": \"<string>\",\n      \"identifierType\": \"<string>\"\n    },\n    \"type\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2ca2eb7d-abdb-46b5-bdfd-f6181adca8e4",
+              "name": "Summary of the add/remove operation of identifiers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2026-01",
+                    "commerce-grid",
+                    "audience-segments",
+                    ":audience-segment-id",
+                    "contact-list",
+                    "add-remove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int64>",
+                      "key": "audience-segment-id",
+                      "description": "(Required) The ID of the audience segment of type contact list to amend"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"identifiers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"operation\": \"<string>\",\n      \"identifierType\": \"<string>\"\n    },\n    \"type\": \"AddRemoveContactlist\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"AddRemoveContactlistResult\",\n    \"attributes\": {\n      \"contactListId\": 568708742535471100,\n      \"operation\": \"add\",\n      \"requestDate\": \"2018-12-10T10:00:50.0000000+00:00\",\n      \"identifierType\": \"madid\",\n      \"nbValidIdentifiers\": 7343,\n      \"nbInvalidIdentifiers\": 13,\n      \"sampleInvalidIdentifiers\": [\n        \"InvalidIdentifier\"\n      ]\n    }\n  },\n  \"errors\": [\n    {\n      \"traceId\": \"667ac683ac797284.667ac683ac797284<:667ac683ac797284\",\n      \"type\": \"availability\",\n      \"code\": \"internal-error\",\n      \"instance\": \"\",\n      \"title\": \"Internal error\"\n    }\n  ],\n  \"warnings\": [\n    {\n      \"traceId\": \"56ed4096-f96a-4944-8881-05468efe0ec9\",\n      \"type\": \"deprecation\",\n      \"code\": \"deprecated-field\",\n      \"instance\": \"/audiences/314195\",\n      \"title\": \"'nbValidIds' is deprecated\",\n      \"detail\": \"The field 'nbValidIds' is deprecated please use 'nbValidIdentifiers'\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02158bf8-e829-4c73-9f30-e72444451c60",
+          "name": "/2026-01/commerce-grid/audience-segments/{audience-segment-id}/contact-list/clear",
+          "request": {
+            "name": "/2026-01/commerce-grid/audience-segments/{audience-segment-id}/contact-list/clear",
+            "description": {
+              "content": "Delete all identifiers from a Commerce Grid audience segment of type Contact List.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "2026-01",
+                "commerce-grid",
+                "audience-segments",
+                ":audience-segment-id",
+                "contact-list",
+                "clear"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<int64>",
+                  "key": "audience-segment-id",
+                  "description": "(Required) The ID of the audience segment of type contact list to amend"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.criteo.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ba39bcf5-c44d-44b7-b271-0fcb2d28691a",
+              "name": "The Contact List identifiers were deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2026-01",
+                    "commerce-grid",
+                    "audience-segments",
+                    ":audience-segment-id",
+                    "contact-list",
+                    "clear"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<int64>",
+                      "key": "audience-segment-id",
+                      "description": "(Required) The ID of the audience segment of type contact list to amend"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "262d1366-3780-49d5-a9ac-8e1041816864",
+          "name": "/2026-01/commerce-grid/audience-segments/{audience-segment-id}/contact-list/statistics",
+          "request": {
+            "name": "/2026-01/commerce-grid/audience-segments/{audience-segment-id}/contact-list/statistics",
+            "description": {
+              "content": "Returns the statistics of a contact list segment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "2026-01",
+                "commerce-grid",
+                "audience-segments",
+                ":audience-segment-id",
+                "contact-list",
+                "statistics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "audience-segment-id",
+                  "description": "(Required) The segment ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.criteo.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "356d9755-7a25-4237-88d1-7a366a326b18",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2026-01",
+                    "commerce-grid",
+                    "audience-segments",
+                    ":audience-segment-id",
+                    "contact-list",
+                    "statistics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "audience-segment-id",
+                      "description": "(Required) The segment ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"attributes\": {\n      \"matchRate\": 7736.6836722786065,\n      \"numberOfIdentifiers\": 4060,\n      \"numberOfMatches\": 8307\n    },\n    \"id\": \"string\",\n    \"type\": \"string\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"access-control\"\n    },\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"availability\"\n    }\n  ],\n  \"warnings\": [\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"validation\"\n    },\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"unknown\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f2e7f74-1ba6-447a-9afa-f8fee4f3dfa6",
+          "name": "/2026-01/commerce-grid/audience-segments/create",
+          "request": {
+            "name": "/2026-01/commerce-grid/audience-segments/create",
+            "description": {
+              "content": "Creates all segments with a valid configuration, and returns the full segments. For those that cannot be created, one or multiple errors are returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "2026-01",
+                "commerce-grid",
+                "audience-segments",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.criteo.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": [\n    {\n      \"attributes\": {\n        \"dataProviderId\": \"<string>\",\n        \"name\": \"<string>\",\n        \"contactList\": {\n          \"remoteId\": \"<string>\"\n        },\n        \"description\": \"<string>\"\n      },\n      \"type\": \"<string>\"\n    },\n    {\n      \"attributes\": {\n        \"dataProviderId\": \"<string>\",\n        \"name\": \"<string>\",\n        \"contactList\": {\n          \"remoteId\": \"<string>\"\n        },\n        \"description\": \"<string>\"\n      },\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b827c45f-1616-4cd9-a668-1da3bfdf5cdf",
+              "name": "Success or partial success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2026-01",
+                    "commerce-grid",
+                    "audience-segments",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"attributes\": {\n        \"dataProviderId\": \"<string>\",\n        \"name\": \"<string>\",\n        \"contactList\": {\n          \"remoteId\": \"<string>\"\n        },\n        \"description\": \"<string>\"\n      },\n      \"type\": \"<string>\"\n    },\n    {\n      \"attributes\": {\n        \"dataProviderId\": \"<string>\",\n        \"name\": \"<string>\",\n        \"contactList\": {\n          \"remoteId\": \"<string>\"\n        },\n        \"description\": \"<string>\"\n      },\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"attributes\": {\n        \"contactList\": {},\n        \"createdAt\": \"1967-07-13T19:10:50.382Z\",\n        \"dataProviderId\": \"string\",\n        \"description\": \"string\",\n        \"name\": \"string\",\n        \"remoteId\": \"string\",\n        \"type\": \"Unknown\",\n        \"updatedAt\": \"1948-04-23T15:17:41.374Z\"\n      },\n      \"id\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"attributes\": {\n        \"contactList\": {},\n        \"createdAt\": \"2003-04-18T07:09:48.086Z\",\n        \"dataProviderId\": \"string\",\n        \"description\": \"string\",\n        \"name\": \"string\",\n        \"remoteId\": \"string\",\n        \"type\": \"ContactList\",\n        \"updatedAt\": \"1968-10-23T10:33:36.425Z\"\n      },\n      \"id\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"unknown\"\n    },\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"availability\"\n    }\n  ],\n  \"warnings\": [\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"unknown\"\n    },\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"validation\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22fc9a12-d3dd-402b-8f2b-73d87aa9035d",
+          "name": "/2026-01/commerce-grid/audience-segments/delete",
+          "request": {
+            "name": "/2026-01/commerce-grid/audience-segments/delete",
+            "description": {
+              "content": "Delete the segments associated to the given IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "2026-01",
+                "commerce-grid",
+                "audience-segments",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.criteo.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": [\n    {\n      \"attributes\": \"<object>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"attributes\": \"<object>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7379a43f-2633-4c50-8526-2fa37dc1812d",
+              "name": "Success or partial success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2026-01",
+                    "commerce-grid",
+                    "audience-segments",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"attributes\": \"<object>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"attributes\": \"<object>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"attributes\": {},\n      \"id\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"attributes\": {},\n      \"id\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"authentication\"\n    },\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"availability\"\n    }\n  ],\n  \"warnings\": [\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"authentication\"\n    },\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"authentication\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "980dc1a2-ede2-4863-ae22-da067ddf1772",
+          "name": "/2026-01/commerce-grid/audience-segments/search",
+          "request": {
+            "name": "/2026-01/commerce-grid/audience-segments/search",
+            "description": {
+              "content": "Returns a list of segments that match the provided filters. If present, the filters are AND'ed together when applied.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "2026-01",
+                "commerce-grid",
+                "audience-segments",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "The number of elements to be returned. The default is 50 and the maximum is 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The (zero-based) offset into the collection. The default is 0."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.criteo.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"audienceSegmentIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"audienceSegmentTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"dataProviderIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"remoteIds\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"type\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4e6a16ad-73fd-46a2-af13-852480c0bbf8",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2026-01",
+                    "commerce-grid",
+                    "audience-segments",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"audienceSegmentIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"audienceSegmentTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"dataProviderIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"remoteIds\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"attributes\": {\n        \"contactList\": {},\n        \"createdAt\": \"1970-04-12T20:37:33.449Z\",\n        \"dataProviderId\": \"string\",\n        \"description\": \"string\",\n        \"name\": \"string\",\n        \"remoteId\": \"string\",\n        \"type\": \"Unknown\",\n        \"updatedAt\": \"1955-12-03T21:45:11.934Z\"\n      },\n      \"id\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"attributes\": {\n        \"contactList\": {},\n        \"createdAt\": \"1988-03-17T12:13:42.215Z\",\n        \"dataProviderId\": \"string\",\n        \"description\": \"string\",\n        \"name\": \"string\",\n        \"remoteId\": \"string\",\n        \"type\": \"ContactList\",\n        \"updatedAt\": \"2014-03-13T21:56:55.694Z\"\n      },\n      \"id\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"validation\"\n    },\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"validation\"\n    }\n  ],\n  \"meta\": {\n    \"limit\": 2815,\n    \"offset\": 5355,\n    \"totalItems\": 6230\n  },\n  \"warnings\": [\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"validation\"\n    },\n    {\n      \"code\": \"string\",\n      \"detail\": \"string\",\n      \"instance\": \"string\",\n      \"source\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"stackTrace\": \"string\",\n      \"title\": \"string\",\n      \"traceId\": \"string\",\n      \"traceIdentifier\": \"string\",\n      \"type\": \"unknown\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.criteo.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.criteo.com/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1cb41876-fec9-461c-b910-d44a20f8222f",
+    "name": "Criteo API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Criteo API - CommerceGrid",
+      "type": "text/plain"
+    }
+  }
+}

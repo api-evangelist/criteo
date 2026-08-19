@@ -1,0 +1,145 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  openapi/criteo-*-api-openapi.yml, well-known/criteo-well-known.yml,
+  https://developers.criteo.com/criteo-apis/docs/api-error-codes,
+  https://developers.criteo.com/criteo-apis/docs/rate-limits, https://security.criteo.com/
+
+standards:
+- id: openapi-3
+  conforms: true
+  version: 3.0.1
+  evidence: >-
+    Three OpenAPI 3.0.1 documents published and served by Criteo at
+    https://api.criteo.com/{version}/{service}/open-api-specifications.json, covering 219
+    operations. Discoverable from the docs and listed in the developer portal's llms.txt.
+- id: oauth2
+  conforms: true
+  evidence: >-
+    components.securitySchemes declares an oauth2 scheme with clientCredentials and
+    authorizationCode flows; 216 of 219 operations carry a security requirement.
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: partial
+  evidence: >-
+    https://mcp.criteo.com/.well-known/oauth-authorization-server returns 200 with issuer,
+    authorization_endpoint, token_endpoint, grant_types_supported and
+    response_types_supported. Partial because it is served ONLY on the MCP host — the same
+    path 404s on api.criteo.com and developers.criteo.com — and it omits client_credentials,
+    the REST API's primary grant.
+- id: rfc9728-oauth-protected-resource-metadata
+  conforms: true
+  evidence: >-
+    https://mcp.criteo.com/.well-known/oauth-protected-resource returns 200 with resource,
+    authorization_servers and bearer_methods_supported.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on every Criteo host probed.
+- id: rfc7807-problem-details
+  conforms: partial
+  evidence: >-
+    Criteo cites RFC 7807 by name and uses its member names (type, title, detail, instance).
+    Partial for two reasons: the envelope is a Criteo variant that wraps problems in
+    `{errors:[], warnings:[]}` rather than returning a bare problem object, and no 4xx/5xx
+    response — and therefore no problem media type — is declared anywhere in the OpenAPI.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Criteo references the obsoleted RFC 7807 rather than its successor RFC 9457. No
+    application/problem+json content type appears in any published spec.
+- id: rfc9116-security-txt
+  conforms: true
+  evidence: >-
+    /.well-known/security.txt returns 200 on www.criteo.com, api.criteo.com and
+    mcp.criteo.com with Contact, Preferred-Languages and Expires. Weak on one point: the
+    www copy's Expires is 2030-04-01, well beyond RFC 9116's recommended sub-one-year value,
+    and no Policy, Encryption, Canonical or Acknowledgments field is present.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: >-
+    No Sunset or Deprecation response header. Deprecation is communicated by published
+    schedule, email, and in-band `deprecation`-type warnings in the response envelope.
+- id: rfc6585-429
+  conforms: true
+  evidence: 429 returned on rate-limit exhaustion, documented at /criteo-apis/docs/rate-limits.
+- id: ratelimit-headers
+  conforms: partial
+  evidence: >-
+    x-ratelimit-limit, x-ratelimit-remaining and x-ratelimit-reset are documented and
+    returned. Not the IETF RateLimit-Policy/RateLimit draft form, and no Retry-After.
+- id: idempotency
+  conforms: false
+  evidence: >-
+    No Idempotency-Key header or equivalent anywhere in the platform documentation or in any
+    of the 219 operations (zero header parameters declared in any spec). See
+    conventions/criteo-conventions.yml.
+- id: pagination
+  conforms: partial
+  evidence: >-
+    Two incompatible styles across the product line — limit/offset on Retail Media,
+    pageIndex/pageSize on Marketing Solutions. No cursor pagination.
+- id: a2a
+  conforms: partial
+  evidence: >-
+    An agent card is served at https://developers.criteo.com/.well-known/agent-card.json.
+    Graded `flavored` against A2A 1.0.0 — it publishes `supportedInterfaces` where the spec
+    says `additionalInterfaces`, omits `description`, and gives protocolVersion as "0.3". See
+    a2a/criteo-a2a.yml.
+- id: mcp
+  conforms: true
+  version: '2025-06-18'
+  evidence: >-
+    https://developers.criteo.com/mcp completes an MCP initialize handshake advertising
+    protocolVersion 2025-06-18 and serves tools/list and resources/list. A second,
+    OAuth-protected server runs at https://mcp.criteo.com/mcp.
+- id: llms-txt
+  conforms: true
+  evidence: >-
+    https://developers.criteo.com/llms.txt returns 200 with 444 lines indexing the full docs
+    tree, every page available as .md, plus an "## OpenAPI Specs" section pointing at the
+    live specification files.
+- id: agent-skills
+  conforms: true
+  evidence: >-
+    A provider-authored Agent Skill is served at
+    https://developers.criteo.com/.well-known/agent-skills/criteo/skill.md and exposed as an
+    MCP resource (mintlify://skills/criteo).
+- id: content-signals
+  conforms: true
+  evidence: >-
+    https://developers.criteo.com/robots.txt carries a Content-Signal directive
+    (ai-train=yes, search=yes, ai-input=yes) — an explicit, permissive AI-usage declaration.
+- id: json-api
+  conforms: false
+  evidence: Responses use a Criteo envelope (meta/data/warnings/errors), not the JSON:API media type.
+- id: odata
+  conforms: false
+- id: scim
+  conforms: false
+- id: fhir
+  conforms: false
+- id: graphql
+  conforms: false
+  evidence: >-
+    No GraphQL endpoint is published. The repo's graphql/criteo-schema.graphql is explicitly
+    a conceptual schema derived from REST, not a Criteo-served contract.
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    Criteo publishes no AsyncAPI and no webhook catalog. The event surface it does have —
+    beacons — is an outbound browser-to-Criteo tracking pixel, the opposite direction from a
+    webhook, so there is nothing to model. Not a penalty: this API has no event surface.
+- id: grpc
+  conforms: false
+  evidence: No .proto published on the Criteo GitHub org or buf.build.
+
+compliance_program:
+  published: true
+  url: https://security.criteo.com/
+  certifications: [SOC 2, ISO/IEC 27001]
+  detail: security/criteo-trust-center.yml
+
+summary:
+  standards_asserted: 25
+  conforms: 9
+  partial: 5
+  does_not_conform: 11

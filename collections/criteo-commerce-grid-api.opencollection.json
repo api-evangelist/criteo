@@ -1,0 +1,255 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Criteo API",
+    "version": "2026-01"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Segment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/2026-01/commerce-grid/audience-segments",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.criteo.com/2026-01/commerce-grid/audience-segments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates the properties of all segments with a valid configuration, and returns the full segments. For those that cannot be updated, one or multiple errors are returned."
+        },
+        {
+          "info": {
+            "name": "/2026-01/commerce-grid/audience-segments/{audience-segment-id}/contact-list/add-remove",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-01/commerce-grid/audience-segments/:audience-segment-id/contact-list/add-remove",
+            "params": [
+              {
+                "name": "audience-segment-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the audience segment of type contact list to amend"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Add/remove identifiers to or from a Commerce Grid audience segment of type Contact List."
+        },
+        {
+          "info": {
+            "name": "/2026-01/commerce-grid/audience-segments/{audience-segment-id}/contact-list/clear",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-01/commerce-grid/audience-segments/:audience-segment-id/contact-list/clear",
+            "params": [
+              {
+                "name": "audience-segment-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the audience segment of type contact list to amend"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete all identifiers from a Commerce Grid audience segment of type Contact List."
+        },
+        {
+          "info": {
+            "name": "/2026-01/commerce-grid/audience-segments/{audience-segment-id}/contact-list/statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-01/commerce-grid/audience-segments/:audience-segment-id/contact-list/statistics",
+            "params": [
+              {
+                "name": "audience-segment-id",
+                "value": "",
+                "type": "path",
+                "description": "The segment ID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the statistics of a contact list segment."
+        },
+        {
+          "info": {
+            "name": "/2026-01/commerce-grid/audience-segments/create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-01/commerce-grid/audience-segments/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates all segments with a valid configuration, and returns the full segments. For those that cannot be created, one or multiple errors are returned."
+        },
+        {
+          "info": {
+            "name": "/2026-01/commerce-grid/audience-segments/delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-01/commerce-grid/audience-segments/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete the segments associated to the given IDs."
+        },
+        {
+          "info": {
+            "name": "/2026-01/commerce-grid/audience-segments/search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-01/commerce-grid/audience-segments/search",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of elements to be returned. The default is 50 and the maximum is 100."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The (zero-based) offset into the collection. The default is 0."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of segments that match the provided filters. If present, the filters are AND'ed together when applied."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Gateway",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/2026-01/commerce-grid/me",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-01/commerce-grid/me",
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get information about the currently logged application"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,87 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developers.criteo.com/retailer-integration/docs/beacon-sdk +
+  https://developers.criteo.com/retailer-integration/docs/onetag +
+  https://developers.criteo.com/retailer-integration/docs/introduction-to-beacons
+note: >-
+  Criteo's client-side surface is not a UI element library — there are no hosted checkout
+  widgets or embeddable dashboards. What it ships is a MEASUREMENT layer: JavaScript that a
+  retailer or advertiser drops into their own pages so Criteo can observe ad and commerce
+  events. Distinct from the server-side SDKs in packages/criteo-packages.yml, which call the
+  REST API.
+
+families:
+- family: BeaconSDK
+  kind: javascript-library
+  description: >-
+    Criteo's lightweight external JavaScript library that automates ad-beacon tracking on the
+    web. It handles the whole beacon lifecycle — load, view, click — so the retailer does not
+    build custom tracking logic.
+  loader: https://static.criteo.net/cbs/prod/stable/BeaconSDK/bundle.js
+  install: '<script src="https://static.criteo.net/cbs/prod/stable/BeaconSDK/bundle.js" data-dynamic-tracking="true" defer></script>'
+  placement: at the end of the document, before the closing </body> tag
+  versioning: unpinned
+  versioning_note: >-
+    The URL carries a `stable` channel segment, not a version. See
+    packages/criteo-packages.yml — there is no registry entry and no pinned build a consumer
+    can request.
+  configuration_model: HTML data-attributes
+  attribute_pattern: data-criteo-[beacon-level]-[beacon-type]
+  beacon_levels: [placement, product]
+  beacon_types: [onloadbeacon, onviewbeacon, onclickbeacon, onbasketchangebeacon, onwishlistbeacon]
+  beacon_urls_come_from: the Criteo Delivery API response (one unique beacon URL per placement and SKU)
+  options:
+  - name: data-dynamic-tracking
+    values: ['true']
+    default: 'false'
+    description: >-
+      By default BeaconSDK only tracks elements present in the DOM when the script loads.
+      Setting this tracks elements added later — required for SPA and infinite-scroll pages.
+  interfaces:
+  - setOrganicContext
+  docs: https://developers.criteo.com/retailer-integration/docs/beacon-sdk
+  demos: CodePen embeds published inline in the docs
+- family: Server-Side Beacons
+  kind: server-side-integration
+  description: >-
+    Server-to-server alternative to browser beacons for retailers who cannot or will not run
+    Criteo JavaScript on the page.
+  docs: https://developers.criteo.com/retailer-integration/docs/server-side-beacons
+- family: OneTag
+  kind: tag
+  description: >-
+    Criteo's page tag for Retail Media, deployed on the retailer's site to capture commerce
+    events. Published in three variants.
+  variants:
+  - name: OneTag for Retail Media Onsite
+    docs: https://developers.criteo.com/retailer-integration/docs/onetag
+  - name: OneTag for Retail Media Offsite
+    docs: https://developers.criteo.com/retailer-integration/docs/onetag-for-offsite
+  - name: OneTag for Offsite — Hybrid Apps
+    docs: https://developers.criteo.com/retailer-integration/docs/onetag-offsite-for-hybrid-apps
+- family: Legacy & Universal Beacons
+  kind: tag
+  description: >-
+    The earlier beacon setups and the documented migration path from Legacy to
+    Standard/Universal.
+  status: legacy
+  docs: https://developers.criteo.com/retailer-integration/docs/legacy-universal-beacons
+
+not_present:
+  ui_element_library: false
+  hosted_checkout: false
+  embedded_dashboard: false
+  web_components: false
+  note: >-
+    Criteo publishes no design-system or UI component library, no hosted/prebuilt user-facing
+    surface and no custom elements. Advertiser-facing UI is the Criteo Management Center, a
+    first-party product rather than something embeddable.
+
+summary:
+  families: 4
+  cdn_distributed: 1
+  unpinned_distributions: 1
+  direction: >-
+    Outbound from the customer's page to Criteo (measurement), not inbound from Criteo into
+    the customer's UI.

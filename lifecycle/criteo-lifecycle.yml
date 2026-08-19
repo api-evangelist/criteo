@@ -1,0 +1,131 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.criteo.com/criteo-apis/docs/versioning-policy
+
+versioning:
+  scheme: uri-path date version
+  pattern: https://api.criteo.com/{version}/{criteo-service}/...
+  current: '2026-07'
+  services: [retailmedia, marketingsolutions, commercegrid]
+  cadence: two stable releases per year, January and July
+  support_window_months: 12
+  docs: https://developers.criteo.com/criteo-apis/docs/versioning-policy
+  channels:
+  - name: experimental
+    url_segment: experimental
+    stability: Contracts may change significantly at any time. Not suitable for production.
+    legacy_alias: preview
+    legacy_note: >-
+      The Preview tier was renamed Experimental. The /preview/ path remains available for
+      backwards compatibility but is being deprecated during 2026.
+  - name: release-candidate
+    stability: Production-ready. Rolls directly into the next stable release.
+    duration_months: 6
+    url_note: Shares its URL with the stable version it becomes, so integrating early needs no migration.
+  - name: stable
+    stability: Fully supported for 12 months. No breaking changes, ever.
+
+deprecation:
+  policy_url: https://developers.criteo.com/criteo-apis/docs/versioning-policy
+  sunset_header: false
+  deprecation_header: false
+  header_note: >-
+    Criteo does NOT implement RFC 8594 Sunset or the Deprecation header. Deprecation is
+    signalled three ways instead — a published release schedule with fixed dates, email
+    reminders during the final three months, and in-band `deprecation`-type entries in the
+    error/warning envelope (`deprecated-field`, `endpoint-deprecated`). An agent cannot learn
+    a deprecation from response headers; it must read the schedule or parse warnings[].
+  window_months: 3
+  window_detail: Months 9-12 of the 12-month support window are the deprecation window.
+  notification_channels: [email, changelog, release schedule table]
+  decommissioned_behavior:
+    status: 410
+    fall_forward: true
+    fall_forward_detail: >-
+      When a version is decommissioned, any endpoint whose contract has not changed is
+      automatically routed to the current stable version. Only endpoints with breaking changes
+      require an explicit migration.
+
+release_schedule:
+- version: '2025-07'
+  stable_release: '2025-07'
+  deprecated_from: '2026-04'
+  decommission: '2026-07'
+  status: DECOMMISSIONED
+- version: '2025-10'
+  stable_release: '2025-10'
+  deprecated_from: '2026-07'
+  decommission: '2026-10'
+  status: DEPRECATED
+- version: '2026-01'
+  stable_release: '2026-01'
+  deprecated_from: '2026-10'
+  decommission: '2027-01'
+  status: ACTIVE
+- version: '2026-07'
+  stable_release: '2026-07'
+  deprecated_from: '2027-04'
+  decommission: '2027-07'
+  status: UPCOMING
+- version: '2027-01'
+  stable_release: '2027-01'
+  deprecated_from: '2027-10'
+  decommission: '2028-01'
+  status: PLANNED
+- version: '2027-07'
+  stable_release: '2027-07'
+  deprecated_from: '2028-04'
+  decommission: '2028-07'
+  status: PLANNED
+
+migration_guidance:
+  steps:
+  - Find your current version in the API call URL.
+  - Look up the decommission date in the release schedule — that is the hard deadline.
+  - Review the changelog for breaking changes between your version and the target.
+  - Update the version segment in the base URL (usually the only change needed).
+  - Validate in a test environment before routing production traffic.
+  - Monitor 4xx/5xx for the first 48 hours; the old version stays live until its decommission date.
+  changelogs:
+  - https://developers.criteo.com/retail-media/changelog
+  - https://developers.criteo.com/marketing-solutions/changelog
+  - https://developers.criteo.com/retailer-integration/changelog
+
+deprecated_operations: []
+deprecated_operations_note: >-
+  No operation in any of the three published OpenAPI documents carries `deprecated: true`.
+  Criteo deprecates at the VERSION level rather than the operation level, so a spec-reading
+  client sees no per-operation deprecation signal. Field- and endpoint-level deprecations are
+  announced in the changelog and returned at runtime as `deprecation`-type warnings.
+
+status_page:
+  url: https://status.criteo.com
+  platform: Atlassian Statuspage
+  probed: '2026-08-13'
+  http_status: 200
+  alternate: https://criteo.statuspage.io
+  note: >-
+    status.criteo.com and criteo.statuspage.io serve the same Statuspage instance (both
+    returned 200 on 2026-08-13).
+
+sla:
+  url: null
+  uptime_target: null
+  note: >-
+    Criteo publishes no public SLA or uptime target for the APIs. Availability commitments, if
+    any, sit in the negotiated commercial contract — consistent with the absence of any
+    published rate card (see plans/criteo-plans-pricing.yml).
+
+sdk_lifecycle:
+  note: >-
+    The client libraries do not track the API lifecycle uniformly. The Java SDKs on Maven
+    Central are still at 2025.04 (published 2025-06-26) — a version Criteo DECOMMISSIONED in
+    July 2026 — while the PHP SDKs shipped 2026-08-11. See packages/criteo-packages.yml.
+
+evidence:
+- url: https://developers.criteo.com/criteo-apis/docs/versioning-policy
+  status: 200
+- url: https://status.criteo.com/
+  status: 200
+- url: https://criteo.statuspage.io/
+  status: 200

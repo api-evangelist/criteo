@@ -1,0 +1,3821 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Criteo API",
+    "version": "2026-07"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/2026-07/retail-media/account-management/accounts/{accountId}/brands/add",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/account-management/accounts/:accountId/brands/add",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "the account id to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Add brands to an account"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/account-management/accounts/{accountId}/brands/remove",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/account-management/accounts/:accountId/brands/remove",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "the account id to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Remove brands from an account"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/account-management/accounts/{accountId}/create-brand-account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/account-management/accounts/:accountId/create-brand-account",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The given account id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a new child Demand Brand account for the provided parent Private Market account"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/account-management/accounts/{accountId}/create-seller-account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/account-management/accounts/:accountId/create-seller-account",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The given account id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a new child Demand Seller account for the provided parent Private Market account"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/account-management/accounts/{accountId}/private-market-child-accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/account-management/accounts/:accountId/private-market-child-accounts",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Account Id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of accounts to be returned. The default is 25."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The (zero-based) offset into the collection of accounts. The default is 0."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets Private Market child accounts that are associated with the given account"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/account-management/accounts/{accountId}/sellers",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.criteo.com/2026-07/retail-media/account-management/accounts/:accountId/sellers",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The given account id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Replace the sellers associated with an account"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts",
+            "params": [
+              {
+                "name": "limitToId",
+                "value": "",
+                "type": "query",
+                "description": "The ids that you would like to limit your result set to"
+              },
+              {
+                "name": "pageIndex",
+                "value": "",
+                "type": "query",
+                "description": "The 0 indexed page index you would like to receive given the page size"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items you would like to receive in this request"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets page of account objects that the current user can access"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{accountId}/grant-consent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:accountId/grant-consent",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The demand account ID on which to grant consent"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Grant consent to a business application on behalf of a Private Market demand account"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/fees/search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/fees/search",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "used for paging, number of results returned per request, Maximum of 500"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "used for paging, number of records to skip"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get fees for provided accounts"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/fees/update",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/fees/update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Set fees for provided accounts"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/sellers/search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/sellers/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the sellers mapped to provided accounts"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/brands/search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/brands/search",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "the number of brands to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of paginated results"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Search for brands given a retailer ID and search term."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Audience",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{account-id}/audience-segments",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:account-id/audience-segments",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "Account id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates the properties of all segments with a valid configuration, and returns the full segments. For those that cannot be updated, one or multiple errors are returned."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{account-id}/audience-segments/{audience-segment-id}/contact-list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:account-id/audience-segments/:audience-segment-id/contact-list",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "Account Id"
+              },
+              {
+                "name": "audience-segment-id",
+                "value": "",
+                "type": "path",
+                "description": "Segment Id."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the statistics of a contact list segment."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{account-id}/audience-segments/create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:account-id/audience-segments/create",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "Account Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates all segments with a valid configuration, and returns the full segments. For those that cannot be created, one or multiple errors are returned."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{account-id}/audience-segments/delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:account-id/audience-segments/delete",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "Account id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete the segments associated to the given IDs."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{account-id}/audience-segments/search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:account-id/audience-segments/search",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "Account Id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of elements to be returned. The default is 50 and the maximum is 500."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The (zero-based) offset into the collection. The default is 0."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of segments that match the provided filters. If present, the filters are AND'ed together when applied."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{account-id}/audiences/search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:account-id/audiences/search",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "Account Id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of elements to be returned. The default is 50 and the maximum is 500."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The (zero-based) offset into the collection. The default is 0."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of audiences that match the provided filters. If present, the filters are AND'ed together when applied."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/audience-segments/{audience-segment-id}/contact-list/add-remove",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/audience-segments/:audience-segment-id/contact-list/add-remove",
+            "params": [
+              {
+                "name": "audience-segment-id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the contact list audience-segment to amend, we only accept external Id here"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Add/remove identifiers to or from a retail-media contact list audience-segment, with external audience segment id."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/audience-segments/{audience-segment-id}/contact-list/clear",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/audience-segments/:audience-segment-id/contact-list/clear",
+            "params": [
+              {
+                "name": "audience-segment-id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the contact list audience-segment to amend, we only accept external Id here"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete all identifiers from a retail-media contact list audience-segment, with external audience segment id."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Balance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{account-id}/balances",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:account-id/balances",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "The account to create balances for"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create balance for the given account id"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{account-id}/balances/{balance-id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:account-id/balances/:balance-id",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "The account of the balance"
+              },
+              {
+                "name": "balance-id",
+                "value": "",
+                "type": "path",
+                "description": "The balance id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get a balance for the given account id and balance id"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{account-id}/balances/{balance-id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:account-id/balances/:balance-id",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "The account of the balance"
+              },
+              {
+                "name": "balance-id",
+                "value": "",
+                "type": "path",
+                "description": "The balance to change the dates"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Modify a balance for the given account id"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{account-id}/balances/{balance-id}/add-funds",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:account-id/balances/:balance-id/add-funds",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "The account of the balance"
+              },
+              {
+                "name": "balance-id",
+                "value": "",
+                "type": "path",
+                "description": "The balance to add funds to"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Add funds to a balance for the given account id"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{account-id}/balances/{balance-id}/change-dates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:account-id/balances/:balance-id/change-dates",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "The account of the balance"
+              },
+              {
+                "name": "balance-id",
+                "value": "",
+                "type": "path",
+                "description": "The balance to change the dates"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Change dates of a balance for the given account id"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{accountId}/balances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:accountId/balances",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The account to get balances for."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of elements to be returned."
+              },
+              {
+                "name": "limit-to-id",
+                "value": "",
+                "type": "query",
+                "description": "The balance ids which the result is limited to."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The (zero-based) starting offset in the collection."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets page of balance objects for the given account id."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/balances/{balance-id}/campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/balances/:balance-id/campaigns",
+            "params": [
+              {
+                "name": "balance-id",
+                "value": "",
+                "type": "path",
+                "description": "The balance to get campaigns from"
+              },
+              {
+                "name": "limitToId",
+                "value": "",
+                "type": "query",
+                "description": "The ids that you would like to limit your result set to"
+              },
+              {
+                "name": "pageIndex",
+                "value": "",
+                "type": "query",
+                "description": "The 0 indexed page index you would like to receive given the page size"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items you would like to receive in this request"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets page of campaigns for the given balanceId"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/balances/{balanceId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/balances/:balanceId",
+            "params": [
+              {
+                "name": "balanceId",
+                "value": "",
+                "type": "path",
+                "description": "The balance id."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get a balance for the given balance id."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/balances/{balanceId}/history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/balances/:balanceId/history",
+            "params": [
+              {
+                "name": "balanceId",
+                "value": "",
+                "type": "path",
+                "description": "Balance id."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of elements to be returned."
+              },
+              {
+                "name": "limitToChangeTypes",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated change types string that will be queried."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The (zero-based) starting offset in the collection."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the balance's historical change data."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Campaign",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{account-id}/campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:account-id/campaigns",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "The given account id"
+              },
+              {
+                "name": "limitToId",
+                "value": "",
+                "type": "query",
+                "description": "The ids that you would like to limit your result set to"
+              },
+              {
+                "name": "pageIndex",
+                "value": "",
+                "type": "query",
+                "description": "The 0 indexed page index you would like to receive given the page size"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items you would like to receive in this request"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets page of campaign objects for the given account id"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{account-id}/campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:account-id/campaigns",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "The given account id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a new campaign with the specified settings"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{account-id}/creatives",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:account-id/creatives",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "External account id to retrieve creatives for"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get account creatives"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{account-id}/creatives",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:account-id/creatives",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "External account id to create a creative for"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a creative for an account"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{account-id}/creatives/{creative-id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:account-id/creatives/:creative-id",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "External account id to retrieve creatives for"
+              },
+              {
+                "name": "creative-id",
+                "value": "",
+                "type": "path",
+                "description": "Creative to get"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the specified creative"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{account-id}/creatives/{creative-id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:account-id/creatives/:creative-id",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "External account id containing the creative"
+              },
+              {
+                "name": "creative-id",
+                "value": "",
+                "type": "path",
+                "description": "Creative to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update a creative"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{account-id}/creatives/search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:account-id/creatives/search",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "External account id to retrieve creatives for"
+              },
+              {
+                "name": "creative-ids",
+                "value": "",
+                "type": "query",
+                "description": "Creatives to filter by"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get account creatives"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{account-id}/keywords/in-review-report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:account-id/keywords/in-review-report",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "The account to generate a report for"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Generate a list of reports for line items which contain one or more actionable keyword reviews"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{account-id}/line-items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:account-id/line-items",
+            "params": [
+              {
+                "name": "account-id",
+                "value": "",
+                "type": "path",
+                "description": "The given account id"
+              },
+              {
+                "name": "limitToCampaignId",
+                "value": "",
+                "type": "query",
+                "description": "The campaign ids that you would like to limit your result set to"
+              },
+              {
+                "name": "limitToId",
+                "value": "",
+                "type": "query",
+                "description": "The ids that you would like to limit your result set to"
+              },
+              {
+                "name": "limitToType",
+                "value": "",
+                "type": "query",
+                "description": "The campaign types that you would like to limit your result set to"
+              },
+              {
+                "name": "pageIndex",
+                "value": "",
+                "type": "query",
+                "description": "The 0 indexed page index you would like to receive given the page size"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items you would like to receive in this request"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets page of line item objects for the given account id"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{accountId}/brand-catalog-export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:accountId/brand-catalog-export",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The account to request the catalog for."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a request for a Catalog available to the indicated account."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{accountId}/brands",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:accountId/brands",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The given account id"
+              },
+              {
+                "name": "limitToId",
+                "value": "",
+                "type": "query",
+                "description": "The ids that you would like to limit your result set to"
+              },
+              {
+                "name": "pageIndex",
+                "value": "",
+                "type": "query",
+                "description": "The 0 indexed page index you would like to receive given the page size"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items you would like to receive in this request"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets page of retailer objects that are associated with the given account"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{accountId}/catalogs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:accountId/catalogs",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The account to request the catalog for."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a request for a Catalog available to the indicated account."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{accountId}/catalogs/sellers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:accountId/catalogs/sellers",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The account to request the catalog for."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a request for a Catalog available to the indicated account."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{accountId}/retailers/search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:accountId/retailers/search",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The external account identifier"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return. Must be between 1 and 10. Default is 5."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip before starting to collect the result set. Default is 0."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Searches for retailers associated with the specified account and returns budget model availability for each retailer"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/accounts/{accountId}/seller-catalog-export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/accounts/:accountId/seller-catalog-export",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The account to request the catalog for."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a request for a Catalog available to the indicated account."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/assets",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "AssetFile",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates an asset"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/auction-line-items/{lineItemId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/auction-line-items/:lineItemId",
+            "params": [
+              {
+                "name": "lineItemId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the line item"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets a sponsored product line item by its id."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/auction-line-items/{lineItemId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.criteo.com/2026-07/retail-media/auction-line-items/:lineItemId",
+            "params": [
+              {
+                "name": "lineItemId",
+                "value": "",
+                "type": "path",
+                "description": "The external line item ID of the sponsored products line item."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates a Sponsored Products Line Item given a line item id and a request."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/balances/{balanceId}/campaigns/append",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/balances/:balanceId/campaigns/append",
+            "params": [
+              {
+                "name": "balanceId",
+                "value": "",
+                "type": "path",
+                "description": "The balance to add campaigns from"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Appends one or more campaigns to the specified balance"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/balances/{balanceId}/campaigns/delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/balances/:balanceId/campaigns/delete",
+            "params": [
+              {
+                "name": "balanceId",
+                "value": "",
+                "type": "path",
+                "description": "The balance to remove campaigns from"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes one or more campaigns on the specified balance"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/campaigns/{campaign-id}/preferred-line-items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/campaigns/:campaign-id/preferred-line-items",
+            "params": [
+              {
+                "name": "campaign-id",
+                "value": "",
+                "type": "path",
+                "description": "The given campaign id"
+              },
+              {
+                "name": "limitToId",
+                "value": "",
+                "type": "query",
+                "description": "The ids that you would like to limit your result set to"
+              },
+              {
+                "name": "pageIndex",
+                "value": "",
+                "type": "query",
+                "description": "The 0 indexed page index you would like to receive given the page size"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items you would like to receive in this request"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets page of preferred line item objects for the given campaign id"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/campaigns/{campaign-id}/preferred-line-items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/campaigns/:campaign-id/preferred-line-items",
+            "params": [
+              {
+                "name": "campaign-id",
+                "value": "",
+                "type": "path",
+                "description": "The given campaign id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a new preferred line item with the specified settings"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/campaigns/{campaignId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/campaigns/:campaignId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The given campaign id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the campaign for the given campaign id"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/campaigns/{campaignId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.criteo.com/2026-07/retail-media/campaigns/:campaignId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The given campaign id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates the campaign for the given campaign id"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/campaigns/{campaignId}/auction-line-items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/campaigns/:campaignId/auction-line-items",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the campaign"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of elements to be returned on a page."
+              },
+              {
+                "name": "limitToIds",
+                "value": "",
+                "type": "query",
+                "description": "The ids to limit the auction line item results to"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The (zero-based) starting offset into the collection."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets a page of sponsored product line items by campaign id."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/campaigns/{campaignId}/auction-line-items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/campaigns/:campaignId/auction-line-items",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The given campaign id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates new auction line item with the specified settings"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/campaigns/{campaignId}/campaign-budget-overrides",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/campaigns/:campaignId/campaign-budget-overrides",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "Campaign id."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get current campaign budget overrides by given campaign id."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/campaigns/{campaignId}/campaign-budget-overrides",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.criteo.com/2026-07/retail-media/campaigns/:campaignId/campaign-budget-overrides",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "Campaign id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update campaign budget overrides by given campaign id and new campaign budget overrides settings."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/catalogs/{catalogId}/output",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/catalogs/:catalogId/output",
+            "params": [
+              {
+                "name": "catalogId",
+                "value": "",
+                "type": "path",
+                "description": "A catalog ID returned from an account catalog request."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Output the indicated catalog. Catalogs are only available for retrieval when their associated status request\r\nis at a Success status.\r\nProduces application/x-json-stream CatalogProduct json objects (first introduced in the 2021-07 version)."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/catalogs/{catalogId}/status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/catalogs/:catalogId/status",
+            "params": [
+              {
+                "name": "catalogId",
+                "value": "",
+                "type": "path",
+                "description": "A catalog ID returned from an account catalog request."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Check the status of a catalog request."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/categories",
+            "params": [
+              {
+                "name": "pageIndex",
+                "value": "",
+                "type": "query",
+                "description": "The start position in the overall list of matches. Must be zero or greater."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return with each call. Must be greater than zero."
+              },
+              {
+                "name": "retailerId",
+                "value": "",
+                "type": "query",
+                "description": "The retailer id for which Categories fetched"
+              },
+              {
+                "name": "textSubstring",
+                "value": "",
+                "type": "query",
+                "description": "Query string to search across Categories"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Endpoint to search categories by text and retailer."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/categories/{categoryId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/categories/:categoryId",
+            "params": [
+              {
+                "name": "categoryId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the desired category"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Endpoint to search for a specific category by categoryId."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/line-items/{externalLineItemId}/keywords/recommended",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/line-items/:externalLineItemId/keywords/recommended",
+            "params": [
+              {
+                "name": "externalLineItemId",
+                "value": "",
+                "type": "path",
+                "description": "The line item identifier"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves a collection of recommended keywords for a line item"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/line-items/{id}/keywords",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/line-items/:id/keywords",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the line item"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Fetch keywords associated with the specified line item"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/line-items/{id}/keywords/add-remove",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/line-items/:id/keywords/add-remove",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the line item"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Add or Remove keywords from the line item in bulk"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/line-items/{id}/keywords/set-bid",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/line-items/:id/keywords/set-bid",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the line item"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Set bid overrides for associated keywords to the given line item in bulk"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/line-items/{line-item-id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/line-items/:line-item-id",
+            "params": [
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "The given line item id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the line item for the given line item id"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/line-items/{line-item-id}/bid-multipliers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/line-items/:line-item-id/bid-multipliers",
+            "params": [
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "LineItemId for bid multiplier retrieval"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Fetch all bid multipliers for a given line item"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/line-items/{line-item-id}/bid-multipliers",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.criteo.com/2026-07/retail-media/line-items/:line-item-id/bid-multipliers",
+            "params": [
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "LineItemId for bid multiplier retrieval"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates the bid multipliers for a given line item"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/line-items/{line-item-id}/keywords/review",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/line-items/:line-item-id/keywords/review",
+            "params": [
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "The line item to update keyword review statuses for"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update the status of keyword reviews under a line item"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/line-items/{line-item-id}/products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/line-items/:line-item-id/products",
+            "params": [
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma separated list of attribute names from the response model to compute and return.\r\n            Valid values are `status` and `bidOverride` in any order. Defaults to `status`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum page size to fetch. Defaults to 500."
+              },
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the line item."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset of the first item to fetch. Defaults to zero."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieve a page of promoted products for a line item"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/line-items/{line-item-id}/products/append",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/line-items/:line-item-id/products/append",
+            "params": [
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the line item"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Append a collection of promoted products to a line item"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/line-items/{line-item-id}/products/delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/line-items/:line-item-id/products/delete",
+            "params": [
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the line item"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Remove a collection of promoted products from a line item"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/line-items/{line-item-id}/products/pause",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/line-items/:line-item-id/products/pause",
+            "params": [
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the line item"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Pause a collection of promoted products associated with a line item"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/line-items/{line-item-id}/products/unpause",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/line-items/:line-item-id/products/unpause",
+            "params": [
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the line item"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Un-pause a collection of promoted products associated with a line item"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/line-items/{lineItemId}/line-item-budget-overrides",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/line-items/:lineItemId/line-item-budget-overrides",
+            "params": [
+              {
+                "name": "lineItemId",
+                "value": "",
+                "type": "path",
+                "description": "The line item id to get budget overrides for."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets a collection of monthly and daily budget overrides for the provided line item."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/line-items/{lineItemId}/line-item-budget-overrides",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.criteo.com/2026-07/retail-media/line-items/:lineItemId/line-item-budget-overrides",
+            "params": [
+              {
+                "name": "lineItemId",
+                "value": "",
+                "type": "path",
+                "description": "Line item external id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update line item budget overrides by given external line item id and new line item budget overrides settings."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/preferred-line-items/{line-item-id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/preferred-line-items/:line-item-id",
+            "params": [
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "The given line item id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the preferred line item for the given line item id"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/preferred-line-items/{line-item-id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.criteo.com/2026-07/retail-media/preferred-line-items/:line-item-id",
+            "params": [
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "The given line item id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates the preferred line item for the given line item id"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/preferred-line-items/{line-item-id}/targeting/add-to-basket",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/preferred-line-items/:line-item-id/targeting/add-to-basket",
+            "params": [
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "The line item to interact with"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This endpoint gets the add to basket target on the specified line item."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/preferred-line-items/{line-item-id}/targeting/add-to-basket",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.criteo.com/2026-07/retail-media/preferred-line-items/:line-item-id/targeting/add-to-basket",
+            "params": [
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "The line item to interact with"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This endpoint sets the scope of the add to basket target on the specified line item."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/preferred-line-items/{line-item-id}/targeting/add-to-basket/append",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/preferred-line-items/:line-item-id/targeting/add-to-basket/append",
+            "params": [
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "The line item to interact with"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This endpoint appends one or more add to basket ids to targeting on the specified line item.  The resulting state of the add to basket target is returned."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/preferred-line-items/{line-item-id}/targeting/add-to-basket/delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/preferred-line-items/:line-item-id/targeting/add-to-basket/delete",
+            "params": [
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "The line item to interact with"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This endpoint removes one or more add to basket ids from targeting on the specified line item.  The resulting state of the add to basket target is returned."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/preferred-line-items/{line-item-id}/targeting/audiences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/preferred-line-items/:line-item-id/targeting/audiences",
+            "params": [
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "The line item to interact with"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This endpoint gets the audience target on the specified line item."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/preferred-line-items/{line-item-id}/targeting/audiences",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.criteo.com/2026-07/retail-media/preferred-line-items/:line-item-id/targeting/audiences",
+            "params": [
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "The line item to interact with"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This endpoint sets the scope of the audience target on the specified line item."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/preferred-line-items/{line-item-id}/targeting/audiences/append",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/preferred-line-items/:line-item-id/targeting/audiences/append",
+            "params": [
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "The line item to interact with"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This endpoint appends one or more audiences ids to targeting on the specified line item.  The resulting state of the audience target is returned."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/preferred-line-items/{line-item-id}/targeting/audiences/delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/preferred-line-items/:line-item-id/targeting/audiences/delete",
+            "params": [
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "The line item to interact with"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This endpoint removes one or more audiences ids from targeting on the specified line item.  The resulting state of the audience target is returned."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/preferred-line-items/{line-item-id}/targeting/stores",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/preferred-line-items/:line-item-id/targeting/stores",
+            "params": [
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "The line item to interact with"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This endpoint gets the store target on the specified line item."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/preferred-line-items/{line-item-id}/targeting/stores",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.criteo.com/2026-07/retail-media/preferred-line-items/:line-item-id/targeting/stores",
+            "params": [
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "The line item to interact with"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This endpoint sets the scope of the store target on the specified line item."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/preferred-line-items/{line-item-id}/targeting/stores/append",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/preferred-line-items/:line-item-id/targeting/stores/append",
+            "params": [
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "The line item to interact with"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This endpoint appends one or more store ids to targeting on the specified line item.  The resulting state of the store target is returned."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/preferred-line-items/{line-item-id}/targeting/stores/delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/preferred-line-items/:line-item-id/targeting/stores/delete",
+            "params": [
+              {
+                "name": "line-item-id",
+                "value": "",
+                "type": "path",
+                "description": "The line item to interact with"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This endpoint removes one or more store ids from targeting on the specified line item.  The resulting state of the store target is returned."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/retailers/{retailer-id}/templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/retailers/:retailer-id/templates",
+            "params": [
+              {
+                "name": "retailer-id",
+                "value": "",
+                "type": "path",
+                "description": "External retailer id to retrieve creative templates for"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get retailer creative templates"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/retailers/{retailer-id}/templates/{template-id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/retailers/:retailer-id/templates/:template-id",
+            "params": [
+              {
+                "name": "retailer-id",
+                "value": "",
+                "type": "path",
+                "description": "Retailer Id"
+              },
+              {
+                "name": "template-id",
+                "value": "",
+                "type": "path",
+                "description": "Template Id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the template for the specified retailer id and template id"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/retailers/{retailerId}/categories/search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/retailers/:retailerId/categories/search",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit of the search result."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset of the search result."
+              },
+              {
+                "name": "retailerId",
+                "value": "",
+                "type": "path",
+                "description": "Retailer id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Search a retailer categories by given text substring and category ids."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/retailers/{retailerId}/cpc-min-bids",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/retailers/:retailerId/cpc-min-bids",
+            "params": [
+              {
+                "name": "retailerId",
+                "value": "",
+                "type": "path",
+                "description": "Retailer Id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get overall and individual minimum bid amount for given retailer id and sku id list."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/retailers/{retailerId}/pages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/retailers/:retailerId/pages",
+            "params": [
+              {
+                "name": "retailerId",
+                "value": "",
+                "type": "path",
+                "description": "The retailers to fetch pages for"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the page types available for the given retailer"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/retailers/{retailerId}/recommend-categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/retailers/:retailerId/recommend-categories",
+            "params": [
+              {
+                "name": "retailerId",
+                "value": "",
+                "type": "path",
+                "description": "Retailer id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Endpoint to get recommended categories by given retailer id and sku id list."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/retailers/{retailerId}/recommend-keywords",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/retailers/:retailerId/recommend-keywords",
+            "params": [
+              {
+                "name": "retailerId",
+                "value": "",
+                "type": "path",
+                "description": "Retailer id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Recommend keywords by given retailer id and sku ids."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/2026-07/retail-media/billing/partner-report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/billing/partner-report",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a Partner Billing Report request."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/billing/partner-report/{requestId}/output",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/billing/partner-report/:requestId/output",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "The id of a Partner Billing Report request."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the output of an existing Partner Billing Report."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/billing/partner-report/{requestId}/status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/billing/partner-report/:requestId/status",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "The id of a Partner Billing Report request."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the status of an existing Partner Billing Report."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Catalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/2026-07/retail-media/catalog/merchants/{merchantId}/store-inventory/delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/catalog/merchants/:merchantId/store-inventory/delete",
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path",
+                "description": "Identifies the merchant, can also be called partnerId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Used to publish a batch of store inventories to delete. The batch is processed asynchronously."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/catalog/merchants/{merchantId}/store-inventory/upsert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/catalog/merchants/:merchantId/store-inventory/upsert",
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path",
+                "description": "Identifies the merchant, can also be called partnerId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Used to publish a batch of store inventories to upsert. The batch is processed asynchronously."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Gateway",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/2026-07/retail-media/me",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/me",
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get information about the currently logged application"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/2026-07/retail-media/reports/{reportId}/output",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/reports/:reportId/output",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the report to retrieve"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the output of an async report"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/reports/{reportId}/status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/retail-media/reports/:reportId/status",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the report to retrieve"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the status of an async report"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/reports/attributed-transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/reports/attributed-transactions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates an attributed-transactions async report. The request accepts explicit attributed-transaction dimensions, metrics, and filters.\r\n<br />\r\nThis endpoint is subject to specific rate limits."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/reports/fillrate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/reports/fillrate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns an asynchronous Fill Rate Report\r\n<br />\r\nThis endpoint is subject to specific rate limits."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/reports/missed-opportunities",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/reports/missed-opportunities",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a missed-opportunities async report. The request accepts explicit missed-opportunities dimensions, metrics, and filters.\r\n<br />\r\nThis endpoint is subject to specific rate limits."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/reports/performance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/reports/performance",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a performance DSP analytics async report. Dimensions and metrics select the output schema, and filters constrain eligible data.\r\n<br />\r\nThis endpoint is subject to specific rate limits."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/reports/revenue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/reports/revenue",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns an asynchronous Revenue Report\r\n<br />\r\nThis endpoint is subject to specific rate limits."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/reports/sync/attributed-transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/reports/sync/attributed-transactions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a synchronous Attributed Transactions Report"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/reports/sync/campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/reports/sync/campaigns",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a synchronous Campaigns Report"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/reports/sync/line-items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/reports/sync/line-items",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a synchronous Line Items Report"
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/reports/sync/real-time-performance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/reports/sync/real-time-performance",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a synchronous Real Time Performance Report. Returns empty rows; metadata includes dataCompleteThrough (latest time from streaming table in the request timezone).\r\n<br />\r\nThis endpoint is subject to specific rate limits."
+        },
+        {
+          "info": {
+            "name": "/2026-07/retail-media/reports/unfilled-placements",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/retail-media/reports/unfilled-placements",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns an asynchronous Unfilled Placements Report\r\n<br />\r\nThis endpoint is subject to specific rate limits."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

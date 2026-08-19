@@ -1,0 +1,45 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Criteo Retail Media API
+  version: 1.0.0
+extends: openapi/criteo-retail-media-api-openapi.yml
+x-generated: '2026-08-13'
+x-method: generated
+x-source: https://api.criteo.com/2026-07/retailmedia/open-api-specifications.json
+x-note: 'Captures API Evangelist annotations over Criteo''s published spec without mutating it. The gaps
+  recorded here are measurements of the original document: no 4xx/5xx response is declared on any operation,
+  the oauth2 flow scopes maps are empty even though 22 real scope strings appear on per-operation security
+  requirements, and the token endpoint every client must call first is absent from the contract entirely.'
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: criteo
+    x-apievangelist-artifacts:
+      authentication: authentication/criteo-authentication.yml
+      scopes: scopes/criteo-scopes.yml
+      conventions: conventions/criteo-conventions.yml
+      errors: errors/criteo-problem-types.yml
+      lifecycle: lifecycle/criteo-lifecycle.yml
+      rate-limits: rate-limits/criteo-rate-limits.yml
+      data-model: data-model/criteo-data-model.yml
+    x-apievangelist-contract-gaps:
+    - no-4xx-5xx-declared
+    - oauth2-flow-scopes-empty
+    - token-endpoint-not-in-spec
+    - mixed-path-param-casing
+    x-apievangelist-operations: 115
+    x-apievangelist-version: 2026-07
+- target: $.components.securitySchemes.oauth
+  update:
+    x-apievangelist-scope-reference: scopes/criteo-scopes.yml
+    x-apievangelist-scope-count: 22
+    x-apievangelist-note: The declared flows carry empty scopes maps. The real scope strings (<Service>_<Domain>_<Level>)
+      appear only on per-operation security requirements and are granted by application configuration,
+      never requested in the token call.
+    x-apievangelist-token-endpoint: https://api.criteo.com/oauth2/token
+    x-apievangelist-token-lifetime-seconds: 900
+- target: $.servers
+  update:
+  - url: https://api.criteo.com
+    description: Production — Retail Media 2026-07
+    x-apievangelist-version-path-segment: 2026-07

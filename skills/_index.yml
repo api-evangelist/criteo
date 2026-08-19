@@ -1,0 +1,63 @@
+generated: '2026-08-13'
+method: generated
+note: >-
+  Three generated skills grounded in operationIds verified verbatim against Criteo's published
+  2026-07 / 2026-01 OpenAPI, plus one skill Criteo publishes itself, saved verbatim.
+
+skills:
+- file: criteo-published-skill.md
+  name: Criteo
+  method: searched
+  source: https://developers.criteo.com/.well-known/agent-skills/criteo/skill.md
+  http_status: 200
+  fetched: '2026-08-13'
+  verbatim: true
+  description: >-
+    Criteo's own Agent Skill, served from the A2A agent-skills well-known path and also
+    exposed as an MCP resource (mintlify://skills/criteo) by the docs MCP server. Covers both
+    the Retail Media and Marketing Solutions APIs — auth, REST patterns, rate limits, bulk
+    operations and async request/poll flows.
+  api: https://developers.criteo.com
+- file: criteo-fund-a-balance-and-launch-a-campaign.md
+  name: Fund a balance and launch a Retail Media campaign
+  method: generated
+  api: openapi/criteo-retail-media-api-openapi.yml
+  operations: [GetAccounts, GetPageOfBalancesV1, CreateBalanceByAccountId, AddFundsByAccountAndBalanceId,
+    AppendCampaignsToBalanceV1, CreateCampaignsByAccountId, GetCampaignsByAccountId, CreateAuctionLineItem,
+    GetAuctionLineItemsByCampaign, AddRemoveKeywords, SetKeywordBids, GetCampaignsByBalanceId, GetBalanceHistoryV1]
+  scopes: [RetailMedia_Accounts_Read, RetailMedia_Balance_Read, RetailMedia_Balance_Manage,
+    RetailMedia_Campaign_Read, RetailMedia_Campaign_Manage]
+- file: criteo-run-an-async-report.md
+  name: Run an async Retail Media report and collect the output
+  method: generated
+  api: openapi/criteo-retail-media-api-openapi.yml
+  operations: [GenerateAsyncPerformanceReport, GenerateAsyncRevenueReport, GenerateAsyncFillRateReport,
+    GenerateAsyncMissedOpportunitiesReport, GenerateAsyncAttributedTransactionsReport,
+    GenerateAsyncUnfilledPlacementsReport, GetAsyncExportStatus, GetAsyncExportOutput,
+    GenerateSyncCampaignsReport, GenerateSyncLineItemsReport, GenerateSyncRealTimePerformanceReport,
+    CreatePartnerBillingReportRequestV1, GetPartnerBillingReportStatusV1, GetPartnerBillingReportOutputV1]
+  scopes: [RetailMedia_Analytics_Read, RetailMedia_Billing_Read]
+- file: criteo-build-and-target-an-audience.md
+  name: Build an audience segment and target a line item or ad set with it
+  method: generated
+  api: openapi/criteo-retail-media-api-openapi.yml
+  also_uses: [openapi/criteo-marketing-solutions-api-openapi.yml, openapi/criteo-commerce-grid-api-openapi.yml]
+  operations: [bulkCreateAudienceSegments, bulkUpdateAudienceSegments, bulkDeleteAudienceSegments,
+    searchAudienceSegments, searchAudiences, AddRemoveContactListByAudienceSegment,
+    ClearContactListByAudienceSegment, getAudienceSegmentContactListStatistics,
+    GetAudienceTargetsByLineItemId, PutAudienceTargetsByLineItemId, AppendAudienceTargetsByLineItemId,
+    DeleteAudienceTargetsByLineItemId, CreateAudienceSegments, UpdateAudienceSegments,
+    ComputeAudienceSegmentsSizes, EstimateAudienceSegmentsSizes, SearchAudienceSegments,
+    UpdateContactListByAudienceSegment, DeleteContactListByAudienceSegment, UpdateAdSetAudience]
+  scopes: [RetailMedia_Audience_Read, RetailMedia_Audience_Manage, RetailMedia_Campaign_Manage,
+    MarketingSolutions_Audience_Read, MarketingSolutions_Audience_Manage, MarketingSolutions_Campaign_Manage,
+    CommerceGrid_Segment_Read, CommerceGrid_Segment_Manage]
+
+grounding:
+  spec_operations_total: 219
+  operationids_verified: true
+  verification: every operationId listed above was grepped verbatim from the published specs
+summary:
+  skills: 4
+  provider_published: 1
+  generated: 3

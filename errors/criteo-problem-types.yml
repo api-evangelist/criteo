@@ -1,0 +1,199 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developers.criteo.com/criteo-apis/docs/api-error-codes +
+  https://developers.criteo.com/criteo-apis/docs/api-error-types
+derived_from: openapi/criteo-*-api-openapi.yml
+format: rfc7807
+format_note: >-
+  Criteo cites RFC 7807 (Problem Details for HTTP APIs) by name, not its successor RFC 9457.
+  The envelope it actually ships is a Criteo variant: rather than a bare problem object it
+  returns `{errors: [...], warnings: [...]}` with RFC 7807 member names (type, title, detail,
+  instance) inside each array element, plus a Criteo-specific `traceId` and `code`.
+
+spec_gap:
+  severity: high
+  finding: >-
+    Criteo's published OpenAPI declares NO error responses. Across all 219 operations in the
+    three 2026-07/2026-01 specs the only declared statuses are 200 (189), 201 (18) and 204
+    (16). Zero 4xx, zero 5xx, and no error schema in components. Every fact in this file was
+    read from prose documentation because the machine-readable contract does not carry it — a
+    generated client or an agent reading the spec alone has no error model at all.
+  declared_statuses: {'200': 189, '201': 18, '204': 16}
+  declared_error_statuses: 0
+
+envelope:
+  shape: '{ "errors": [ ... ], "warnings": [ ... ] }'
+  example: |
+    {
+      "errors": [
+        {
+          "traceId": "00000000-0000-0000-befd-7e28ff5a4d71",
+          "type": "validation",
+          "code": "start-after-end-date",
+          "instance": "/report",
+          "title": "The start date can not be after the end date."
+        }
+      ]
+    }
+  fields:
+  - name: traceId
+    required: true
+    description: Technical identifier correlating your request with the backend error. Include it in any support request.
+  - name: type
+    required: true
+    description: Machine-readable error CATEGORY. Drives the recovery tactic.
+  - name: code
+    required: false
+    description: Machine-readable error code, unique per endpoint. Domain-scoped kebab-case.
+  - name: instance
+    required: false
+    description: Machine-readable reference to the endpoint occurrence.
+  - name: title
+    required: true
+    description: Human-readable description. Criteo's guidance is to render it as a dialog title.
+  - name: detail
+    required: false
+    description: Human-readable explanation. Render as dialog content. When absent, title must be sufficient.
+  warnings:
+    description: >-
+      Structurally identical array, semantically like compiler warnings — problems that may
+      occur in future. Warnings can be returned on a SUCCESSFUL response.
+
+categories:
+- type: access-control
+  example_code: insufficient-advertiser-permissions
+  example_title: insufficient advertiser permissions
+  example_detail: You do not have permission to access this Advertiser
+  recovery: Re-run the OAuth2 consent flow, or widen the application's domain authorization level.
+- type: availability
+  example_code: internal-error
+  example_title: Campaigns are unavailable
+  example_detail: Campaigns are temporarily unavailable, please try again
+  recovery: Retry with exponential backoff; surface a transient-failure state in the UI.
+- type: deprecation
+  example_code: deprecated-field
+  example_title: A field is deprecated
+  example_detail: '<field> is deprecated, please use the field <field>'
+  recovery: Migrate the field or endpoint. See lifecycle/criteo-lifecycle.yml.
+- type: deprecation
+  example_code: endpoint-deprecated
+  example_title: Endpoint deprecated
+  example_detail: 'Endpoint <endpoint> is deprecated, please upgrade to <endpoint>'
+  recovery: Update the version segment in the base URL.
+- type: validation
+  example_code: required-field
+  example_title: This field is required
+  example_detail: '<field> is required'
+  recovery: Fix client input; surface title/detail to the end user.
+- type: validation
+  example_code: campaign-not-found
+  example_title: Campaign is not found
+  example_detail: Campaign 3124159 does not exist
+  recovery: Re-read the entity or clear a stale local id.
+- type: validation
+  example_code: invalid-date-format
+  example_title: This field must be YYYY-MM-DD
+  recovery: Reformat the date.
+- type: validation
+  example_code: invalid
+  example_title: This field must be in list of required values
+  recovery: Constrain the value to the enumerated set.
+- type: validation
+  example_code: invalid-range
+  example_title: This field is not in the valid range
+  recovery: Clamp the value.
+- type: validation
+  example_code: invalid-timespan
+  example_title: The date span is too large
+  example_detail: '<start> to <end> must be no more than <n> days'
+  recovery: Split the query into smaller windows. Criteo recommends four days for reporting.
+
+authentication_codes:
+- code: authorization-token-missing
+  detail: The Authorization header is missing.
+  remediation: "Attach the header: Authorization: Bearer <token>"
+- code: authorization-token-expired
+  detail: >-
+    The access token has expired. Token lifetime is 900 seconds (15 minutes) from generation.
+  remediation: >-
+    Fetch a new token. Criteo's official client libraries auto-refresh — they check expiry
+    before each call and re-fetch. See packages/criteo-packages.yml.
+- code: authorization-token-invalid
+  detail: Wrong format or wrong content in the Authorization header.
+  remediation: Verify the header format and that the token belongs to this application.
+- code: authorization-issuer-invalid
+  detail: The token originator could not be verified.
+  remediation: Contact Criteo API support.
+- code: authorization-unknown
+  detail: Unknown authorization error.
+  remediation: Contact Criteo API support.
+
+problems:
+- status: 400
+  title: Bad request, invalid syntax
+  detail: >-
+    Malformed HTTP request — missing body, incompatible header and body, or a serialization
+    error. Business validation failures also surface as 400 with fine-grained errors[] detail.
+- status: 401
+  title: Authentication error
+  detail: Invalid credentials or an expired token. See authentication_codes above.
+- status: 403
+  title: Forbidden
+  detail: >-
+    Missing permission on the advertiser or domain, or consent was never granted / has been
+    revoked by the account owner.
+  remediation: Relaunch the OAuth2 flow to re-establish the permission set.
+- status: 404
+  title: Not found
+  detail: Check the correctness of the URL being called.
+- status: 410
+  title: Gone
+  detail: >-
+    The API version in the URL has been decommissioned. Endpoints whose contract did not
+    change fall forward automatically; the rest require migration.
+  source: https://developers.criteo.com/criteo-apis/docs/versioning-policy
+- status: 413
+  title: Payload too large
+  detail: The request payload exceeds what the web server processes in a single request.
+  remediation: Chunk the request or use pagination.
+- status: 415
+  title: Unsupported media type
+  detail: Wrong Content-Type — e.g. application/xml where application/json is required.
+- status: 429
+  title: Rate limit reached
+  detail: 250 calls/min on client_credentials (40 on reporting), 10 calls/min on authorization_code.
+  remediation: Exponential backoff starting at 1s. Read x-ratelimit-reset.
+  source: https://developers.criteo.com/criteo-apis/docs/rate-limits
+- status: 500
+  title: Internal server error
+  detail: >-
+    Generic server-side error outside business validation — transient network failure or host
+    unavailability.
+  remediation: Retry with exponential backoff within a bounded attempt count; indicate the failure in the UI immediately.
+
+silent_failure_modes:
+- id: bulk-200-on-permission-failure
+  severity: high
+  detail: >-
+    Bulk requests ALWAYS return 200 regardless of individual entity failures. Failed entities
+    are reported as WARNINGS in the response body and excluded from further processing. A 403
+    is returned only when the account does not exist or consent is missing outright.
+  agent_guidance: >-
+    Never treat 200 on a bulk endpoint as success. Parse warnings[] and errors[] and reconcile
+    the returned entity count against the submitted count.
+- id: empty-search-result
+  severity: info
+  detail: >-
+    An empty search returns 200 with a fully-formed envelope, not 404.
+  example: '{"meta":{"totalItems":0,"limit":50,"offset":0},"data":[],"warnings":[],"errors":[]}'
+- id: warnings-on-success
+  severity: medium
+  detail: Warnings may be present on an otherwise successful response and are easy to drop.
+
+summary:
+  problem_count: 10
+  category_types: 4
+  authentication_codes: 5
+  format: rfc7807
+  declared_in_openapi: false

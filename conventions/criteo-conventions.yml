@@ -1,0 +1,162 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developers.criteo.com/criteo-apis/docs/overview +
+  https://developers.criteo.com/criteo-apis/docs/api-error-codes +
+  https://developers.criteo.com/criteo-apis/docs/rate-limits +
+  https://developers.criteo.com/criteo-apis/docs/versioning-policy, cross-derived from
+  openapi/criteo-*-api-openapi.yml (219 operations, 2026-07 / 2026-01)
+
+authentication:
+  style: OAuth 2.0 bearer token
+  header: 'Authorization: Bearer <access_token>'
+  grants: [client_credentials, authorization_code, refresh_token]
+  token_endpoint: https://api.criteo.com/oauth2/token
+  scope_binding: bound to the API application, not requested per token
+  detail: authentication/criteo-authentication.yml
+
+versioning:
+  scheme: uri-path date version
+  pattern: https://api.criteo.com/{version}/{service}/...
+  current_stable: '2026-07'
+  previous_stable: '2026-01'
+  cadence: two stable versions per year, January and July
+  support_window: 12 months per version
+  channels: [experimental, release-candidate, stable]
+  release_candidate_note: >-
+    The RC shares its URL with the stable version it becomes, so integrating early requires
+    no migration when it ships. This replaced the older preview/stable two-tier model.
+  fall_forward: >-
+    On decommission, endpoints whose contract did not change are automatically routed to the
+    current stable version. Only breaking-changed endpoints require an explicit migration.
+  decommissioned_status: 410 Gone
+  detail: lifecycle/criteo-lifecycle.yml
+
+idempotency:
+  supported: false
+  header: null
+  finding: >-
+    Criteo publishes NO idempotency contract. There is no Idempotency-Key header, no request-
+    id echo, and no documented replay semantics anywhere in the platform guides or in any of
+    the 219 operations across the three OpenAPI documents (zero header parameters are declared
+    in any spec). This matters more here than on a typical API: the write surface includes
+    AddFundsByAccountAndBalanceId, budget modification and campaign activation — operations
+    where a retried POST after a timeout can move real money twice.
+  partial_mitigations:
+  - id: bulk-outcome-envelope
+    detail: >-
+      Batch write endpoints (audience segments, audiences, budgets) return a per-item outcome
+      envelope — "Creates all segments with a valid configuration ... For those that cannot be
+      created, one or multiple errors are returned" — so a partial failure is legible in the
+      response. This is failure reporting, not idempotency: a full retry still re-applies the
+      items that succeeded.
+  - id: async-request-then-poll
+    detail: >-
+      Catalogs and reports use a request/status/output pattern where the expensive work is
+      addressed by an id (catalogId, reportId, requestId). Re-reading a result by id IS safe
+      to repeat; only the initial request is not.
+  recommendation_for_agents: >-
+    Treat every Criteo write as at-most-once. Before retrying a timed-out POST, read back the
+    entity by its natural key rather than resending.
+
+pagination:
+  styles:
+  - style: limit-offset
+    params: [limit, offset]
+    used_by: Retail Media (18 operations)
+    services: [retail-media]
+  - style: page-index-size
+    params: [pageIndex, pageSize]
+    used_by: Marketing Solutions (7 operations)
+    services: [marketing-solutions]
+  - style: none
+    detail: >-
+      Most operations are unpaginated single-entity reads or POST-body searches that carry
+      their own filter object rather than page parameters.
+  finding: >-
+    The two products paginate differently. A client that abstracts over both Criteo APIs must
+    implement limit/offset AND pageIndex/pageSize — an inconsistency worth reporting upstream.
+  cursor_support: false
+
+bulk:
+  supported: true
+  docs: https://developers.criteo.com/criteo-apis/docs/bulk-calls
+  max_ids_per_call: 50
+  applies_to: reporting and analytics endpoints (campaign and line-item IDs)
+  caveat: >-
+    Criteo documents that on bulk endpoints a non-existent resource or insufficient permission
+    returns HTTP 200 with an EMPTY response rather than 403 or 404. An agent that treats 200
+    as success will silently read nothing and report no error. This is the single most
+    dangerous convention on the platform.
+
+async_operations:
+  pattern: request -> poll status -> fetch output
+  applies_to: [catalogs, reports, billing partner reports]
+  examples:
+  - POST /{v}/retail-media/catalogs -> GET /{v}/retail-media/catalogs/{catalogId}/status -> GET /{v}/retail-media/catalogs/{catalogId}/output
+  - POST /{v}/retail-media/reports/performance -> GET /{v}/retail-media/reports/{reportId}/status -> GET /{v}/retail-media/reports/{reportId}/output
+  output_media_types: [application/json, application/x-json-stream, text/csv, application/csv, text/xml, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet]
+  streaming_note: >-
+    Catalog output is served as application/x-json-stream — newline-delimited CatalogProduct
+    objects, not a JSON array. Introduced in the 2021-07 version.
+  data_freshness:
+    onsite_activity: 6-8 hours
+    offsite_activity: ~24 hours
+    initial_attribution: 7-9 hours
+    final_attribution: within 74 hours
+    minor_updates_until: 120 hours
+
+error_envelope:
+  format: rfc7807
+  media_type: application/problem+json
+  spec_cited_by_provider: RFC 7807
+  note: >-
+    Criteo cites RFC 7807 (Problem Details), the predecessor of RFC 9457. Error bodies carry
+    title and detail; Criteo's guidance is to surface `title` to the end user when `detail` is
+    absent. Machine-readable error codes are kebab-case and domain-scoped, e.g.
+    `campaign--ad-set-start-check--cannot-activate-archived-ad-set`.
+  spec_gap: >-
+    NONE of the 219 operations declares a 4xx or 5xx response. The specs declare only 200
+    (189), 201 (18) and 204 (16). Every error contract lives in prose documentation and is
+    invisible to any generated client or agent reading the spec.
+  detail: errors/criteo-problem-types.yml
+
+rate_limit_signaling:
+  headers: [x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset]
+  retry_after: false
+  status_on_exhaustion: 429
+  backoff: exponential, starting at 1s and doubling
+  detail: rate-limits/criteo-rate-limits.yml
+
+request_tracing:
+  request_id_header: null
+  response_trace_id: traceId
+  note: >-
+    Criteo's API gateway returns a `traceId` (and `traceIdentifier`) in the error envelope on
+    4xx responses — observed live on 404s from api.criteo.com. There is no client-supplied
+    correlation-id header to send.
+
+media_types:
+  request: application/json (application/x-www-form-urlencoded on the token endpoint)
+  response_primary: application/json
+  content_type_errors: >-
+    Sending anything other than application/json returns 415 Unsupported Media Type.
+
+field_expansion:
+  supported: false
+sparse_fieldsets:
+  supported: false
+metadata:
+  supported: false
+  note: >-
+    No general-purpose customer metadata bag. Reporting responses carry a `metadata` object
+    (e.g. dataCompleteThrough on real-time performance) but it is server-populated.
+
+cross_links:
+  errors: errors/criteo-problem-types.yml
+  lifecycle: lifecycle/criteo-lifecycle.yml
+  authentication: authentication/criteo-authentication.yml
+  scopes: scopes/criteo-scopes.yml
+  rate_limits: rate-limits/criteo-rate-limits.yml
+  changelog: changelog/criteo-changelog.yml
+  data_model: data-model/criteo-data-model.yml

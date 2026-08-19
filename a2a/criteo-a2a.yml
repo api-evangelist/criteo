@@ -1,0 +1,71 @@
+generated: '2026-08-13'
+method: probed
+source: https://developers.criteo.com/.well-known/agent-card.json
+discovery:
+  path: /.well-known/agent-card.json
+  canonical: true
+  host: developers.criteo.com
+  note: >-
+    Found on the canonical A2A path on the developer-portal host only. The same path
+    returns 404 on api.criteo.com, mcp.criteo.com and www.criteo.com, and the legacy
+    /.well-known/agent.json returns 404 on every host.
+conformance:
+  spec: A2A 1.0.0
+  grade: flavored
+  protocol_version: '0.3'
+  preferred_transport: HTTP+JSON
+  hard_checks:
+    capabilities_is_object: true
+    protocol_version_present: true
+    skills_is_array: true
+  deviations:
+  - supportedInterfaces-not-additionalInterfaces
+  - no-description
+  - protocolVersion-not-semver
+  deviation_notes:
+  - >-
+    The card carries `supportedInterfaces` where A2A 1.0.0 specifies
+    `additionalInterfaces` for the AgentInterface array. This is the single most common
+    non-conformance in the catalog and is the reason for the `flavored` grade: the three
+    hard shape checks all pass, but the interface array is published under a name an A2A
+    1.0.0 client will not read.
+  - >-
+    `description` is absent. A2A requires a human-readable agent description; without it a
+    consuming agent has only the skill description to route on.
+  - >-
+    `protocolVersion` is "0.3" rather than a full version string such as "0.3.0".
+card:
+  name: Criteo Docs
+  url: https://developers.criteo.com/
+  version: 1.0.0
+  documentation_url: https://developers.criteo.com/
+  provider_organization: Criteo Docs
+  capabilities:
+    streaming: false
+    push_notifications: false
+  default_input_modes:
+  - text/plain
+  default_output_modes:
+  - text/plain
+  skills: 1
+  skill_ids:
+  - criteo
+  file: criteo-agent-card.json
+scope_note: >-
+  This card advertises the Criteo DOCUMENTATION agent, not the Criteo advertising APIs.
+  Its single skill points at a published Agent Skill (saved verbatim to
+  skills/criteo-published-skill.md) that teaches an agent how to call the Retail Media and
+  Marketing Solutions APIs, so the card is a real, useful discovery surface — but the agent
+  it describes answers questions about the docs. The callable API surface is the OpenAPI in
+  openapi/ and the OAuth-protected MCP server at https://mcp.criteo.com/mcp.
+related_surfaces:
+  published_skill: https://developers.criteo.com/.well-known/agent-skills/criteo/skill.md
+  docs_mcp: https://developers.criteo.com/mcp
+  api_mcp: https://mcp.criteo.com/mcp
+x-evidence:
+  fetched: '2026-08-13'
+  url: https://developers.criteo.com/.well-known/agent-card.json
+  http_status: 200
+  content_type: application/json
+  legacy_path_checked: https://developers.criteo.com/.well-known/agent.json
+  legacy_path_status: 404

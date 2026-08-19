@@ -1,151 +1,69 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+generated: '2026-08-13'
+method: searched
+source: https://developers.criteo.com/criteo-apis/docs/connect-to-the-api
 provider: Criteo
 providerId: criteo
-created: '2026-05-04'
-modified: '2026-05-04'
-tags:
-  - Advertising
-  - Audiences
-  - Campaigns
-  - Catalog
-  - Commerce
-  - Display Advertising
-  - Marketing
-  - Media
-  - OAuth 2.0
-  - Reporting
-  - Retail
-  - Retail Media
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
-plans:
-  - id: criteo-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the Criteo API surface. Intended for evaluation, prototyping, and
-      low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Criteo Retail Media API
-      - name: Criteo Marketing Solutions API
-  - id: criteo-pro
-    name: Professional
-    type: paid
-    description: Production tier for Criteo. Provides higher quotas, priority support, and access to the
-      broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1000
-        price: TBD
-        userMultiplied: false
-    elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Criteo Retail Media API
-      - name: Criteo Marketing Solutions API
-  - id: criteo-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for Criteo. Includes dedicated capacity, contractual SLAs, security
-      review, data residency options, and named technical account management.
-    entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: configurable
-        domains: []
-        unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains: []
-        unit: 1
-        price: custom
-        userMultiplied: false
-    elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Criteo Retail Media API
-      - name: Criteo Marketing Solutions API
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+supersedes: >-
+  Replaces the 2026-05-04 bulk-sweep scaffold, which invented a "criteo-free" tier with a
+  1,000 requests/month quota. Criteo publishes no such tier and no such quota. Recorded here
+  as a measured zero instead.
+
+description: >-
+  Criteo publishes no priced plans for its APIs, and no rate card for the advertising
+  platform the APIs control. API access is not a product Criteo sells; it is an entitlement
+  that comes with a Criteo commercial relationship. Media itself is bought on auction/CPC and
+  negotiated per contract, so there is nothing tiered to record.
+
+plan_count: 0
+
+access_model:
+  api_priced_separately: false
+  api_access_requires: an existing Criteo commercial relationship (advertiser, retailer, agency or partner)
+  onboarding: >-
+    Self-serve for the developer artefacts (partner account, organization, API application,
+    client_id/client_secret) once you have an account. The account itself is not self-serve
+    for Retail Media or Marketing Solutions.
+  steps_docs: https://developers.criteo.com/criteo-apis/docs/connect-to-the-api
+  free_trial: false
+  pricing_page: null
+  pricing_page_note: >-
+    Probed 2026-08-13. https://www.criteo.com/pricing/ and https://www.criteo.com/plans/ both
+    return HTTP 404. There is no published rate card anywhere on criteo.com.
+
+self_serve_product:
+  name: Criteo GO
+  url: https://go.criteo.com/
+  status: 200
+  description: >-
+    Criteo's self-serve SMB product (Shopify onboarding, AI-managed cross-channel campaigns).
+    It is the one Criteo surface a business can start without a salesperson, and the closest
+    thing to a public plan.
+  published_prices: false
+  published_prices_note: >-
+    The landing page carries a promotional offer — "Get up to $1500 in free ad credit. Terms
+    apply" — and a Performance Estimator, but no tier list, no monthly price, no minimum
+    spend and no included quota. Signup is gated behind "Get started" / "Book a call".
+  entry_points: [Get started, Book a call, Log in]
+  api_access: >-
+    Criteo GO is not exposed through the developer APIs documented at developers.criteo.com.
+
+what_is_actually_metered:
+  note: >-
+    Nothing in the API is billed per call. The metered surfaces are rate limits (see
+    rate-limits/criteo-rate-limits.yml) and media spend, which is governed by Balance entities
+    on the Retail Media API rather than by a plan.
+  balances_api: openapi/criteo-retail-media-api-openapi.yml
+  balance_scopes: [RetailMedia_Balance_Read, RetailMedia_Balance_Manage]
+  billing_reports_scope: RetailMedia_Billing_Read
+
+evidence:
+- url: https://www.criteo.com/pricing/
+  status: 404
+- url: https://www.criteo.com/plans/
+  status: 404
+- url: https://go.criteo.com/
+  status: 200
+  finding: self-serve product page, promotional ad credit only, no tiers or prices
+- url: https://developers.criteo.com/criteo-apis/docs/connect-to-the-api
+  status: 200
+  finding: API onboarding requires a partner account; no plan selection step

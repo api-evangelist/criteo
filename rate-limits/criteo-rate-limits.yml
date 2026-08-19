@@ -1,101 +1,109 @@
-specification: API Commons Rate Limits
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+generated: '2026-08-13'
+method: searched
+source: https://developers.criteo.com/criteo-apis/docs/rate-limits
 provider: Criteo
 providerId: criteo
-created: '2026-05-04'
-modified: '2026-05-04'
-tags:
-  - Advertising
-  - Audiences
-  - Campaigns
-  - Catalog
-  - Commerce
-  - Display Advertising
-  - Marketing
-  - Media
-  - OAuth 2.0
-  - Reporting
-  - Retail
-  - Retail Media
-  - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Criteo API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
+supersedes: >-
+  Replaces the 2026-05-04 bulk-sweep scaffold, which invented X-RateLimit-* header casing,
+  a RateLimit-Policy header and a Retry-After header that Criteo does not document, and
+  carried no real limits. Every value below is published by Criteo.
+
+description: >-
+  Criteo rate-limits by OAuth grant type rather than by plan. The limit attaches to the
+  application for client_credentials and to the consented account for authorization_code,
+  and reporting endpoints carry a stricter ceiling than the default.
+
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+  limit: x-ratelimit-limit
+  remaining: x-ratelimit-remaining
+  reset: x-ratelimit-reset
+  retryAfter: null
+  policy: null
+header_notes:
+  casing: >-
+    Criteo documents these headers lowercase. There is no Retry-After and no RFC 9331
+    RateLimit-Policy header — a client must compute its own wait from x-ratelimit-reset.
+  reset_format: Unix epoch seconds at which a new call may be performed (documented example 1628249355)
+  scope: Returned on responses to the caller whose token is being metered
+
 responseCodes:
   throttled: 429
   quotaExceeded: 429
-  serviceUnavailable: 503
+
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Criteo Retail Media API
-      - Criteo Marketing Solutions API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Criteo Retail Media API
-      - Criteo Marketing Solutions API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Criteo Retail Media API
-      - Criteo Marketing Solutions API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Criteo Retail Media API
-      - Criteo Marketing Solutions API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Criteo Retail Media API
-      - Criteo Marketing Solutions API
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- id: client-credentials-default
+  scope: per-application
+  grant: client_credentials
+  endpoints: default endpoints
+  limit: 250
+  unit: calls
+  window: 1m
+  burst: null
+  note: >-
+    A single shared token per application. Criteo's own guidance notes that ten concurrent
+    users of a platform therefore share 25 calls/min each.
+- id: client-credentials-reporting
+  scope: per-application
+  grant: client_credentials
+  endpoints: reporting / analytics endpoints
+  limit: 40
+  unit: calls
+  window: 1m
+  burst: null
+  note: >-
+    Resource-sensitive endpoints carry a stricter ceiling. The OpenAPI marks these operations
+    with "This endpoint is subject to specific rate limits" in the description — see the
+    reports/* operations in openapi/criteo-retail-media-api-openapi.yml.
+- id: authorization-code-per-account
+  scope: per-account (per consenter)
+  grant: authorization_code
+  endpoints: all
+  limit: 10
+  unit: calls
+  window: 1m
+  burst: null
+  autoscaling: true
+  autoscaling_rule: >-
+    The limit scales linearly with the number of accounts a user has consented to — three
+    consented accounts yields 30 calls/min for that app. The budget is pooled across those
+    accounts, so spending it on one affects the others.
+  note: >-
+    Rate limiting is enforced per consenter, so one advertiser's activity cannot exhaust
+    another's budget. Auto-scaling applies to authorization_code ONLY, never to
+    client_credentials.
+
+exhaustion_behavior:
+  status: 429
+  body: RFC 7807 problem detail
+  retry_guidance: >-
+    Criteo prescribes exponential backoff: wait one second after the first 429, two seconds
+    after the second, doubling from there.
+  docs: https://developers.criteo.com/criteo-apis/docs/rate-limits
+
+payload_limits:
+- id: bulk-ids-per-call
+  scope: per-request
+  endpoints: reporting / bulk analytics
+  limit: 50
+  unit: campaign or line-item IDs
+  docs: https://developers.criteo.com/criteo-apis/docs/bulk-calls
+  note: Bulk calls are Criteo's documented mitigation for the reporting rate limit.
+- id: payload-too-large
+  status: 413
+  note: >-
+    Requests exceeding the web server's single-request size return 413; Criteo's remedy is to
+    chunk the request or use pagination.
+
+best_practices:
+- Implement exponential backoff on 429.
+- Prefer authorization_code over client_credentials for multi-tenant platforms so each consenter gets an isolated budget.
+- Cap reporting queries at four consecutive days — spend and attribution stabilise within 72–74 hours.
+- Batch up to 50 campaign or line-item IDs per reporting call instead of looping.
+- Do not poll for attribution before it exists — onsite activity lands in 6–8h, offsite in ~24h, initial attribution in 7–9h, final attribution within 74h (minor updates up to 120h).
+
+summary:
+  limit_count: 4
+  headers_published: true
+  retry_after_published: false
+  documented: true
+  varies_by: oauth grant type and endpoint class, not by pricing plan

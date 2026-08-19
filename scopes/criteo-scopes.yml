@@ -1,98 +1,197 @@
-generated: '2026-07-11'
+generated: '2026-08-13'
 method: searched
-source: openapi/criteo-openapi.yml
-docs: https://developers.criteo.com/retail-media/docs/create-your-app
-note: Criteo expresses API permissions as application "domains" chosen when creating
-  an API app in the developer portal, each set to a No access / Read / Manage authorization
-  level, rather than as OAuth scope strings passed in the token request (see
-  https://developers.criteo.com/retail-media/docs/create-your-app and
-  https://developers.criteo.com/marketing-solutions/docs/create-your-app).
+source: openapi/criteo-retail-media-api-openapi.yml, openapi/criteo-marketing-solutions-api-openapi.yml, openapi/criteo-commerce-grid-api-openapi.yml
+docs: https://developers.criteo.com/criteo-apis/docs/create-your-app
+supersedes: >-
+  The previous version of this file listed Criteo's developer-portal "domains" (Accounts,
+  Analytics, Audiences, ...) because the only spec in the repo was a hand-authored scaffold
+  whose oauth2 flows declared an empty scopes map. Criteo's REAL published OpenAPI, harvested
+  2026-08-13 from https://api.criteo.com/2026-07/{service}/open-api-specifications.json,
+  carries the actual scope STRINGS on every operation's security requirement. Those 22
+  strings are recorded below. The portal domains are retained as `authorization_model`
+  because that is genuinely how a developer grants them — the domain is what you toggle in
+  the app UI, the scope string is what arrives in the token.
+
+authorization_model:
+  docs: https://developers.criteo.com/criteo-apis/docs/create-your-app
+  description: >-
+    Criteo does not accept a `scope` parameter in the token request. Permissions are bound to
+    the API application: when you create an app in the developer portal you pick a service
+    (Retail Media / Marketing Solutions / Commerce Grid) and set each functional DOMAIN to an
+    authorization level of No access, Read, or Manage. The resulting token silently carries
+    the corresponding `<Service>_<Domain>_<Level>` scopes. An agent cannot widen its own
+    grant at runtime; widening requires an app change and, for Authorization Code apps, a
+    fresh consent from the account owner at https://consent.criteo.com/request.
+  levels: [No access, Read, Manage]
+  level_note: >-
+    Manage implies Read. On the Retail Media Accounts domain, Manage additionally requires
+    prior activation by a Criteo contact.
+
 schemes:
-- name: OAuth2ClientCredentials
-  source: openapi/criteo-openapi.yml
+- name: oauth
+  source: openapi/criteo-retail-media-api-openapi.yml
   flows:
   - flow: clientCredentials
     tokenUrl: https://api.criteo.com/oauth2/token
   - flow: authorizationCode
-    authorizationUrl: https://consent.criteo.com/authorize
+    authorizationUrl: https://api.criteo.com/oauth2
     tokenUrl: https://api.criteo.com/oauth2/token
+  note: >-
+    The spec's declared flow `scopes` maps are empty ({}) in all three services; the scope
+    strings appear only on per-operation `security` requirements. A generic OAuth client
+    reading only components.securitySchemes will therefore see zero scopes — this is a real
+    spec-quality gap worth reporting to Criteo.
+
 scopes:
-- scope: Accounts
-  description: 'Retail Media domain: manages permissions to endpoints responsible
-    for describing accounts'' entities, with their properties and relationships,
-    like parent/child accounts. Authorization levels: No access / Read / Manage
-    (Manage requires prior activation by a Criteo contact).'
-  sources:
-  - https://developers.criteo.com/retail-media/docs/create-your-app
-- scope: Analytics
-  description: 'Retail Media domain: manages permissions to generate reporting data
-    for campaigns & line-items, considering desired list of dimensions & metrics.
-    Authorization levels: No access / Read.'
-  sources:
-  - https://developers.criteo.com/retail-media/docs/create-your-app
-- scope: Audiences
-  description: 'Retail Media domain: manages permissions to check/manage audiences
-    available to campaigns. Authorization levels: No access / Read / Manage.'
-  sources:
-  - https://developers.criteo.com/retail-media/docs/create-your-app
-- scope: Balances
-  description: 'Retail Media domain: manages permissions to endpoints responsible
-    for configuring and retrieving balance entities, which define spending limits
-    applied across campaigns. Authorization levels: No access / Read / Manage
-    (Manage requires prior activation by a Criteo contact).'
-  sources:
-  - https://developers.criteo.com/retail-media/docs/create-your-app
-- scope: Billing
-  description: 'Retail Media domain: manages permissions to generate billing data
-    for campaigns & line items for a retailer partner. Authorization levels: No
-    access / Read (Read requires prior activation by a Criteo contact).'
-  sources:
-  - https://developers.criteo.com/retail-media/docs/create-your-app
-- scope: Campaigns
-  description: 'Retail Media domain: manages permissions to endpoints responsible
-    for campaigns management, including line-items, balances and creatives.
-    Authorization levels: No access / Read / Manage.'
-  sources:
-  - https://developers.criteo.com/retail-media/docs/create-your-app
-- scope: Catalog
-  description: 'Retail Media domain: manages permissions to check/manage products
-    catalogs. Authorization levels: No access / Read / Manage.'
-  sources:
-  - https://developers.criteo.com/retail-media/docs/create-your-app
-- scope: Analytics (Marketing Solutions)
-  description: 'Marketing Solutions (Commerce Growth) domain: generate custom
-    reports; slice and dice your data across marketing goals and channels,
-    including App, Web, and Store campaigns. Authorization levels: No access /
-    Read.'
-  sources:
-  - https://developers.criteo.com/marketing-solutions/docs/create-your-app
-- scope: Audiences (Marketing Solutions)
-  description: 'Marketing Solutions (Commerce Growth) domain: create, update, or
-    delete your audiences using your own CRM segments, Criteo''s or your lists
-    from a third party. Authorization levels: No access / Read / Manage.'
-  sources:
-  - https://developers.criteo.com/marketing-solutions/docs/create-your-app
-- scope: Campaigns (Marketing Solutions)
-  description: 'Marketing Solutions (Commerce Growth) domain: create and edit
-    campaigns, ad sets, as well as update settings like CPCs. Authorization
-    levels: No access / Read / Manage.'
-  sources:
-  - https://developers.criteo.com/marketing-solutions/docs/create-your-app
-- scope: Catalog (Marketing Solutions)
-  description: 'Marketing Solutions (Commerce Growth) domain: add and edit your
-    product details. Authorization levels: No access / Read / Manage.'
-  sources:
-  - https://developers.criteo.com/marketing-solutions/docs/create-your-app
-- scope: Creatives (Marketing Solutions)
-  description: 'Marketing Solutions (Commerce Growth) domain: create your own or
-    use third-party creative that is displayed by an external creative provider
-    at display time; access, add, or edit creative from the API. Authorization
-    levels: No access / Read / Manage.'
-  sources:
-  - https://developers.criteo.com/marketing-solutions/docs/create-your-app
-- scope: Product recommendations configuration (Marketing Solutions)
-  description: 'Marketing Solutions (Commerce Growth) domain: product
-    recommendations configuration; access must be requested. Authorization
-    levels: No access / Read / Manage.'
-  sources:
-  - https://developers.criteo.com/marketing-solutions/docs/create-your-app
+# ---- Retail Media (12) ----
+- scope: RetailMedia_Accounts_Read
+  domain: Accounts
+  service: Retail Media
+  level: Read
+  description: Read accounts, their properties and parent/child relationships.
+  sources: [openapi/criteo-retail-media-api-openapi.yml]
+- scope: RetailMedia_Accounts_Manage
+  domain: Accounts
+  service: Retail Media
+  level: Manage
+  description: Create and modify accounts, add/remove brands, create child brand accounts under a Private Market parent.
+  note: Manage on this domain requires prior activation by a Criteo contact.
+  sources: [openapi/criteo-retail-media-api-openapi.yml]
+- scope: RetailMedia_Campaign_Read
+  domain: Campaign
+  service: Retail Media
+  level: Read
+  description: Read campaigns, line items, keywords, promoted products and targeting.
+  sources: [openapi/criteo-retail-media-api-openapi.yml]
+- scope: RetailMedia_Campaign_Manage
+  domain: Campaign
+  service: Retail Media
+  level: Manage
+  description: Create and modify campaigns, auction and preferred line items, keywords, promoted products and targeting.
+  sources: [openapi/criteo-retail-media-api-openapi.yml]
+- scope: RetailMedia_Audience_Read
+  domain: Audiences
+  service: Retail Media
+  level: Read
+  description: Read audiences and audience segments available to campaigns.
+  sources: [openapi/criteo-retail-media-api-openapi.yml]
+- scope: RetailMedia_Audience_Manage
+  domain: Audiences
+  service: Retail Media
+  level: Manage
+  description: Create and modify audiences, audience segments and contact lists.
+  sources: [openapi/criteo-retail-media-api-openapi.yml]
+- scope: RetailMedia_Balance_Read
+  domain: Balances
+  service: Retail Media
+  level: Read
+  description: Read balance entities and the spending limits they define.
+  sources: [openapi/criteo-retail-media-api-openapi.yml]
+- scope: RetailMedia_Balance_Manage
+  domain: Balances
+  service: Retail Media
+  level: Manage
+  description: Create balances, add funds, change balance dates and attach campaigns to a balance.
+  sources: [openapi/criteo-retail-media-api-openapi.yml]
+- scope: RetailMedia_Analytics_Read
+  domain: Analytics
+  service: Retail Media
+  level: Read
+  description: Request and retrieve campaign, line-item, revenue, fill-rate, attributed-transaction and real-time performance reports.
+  sources: [openapi/criteo-retail-media-api-openapi.yml]
+- scope: RetailMedia_Billing_Read
+  domain: Billing
+  service: Retail Media
+  level: Read
+  description: Request and retrieve partner billing reports.
+  sources: [openapi/criteo-retail-media-api-openapi.yml]
+- scope: RetailMedia_Catalog_Manage
+  domain: Catalog
+  service: Retail Media
+  level: Manage
+  description: Request a retailer catalog build and retrieve its status and streamed output.
+  note: >-
+    Catalog exposes only a Manage scope in the spec — there is no RetailMedia_Catalog_Read.
+    Reading a catalog requires the same grant as requesting one, because retrieval is the
+    second half of an asynchronous request the caller initiated.
+  sources: [openapi/criteo-retail-media-api-openapi.yml]
+
+# ---- Marketing Solutions (9) ----
+- scope: MarketingSolutions_Campaign_Read
+  domain: Campaign
+  service: Marketing Solutions
+  level: Read
+  description: Read campaigns, ad sets, budgets and Marketplace Performance Outcomes entities.
+  sources: [openapi/criteo-marketing-solutions-api-openapi.yml]
+- scope: MarketingSolutions_Campaign_Manage
+  domain: Campaign
+  service: Marketing Solutions
+  level: Manage
+  description: Create and modify campaigns, ad sets, budgets, bids and MPO seller activation.
+  sources: [openapi/criteo-marketing-solutions-api-openapi.yml]
+- scope: MarketingSolutions_Audience_Read
+  domain: Audiences
+  service: Marketing Solutions
+  level: Read
+  description: Read audiences and audience segments and compute or estimate their sizes.
+  sources: [openapi/criteo-marketing-solutions-api-openapi.yml]
+- scope: MarketingSolutions_Audience_Manage
+  domain: Audiences
+  service: Marketing Solutions
+  level: Manage
+  description: Create and modify audiences and segments, and add/remove contact-list members.
+  sources: [openapi/criteo-marketing-solutions-api-openapi.yml]
+- scope: MarketingSolutions_Creative_Read
+  domain: Creative
+  service: Marketing Solutions
+  level: Read
+  description: Read creatives, ads, assets and coupons.
+  sources: [openapi/criteo-marketing-solutions-api-openapi.yml]
+- scope: MarketingSolutions_Creative_Manage
+  domain: Creative
+  service: Marketing Solutions
+  level: Manage
+  description: Create and modify creatives, ads, assets and coupons.
+  sources: [openapi/criteo-marketing-solutions-api-openapi.yml]
+- scope: MarketingSolutions_Analytics_Read
+  domain: Analytics
+  service: Marketing Solutions
+  level: Read
+  description: Request and retrieve advertiser and campaign performance reports.
+  sources: [openapi/criteo-marketing-solutions-api-openapi.yml]
+- scope: MarketingSolutions_Reco_Read
+  domain: Reco
+  service: Marketing Solutions
+  level: Read
+  description: Read product recommendation configuration and product sets.
+  sources: [openapi/criteo-marketing-solutions-api-openapi.yml]
+- scope: MarketingSolutions_Reco_Manage
+  domain: Reco
+  service: Marketing Solutions
+  level: Manage
+  description: Create and modify product recommendation configuration and product sets.
+  sources: [openapi/criteo-marketing-solutions-api-openapi.yml]
+
+# ---- Commerce Grid (2) ----
+- scope: CommerceGrid_Segment_Read
+  domain: Segment
+  service: Commerce Grid
+  level: Read
+  description: Read Commerce Grid audience segments.
+  sources: [openapi/criteo-commerce-grid-api-openapi.yml]
+- scope: CommerceGrid_Segment_Manage
+  domain: Segment
+  service: Commerce Grid
+  level: Manage
+  description: Create and modify Commerce Grid audience segments.
+  sources: [openapi/criteo-commerce-grid-api-openapi.yml]
+
+summary:
+  scope_count: 22
+  naming_convention: <Service>_<Domain>_<Level>
+  services: [RetailMedia, MarketingSolutions, CommerceGrid]
+  levels: [Read, Manage]
+  read_scopes: 11
+  manage_scopes: 11
+  requested_at_token_time: false
+  bound_to_application: true

@@ -1,0 +1,3257 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Criteo API",
+    "version": "2026-07"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Advertiser",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/2026-07/advertisers/me",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/advertisers/me",
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Fetch the portfolio of Advertisers for this account"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/2026-07/log-level/advertisers/{advertiser-id}/report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/log-level/advertisers/:advertiser-id/report",
+            "params": [
+              {
+                "name": "advertiser-id",
+                "value": "",
+                "type": "path",
+                "description": "The advertiser ID to fetch the transparency data for. The advertiser must already exist. Must be greater than 0."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This Statistics endpoint provides publisher data."
+        },
+        {
+          "info": {
+            "name": "/2026-07/placements/report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/placements/report",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Your ads are placed in different domains (publishers) and environments (websites and apps). Thanks to the placements endpoint, you can analyse the performances for each publisher, comparing displays, clicks and sales generated.\r\n<br/><br/>\r\nThis endpoint supports data retrieval for up to three months in the past."
+        },
+        {
+          "info": {
+            "name": "/2026-07/statistics/report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/statistics/report",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This Statistics endpoint provides ad set related data. It is an upgrade of our previous Statistics endpoint, and includes new metrics and customization capabilities.\r\n<br/><br/>\r\nThis endpoint supports data retrieval for up to two years in the past."
+        },
+        {
+          "info": {
+            "name": "/2026-07/transactions/report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/transactions/report",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This Transactions endpoint provides transactions id related data.\r\n<br/><br/>\r\nThis endpoint supports data retrieval for up to two years in the past."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Campaign",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/ad-sets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/ad-sets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create an ad set with the provided parameters"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/ad-sets",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/ad-sets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Patch a list of AdSets."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/ad-sets/{ad-set-id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/ad-sets/:ad-set-id",
+            "params": [
+              {
+                "name": "ad-set-id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the ad set"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the data for the specified ad set"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/ad-sets/{ad-set-id}/audience",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/ad-sets/:ad-set-id/audience",
+            "params": [
+              {
+                "name": "ad-set-id",
+                "value": "",
+                "type": "path",
+                "description": "The ad set ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Link or unlink an audience with an ad set"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/ad-sets/{ad-set-id}/category-bids",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/ad-sets/:ad-set-id/category-bids",
+            "params": [
+              {
+                "name": "ad-set-id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Ad Set"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the Category Bids for all valid Categories associated to an Ad Set"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/ad-sets/{ad-set-id}/category-bids",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/ad-sets/:ad-set-id/category-bids",
+            "params": [
+              {
+                "name": "ad-set-id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Ad Set"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update the Category Bids for given Categories associated to an Ad Set\r\nPatch Category Bids for one or more Categories in a single request. Partial success policy is followed."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/ad-sets/{ad-set-id}/display-multipliers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/ad-sets/:ad-set-id/display-multipliers",
+            "params": [
+              {
+                "name": "ad-set-id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Ad Set"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the Display Multipliers for all valid Categories associated to an Ad Set"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/ad-sets/{ad-set-id}/display-multipliers",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/ad-sets/:ad-set-id/display-multipliers",
+            "params": [
+              {
+                "name": "ad-set-id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Ad Set"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update the Display Multipliers for given Categories associated to an Ad Set\r\nPatch Display Multipliers for one or more Categories in a single request. Partial success policy is followed."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/ad-sets/search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/ad-sets/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Search for ad sets based on provided criteria.\r\nThis returns the full configuration of ad sets matching those criteria.\r\nField projection can be used if only a subset of fields is required, instead of the full configuration.\r\n            \r\nIf specific fields are precised in the user prompt, use meta.fields field projection in order to query only the value of these fields, else, provide every field."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/ad-sets/start",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/ad-sets/start",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Start the specified list of ad sets"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/ad-sets/stop",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/ad-sets/stop",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Stop the specified list of ad sets"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/campaigns",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create the specified campaign\r\n            \r\nA campaign, or in other words a marketing campaign, is an entity that defines advertising objectives and success criteria."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/campaigns",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Patch a list of Campaigns.\r\n            \r\nA campaign, or in other words a marketing campaign, is an entity that defines advertising objectives and success criteria."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/campaigns/{campaign-id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/campaigns/:campaign-id",
+            "params": [
+              {
+                "name": "campaign-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the marketing campaign; This field is required."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the data for the specified campaign.\r\n            \r\nA campaign, or in other words a marketing campaign, is an entity that defines advertising objectives and success criteria."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/campaigns/search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/campaigns/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Search endpoint for campaigns\r\n            \r\nA campaign, or in other words a marketing campaign, is an entity that defines advertising objectives and success criteria."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/advertisers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/advertisers",
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the collection of advertisers associated with the user."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/advertisers/{advertiserId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/advertisers/:advertiserId",
+            "params": [
+              {
+                "name": "advertiserId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the advertiser"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get an advertiser."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/advertisers/{advertiserId}/ad-preview",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/advertisers/:advertiserId/ad-preview",
+            "params": [
+              {
+                "name": "advertiserId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the advertiser"
+              },
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "query",
+                "description": "Seller CampaignId"
+              },
+              {
+                "name": "height",
+                "value": "",
+                "type": "query",
+                "description": "Height of the ad to display"
+              },
+              {
+                "name": "sellerId",
+                "value": "",
+                "type": "query",
+                "description": "Id of the seller"
+              },
+              {
+                "name": "width",
+                "value": "",
+                "type": "query",
+                "description": "Width of the ad to display"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get a preview of an HTML ad with products belonging to the provided seller\r\n• <b>advertiserId</b>: Valid crp advertiserId, seller belongs to provided advertiser<br />\r\n• <b>sellerId</b>: Products from given SellerId will fill the ad preview, must be existing crp sellerId<br />\r\n• <b>height</b>: height may be supplied to request a specific ad preview height. Default height: 250<br />\r\n• <b>width</b>: width may be supplied to request a specific ad preview width. Default width: 300<br />\r\n         "
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/advertisers/{advertiserId}/adsets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/advertisers/:advertiserId/adsets",
+            "params": [
+              {
+                "name": "advertiserId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the advertiser"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the collection of adsets associated with the advertiserId."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/advertisers/{advertiserId}/budgets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/advertisers/:advertiserId/budgets",
+            "params": [
+              {
+                "name": "advertiserId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the advertiser"
+              },
+              {
+                "name": "budgetId",
+                "value": "",
+                "type": "query",
+                "description": "Return only budgets with given Id"
+              },
+              {
+                "name": "endAfterDate",
+                "value": "",
+                "type": "query",
+                "description": "Return budgets that end after the given date using the `yyyy-MM-DD` format.\r\n            If param is not provided, default behavior is to only return budgets that have not yet ended."
+              },
+              {
+                "name": "sellerId",
+                "value": "",
+                "type": "query",
+                "description": "Return only budgets belonging to given sellerId"
+              },
+              {
+                "name": "startBeforeDate",
+                "value": "",
+                "type": "query",
+                "description": "Return budgets that start on or before the given date using the `yyyy-MM-DD` format."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Return only budgets with the given status."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Return only budgets with the given budget type."
+              },
+              {
+                "name": "withBalance",
+                "value": "",
+                "type": "query",
+                "description": "Return only budgets with the given status."
+              },
+              {
+                "name": "withSpend",
+                "value": "",
+                "type": "query",
+                "description": "Return budgets with any positive spend."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get CRP budgets for a specific advertiser"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/advertisers/{advertiserId}/campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/advertisers/:advertiserId/campaigns",
+            "params": [
+              {
+                "name": "advertiserId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the advertiser"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the collection of CRP campaigns associated with the advertiserId."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/advertisers/{advertiserId}/seller-campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/advertisers/:advertiserId/seller-campaigns",
+            "params": [
+              {
+                "name": "advertiserId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the advertiser"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get CRP seller campaigns for a specific advertiser"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/advertisers/{advertiserId}/sellers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/advertisers/:advertiserId/sellers",
+            "params": [
+              {
+                "name": "advertiserId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the advertiser"
+              },
+              {
+                "name": "partnerId",
+                "value": "",
+                "type": "query",
+                "description": "Id of the partner"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create new sellers for an advertiser"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/advertisers/preview-limit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/advertisers/preview-limit",
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the collection of advertisers preview limits associated with the authorized user."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/budgets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/budgets",
+            "params": [
+              {
+                "name": "advertiserId",
+                "value": "",
+                "type": "query",
+                "description": "Return only budgets belonging to the specified advertiser"
+              },
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "query",
+                "description": "Return only budgets that pay for a given campaign."
+              },
+              {
+                "name": "endAfterDate",
+                "value": "",
+                "type": "query",
+                "description": "Return budgets that end after the given date using the `yyyy-MM-DD` format.\r\n             If param is not provided, default behavior is to only return budgets that have not yet ended."
+              },
+              {
+                "name": "sellerId",
+                "value": "",
+                "type": "query",
+                "description": "Return only budgets belonging to the given seller."
+              },
+              {
+                "name": "startBeforeDate",
+                "value": "",
+                "type": "query",
+                "description": "Return budgets that start on or before the given date using the `yyyy-MM-DD` format."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Return only budgets with the given status."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Return only budgets with the given budget type."
+              },
+              {
+                "name": "withBalance",
+                "value": "",
+                "type": "query",
+                "description": "Return only budgets with the given status."
+              },
+              {
+                "name": "withSpend",
+                "value": "",
+                "type": "query",
+                "description": "Return budgets with any positive spend."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return a collection of budgets filtered by optional filter parameters, **including archived budgets**. This is the endpoint to use when investigating past budget history.\r\n            \r\nBy default, budgets whose endDate is in the past are excluded. Use `endAfterDate` to retrieve archived budgets (e.g. `endAfterDate=2025-01-01` returns all budgets ending after that date). Use `sellerId` to filter to a specific seller — omitting it on large advertisers causes timeouts.\r\n            \r\n<b>Date filte"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/budgets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/budgets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create one or more new budgets to enable spending with the given limitations.\r\nAll three types of budgets can be created this way.\r\n            \r\nThe following constraints apply when creating a new budget.\r\n            \r\n• <b>sellerId</b>: the seller MUST be supplied<br />\r\n• <b>campaignIds</b>: a non-empty array of campaign ids MUST be supplied<br />\r\n• <b>budgetType</b>: a budget type MUST be supplied<br />\r\n• <b>amount</b>: an amount MAY be supplied only if the type is not Uncapped and if sup"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/budgets",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/budgets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Modify one or more existing active budgets to change their limitations or status.\r\nAll three types of budgets can be modified.\r\n            \r\nThe following constraints apply when modifying an existing budget.\r\n            \r\n• <b>campaignIds</b>: a non-empty subset of the original campaign ids MAY be supplied<br />\r\n• <b>amount</b>: an amount MAY be supplied only if the type is not Uncapped and if supplied it MUST be non-negative<br />\r\n• <b>startDate</b>: a future start date MAY be supplied for "
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/budgets/{budgetId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/budgets/:budgetId",
+            "params": [
+              {
+                "name": "budgetId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the budget."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return a budget. For example,\r\n            \r\n    {\r\n        \"id\": \"1759183\",\r\n        \"sellerId\": \"321392\",\r\n        \"campaignIds\": [\r\n            143962\r\n        ],\r\n        \"budgetType\": \"Capped\",\r\n        \"amount\": 1000,\r\n        \"startDate\": \"2021-01-11\",\r\n        \"endDate\": \"2021-01-12\",\r\n        \"spend\": null,\r\n        \"status\": \"Active\"\r\n    }\r\n            \r\nA budget limits the spend of a seller for one or more campaigns.\r\n            \r\nThere are three types of budget:<br /><b>Uncapped</b"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/budgets/{budgetId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/budgets/:budgetId",
+            "params": [
+              {
+                "name": "budgetId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the budget"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Modify an existing active budget to change its limitations or status.\r\nAll three types of budgets can be modified.\r\n            \r\nSee the additional restrictions listed in the PATCH budgets endpoint."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/seller-campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/seller-campaigns",
+            "params": [
+              {
+                "name": "advertiserId",
+                "value": "",
+                "type": "query",
+                "description": "Return only seller belonging to the specified advertiser"
+              },
+              {
+                "name": "budgetStatus",
+                "value": "",
+                "type": "query",
+                "description": "Return only seller campaigns whose budget has the given status."
+              },
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "query",
+                "description": "Return only seller campaigns associated with the given campaign."
+              },
+              {
+                "name": "sellerId",
+                "value": "",
+                "type": "query",
+                "description": "Return only seller campaigns belonging to the given seller."
+              },
+              {
+                "name": "sellerStatus",
+                "value": "",
+                "type": "query",
+                "description": "Return only seller campaigns for sellers with the given status."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return a collection of seller campaigns filtered by optional filter parameters.\r\nIf all parameters are omitted the entire collection to which the user has\r\naccess is returned. Returned sellers must satisfy all supplied filter\r\ncriteria if multiple parameters are used."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/seller-campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/seller-campaigns",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Patching a collection of seller campaigns allows their bids to be modified.\r\nEach bid must be a non-negative value. Setting the bid to zero will make a seller campaign inactive.\r\n            \r\nThe currency used for bids will be the default currency of the campaign."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/seller-campaigns/{sellerCampaignId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/seller-campaigns/:sellerCampaignId",
+            "params": [
+              {
+                "name": "sellerCampaignId",
+                "value": "",
+                "type": "path",
+                "description": "Composite id of the seller campaign in the format `{sellerId}.{campaignId}`, e.g. `2578464.187625`."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return details for a seller campaign. For example,\r\n            \r\n    {\r\n        \"id\": \"543210.123456\",\r\n        \"sellerId\": \"543210\",\r\n        \"campaignId\": 123456,\r\n        \"bid\": 1.55,\r\n        \"suspendedSince\": \"2018-07-30T15:15:24.813\",\r\n        \"suspensionReasons\": [\r\n            \"NoMoreBudget\"\r\n        ]\r\n    }\r\n            \r\nAn active seller campaign is one for which the value of <b>suspendedSince</b> is null and\r\nthe <b>bid</b> is positive. The currency of the bid is the <b>bidCurrency<"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/seller-campaigns/{sellerCampaignId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/seller-campaigns/:sellerCampaignId",
+            "params": [
+              {
+                "name": "bid",
+                "value": "",
+                "type": "query",
+                "description": "The new bid for the seller campaign."
+              },
+              {
+                "name": "sellerCampaignId",
+                "value": "",
+                "type": "path",
+                "description": "Composite id of the seller campaign to update in the format `{sellerId}.{campaignId}`, e.g. `2578464.187625`."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Patching a seller campaign allows the bid to be modified. The bid must be a non-negative value.\r\nSetting the bid to zero will make a seller campaign inactive.\r\n            \r\nThe currency used for bids will be the default currency of the campaign."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/seller-campaigns/{sellerCampaignId}/budgets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/seller-campaigns/:sellerCampaignId/budgets",
+            "params": [
+              {
+                "name": "endAfterDate",
+                "value": "",
+                "type": "query",
+                "description": "Return budgets that end after the given date using the `yyyy-MM-DD` format.\r\n             If param is not provided, default behavior is to only return budgets that have not yet ended."
+              },
+              {
+                "name": "sellerCampaignId",
+                "value": "",
+                "type": "path",
+                "description": "Return only budgets belonging to the given seller campaign. Format: `{sellerId}.{campaignId}`, e.g. `2578464.187625`."
+              },
+              {
+                "name": "startBeforeDate",
+                "value": "",
+                "type": "query",
+                "description": "Return budgets that start on or before the given date using the `yyyy-MM-DD` format."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Return only budgets with the given status."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Return only budgets with the given budget type."
+              },
+              {
+                "name": "withBalance",
+                "value": "",
+                "type": "query",
+                "description": "Return only budgets with a positive balance."
+              },
+              {
+                "name": "withSpend",
+                "value": "",
+                "type": "query",
+                "description": "Return budgets with a positive spend."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return a collection of budgets for this seller campaign filtered by optional filter parameters.\r\nIf all parameters are omitted the entire collection to which the user has\r\naccess is returned, except those whose endDate is in the past. Returned budgets must satisfy all supplied filter\r\ncriteria if multiple parameters are used.\r\n            \r\nSee the budgets endpoint for additional details."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/sellers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/sellers",
+            "params": [
+              {
+                "name": "advertiserId",
+                "value": "",
+                "type": "query",
+                "description": "Return only sellers belonging to the specified advertiser"
+              },
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "query",
+                "description": "Return only sellers belonging to the specified campaign"
+              },
+              {
+                "name": "sellerName",
+                "value": "",
+                "type": "query",
+                "description": "Return only sellers with the matching name."
+              },
+              {
+                "name": "sellerStatus",
+                "value": "",
+                "type": "query",
+                "description": "Return only sellers with specific status."
+              },
+              {
+                "name": "withBudgetStatus",
+                "value": "",
+                "type": "query",
+                "description": "Return only sellers with specific budget status."
+              },
+              {
+                "name": "withProducts",
+                "value": "",
+                "type": "query",
+                "description": "Return only sellers with or without products in catalog."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return a collection of sellers filtered by optional filter parameters.\r\nIf all parameters are omitted the entire collection to which the user has\r\naccess is returned. Returned sellers must satisfy all supplied filter\r\ncriteria if multiple parameters are used."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/sellers/{sellerId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/sellers/:sellerId",
+            "params": [
+              {
+                "name": "sellerId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the seller."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return details for the selected seller. For example,\r\n            \r\n    {\r\n        \"id\" : \"123456\"\r\n        \"sellerName\": \"HBogart\",\r\n    }"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/sellers/{sellerId}/budgets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/sellers/:sellerId/budgets",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "query",
+                "description": "Return only budgets that pay for a given campaign."
+              },
+              {
+                "name": "endAfterDate",
+                "value": "",
+                "type": "query",
+                "description": "Return budgets that end after the given date using the `yyyy-MM-DD` format.\r\n            If param is not provided, default behavior is to only return budgets that have not yet ended."
+              },
+              {
+                "name": "sellerId",
+                "value": "",
+                "type": "path",
+                "description": "Return only budgets belonging to the given seller."
+              },
+              {
+                "name": "startBeforeDate",
+                "value": "",
+                "type": "query",
+                "description": "Return budgets that start on or before the given date using the `yyyy-MM-DD` format."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Return only budgets with the given status."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Return only budgets with the given budget type."
+              },
+              {
+                "name": "withBalance",
+                "value": "",
+                "type": "query",
+                "description": "Return only budgets with the given status."
+              },
+              {
+                "name": "withSpend",
+                "value": "",
+                "type": "query",
+                "description": "Return budgets with any positive spend."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return current (non-archived) budgets for this seller. Budgets whose endDate is in the past are excluded by default. To retrieve archived or past budgets, use the `/budgets` endpoint (GetMarketplaceSellerBudgets) with the `endAfterDate` filter instead."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/sellers/{sellerId}/seller-campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/sellers/:sellerId/seller-campaigns",
+            "params": [
+              {
+                "name": "budgetStatus",
+                "value": "",
+                "type": "query",
+                "description": "Return only seller campaigns whose budget has the given status."
+              },
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "query",
+                "description": "Return only seller campaigns associated with the given campaign."
+              },
+              {
+                "name": "sellerId",
+                "value": "",
+                "type": "path",
+                "description": "Return only seller campaigns belonging to the given seller."
+              },
+              {
+                "name": "sellerStatus",
+                "value": "",
+                "type": "query",
+                "description": "Return only seller campaigns for sellers with the given status."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return a collection of seller campaigns for this seller filtered by optional filter parameters.\r\nIf all parameters are omitted the entire collection to which the user has\r\naccess is returned. Returned sellers must satisfy all supplied filter\r\ncriteria if multiple parameters are used. See the seller campaigns endpoint for additional details."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/sellers/{sellerId}/seller-campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/sellers/:sellerId/seller-campaigns",
+            "params": [
+              {
+                "name": "sellerId",
+                "value": "",
+                "type": "path",
+                "description": "Supply a generated Id of an existing Seller"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Associate an existing Seller with an existing Campaign allowing for budget creation"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/stats/campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/stats/campaigns",
+            "params": [
+              {
+                "name": "advertiserId",
+                "value": "",
+                "type": "query",
+                "description": "Filter metrics to this advertiser. Strongly recommended — omitting this on large accounts causes timeouts."
+              },
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "query",
+                "description": "Show only metrics for this campaign (default all campaigns)"
+              },
+              {
+                "name": "clickAttributionPolicy",
+                "value": "",
+                "type": "query",
+                "description": "Specify the click attribution policy for salesUnits, revenue, CR, CPO, COS, and ROAS"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Return up to the first count rows of data (default is all rows)"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter out all events that occur after date (default is today’s date)"
+              },
+              {
+                "name": "intervalSize",
+                "value": "",
+                "type": "query",
+                "description": "Specify the aggregation interval for events used to compute stats (default is \"day\")"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter out all events that occur before date (default is the value of `endDate`)"
+              },
+              {
+                "name": "timeZoneId",
+                "value": "",
+                "type": "query",
+                "description": "Specify the timezone used in the aggregations (IANA code)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "## Dimensions\r\n            \r\nGet performance statistics aggregated for _campaigns_. The campaign id appears\r\nin the output as the first column.\r\n            \r\nAggregation can be done by `hour`, `day`, `month`, or `year` aligned with the user timezone\r\nif provided. The aggregation interval size is controlled by `intervalSize`. The time\r\ninterval appears in the output as the second column.\r\n            \r\n## Metrics\r\n            \r\nThe metrics reported by this endpoint are\r\n            \r\n.  | Metric"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/stats/seller-campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/stats/seller-campaigns",
+            "params": [
+              {
+                "name": "advertiserId",
+                "value": "",
+                "type": "query",
+                "description": "Filter metrics to this advertiser. Strongly recommended — omitting this on large accounts causes timeouts."
+              },
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "query",
+                "description": "Show only metrics for this campaign (default all campaigns)"
+              },
+              {
+                "name": "clickAttributionPolicy",
+                "value": "",
+                "type": "query",
+                "description": "Specify the click attribution policy for salesUnits, revenue, CR, CPO, COS, and ROAS"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Return up to the first count rows of data (default is all rows)"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter out all events that occur after date (default is today’s date)"
+              },
+              {
+                "name": "intervalSize",
+                "value": "",
+                "type": "query",
+                "description": "Specify the aggregation interval for events used to compute stats (default is \"day\")"
+              },
+              {
+                "name": "sellerId",
+                "value": "",
+                "type": "query",
+                "description": "Show only metrics for this seller (default all sellers)"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter out all events that occur before date (default is the value of `endDate`)"
+              },
+              {
+                "name": "timeZoneId",
+                "value": "",
+                "type": "query",
+                "description": "Specify the timezone used in the aggregations (IANA code)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "## Dimensions\r\n            \r\nGet performance statistics aggregated for _seller campaigns_.The campaign id, seller id, and\r\nseller name appear in the first three columns of the output. These are followed by the interval\r\nsize column.\r\n            \r\nAggregation can be done by `hour`, `day`, `month`, or `year` aligned with the user timezone if\r\nprovided. The aggregation interval size is controlled by `intervalSize`. The remaining columns\r\nare metrics.\r\n            \r\n## Metrics\r\n            \r\nThe me"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/marketplace-performance-outcomes/stats/sellers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/marketplace-performance-outcomes/stats/sellers",
+            "params": [
+              {
+                "name": "advertiserId",
+                "value": "",
+                "type": "query",
+                "description": "Filter metrics to this advertiser. Strongly recommended — omitting this on large accounts causes timeouts."
+              },
+              {
+                "name": "clickAttributionPolicy",
+                "value": "",
+                "type": "query",
+                "description": "Specify the click attribution policy for salesUnits, revenue, CR, CPO, COS, and ROAS"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Return up to the first count rows of data (default is all rows)"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter out all events that occur after date (default is today’s date)"
+              },
+              {
+                "name": "intervalSize",
+                "value": "",
+                "type": "query",
+                "description": "Specify the aggregation interval for events used to compute stats (default is \"day\")"
+              },
+              {
+                "name": "sellerId",
+                "value": "",
+                "type": "query",
+                "description": "Show only metrics for this seller (default all sellers)"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter out all events that occur before date (default is the value of `endDate`)"
+              },
+              {
+                "name": "timeZoneId",
+                "value": "",
+                "type": "query",
+                "description": "Specify the timezone used in the aggregations (IANA code)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "## Dimensions\r\n            \r\nGet performance statistics aggregated for _sellers_. The seller id appears\r\nin the output in the first column and the seller name appears in the second.\r\n            \r\nAggregation can be done by `hour`, `day`, `month`, or `year` aligned with the user timezone\r\nif provided. The aggregation interval size is controlled by `intervalSize`. The time interval\r\nappears in the output as the second column.\r\n            \r\n## Metrics\r\n            \r\nThe metrics reported by this e"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reco",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/ads/{ad-id}/product-boost",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/ads/:ad-id/product-boost",
+            "params": [
+              {
+                "name": "ad-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the ad"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Fetch all boosting associations and configurations"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/ads/{ad-id}/product-boost/{product-set-id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/ads/:ad-id/product-boost/:product-set-id",
+            "params": [
+              {
+                "name": "ad-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the ad"
+              },
+              {
+                "name": "product-set-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the product set"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Fetch boosting association and configuration"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/ads/{ad-id}/product-boost/{product-set-id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/ads/:ad-id/product-boost/:product-set-id",
+            "params": [
+              {
+                "name": "ad-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the ad"
+              },
+              {
+                "name": "product-set-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the product set"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create or update product boosting configuration"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/ads/{ad-id}/product-boost/{product-set-id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/ads/:ad-id/product-boost/:product-set-id",
+            "params": [
+              {
+                "name": "ad-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the ad"
+              },
+              {
+                "name": "product-set-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the product set"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete association and configuration."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/ads/{ad-id}/product-filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/ads/:ad-id/product-filter",
+            "params": [
+              {
+                "name": "ad-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the ad"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Fetch product filtering configuration for a given ad"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/ads/{ad-id}/product-filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/ads/:ad-id/product-filter",
+            "params": [
+              {
+                "name": "ad-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the ad"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Enable product filtering for a given ad"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/ads/{ad-id}/product-filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/ads/:ad-id/product-filter",
+            "params": [
+              {
+                "name": "ad-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the ad"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Disable product filtering for a given ad"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/dataset/{dataset-id}/product-boost",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/dataset/:dataset-id/product-boost",
+            "params": [
+              {
+                "name": "client-type",
+                "value": "",
+                "type": "query",
+                "description": "Client type filter"
+              },
+              {
+                "name": "dataset-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the dataset"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Fetch boosting association and configuration for a given partner"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/product-sets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/product-sets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a new product set"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/product-sets/{product-set-id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/product-sets/:product-set-id",
+            "params": [
+              {
+                "name": "product-set-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the product set"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Fetch an existing product set"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/product-sets/{product-set-id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/product-sets/:product-set-id",
+            "params": [
+              {
+                "name": "product-set-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the product set"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Patch an existing product set"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/product-sets/{product-set-id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/product-sets/:product-set-id",
+            "params": [
+              {
+                "name": "product-set-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the product set to remove"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Remove a product set"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/product-sets/{product-set-id}/product-filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/product-sets/:product-set-id/product-filters",
+            "params": [
+              {
+                "name": "product-set-id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the product set"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Fetch product filtering usages for a given product set"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/product-sets/dataset/{dataset-id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/product-sets/dataset/:dataset-id",
+            "params": [
+              {
+                "name": "dataset-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the dataset that should be used for product set retrieval"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Fetch product sets of a given dataset"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Creative",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/ads/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/ads/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ad identifier to retrieve."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get an Ad with its id"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/ads/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/ads/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ad identifier to delete."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete an Ad"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/advertisers/{advertiser-id}/ads",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/advertisers/:advertiser-id/ads",
+            "params": [
+              {
+                "name": "advertiser-id",
+                "value": "",
+                "type": "path",
+                "description": "The advertiser identifier."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of ads to be returned. The default is 50."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The (zero-based) offset into the collection of ads. The default is 0."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the list of self-services Ads for a given advertiser"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/advertisers/{advertiser-id}/ads",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/advertisers/:advertiser-id/ads",
+            "params": [
+              {
+                "name": "advertiser-id",
+                "value": "",
+                "type": "path",
+                "description": "The advertiser identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create an Ad"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/advertisers/:advertiser-id/coupons",
+            "params": [
+              {
+                "name": "advertiser-id",
+                "value": "",
+                "type": "path",
+                "description": "The advertiser identifier."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of coupons to be returned. The default is 50."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The (zero-based) offset into the collection of coupons. The default is 0."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the list of self-services Coupons for a given advertiser"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/advertisers/:advertiser-id/coupons",
+            "params": [
+              {
+                "name": "advertiser-id",
+                "value": "",
+                "type": "path",
+                "description": "The advertiser identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a Coupon"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons-supported-sizes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/advertisers/:advertiser-id/coupons-supported-sizes",
+            "params": [
+              {
+                "name": "ad-set-id",
+                "value": "",
+                "type": "query",
+                "description": "The ad set id on which you want to check the Coupon supported sizes."
+              },
+              {
+                "name": "advertiser-id",
+                "value": "",
+                "type": "path",
+                "description": "The advertiser identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the list of Coupon supported sizes"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/advertisers/:advertiser-id/coupons/:id",
+            "params": [
+              {
+                "name": "advertiser-id",
+                "value": "",
+                "type": "path",
+                "description": "The advertiser identifier."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The Coupon identifier to retrieve."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get a Coupon with its id"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/advertisers/:advertiser-id/coupons/:id",
+            "params": [
+              {
+                "name": "advertiser-id",
+                "value": "",
+                "type": "path",
+                "description": "The advertiser identifier."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The Coupon identifier to edit."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Edit a specific Coupon"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/advertisers/:advertiser-id/coupons/:id",
+            "params": [
+              {
+                "name": "advertiser-id",
+                "value": "",
+                "type": "path",
+                "description": "The advertiser identifier."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The Coupon identifier to delete."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete a Coupon"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons/{id}/preview",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/advertisers/:advertiser-id/coupons/:id/preview",
+            "params": [
+              {
+                "name": "advertiser-id",
+                "value": "",
+                "type": "path",
+                "description": "The advertiser identifier."
+              },
+              {
+                "name": "height",
+                "value": "",
+                "type": "query",
+                "description": "The height of the coupon to preview."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The Coupon identifier to preview."
+              },
+              {
+                "name": "width",
+                "value": "",
+                "type": "query",
+                "description": "The width of the coupon to preview."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the preview of a specific Coupon"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/advertisers/{advertiser-id}/creatives",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/advertisers/:advertiser-id/creatives",
+            "params": [
+              {
+                "name": "advertiser-id",
+                "value": "",
+                "type": "path",
+                "description": "The advertiser identifier."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of creatives to be returned. The default is 50."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The (zero-based) offset into the collection of creatives. The default is 0."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the list of self-services Creatives for a given advertiser"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/advertisers/{advertiser-id}/creatives",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/advertisers/:advertiser-id/creatives",
+            "params": [
+              {
+                "name": "advertiser-id",
+                "value": "",
+                "type": "path",
+                "description": "The advertiser identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a Creative"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/creatives/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/creatives/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The creative identifier to retrieve."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get a Creative with its id"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/creatives/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/creatives/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The creative identifier to edit."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Edit a specific Creative"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/creatives/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/creatives/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The creative identifier to delete."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete a Creative if there are no ads binded to it"
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/creatives/{id}/preview",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/creatives/:id/preview",
+            "params": [
+              {
+                "name": "height",
+                "value": "",
+                "type": "query",
+                "description": "The height of the Creative to preview."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The Creative identifier to preview."
+              },
+              {
+                "name": "width",
+                "value": "",
+                "type": "query",
+                "description": "The width of the Creative to preview."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the preview of a specific Creative"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Audience",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/audience-segments",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/audience-segments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates the properties of all segments with a valid configuration, and returns their IDs. For those that cannot be updated, one or multiple errors are returned."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/audience-segments/{audience-segment-id}/contact-list",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/audience-segments/:audience-segment-id/contact-list",
+            "params": [
+              {
+                "name": "audience-segment-id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the contact list audience-segment to amend"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Add/remove identifiers to or from a contact list audience-segment."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/audience-segments/{audience-segment-id}/contact-list",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/audience-segments/:audience-segment-id/contact-list",
+            "params": [
+              {
+                "name": "audience-segment-id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the contact list audience-segment to amend"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete all identifiers from a contact list audience-segment."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/audience-segments/{audience-segment-id}/contact-list/statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/audience-segments/:audience-segment-id/contact-list/statistics",
+            "params": [
+              {
+                "name": "audience-segment-id",
+                "value": "",
+                "type": "path",
+                "description": "The segment ID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the statistics of a contact list segment."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/audience-segments/compute-sizes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/audience-segments/compute-sizes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the size of all segments. An error is returned for those whose size calculation is not supported."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/audience-segments/create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/audience-segments/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates all segments with a valid configuration, and returns their IDs. For those that cannot be created, one or multiple errors are returned."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/audience-segments/delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/audience-segments/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete the segments associated to the given audience IDs."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/audience-segments/estimate-size",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/audience-segments/estimate-size",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the size estimation of a non existent segment. An error is returned when size calculation is not supported."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/audience-segments/in-market-brands",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/audience-segments/in-market-brands",
+            "params": [
+              {
+                "name": "advertiser-id",
+                "value": "",
+                "type": "query",
+                "description": "The advertiser ID."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "The ISO 3166-1 alpha-2 country code."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list with all available in-market brands that can be used to define an in-market segment."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/audience-segments/in-market-interests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/audience-segments/in-market-interests",
+            "params": [
+              {
+                "name": "advertiser-id",
+                "value": "",
+                "type": "query",
+                "description": "The advertiser ID."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "The ISO 3166-1 alpha-2 country code."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list with all available in-market interests that can be used to define an in-market segment. These in-market interests correspond to the Google product taxonomy."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/audience-segments/search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/audience-segments/search",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of elements to be returned. The default is 50 and the maximum is 100."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The (zero-based) offset into the collection. The default is 0."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of segments that match the provided filters. If present, the filters are AND'ed together when applied."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/audiences",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/audiences",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates the properties of all audiences with a valid configuration, and returns their IDs. For those that cannot be updated, one or multiple errors are returned."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/audiences/compute-sizes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/audiences/compute-sizes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the size of all audiences. An error is returned for those whose size calculation is not supported."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/audiences/create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/audiences/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates all audiences with a valid configuration, and returns their IDs. For those that cannot be created, one or multiple errors are returned."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/audiences/delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/audiences/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes the audiences associated to the given audience IDs."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/audiences/estimate-size",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/audiences/estimate-size",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the size estimation of a non existent audience. An error is returned when size calculation is not supported."
+        },
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/audiences/search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/audiences/search",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of elements to be returned. The default is 50 and the maximum is 100."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The (zero-based) offset into the collection. The default is 0."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of audiences that match the provided filters. If present, the filters are AND'ed together when applied."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Gateway",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/2026-07/marketing-solutions/me",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.criteo.com/2026-07/marketing-solutions/me",
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://api.criteo.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get information about the currently logged application"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

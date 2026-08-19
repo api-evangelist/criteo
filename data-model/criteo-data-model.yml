@@ -1,0 +1,309 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/criteo-retail-media-api-openapi.yml,
+  openapi/criteo-marketing-solutions-api-openapi.yml,
+  openapi/criteo-commerce-grid-api-openapi.yml
+method_note: >-
+  Relationships were derived from the RESOURCE PATH HIERARCHY (an id path parameter followed
+  by a sub-collection is a has_many edge), not from $ref graph walking. Criteo's 757
+  component schemas are dominated by generated envelope wrappers — ValueResourceInputOf*,
+  EntityResourceOutcomeOf*, *ListResponse, *Resource — so the $ref graph is mostly transport
+  plumbing rather than domain structure. The URL tree is the honest source of the entity
+  graph here.
+
+envelope_convention:
+  note: >-
+    Nearly every schema is a wrapper. The recurring generics are the JSON:API-ish shape Criteo
+    generates from: `{Value|Entity}Resource{Input|Outcome}Of<T>` for writes,
+    `<T>Resource` / `<T>ListResponse` for reads, with `meta` (totalItems/limit/offset),
+    `data`, `warnings` and `errors` at the envelope root.
+  wrappers: [ValueResourceInputOf, ValueResourceOutcomeOf, EntityResourceOutcomeOf, ResourceOutcome, ListResponse, Resource, Response]
+
+domains:
+- domain: Retail Media
+  spec: openapi/criteo-retail-media-api-openapi.yml
+  version: '2026-07'
+  root_entity: Account
+  entities: [Account, Brand, Seller, Retailer, Campaign, LineItem, AuctionLineItem, PreferredLineItem, Keyword, PromotedProduct, Balance, Catalog, Category, Page, Template, Audience, AudienceSegment, ContactList, Creative, Merchant, StoreInventory, Report, PartnerReport, BidMultiplier, BudgetOverride]
+- domain: Marketing Solutions
+  spec: openapi/criteo-marketing-solutions-api-openapi.yml
+  version: '2026-07'
+  root_entity: Advertiser
+  entities: [Advertiser, Campaign, AdSet, Ad, Creative, Asset, Coupon, Budget, Audience, AudienceSegment, ContactList, ProductSet, ProductFilter, ProductBoost, Dataset, Seller, SellerCampaign, CategoryBid, DisplayMultiplier, Report]
+- domain: Commerce Grid
+  spec: openapi/criteo-commerce-grid-api-openapi.yml
+  version: '2026-01'
+  root_entity: AudienceSegment
+  entities: [AudienceSegment, ContactList]
+
+relationships:
+# ---- Retail Media ----
+- from: Account
+  to: Campaign
+  type: has_many
+  via: account-id
+  path: /{version}/retail-media/accounts/{account-id}/campaigns
+- from: Account
+  to: Balance
+  type: has_many
+  via: account-id
+  path: /{version}/retail-media/accounts/{account-id}/balances
+- from: Account
+  to: AudienceSegment
+  type: has_many
+  via: account-id
+  path: /{version}/retail-media/accounts/{account-id}/audience-segments
+- from: Account
+  to: Audience
+  type: has_many
+  via: account-id
+- from: Account
+  to: LineItem
+  type: has_many
+  via: account-id
+- from: Account
+  to: Keyword
+  type: has_many
+  via: account-id
+- from: Account
+  to: Creative
+  type: has_many
+  via: account-id
+- from: Account
+  to: Brand
+  type: has_many
+  via: accountId
+  note: add/remove via POST .../brands/add and .../brands/remove
+- from: Account
+  to: Seller
+  type: has_many
+  via: accountId
+- from: Account
+  to: Retailer
+  type: has_many
+  via: accountId
+- from: Account
+  to: Catalog
+  type: has_many
+  via: accountId
+- from: Account
+  to: Account
+  type: has_many
+  via: accountId
+  relation: private-market-child-accounts
+  note: >-
+    Self-referential. A Private Market parent account creates child Brand and Seller accounts
+    (POST .../create-brand-account, .../create-seller-account), which is how Criteo models
+    retailer-operated private marketplaces.
+- from: Campaign
+  to: AuctionLineItem
+  type: has_many
+  via: campaignId
+- from: Campaign
+  to: PreferredLineItem
+  type: has_many
+  via: campaign-id
+- from: Campaign
+  to: BudgetOverride
+  type: has_many
+  via: campaignId
+  relation: campaign-budget-overrides
+- from: Balance
+  to: Campaign
+  type: has_many
+  via: balanceId
+  note: >-
+    The inverse of Account->Campaign. A Balance is the funding envelope campaigns are attached
+    to; append-campaigns binds them. This is the money edge — a campaign with no balance
+    cannot spend.
+- from: Balance
+  to: BalanceHistory
+  type: has_many
+  via: balanceId
+- from: LineItem
+  to: Keyword
+  type: has_many
+  via: line-item-id
+- from: LineItem
+  to: PromotedProduct
+  type: has_many
+  via: line-item-id
+  relation: products
+- from: LineItem
+  to: BidMultiplier
+  type: has_many
+  via: line-item-id
+- from: LineItem
+  to: BudgetOverride
+  type: has_many
+  via: lineItemId
+- from: PreferredLineItem
+  to: Targeting
+  type: has_many
+  via: line-item-id
+  note: >-
+    Nine distinct targeting sub-resources hang off a preferred line item (audience, store,
+    add-to-basket and so on) — the densest sub-tree in the Retail Media API.
+- from: Retailer
+  to: Category
+  type: has_many
+  via: retailerId
+- from: Retailer
+  to: Page
+  type: has_many
+  via: retailerId
+- from: Retailer
+  to: Template
+  type: has_many
+  via: retailer-id
+- from: Merchant
+  to: StoreInventory
+  type: has_many
+  via: merchantId
+- from: AudienceSegment
+  to: ContactList
+  type: has_one
+  via: audience-segment-id
+  note: Amended by add/remove/clear operations rather than replaced.
+- from: Catalog
+  to: CatalogOutput
+  type: has_one
+  via: catalogId
+  async: true
+  note: request -> /status -> /output; output is application/x-json-stream
+- from: Report
+  to: ReportOutput
+  type: has_one
+  via: reportId
+  async: true
+- from: PartnerReport
+  to: PartnerReportOutput
+  type: has_one
+  via: requestId
+  async: true
+
+# ---- Marketing Solutions ----
+- from: Advertiser
+  to: Campaign
+  type: has_many
+  via: advertiserId
+- from: Advertiser
+  to: AdSet
+  type: has_many
+  via: advertiserId
+- from: Advertiser
+  to: Ad
+  type: has_many
+  via: advertiser-id
+- from: Advertiser
+  to: Creative
+  type: has_many
+  via: advertiser-id
+- from: Advertiser
+  to: Coupon
+  type: has_many
+  via: advertiser-id
+- from: Advertiser
+  to: Budget
+  type: has_many
+  via: advertiserId
+- from: Advertiser
+  to: Seller
+  type: has_many
+  via: advertiserId
+- from: Advertiser
+  to: SellerCampaign
+  type: has_many
+  via: advertiserId
+- from: Advertiser
+  to: Report
+  type: has_many
+  via: advertiser-id
+- from: AdSet
+  to: Audience
+  type: has_one
+  via: ad-set-id
+  relation: AdSetAudienceLink
+- from: AdSet
+  to: CategoryBid
+  type: has_many
+  via: ad-set-id
+- from: AdSet
+  to: DisplayMultiplier
+  type: has_many
+  via: ad-set-id
+- from: Ad
+  to: ProductBoost
+  type: has_many
+  via: ad-id
+  key: product-set-id
+- from: Ad
+  to: ProductFilter
+  type: has_one
+  via: ad-id
+- from: Dataset
+  to: ProductBoost
+  type: has_many
+  via: dataset-id
+- from: ProductSet
+  to: ProductFilter
+  type: has_many
+  via: product-set-id
+- from: Seller
+  to: SellerCampaign
+  type: has_many
+  via: sellerId
+- from: Seller
+  to: Budget
+  type: has_many
+  via: sellerId
+- from: SellerCampaign
+  to: Budget
+  type: has_many
+  via: sellerCampaignId
+- from: Creative
+  to: Preview
+  type: has_one
+  via: id
+- from: Coupon
+  to: Preview
+  type: has_one
+  via: id
+- from: AudienceSegment
+  to: ContactList
+  type: has_one
+  via: audience-segment-id
+
+# ---- Commerce Grid ----
+- from: AudienceSegment
+  to: ContactList
+  type: has_one
+  via: audience-segment-id
+  domain: Commerce Grid
+
+id_conventions:
+  note: >-
+    Criteo ids are opaque strings with no type prefix — there is no `cus_`/`inv_` style
+    discriminator, so an id carries no evidence of what it identifies. Worse, the SAME
+    logical key appears under multiple parameter spellings across the surface.
+  casing_inconsistency:
+    detail: >-
+      Both kebab-case and camelCase spellings of the same key are live in the same spec —
+      `account-id` (20 uses) and `accountId` (14), `line-item-id` (23) and `lineItemId`,
+      `advertiser-id` (12) and `advertiserId` (7), `balance-id` and `balanceId`,
+      `campaign-id` and `campaignId`. A generated client will expose both.
+  shared_entities:
+    AudienceSegment: present in all three services with separate scopes and separate endpoints
+    ContactList: present in all three services
+    ApplicationSummaryModel: the /oauth2/token companion, shared by all three specs
+
+subway: null
+subway_note: No subway/ visual exists in this repo; the relationships above are the render.
+
+summary:
+  domains: 3
+  entities: 52
+  relationships: 51
+  async_result_pairs: 3
+  self_referential: 1

@@ -1,0 +1,119 @@
+generated: '2026-08-13'
+method: probed
+source: live probe of /.well-known/* across every Criteo API, docs and MCP host
+note: >-
+  Probed five well-known paths against four hosts. Real documents were returned on three
+  hosts. marketing.criteo.com was probed and DELIBERATELY EXCLUDED from the hit list: it is
+  an Angular single-page app whose catch-all answers HTTP 200 with the same `<!DOCTYPE html>`
+  shell for /.well-known/openid-configuration, /.well-known/oauth-authorization-server and
+  /.well-known/api-catalog alike. A 200 carrying an HTML shell is not a document, so those
+  are recorded below as soft-200 misses.
+hosts:
+- host: https://mcp.criteo.com
+  role: MCP server (OAuth-protected)
+  documents:
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    content_type: application/json
+    file: criteo-oauth-protected-resource.json
+    spec: RFC 9728
+    real_document: true
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+    file: criteo-oauth-authorization-server.json
+    spec: RFC 8414
+    real_document: true
+  - path: /.well-known/security.txt
+    status: 200
+    file: criteo-security.txt
+    spec: RFC 9116
+    real_document: true
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+- host: https://api.criteo.com
+  role: production API host (OpenAPI servers[])
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: criteo-security.txt
+    spec: RFC 9116
+    real_document: true
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://developers.criteo.com
+  role: developer portal / docs host
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: application/json
+    file: ../a2a/criteo-agent-card.json
+    spec: A2A
+    real_document: true
+    note: indexed here for completeness; the graded manifest lives in a2a/criteo-a2a.yml
+  - path: /.well-known/agent-skills/criteo/skill.md
+    status: 200
+    content_type: text/markdown
+    file: ../skills/criteo-published-skill.md
+    real_document: true
+    note: referenced by the agent card's skills[0].url
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://www.criteo.com
+  role: corporate website
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    spec: RFC 9116
+    real_document: true
+    note: >-
+      Same Contact: security@criteo.com as the API host, but a different Expires value
+      (2030-04-01 on www vs 2027-08-01 on api./mcp.). RFC 9116 recommends an Expires
+      under one year; the www copy is nearly four years out.
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+soft_200_misses:
+- host: https://marketing.criteo.com
+  paths:
+  - /.well-known/openid-configuration
+  - /.well-known/oauth-authorization-server
+  - /.well-known/api-catalog
+  status: 200
+  reason: SPA catch-all returns an HTML application shell, not a document
+summary:
+  paths_probed: 30
+  real_documents: 7
+  security_txt: true
+  oauth_metadata: true
+  api_catalog: false
+  openid_configuration: false

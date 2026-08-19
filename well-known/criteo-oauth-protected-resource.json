@@ -1,0 +1,9 @@
+{
+    "resource": "https://mcp.criteo.com",
+    "authorization_servers": [
+        "https://mcp.criteo.com"
+    ],
+    "bearer_methods_supported": [
+        "header"
+    ]
+}

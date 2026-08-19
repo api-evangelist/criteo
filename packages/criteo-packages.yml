@@ -1,0 +1,176 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.criteo.com/criteo-apis/docs/api-client-libraries
+note: >-
+  Criteo names nine officially supported client libraries (Python, PHP, Java × Retail Media,
+  Marketing Solutions, Commerce Grid) plus one community Node.js client. Every entry below
+  carries the version and publish date read from the registry metadata endpoint on
+  2026-08-13. Two findings fall straight out of those dates and are recorded in `currency`.
+
+packages:
+# ---- Python (PyPI) ----
+- language: python
+  registry: pypi
+  name: criteo-api-retailmedia-sdk
+  url: https://pypi.org/project/criteo-api-retailmedia-sdk/
+  install: pip install criteo-api-retailmedia-sdk
+  official: true
+  api: Retail Media
+  version: 2026.1.0.260601
+  published: '2026-06-01'
+  source: https://github.com/criteo/criteo-api-python-sdk
+- language: python
+  registry: pypi
+  name: criteo-api-marketingsolutions-sdk
+  url: https://pypi.org/project/criteo-api-marketingsolutions-sdk/
+  install: pip install criteo-api-marketingsolutions-sdk
+  official: true
+  api: Marketing Solutions
+  version: 2026.1.0.260601
+  published: '2026-06-01'
+  source: https://github.com/criteo/criteo-api-python-sdk
+- language: python
+  registry: pypi
+  name: criteo-api-commercegrid-sdk
+  url: https://pypi.org/project/criteo-api-commercegrid-sdk/
+  install: pip install criteo-api-commercegrid-sdk
+  official: true
+  api: Commerce Grid
+  version: 2026.1.0.260601
+  published: '2026-06-01'
+  source: https://github.com/criteo/criteo-api-python-sdk
+
+# ---- PHP (Packagist) ----
+- language: php
+  registry: packagist
+  name: criteo/criteo-api-retailmedia-sdk
+  url: https://packagist.org/packages/criteo/criteo-api-retailmedia-sdk
+  install: composer require criteo/criteo-api-retailmedia-sdk
+  official: true
+  api: Retail Media
+  version: 0.0.260811
+  published: '2026-08-11'
+  releases_published: 624
+  source: https://github.com/criteo/criteo-api-retailmedia-php-sdk
+- language: php
+  registry: packagist
+  name: criteo/criteo-api-marketingsolutions-sdk
+  url: https://packagist.org/packages/criteo/criteo-api-marketingsolutions-sdk
+  install: composer require criteo/criteo-api-marketingsolutions-sdk
+  official: true
+  api: Marketing Solutions
+  version: 0.0.260811
+  published: '2026-08-11'
+  releases_published: 624
+  source: https://github.com/criteo/criteo-api-marketingsolutions-php-sdk
+- language: php
+  registry: packagist
+  name: criteo/criteo-api-commercegrid-sdk
+  url: https://packagist.org/packages/criteo/criteo-api-commercegrid-sdk
+  install: composer require criteo/criteo-api-commercegrid-sdk
+  official: true
+  api: Commerce Grid
+  version: 0.0.260811
+  published: '2026-08-11'
+  releases_published: 64
+  source: https://github.com/criteo/criteo-api-commercegrid-php-sdk
+
+# ---- Java (Maven Central) ----
+- language: java
+  registry: maven
+  name: com.criteo:criteo-api-retailmedia-sdk
+  url: https://search.maven.org/artifact/com.criteo/criteo-api-retailmedia-sdk
+  install: "implementation 'com.criteo:criteo-api-retailmedia-sdk:2025.04.0.250626'"
+  official: true
+  api: Retail Media
+  version: 2025.04.0.250626
+  published: '2025-06-26'
+  source: https://github.com/criteo/criteo-api-java-sdk
+- language: java
+  registry: maven
+  name: com.criteo:criteo-api-marketingsolutions-sdk
+  url: https://search.maven.org/artifact/com.criteo/criteo-api-marketingsolutions-sdk
+  install: "implementation 'com.criteo:criteo-api-marketingsolutions-sdk:2025.04.0.250626'"
+  official: true
+  api: Marketing Solutions
+  version: 2025.04.0.250626
+  published: '2025-06-26'
+  source: https://github.com/criteo/criteo-api-java-sdk
+- language: java
+  registry: maven
+  name: com.criteo:criteo-api-commercegrid-sdk
+  url: https://search.maven.org/artifact/com.criteo/criteo-api-commercegrid-sdk
+  official: true
+  api: Commerce Grid
+  version: null
+  published: null
+  note: >-
+    LINKED BUT NOT PUBLISHED. Criteo's client-libraries page links this artifact on Maven
+    Central, but a Maven Central solrsearch on the artifactId returns numFound 0 in any
+    group. Checked 2026-08-13. A developer following the documented link gets no artifact.
+
+# ---- JavaScript (CDN, unpinned) ----
+- language: javascript
+  registry: cdn
+  name: BeaconSDK
+  url: https://static.criteo.net/cbs/prod/stable/BeaconSDK/bundle.js
+  install: '<script src="https://static.criteo.net/cbs/prod/stable/BeaconSDK/bundle.js" defer></script>'
+  official: true
+  api: Retailer Integration (beacon tracking)
+  version: null
+  published: null
+  note: >-
+    UNPINNED DISTRIBUTION. The documented loader URL contains a `stable` channel segment, not
+    a version, and there is no npm/unpkg/jsDelivr package to query for metadata. A consumer
+    cannot tell which build they are loading, and neither can we — recorded as null rather
+    than guessed. Any change Criteo ships to `stable` reaches every retailer's page on the
+    next load with no version bump to observe.
+  source: https://developers.criteo.com/retailer-integration/docs/beacon-sdk
+
+# ---- Community ----
+- language: javascript
+  registry: github
+  name: criteo-api-nodejs-client
+  url: https://github.com/joepikowski/criteo-api-nodejs-client
+  official: false
+  api: Retail Media
+  version: null
+  published: null
+  note: >-
+    Community-supported and labelled as such on Criteo's own client-libraries page. Not
+    published to npm — registry.npmjs.org/criteo-api-nodejs-client returns 404 — so there is
+    no registry metadata to read and no `npm install` path.
+
+currency:
+  api_current_stable: '2026-07'
+  findings:
+  - id: java-sdk-two-versions-behind
+    severity: high
+    detail: >-
+      All three Java SDKs on Maven Central are pinned at 2025.04.0.250626, last published
+      2025-06-26 — over thirteen months stale. Criteo's own versioning policy decommissioned
+      2025-07 in July 2026 and lists 2026-01 as the current ACTIVE stable with 2026-07 rolling
+      out. The Java client therefore wraps a version Criteo has already retired, while the
+      PHP client shipped a build two days ago.
+  - id: python-sdk-one-version-behind
+    severity: medium
+    detail: >-
+      The Python SDKs are versioned 2026.1.0 (published 2026-06-01), tracking the 2026-01
+      stable rather than the 2026-07 stable that the OpenAPI at api.criteo.com now serves.
+  - id: commercegrid-java-missing
+    severity: medium
+    detail: >-
+      The Commerce Grid Java SDK is documented and linked but absent from Maven Central.
+  - id: php-is-the-live-client
+    severity: info
+    detail: >-
+      PHP is the only language whose SDK is genuinely current — 624 published releases and a
+      build dated 2026-08-11, effectively a per-commit release train.
+
+summary:
+  official_packages: 10
+  community_packages: 1
+  registries: [pypi, packagist, maven, cdn, github]
+  languages: [python, php, java, javascript]
+  official_with_a_resolvable_version: 8
+  official_with_null_version: 2

@@ -1,0 +1,119 @@
+generated: '2026-08-13'
+method: derived
+source: mcp/criteo-mcp.yml + openapi/criteo-*-api-openapi.yml
+headline: >-
+  Criteo's anonymous MCP surface and its REST surface do not overlap at all. Every tool the
+  open MCP server exposes is documentation retrieval; every one of the 219 REST operations
+  is advertising control. Zero tools bind to an operationId. This is a real, recordable
+  divergence — not a mapping we failed to work out — and it is the single most important
+  fact about Criteo's agent posture: an agent can currently READ Criteo's docs without
+  credentials and can DO nothing without a consented OAuth application.
+
+surfaces:
+  openapi:
+  - file: openapi/criteo-retail-media-api-openapi.yml
+    version: '2026-07'
+    operations: 115
+    gated: false
+  - file: openapi/criteo-marketing-solutions-api-openapi.yml
+    version: '2026-07'
+    operations: 96
+    gated: false
+  - file: openapi/criteo-commerce-grid-api-openapi.yml
+    version: '2026-01'
+    operations: 8
+    gated: false
+  mcp:
+  - endpoint: https://developers.criteo.com/mcp
+    name: criteo-docs
+    gated: false
+    tools_enumerated: 3
+  - endpoint: https://mcp.criteo.com/mcp
+    name: criteo-api
+    gated: true
+    gate: OAuth 2.0 authorization_code via consent.criteo.com; anonymous tools/list returns 401
+    tools_enumerated: 0
+  graphql:
+    endpoint: null
+    note: >-
+      Criteo publishes no GraphQL endpoint. The repo's graphql/criteo-schema.graphql is a
+      CONCEPTUAL schema derived from the REST surface and is labelled as such in
+      graphql/criteo-graphql.md — it is not a Criteo-served contract and no crosswalk row
+      is bound to it.
+
+crosswalk: []
+crosswalk_note: >-
+  Empty by measurement, not by omission. Each of the three enumerable MCP tools was checked
+  against all 219 operationIds and none has a backing REST operation.
+
+mcp_only:
+- tool: search_criteo_docs
+  server: criteo-docs
+  reason: >-
+    Documentation search over the Criteo Docs knowledge base. Criteo publishes no REST
+    search endpoint over its own documentation, so there is no operationId to bind to.
+- tool: query_docs_filesystem_criteo_docs
+  server: criteo-docs
+  reason: >-
+    Read-only virtual-filesystem query (rg/grep/cat/tree) over documentation pages and
+    OpenAPI specs. A docs-retrieval primitive with no REST analogue.
+- tool: submit_feedback
+  server: criteo-docs
+  reason: >-
+    Writes a documentation-quality report to the Criteo docs team. The only non-read tool on
+    the open server, and it acts on the docs site rather than on any advertising resource.
+
+rest_only:
+- capability: Campaign management (campaigns, line items, keywords, promoted products, targeting)
+  services: [retail-media, marketing-solutions]
+  operations: 110
+  tags: [Campaign]
+- capability: Creative and asset management
+  services: [marketing-solutions]
+  operations: 17
+  tags: [Creative]
+- capability: Audience and segment management (incl. audience algebra, contact lists, size estimation)
+  services: [retail-media, marketing-solutions, commerce-grid]
+  operations: 32
+  tags: [Audience, Segment]
+- capability: Analytics and reporting (async report request/status/output, real-time performance)
+  services: [retail-media, marketing-solutions]
+  operations: 16
+  tags: [Analytics]
+- capability: Account management (accounts, brands, child/private-market accounts)
+  services: [retail-media, marketing-solutions]
+  operations: 13
+  tags: [Accounts, Advertiser]
+- capability: Balances and funding
+  services: [retail-media]
+  operations: 9
+  tags: [Balance]
+- capability: Product recommendation (Reco)
+  services: [marketing-solutions]
+  operations: 14
+  tags: [Reco]
+- capability: Billing and partner reports
+  services: [retail-media]
+  operations: 3
+  tags: [Billing]
+- capability: Retailer catalog request/status/output
+  services: [retail-media]
+  operations: 2
+  tags: [Catalog]
+- capability: OAuth token issuance (Gateway)
+  services: [retail-media, marketing-solutions, commerce-grid]
+  operations: 3
+  tags: [Gateway]
+
+coverage:
+  tools_named: 3
+  tools_bound_to_rest: 0
+  mcp_only: 3
+  rest_operations_total: 219
+  rest_operations_with_a_tool: 0
+  rest_coverage_pct: 0.0
+  gated_tools_unknown: true
+  gated_tools_note: >-
+    The mcp.criteo.com server may well expose advertising tools that DO bind to these
+    operations. Its tool list is auth-gated, so this crosswalk records zero rather than
+    guessing. Re-run with a consented application to close the gap.

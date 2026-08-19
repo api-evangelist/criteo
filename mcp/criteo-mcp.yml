@@ -1,0 +1,126 @@
+generated: '2026-08-13'
+method: searched
+status: published
+source: https://developers.criteo.com/mcp
+note: >-
+  Criteo operates TWO distinct remote MCP servers. The documentation server at
+  developers.criteo.com/mcp is anonymous and was introspected live — its tools/list is
+  saved verbatim to criteo-mcp-tools-list.json. The API server at mcp.criteo.com/mcp is
+  OAuth-protected and returns 401 to an anonymous tools/list, so its tool schemas are NOT
+  recorded here; only what its own well-known metadata publishes is.
+
+deployment:
+  mode: remote
+  endpoint: https://developers.criteo.com/mcp
+  auth: none
+  verified: probed
+  note: >-
+    mode is `remote` for both servers. Criteo publishes no stdio/npx package: an npm search
+    for "criteo mcp" returns only third-party analytics destinations
+    (@blotoutio/providers-criteo-sdk, @walkeros/server-destination-criteo) and no
+    first-party MCP package, and there is no @criteo scope on npm.
+
+servers:
+- name: criteo-docs
+  title: Criteo Docs
+  endpoint: https://developers.criteo.com/mcp
+  transport: streamable-http
+  protocol_version: '2025-06-18'
+  server_version: 1.0.0
+  auth: none
+  introspection: open
+  verified: probed
+  probe:
+    initialize_status: 200
+    tools_list_status: 200
+    resources_list_status: 200
+    fetched: '2026-08-13'
+  capabilities:
+    tools: true
+    tools_list_changed: true
+    resources: true
+    resources_list_changed: true
+  scope: >-
+    Search and retrieval over the public Criteo Docs site. Not a control plane — it cannot
+    create campaigns, move budget, or read account data.
+  tools:
+  - name: search_criteo_docs
+    title: Search documentation
+    description: >-
+      Search across the Criteo Docs knowledge base to find relevant information, code
+      examples, API references, and guides.
+    input_schema:
+      query: {type: string, required: true, description: Search query}
+      version: {type: string, required: false, description: 'Filter to specific version (e.g., ''v0.7'')'}
+    annotations: {readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false}
+  - name: query_docs_filesystem_criteo_docs
+    description: >-
+      Read-only shell-like query against a virtualized in-memory filesystem containing only
+      the Criteo Docs pages and OpenAPI specs. Supports rg, grep, find, tree, ls, cat, head,
+      tail, stat, wc, sort, uniq, cut, sed, awk, jq. Stateless per call; no writes, no
+      network, no process control.
+    input_schema:
+      command: {type: string, required: true}
+    annotations: {readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false}
+  - name: submit_feedback
+    title: Submit documentation feedback
+    description: Report a problem with a documentation page so the docs team can fix it.
+    input_schema:
+      path: {type: string, required: true}
+      feedback: {type: string, required: true}
+    annotations: {readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: true}
+  resources:
+  - uri: mintlify://skills/criteo
+    name: criteo
+    mime_type: text/markdown
+    description: >-
+      Use when building integrations with Criteo's Retail Media API or Marketing Solutions
+      API, managing campaigns, audiences, accounts, or analytics programmatically, or
+      troubleshooting API authentication and error responses.
+    saved_as: ../skills/criteo-published-skill.md
+
+- name: criteo-api
+  title: Criteo API MCP
+  endpoint: https://mcp.criteo.com/mcp
+  transport: streamable-http
+  auth: oauth
+  introspection: gated
+  verified: probed
+  probe:
+    tools_list_status: 401
+    tools_list_body: >-
+      Invalid credentials: a valid Authorization or x-api-key header, or an api-key query
+      parameter, is required
+    root_status: 404
+    fetched: '2026-08-13'
+  ownership_check: >-
+    Genuinely Criteo-operated, not a wildcard false positive. mcp.criteo.com resolves via
+    CNAME to in-ftd-279.fr3.vip.prod.criteo.com (Criteo's own Paris production VIP), while a
+    control subdomain (nonexistent-xyz123.criteo.com) does not resolve at all, so the host is
+    explicitly provisioned rather than caught by a wildcard.
+  oauth:
+    protected_resource_metadata: https://mcp.criteo.com/.well-known/oauth-protected-resource
+    authorization_server_metadata: https://mcp.criteo.com/.well-known/oauth-authorization-server
+    issuer: https://api.criteo.com
+    authorization_endpoint: https://consent.criteo.com/request
+    token_endpoint: https://api.criteo.com/oauth2/token
+    grant_types_supported: [authorization_code, refresh_token]
+    response_types_supported: [code]
+    bearer_methods_supported: [header]
+    rfc: [RFC 8414, RFC 9728]
+    note: >-
+      Only the authorization_code + refresh_token grants are advertised for the MCP server —
+      client_credentials, which the REST API supports, is NOT in grant_types_supported. An
+      agent reaching this server must go through a human consent flow at consent.criteo.com.
+  tools: []
+  tools_note: >-
+    NOT RECORDED. tools/list returns 401 anonymously. Nothing is asserted about this
+    server's tool set; enumerating it requires an authenticated introspection pass with a
+    consented Criteo API application.
+
+summary:
+  servers: 2
+  remote_endpoints: 2
+  stdio_packages: 0
+  anonymous_tools_enumerated: 3
+  gated_servers: 1
