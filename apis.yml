@@ -40,6 +40,25 @@ tags:
 - Marketing
 - MCP
 - Media
+- Authentication
+- OpenAPI
+- Reporting
+- Retail
+- Retail Media
+- Sponsored Products
+tags_raw:
+- Advertising
+- Agent Skills
+- Analytics
+- Audiences
+- Campaigns
+- Catalog
+- Commerce
+- Commerce Media
+- Display Advertising
+- Marketing
+- MCP
+- Media
 - OAuth 2.0
 - OpenAPI
 - Reporting
@@ -78,6 +97,18 @@ apis:
   - type: Authentication
     url: https://developers.criteo.com/criteo-apis/docs/api-authorization
   tags:
+  - Account
+  - Analytics
+  - Audiences
+  - Balances
+  - Billing
+  - Campaigns
+  - Catalog
+  - Keywords
+  - Line Items
+  - Reporting
+  - Retail Media
+  tags_raw:
   - Accounts
   - Analytics
   - Audiences
@@ -164,6 +195,10 @@ apis:
   - type: ToolCrosswalk
     url: mcp/criteo-tool-crosswalk.yml
   tags:
+  - Agents
+  - Documentation
+  - MCP
+  tags_raw:
   - Agents
   - Documentation
   - MCP
