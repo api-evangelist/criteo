@@ -13,6 +13,18 @@ description: >-
   docs index, an A2A agent card, a published Agent Skill, and two remote MCP servers — an anonymous
   documentation server and an OAuth-protected API server at mcp.criteo.com.
 url: https://raw.githubusercontent.com/api-evangelist/criteo/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
