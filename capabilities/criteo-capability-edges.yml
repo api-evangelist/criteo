@@ -1,0 +1,26 @@
+slug: criteo
+provider: Criteo
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Media, Entertainment & Telecom Content
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Creative
+  spec_file: criteo-creative-api-openapi.yml
+  capability_id: BC-3760.40
+  capability_id_l1: BC-3760
+  capability_name: Ad Trafficking & Operations
+  confidence: 0.8
+  evidence: 'POST /2026-07/marketing-solutions/advertisers/{advertiser-id}/ads  CreateAdvertiserAd; schemas:
+    Creative, CreativeRead, Ad, Coupon, ImageSetBase64; GetAdvertiserCouponPreview'
+  reason: Operations create, edit, preview and delete ads, creatives and coupon creatives for advertisers
+    on Criteo's ad platform — creative onboarding and ad build-out, i.e. ad trafficking and operations
+    rather than inventory or measurement.

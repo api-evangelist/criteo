@@ -397,6 +397,9 @@ apis:
   - type: ChangeLog
     url: https://developers.criteo.com/marketing-solutions/changelog
 common:
+- type: CapabilityMap
+  url: capabilities/criteo-capability-edges.yml
+  name: Criteo Business Capability Map
 - type: Overlay
   url: overlays/criteo-marketing-solutions-overlay.yaml
 - type: Overlay
