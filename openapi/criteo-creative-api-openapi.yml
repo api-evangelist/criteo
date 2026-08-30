@@ -1,0 +1,1998 @@
+openapi: 3.2.0
+info:
+  title: Criteo Creative API
+  description: Criteo API - MarketingSolutions
+  version: 2026-07
+servers:
+- url: https://api.criteo.com
+security:
+- oauth: []
+tags:
+- name: Creative
+paths:
+  /2026-07/marketing-solutions/ads/{id}:
+    delete:
+      tags:
+      - Creative
+      summary: /2026-07/marketing-solutions/ads/{id}
+      description: Delete an Ad
+      operationId: DeleteAd
+      parameters:
+      - name: id
+        in: path
+        description: The ad identifier to delete.
+        required: true
+        schema:
+          type: string
+          format: int32
+      responses:
+        '204':
+          description: The ad was deleted.
+      security:
+      - oauth:
+        - MarketingSolutions_Creative_Manage
+    get:
+      tags:
+      - Creative
+      summary: /2026-07/marketing-solutions/ads/{id}
+      description: Get an Ad with its id
+      operationId: GetAd
+      parameters:
+      - name: id
+        in: path
+        description: The ad identifier to retrieve.
+        required: true
+        schema:
+          type: string
+          format: int32
+      responses:
+        '200':
+          description: The found ad is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceOutcomeOfAd'
+      security:
+      - oauth:
+        - MarketingSolutions_Creative_Read
+  /2026-07/marketing-solutions/advertisers/{advertiser-id}/ads:
+    get:
+      tags:
+      - Creative
+      summary: /2026-07/marketing-solutions/advertisers/{advertiser-id}/ads
+      description: Get the list of self-services Ads for a given advertiser
+      operationId: GetAdvertiserAds
+      parameters:
+      - name: advertiser-id
+        in: path
+        description: The advertiser identifier.
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: The number of ads to be returned. The default is 50.
+        schema:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      - name: offset
+        in: query
+        description: The (zero-based) offset into the collection of ads. The default is 0.
+        schema:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      responses:
+        '200':
+          description: The list of self-services Ads is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceCollectionOutcomeOfAd'
+      security:
+      - oauth:
+        - MarketingSolutions_Creative_Read
+    post:
+      tags:
+      - Creative
+      summary: /2026-07/marketing-solutions/advertisers/{advertiser-id}/ads
+      description: Create an Ad
+      operationId: CreateAdvertiserAd
+      parameters:
+      - name: advertiser-id
+        in: path
+        description: The advertiser identifier.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceInputOfAdWrite'
+        required: true
+        x-bodyName: request
+      responses:
+        '201':
+          description: The created Ad is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceOutcomeOfAd'
+      security:
+      - oauth:
+        - MarketingSolutions_Creative_Manage
+  /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons:
+    get:
+      tags:
+      - Creative
+      summary: /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons
+      description: Get the list of self-services Coupons for a given advertiser
+      operationId: GetAdvertiserCoupons
+      parameters:
+      - name: advertiser-id
+        in: path
+        description: The advertiser identifier.
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: The number of coupons to be returned. The default is 50.
+        schema:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      - name: offset
+        in: query
+        description: The (zero-based) offset into the collection of coupons. The default is 0.
+        schema:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      responses:
+        '200':
+          description: The list of self-services Coupons is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceCollectionOutcomeOfCoupon'
+      security:
+      - oauth:
+        - MarketingSolutions_Creative_Read
+    post:
+      tags:
+      - Creative
+      summary: /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons
+      description: Create a Coupon
+      operationId: CreateAdvertiserCoupon
+      parameters:
+      - name: advertiser-id
+        in: path
+        description: The advertiser identifier.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceInputOfCreateCoupon'
+        required: true
+        x-bodyName: request
+      responses:
+        '201':
+          description: The created Coupon is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceOutcomeOfCoupon'
+      security:
+      - oauth:
+        - MarketingSolutions_Creative_Manage
+  /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons-supported-sizes:
+    get:
+      tags:
+      - Creative
+      summary: /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons-supported-sizes
+      description: Get the list of Coupon supported sizes
+      operationId: GetAdvertiserCouponSupportedSizes
+      parameters:
+      - name: ad-set-id
+        in: query
+        description: The ad set id on which you want to check the Coupon supported sizes.
+        schema:
+          type: string
+      - name: advertiser-id
+        in: path
+        description: The advertiser identifier.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The list of Coupon supported sizes is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceOutcomeOfCouponSupportedSizes'
+      security:
+      - oauth:
+        - MarketingSolutions_Creative_Read
+  /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons/{id}:
+    delete:
+      tags:
+      - Creative
+      summary: /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons/{id}
+      description: Delete a Coupon
+      operationId: DeleteAdvertiserCoupon
+      parameters:
+      - name: advertiser-id
+        in: path
+        description: The advertiser identifier.
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: The Coupon identifier to delete.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The Coupon was deleted.
+      security:
+      - oauth:
+        - MarketingSolutions_Creative_Manage
+    get:
+      tags:
+      - Creative
+      summary: /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons/{id}
+      description: Get a Coupon with its id
+      operationId: GetAdvertiserCoupon
+      parameters:
+      - name: advertiser-id
+        in: path
+        description: The advertiser identifier.
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: The Coupon identifier to retrieve.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The found Coupon is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceOutcomeOfCoupon'
+      security:
+      - oauth:
+        - MarketingSolutions_Creative_Read
+    put:
+      tags:
+      - Creative
+      summary: /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons/{id}
+      description: Edit a specific Coupon
+      operationId: EditAdvertiserCoupon
+      parameters:
+      - name: advertiser-id
+        in: path
+        description: The advertiser identifier.
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: The Coupon identifier to edit.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceInputOfUpdateCoupon'
+        required: true
+        x-bodyName: request
+      responses:
+        '200':
+          description: The edited Coupon is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceOutcomeOfCoupon'
+      security:
+      - oauth:
+        - MarketingSolutions_Creative_Manage
+  /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons/{id}/preview:
+    get:
+      tags:
+      - Creative
+      summary: /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons/{id}/preview
+      description: Get the preview of a specific Coupon
+      operationId: GetAdvertiserCouponPreview
+      parameters:
+      - name: advertiser-id
+        in: path
+        description: The advertiser identifier.
+        required: true
+        schema:
+          type: string
+      - name: height
+        in: query
+        description: The height of the coupon to preview.
+        schema:
+          type: integer
+          format: int32
+      - name: id
+        in: path
+        description: The Coupon identifier to preview.
+        required: true
+        schema:
+          type: string
+      - name: width
+        in: query
+        description: The width of the coupon to preview.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: The preview HTML of a specific Coupon is returned.
+          content:
+            text/html:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+      security:
+      - oauth:
+        - MarketingSolutions_Creative_Read
+  /2026-07/marketing-solutions/advertisers/{advertiser-id}/creatives:
+    get:
+      tags:
+      - Creative
+      summary: /2026-07/marketing-solutions/advertisers/{advertiser-id}/creatives
+      description: Get the list of self-services Creatives for a given advertiser
+      operationId: GetAdvertiserCreatives
+      parameters:
+      - name: advertiser-id
+        in: path
+        description: The advertiser identifier.
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: The number of creatives to be returned. The default is 50.
+        schema:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      - name: offset
+        in: query
+        description: The (zero-based) offset into the collection of creatives. The default is 0.
+        schema:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      responses:
+        '200':
+          description: The list of self-services Creatives is returned.This list will contain creatives in draft status as well which will have some properties as null
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceCollectionOutcomeOfCreativeRead'
+      security:
+      - oauth:
+        - MarketingSolutions_Creative_Read
+    post:
+      tags:
+      - Creative
+      summary: /2026-07/marketing-solutions/advertisers/{advertiser-id}/creatives
+      description: Create a Creative
+      operationId: CreateAdvertiserCreative
+      parameters:
+      - name: advertiser-id
+        in: path
+        description: The advertiser identifier.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceInputOfCreativeWrite'
+        required: true
+        x-bodyName: request
+      responses:
+        '201':
+          description: The created creative is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceOutcomeOfCreative'
+      security:
+      - oauth:
+        - MarketingSolutions_Creative_Manage
+  /2026-07/marketing-solutions/creatives/{id}:
+    delete:
+      tags:
+      - Creative
+      summary: /2026-07/marketing-solutions/creatives/{id}
+      description: Delete a Creative if there are no ads binded to it
+      operationId: DeleteCreative
+      parameters:
+      - name: id
+        in: path
+        description: The creative identifier to delete.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The creative was deleted.
+      security:
+      - oauth:
+        - MarketingSolutions_Creative_Manage
+    get:
+      tags:
+      - Creative
+      summary: /2026-07/marketing-solutions/creatives/{id}
+      description: Get a Creative with its id
+      operationId: GetCreative
+      parameters:
+      - name: id
+        in: path
+        description: The creative identifier to retrieve.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The found creative is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceOutcomeOfCreative'
+      security:
+      - oauth:
+        - MarketingSolutions_Creative_Read
+    put:
+      tags:
+      - Creative
+      summary: /2026-07/marketing-solutions/creatives/{id}
+      description: Edit a specific Creative
+      operationId: EditCreative
+      parameters:
+      - name: id
+        in: path
+        description: The creative identifier to edit.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceInputOfCreativeWrite'
+        required: true
+        x-bodyName: request
+      responses:
+        '200':
+          description: The edited creative is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceOutcomeOfCreative'
+      security:
+      - oauth:
+        - MarketingSolutions_Creative_Manage
+  /2026-07/marketing-solutions/creatives/{id}/preview:
+    post:
+      tags:
+      - Creative
+      summary: /2026-07/marketing-solutions/creatives/{id}/preview
+      description: Get the preview of a specific Creative
+      operationId: GenerateCreativePreview
+      parameters:
+      - name: height
+        in: query
+        description: The height of the Creative to preview.
+        schema:
+          type: integer
+          format: int32
+      - name: id
+        in: path
+        description: The Creative identifier to preview.
+        required: true
+        schema:
+          type: string
+      - name: width
+        in: query
+        description: The width of the Creative to preview.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: The preview HTML of a specific Creative is returned.
+          content:
+            text/html:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+      security:
+      - oauth:
+        - MarketingSolutions_Creative_Manage
+components:
+  schemas:
+    Coupon:
+      type:
+      - object
+      - 'null'
+      properties:
+        adSetId:
+          type:
+          - string
+          - 'null'
+          description: The id of the Ad Set on which the Coupon is applied to
+        advertiserId:
+          type:
+          - string
+          - 'null'
+          description: Advertiser linked to the Coupon
+        author:
+          type:
+          - string
+          - 'null'
+          description: The login of the person who created this Coupon
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description of the Coupon
+        endDate:
+          type:
+          - string
+          - 'null'
+          description: 'The date when when we will stop to show this Coupon. If the end date is not specified (i.e. null) then the Coupon will go on forever
+
+            String must be in ISO8601 format'
+        format:
+          type:
+          - string
+          - 'null'
+          description: 'Format of the Coupon, it can have two values: "FullFrame" or "LogoZone"'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier (duplicate of the parent id).
+        images:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ImageSlide'
+          description: List of slides containing the image URLs
+        landingPageUrl:
+          type:
+          - string
+          - 'null'
+          description: Web redirection of the landing page url
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the Coupon
+        rotationsNumber:
+          type:
+          - integer
+          - 'null'
+          description: Number of rotations for the Coupons (from 1 to 10 times)
+          format: int32
+        showDuration:
+          type:
+          - integer
+          - 'null'
+          description: Show Coupon for a duration of N seconds (between 1 and 5)
+          format: int32
+        showEvery:
+          type:
+          - integer
+          - 'null'
+          description: Show the Coupon every N seconds (between 1 and 10)
+          format: int32
+        startDate:
+          type:
+          - string
+          - 'null'
+          description: 'The date when the Coupon will be launched
+
+            String must be in ISO8601 format'
+        status:
+          type:
+          - string
+          - 'null'
+          description: The status of the Coupon
+      description: Coupons are static images applied on ad set which can be displayed within an ad and link to a landing page.
+    CommonProblem:
+      type: object
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+          description: A machine-readable error code, expressed as a string value.
+        detail:
+          type:
+          - string
+          - 'null'
+          description: A human-readable explanation specific to this occurrence of the problem
+        instance:
+          type:
+          - string
+          - 'null'
+          description: A URI that identifies the specific occurrence of the problem.
+        source:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+          description: A machine-readable structure to reference to the exact location(s) causing the error(s)
+        stackTrace:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+          description: A short human-readable description of the problem type
+        traceId:
+          type:
+          - string
+          - 'null'
+          description: The request correlation ID this problem comes from.
+        traceIdentifier:
+          type:
+          - string
+          - 'null'
+          description: The request correlation ID this problem comes from. (deprecated, use traceId instead)
+        type:
+          enum:
+          - unknown
+          - access-control
+          - authentication
+          - authorization
+          - availability
+          - deprecation
+          - quota
+          - validation
+          type:
+          - string
+          - 'null'
+          description: The problem's category.
+      description: Common problem object.
+    ResourceCollectionOutcomeOfCoupon:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ResourceOfCoupon'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for several entities.
+    UpdateCoupon:
+      required:
+      - startDate
+      type: object
+      properties:
+        endDate:
+          type:
+          - string
+          - 'null'
+          description: 'The date when when we will stop to show this Coupon. If the end date is not specified (i.e. null) then the Coupon will go on forever
+
+            String must be in ISO8601 format'
+        startDate:
+          type: string
+          description: 'The date when the Coupon will be launched
+
+            String must be in ISO8601 format'
+      description: Entity to edit a Coupon
+    CreateCoupon:
+      required:
+      - adSetId
+      - format
+      - images
+      - landingPageUrl
+      - name
+      - rotationsNumber
+      - showDuration
+      - showEvery
+      - startDate
+      type: object
+      properties:
+        adSetId:
+          type: string
+          description: The id of the Ad Set on which the Coupon is applied to
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description of the Coupon
+        endDate:
+          type:
+          - string
+          - 'null'
+          description: 'The date when when we will stop to show this Coupon. If the end date is not specified (i.e. null) then the Coupon will go on forever
+
+            String must be in ISO8601 format'
+        format:
+          enum:
+          - FullFrame
+          - LogoZone
+          type: string
+          description: 'Format of the Coupon, it can have two values: "FullFrame" or "LogoZone"'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateImageSlide'
+          description: List of slides containing the images as a base-64 encoded string
+        landingPageUrl:
+          type: string
+          description: Web redirection of the landing page url
+        name:
+          type: string
+          description: The name of the Coupon
+        rotationsNumber:
+          maximum: 10
+          minimum: 1
+          type: integer
+          description: Number of rotations for the Coupons (from 1 to 10 times)
+          format: int32
+        showDuration:
+          maximum: 5
+          minimum: 1
+          type: integer
+          description: Show Coupon for a duration of N seconds (between 1 and 5)
+          format: int32
+        showEvery:
+          maximum: 10
+          minimum: 1
+          type: integer
+          description: Show the Coupon every N seconds (between 1 and 10)
+          format: int32
+        startDate:
+          type: string
+          description: 'The date when the coupon will be launched
+
+            String must be in ISO8601 format'
+      description: Entity to create a Coupon
+    CreativeRead:
+      required:
+      - advertiserId
+      - author
+      - name
+      - status
+      type:
+      - object
+      - 'null'
+      properties:
+        adaptiveAttributes:
+          $ref: '#/components/schemas/AdaptiveReadAttributes'
+        advertiserId:
+          type: string
+          description: Advertiser linked to the Creative
+        author:
+          type: string
+          description: The login of the person who created this creative (
+        datasetId:
+          type:
+          - string
+          - 'null'
+          description: Data set id linked to the Creative
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description of the creative
+        dynamicAttributes:
+          $ref: '#/components/schemas/DynamicAttributes'
+        format:
+          type:
+          - string
+          - 'null'
+          description: The format of the creative
+        htmlTagAttributes:
+          $ref: '#/components/schemas/HtmlTagAttributes'
+        imageAttributes:
+          $ref: '#/components/schemas/ImageAttributes'
+        name:
+          type: string
+          description: The name of the creative
+        status:
+          type: string
+          description: The status of the creative
+      description: A CreativeRead is a project with the necessary information to display a creative
+    ResourceInputOfCreateCoupon:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResourceOfCreateCoupon'
+      description: A top-level object that encapsulates a Criteo API request for a single entity.
+    ResourceOfCreativeWrite:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CreativeWrite'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier of this resource.
+        type:
+          type:
+          - string
+          - 'null'
+      description: A class that represents a domain entity exposed by an API.
+    ResourceCollectionOutcomeOfAd:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ResourceOfAd'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for several entities.
+    ImageSetBase64:
+      required:
+      - imageBase64Strings
+      type: object
+      properties:
+        headlineText:
+          type:
+          - string
+          - 'null'
+          description: The headline of the image set
+        imageBase64Strings:
+          minItems: 1
+          type: array
+          items:
+            type: string
+          description: Multiple images potentially in different shapes, each image is a base-64 encoded string.
+      description: Entity consists of multiple images in different ratios as a base-64 encoded and a headline text.
+    ResourceOutcomeOfCoupon:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResourceOfCoupon'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for a single entity.
+    ResourceOfCreative:
+      type:
+      - object
+      - 'null'
+      properties:
+        attributes:
+          $ref: '#/components/schemas/Creative'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier of this resource.
+        type:
+          type:
+          - string
+          - 'null'
+      description: A class that represents a domain entity exposed by an API.
+    Ad:
+      type:
+      - object
+      - 'null'
+      properties:
+        adSetId:
+          type:
+          - string
+          - 'null'
+          description: The id of the Ad Set binded to this Ad
+        creativeId:
+          type:
+          - string
+          - 'null'
+          description: The id of the Creative binded to this Ad
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description of the ad
+        endDate:
+          type:
+          - string
+          - 'null'
+          description: 'The date when when we will stop to show this ad. If the end date is not specified (i.e. null) then the ad will go on forever
+
+            String must be in ISO8601 format'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier (duplicate of the parent id).
+        inventoryType:
+          enum:
+          - Native
+          - Display
+          - Video
+          type:
+          - string
+          - 'null'
+          description: The inventory the Ad belongs to. Possible values are "Display" and "Native". This is optional since this doesn't make sense for every creative type but will throw an error if not set for a dynamic creative.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the ad
+        startDate:
+          type:
+          - string
+          - 'null'
+          description: 'The date when the ad will be launched
+
+            String must be in ISO8601 format'
+      description: An ad is the binding that connects a creative with an ad set
+    AdaptiveAttributes:
+      required:
+      - callsToAction
+      - colors
+      - descriptionFont
+      - descriptionText
+      - headlineFont
+      - headlineText
+      - landingPageUrl
+      - layouts
+      - logos
+      type:
+      - object
+      - 'null'
+      properties:
+        callsToAction:
+          type: array
+          items:
+            type: string
+          description: 'A Call-to-Action (CTA) is an action-driven instruction to your audience intended to provoke an immediate
+
+            response, such as “Buy now” or “Go!”.'
+        colors:
+          $ref: '#/components/schemas/AdaptiveColors'
+        descriptionFont:
+          type: string
+          description: 'Font of the description
+
+            Valid supported font like "Arial"'
+        descriptionText:
+          type: string
+          description: The description text of the banner
+        headlineFont:
+          type: string
+          description: 'Font of the headline
+
+            Valid supported font like "Arial"'
+        headlineText:
+          type: string
+          description: The headline text of the banner
+        imageDisplay:
+          enum:
+          - ShowFullImage
+          - ZoomOnImage
+          type:
+          - string
+          - 'null'
+          description: 'Value can be "ShowFullImage" or "ZoomOnImage". Choose whether your image set should fit inside the allocated
+
+            space ("ShowFullImage") or whether it should fill that space ("ZoomOnImage"). If you choose ZoomOnImage, there may be some
+
+            image cropping.'
+        imageSets:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ImageSet'
+          description: Multiple image sets, each image set consists of multiple images and a headline text.
+        landingPageUrl:
+          type: string
+          description: Web redirection of the landing page url
+          format: uri
+        layouts:
+          type: array
+          items:
+            enum:
+            - Editorial
+            - Montage
+            - InBannerVideo
+            type: string
+          description: 'The Adaptive layouts that are enabled.
+
+            It can contain any of the following values: "Editorial", “Montage“, "InBannerVideo".'
+        logos:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageShape'
+          description: Logo images uploaded on demostatic.criteo.com when deploying and then static.criteo.net
+        videos:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/VideoDetail'
+          description: Multiple videos potentially in different shapes.
+      description: The attributes specific to Adaptive creatives
+    Creative:
+      required:
+      - advertiserId
+      - author
+      - name
+      - status
+      type:
+      - object
+      - 'null'
+      properties:
+        adaptiveAttributes:
+          $ref: '#/components/schemas/AdaptiveAttributes'
+        advertiserId:
+          type: string
+          description: Advertiser linked to the Creative
+        author:
+          type: string
+          description: The login of the person who created this creative (
+        datasetId:
+          type:
+          - string
+          - 'null'
+          description: Data set id linked to the Creative
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description of the creative
+        dynamicAttributes:
+          $ref: '#/components/schemas/DynamicAttributes'
+        format:
+          type:
+          - string
+          - 'null'
+          description: The format of the creative
+        htmlTagAttributes:
+          $ref: '#/components/schemas/HtmlTagAttributes'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier (duplicate of the parent id).
+        imageAttributes:
+          $ref: '#/components/schemas/ImageAttributes'
+        name:
+          type: string
+          description: The name of the creative
+        status:
+          type: string
+          description: The status of the creative
+      description: A creative is a project with the necessary information to display a creative
+    ImageShape:
+      required:
+      - shape
+      - url
+      type: object
+      properties:
+        shape:
+          enum:
+          - Horizontal
+          - Vertical
+          - Square
+          type: string
+          description: Ratio of the image
+        url:
+          type: string
+          description: URL of the image uploaded on demostatic.criteo.com when deploying and then static.criteo.net
+          format: uri
+      description: Entity containing the shape and url of the image
+    ResourceOfUpdateCoupon:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/UpdateCoupon'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier of this resource.
+        type:
+          type:
+          - string
+          - 'null'
+      description: A class that represents a domain entity exposed by an API.
+    ResourceOfCouponSupportedSizes:
+      type:
+      - object
+      - 'null'
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CouponSupportedSizes'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier of this resource.
+        type:
+          type:
+          - string
+          - 'null'
+      description: A class that represents a domain entity exposed by an API.
+    ResourceOfCreateCoupon:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CreateCoupon'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier of this resource.
+        type:
+          type:
+          - string
+          - 'null'
+      description: A class that represents a domain entity exposed by an API.
+    ResourceInputOfAdWrite:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResourceOfAdWrite'
+      description: A top-level object that encapsulates a Criteo API request for a single entity.
+    ImageSet:
+      required:
+      - images
+      type: object
+      properties:
+        headlineText:
+          type:
+          - string
+          - 'null'
+          description: The headline of the image set
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageShape'
+          description: The images' urls with their shapes.
+      description: Entity consists of multiple images in different ratios and a headline text.
+    ImageSlide:
+      type: object
+      properties:
+        height:
+          type:
+          - integer
+          - 'null'
+          description: Height of the Coupon slide
+          format: int32
+        slideUrls:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Array of images of the same size uploaded on demostatic.criteo.com when deploying and then static.criteo.net
+        width:
+          type:
+          - integer
+          - 'null'
+          description: Width of the Coupon slide
+          format: int32
+      description: Slide containing the image URLs
+    ResourceOutcomeOfCouponSupportedSizes:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResourceOfCouponSupportedSizes'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for a single entity.
+    ImageWriteAttributes:
+      required:
+      - base64Strings
+      - landingPageUrl
+      type: object
+      properties:
+        base64Strings:
+          minItems: 1
+          type: array
+          items:
+            type: string
+          description: Array of images as a base-64 encoded string
+        landingPageUrl:
+          type: string
+          description: Web redirection of the landing page url
+          format: uri
+      description: The attributes specific to create or update an Image creative
+    VideoDetail:
+      required:
+      - duration
+      - shape
+      - url
+      type: object
+      properties:
+        duration:
+          type: number
+          description: The duration of the video in milliseconds, the video could be trimmed if it is longer than 30000 ms.
+          format: double
+        shape:
+          enum:
+          - Horizontal
+          - Vertical
+          - Square
+          type: string
+          description: Shape of the video
+        url:
+          type: string
+          description: URL of the video uploaded on demostatic.criteo.com when deploying and then static.criteo.net
+          format: uri
+      description: Entity consists of the url of the video, its duration and its shape.
+    CreativeWrite:
+      required:
+      - datasetId
+      - format
+      - name
+      type: object
+      properties:
+        adaptiveWriteAttributes:
+          $ref: '#/components/schemas/AdaptiveWriteAttributes'
+        datasetId:
+          type: string
+          description: Dataset linked to the Creative
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description of the creative
+        dynamicWriteAttributes:
+          $ref: '#/components/schemas/DynamicWriteAttributes'
+        format:
+          enum:
+          - Image
+          - HtmlTag
+          - Dynamic
+          - Adaptive
+          type: string
+          description: 'The format of the creative
+
+            You can use "Image", " HtmlTag", "Dynamic" or "Adaptive"'
+        htmlTagWriteAttributes:
+          $ref: '#/components/schemas/HtmlTagWriteAttributes'
+        imageWriteAttributes:
+          $ref: '#/components/schemas/ImageWriteAttributes'
+        name:
+          type: string
+          description: The name of the creative
+      description: Entity to create or update a creative
+    ResourceOutcomeOfAd:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResourceOfAd'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for a single entity.
+    ResourceOfCoupon:
+      type:
+      - object
+      - 'null'
+      properties:
+        attributes:
+          $ref: '#/components/schemas/Coupon'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier of this resource.
+        type:
+          type:
+          - string
+          - 'null'
+      description: A class that represents a domain entity exposed by an API.
+    Size:
+      type:
+      - object
+      - 'null'
+      properties:
+        height:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        width:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      description: Size entity containing width and height of the creative
+    ResourceCollectionOutcomeOfCreativeRead:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ResourceOfCreativeRead'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for several entities.
+    DynamicAttributes:
+      type:
+      - object
+      - 'null'
+      properties:
+        bodyTextColor:
+          type:
+          - string
+          - 'null'
+          description: 'Color of the creative''s body text
+
+            Valid hexadecimal color (e.g. "AB00FF")'
+        callsToAction:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: 'A Call-to-Action (CTA) is an action-driven instruction to your audience intended to provoke an immediate
+
+            response, such as “Buy now” or “Go!”.'
+        creativeBackgroundColor:
+          type:
+          - string
+          - 'null'
+          description: 'Color of the creative''s background
+
+            Valid hexadecimal color (e.g. "AB00FF")'
+        logos:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ImageShape'
+          description: Logo images uploaded on demostatic.criteo.com when deploying and then static.criteo.net
+        pricesColor:
+          type:
+          - string
+          - 'null'
+          description: 'Color of the creative''s prices
+
+            Valid hexadecimal color (e.g. "AB00FF")'
+        primaryFont:
+          type:
+          - string
+          - 'null'
+          description: 'Font of the primary font
+
+            Valid supported font like "Arial"'
+        productImageDisplay:
+          enum:
+          - ShowFullImage
+          - ZoomOnImage
+          type:
+          - string
+          - 'null'
+          description: 'Value can be "ShowFullImage" or "ZoomOnImage". Choose whether your product catalog images should fit inside the allocated
+
+            space ("ShowFullImage") or whether they should fill that space ("ZoomOnImage"). If you choose ZoomOnImage, there may be some
+
+            image cropping.'
+      description: The attributes specific to Dynamic creatives
+    ResourceOfCreativeRead:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CreativeRead'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier of this resource.
+        type:
+          type:
+          - string
+          - 'null'
+      description: A class that represents a domain entity exposed by an API.
+    ResourceOfAdWrite:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AdWrite'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier of this resource.
+        type:
+          type:
+          - string
+          - 'null'
+      description: A class that represents a domain entity exposed by an API.
+    ResourceInputOfUpdateCoupon:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResourceOfUpdateCoupon'
+      description: A top-level object that encapsulates a Criteo API request for a single entity.
+    CouponSupportedSizes:
+      type:
+      - object
+      - 'null'
+      properties:
+        fullFrame:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Array of FullFrame sizes as string in width x height format
+        logoZone:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Array of LogoZone sizes as string in width x height format
+      description: Entity containing the list of Coupon supported sizes
+    HtmlTagWriteAttributes:
+      required:
+      - tags
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+          description: An array containing the html tags
+      description: The attributes specific to create or update a HtmlTag creative
+    AdaptiveReadAttributes:
+      type:
+      - object
+      - 'null'
+      properties:
+        callsToAction:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: 'A Call-to-Action (CTA) is an action-driven instruction to your audience intended to provoke an immediate
+
+            response, such as “Buy now” or “Go!”.'
+        colors:
+          $ref: '#/components/schemas/AdaptiveColors'
+        descriptionFont:
+          type:
+          - string
+          - 'null'
+          description: 'Font of the description
+
+            Valid supported font like "Arial"'
+        descriptionText:
+          type:
+          - string
+          - 'null'
+          description: The description text of the banner
+        headlineFont:
+          type:
+          - string
+          - 'null'
+          description: 'Font of the headline
+
+            Valid supported font like "Arial"'
+        headlineText:
+          type:
+          - string
+          - 'null'
+          description: The headline text of the banner
+        imageDisplay:
+          enum:
+          - ShowFullImage
+          - ZoomOnImage
+          type:
+          - string
+          - 'null'
+          description: 'Value can be "ShowFullImage" or "ZoomOnImage". Choose whether your image set should fit inside the allocated
+
+            space ("ShowFullImage") or whether it should fill that space ("ZoomOnImage"). If you choose ZoomOnImage, there may be some
+
+            image cropping.'
+        imageSets:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ImageSet'
+          description: Multiple image sets, each image set consists of multiple images and a headline text.
+        landingPageUrl:
+          type:
+          - string
+          - 'null'
+          description: Web redirection of the landing page url
+          format: uri
+        layouts:
+          type:
+          - array
+          - 'null'
+          items:
+            enum:
+            - Editorial
+            - Montage
+            - InBannerVideo
+            type: string
+          description: 'The Adaptive layouts that are enabled.
+
+            It can contain any of the following values: "Editorial", “Montage“, "InBannerVideo".'
+        logos:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ImageShape'
+          description: Logo images uploaded on demostatic.criteo.com when deploying and then static.criteo.net
+        videos:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/VideoDetail'
+          description: Multiple videos potentially in different shapes.
+      description: The attributes specific to Adaptive creatives read
+    Tag:
+      type: object
+      properties:
+        htmlTag:
+          type:
+          - string
+          - 'null'
+          description: Html tag
+        size:
+          $ref: '#/components/schemas/Size'
+      description: Entity specifying the html of the tag and its size
+    AdWrite:
+      required:
+      - adSetId
+      - creativeId
+      - name
+      - startDate
+      type: object
+      properties:
+        adSetId:
+          type: string
+          description: The id of the Ad Set bound to this Ad
+        creativeId:
+          type: string
+          description: The id of the Creative bound to this Ad
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description of the ad
+        endDate:
+          type:
+          - string
+          - 'null'
+          description: 'The date when when we will stop to show this ad. If the end date is not specified (i.e. null) then the ad will go on forever
+
+            String must be in ISO8601 format'
+        inventoryType:
+          enum:
+          - Display
+          - Native
+          type:
+          - string
+          - 'null'
+          description: The inventory the Ad to be created or updated belongs to. Possible values are "Display" and "Native". This is optional since this doesn't make sense for every creative type but will throw an error if not set for a dynamic creative.
+        name:
+          type: string
+          description: The name of the ad
+        startDate:
+          type: string
+          description: 'The date when the ad will be launched
+
+            String must be in ISO8601 format'
+      description: Entity to create or update an ad
+    CreateImageSlide:
+      type: object
+      properties:
+        height:
+          type: integer
+          description: Height of the Coupon slide
+          format: int32
+        slideBase64Strings:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Array of images of the same size as a base-64 encoded string
+        width:
+          type: integer
+          description: Width of the Coupon slide
+          format: int32
+      description: Slide containing the images of the same size as a base-64 encoded string
+    ResourceInputOfCreativeWrite:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResourceOfCreativeWrite'
+      description: A top-level object that encapsulates a Criteo API request for a single entity.
+    AdaptiveWriteAttributes:
+      required:
+      - callsToAction
+      - colors
+      - descriptionFont
+      - descriptionText
+      - headlineFont
+      - headlineText
+      - landingPageUrl
+      - layouts
+      - logoBase64String
+      type: object
+      properties:
+        callsToAction:
+          minItems: 1
+          type: array
+          items:
+            type: string
+          description: 'A Call-to-Action (CTA) is an action-driven instruction to your audience intended to provoke an immediate
+
+            response, such as “Buy now” or “Go!”.'
+        colors:
+          $ref: '#/components/schemas/AdaptiveColors'
+        descriptionFont:
+          type: string
+          description: 'Font of the description
+
+            Valid supported font like "Arial"'
+        descriptionText:
+          type: string
+          description: The description text of the banner
+        headlineFont:
+          type: string
+          description: 'Font of the headline
+
+            Valid supported font like "Arial"'
+        headlineText:
+          type: string
+          description: The headline text of the banner
+        imageDisplay:
+          enum:
+          - ShowFullImage
+          - ZoomOnImage
+          type:
+          - string
+          - 'null'
+          description: 'Value can be "ShowFullImage" or "ZoomOnImage". Choose whether your image set should fit inside the allocated
+
+            space ("ShowFullImage") or whether it should fill that space ("ZoomOnImage"). If you choose ZoomOnImage, there may be some
+
+            image cropping.'
+        imageSetsBase64:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ImageSetBase64'
+          description: Multiple image sets, each image set consists of multiple images as a base-64 encoded string and a headline text.
+        landingPageUrl:
+          type: string
+          description: Web redirection of the landing page url.
+          format: uri
+        layouts:
+          minItems: 1
+          type: array
+          items:
+            enum:
+            - Editorial
+            - Montage
+            - InBannerVideo
+            type: string
+          description: 'The Adaptive layouts that are enabled.
+
+            It can contain any of the following values: "Editorial", “Montage“, "InBannerVideo".'
+        logoBase64String:
+          type: string
+          description: Logo image as a base-64 encoded string
+        videoBase64Strings:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Multiple videos potentially in different shapes, each video is a base-64 encoded string.
+      description: The attributes specific to create or update an Adaptive creative
+    DynamicWriteAttributes:
+      required:
+      - bodyTextColor
+      - callsToAction
+      - logoBase64String
+      - pricesColor
+      - productImageDisplay
+      type: object
+      properties:
+        bodyTextColor:
+          type: string
+          description: 'Color of the creative''s body text
+
+            Valid hexadecimal color (e.g. "AB00FF")'
+        callsToAction:
+          minItems: 1
+          type: array
+          items:
+            type: string
+          description: 'A Call-to-Action (CTA) is an action-driven instruction to your audience intended to provoke an immediate
+
+            response, such as “Buy now” or “Go!”.'
+        creativeBackgroundColor:
+          type:
+          - string
+          - 'null'
+          description: 'Color of the creative''s background
+
+            Valid hexadecimal color (e.g. "AB00FF")'
+        logoBase64String:
+          type: string
+          description: Logo image as a base-64 encoded string
+        pricesColor:
+          type: string
+          description: 'Color of the creative''s prices
+
+            Valid hexadecimal color (e.g. "AB00FF")'
+        primaryFont:
+          type:
+          - string
+          - 'null'
+          description: 'Font of the primary font
+
+            Valid supported font like "Arial"'
+        productImageDisplay:
+          enum:
+          - ShowFullImage
+          - ZoomOnImage
+          type: string
+          description: 'Value can be "ShowFullImage" or "ZoomOnImage". Choose whether your product catalog images should fit inside the allocated
+
+            space ("ShowFullImage") or whether they should fill that space ("ZoomOnImage"). If you choose ZoomOnImage, there may be some
+
+            image cropping.'
+      description: The attributes specific to create or update a Dynamic creative
+    ImageAttributes:
+      type:
+      - object
+      - 'null'
+      properties:
+        landingPageUrl:
+          type:
+          - string
+          - 'null'
+          description: Web redirection of the landing page url
+        urls:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Array of images uploaded on demostatic.criteo.com when deploying and then static.criteo.net
+      description: The attributes specific to Image creatives
+    HtmlTagAttributes:
+      type:
+      - object
+      - 'null'
+      properties:
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Tag'
+          description: An array containing the html tags
+      description: The attributes specific to HtmlTag creatives
+    AdaptiveColors:
+      required:
+      - backgroundColor
+      - ctaBackgroundColor
+      - ctaTextColor
+      - logoAreaAndTitleColor
+      - text1Color
+      - text2Color
+      type:
+      - object
+      - 'null'
+      properties:
+        backgroundColor:
+          type: string
+          description: 'Color of the creative''s background.
+
+            A valid RGB24 color in hexadecimal (e.g. "AB00FF")'
+        ctaBackgroundColor:
+          type: string
+          description: 'Color of the background of the CTA.
+
+            A valid RGB24 color in hexadecimal (e.g. "AB00FF").'
+        ctaTextColor:
+          type: string
+          description: 'Color of the text of the CTA.
+
+            A valid RGB24 color in hexadecimal (e.g. "AB00FF").'
+        logoAreaAndTitleColor:
+          type: string
+          description: 'Color of the creative''s logo area.
+
+            A valid RGB24 color in hexadecimal (e.g. "AB00FF").'
+        text1Color:
+          type: string
+          description: 'Color of the headline and the description texts.
+
+            A valid RGB24 color in hexadecimal (e.g. "AB00FF")'
+        text2Color:
+          type: string
+          description: 'Color of the image set''s headline text.
+
+            A valid RGB24 color in hexadecimal (e.g. "AB00FF")'
+      description: Entity consists of the color aliases of the creative's elements
+    ResourceOfAd:
+      type:
+      - object
+      - 'null'
+      properties:
+        attributes:
+          $ref: '#/components/schemas/Ad'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier of this resource.
+        type:
+          type:
+          - string
+          - 'null'
+      description: A class that represents a domain entity exposed by an API.
+    ResourceOutcomeOfCreative:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResourceOfCreative'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for a single entity.
+  securitySchemes:
+    oauth:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.criteo.com/oauth2/token
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: https://api.criteo.com/oauth2
+          tokenUrl: https://api.criteo.com/oauth2/token
+          scopes: {}
+x-samples-languages:
+- java
+- python
+- php
+- csharp
+- javascript
+- curl
+- ruby

@@ -1,0 +1,949 @@
+openapi: 3.2.0
+info:
+  title: Criteo Reco API
+  description: Criteo API - MarketingSolutions
+  version: 2026-07
+servers:
+- url: https://api.criteo.com
+security:
+- oauth: []
+tags:
+- name: Reco
+paths:
+  /2026-07/marketing-solutions/ads/{ad-id}/product-boost:
+    get:
+      tags:
+      - Reco
+      summary: /2026-07/marketing-solutions/ads/{ad-id}/product-boost
+      description: Fetch all boosting associations and configurations
+      operationId: FetchBoostedAdAssociations
+      parameters:
+      - name: ad-id
+        in: path
+        description: ID of the ad
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValueResourceCollectionOutcomeOfBoostedAdProductSet'
+      security:
+      - oauth:
+        - MarketingSolutions_Reco_Read
+  /2026-07/marketing-solutions/ads/{ad-id}/product-boost/{product-set-id}:
+    delete:
+      tags:
+      - Reco
+      summary: /2026-07/marketing-solutions/ads/{ad-id}/product-boost/{product-set-id}
+      description: Delete association and configuration.
+      operationId: DeleteBoostedAdAssociation
+      parameters:
+      - name: ad-id
+        in: path
+        description: ID of the ad
+        required: true
+        schema:
+          type: string
+      - name: product-set-id
+        in: path
+        description: ID of the product set
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValueResourceOutcomeOfBoostedAdProductSet'
+      security:
+      - oauth:
+        - MarketingSolutions_Reco_Manage
+    get:
+      tags:
+      - Reco
+      summary: /2026-07/marketing-solutions/ads/{ad-id}/product-boost/{product-set-id}
+      description: Fetch boosting association and configuration
+      operationId: FetchBoostedAdAssociation
+      parameters:
+      - name: ad-id
+        in: path
+        description: ID of the ad
+        required: true
+        schema:
+          type: string
+      - name: product-set-id
+        in: path
+        description: ID of the product set
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValueResourceOutcomeOfBoostedAdProductSet'
+      security:
+      - oauth:
+        - MarketingSolutions_Reco_Read
+    post:
+      tags:
+      - Reco
+      summary: /2026-07/marketing-solutions/ads/{ad-id}/product-boost/{product-set-id}
+      description: Create or update product boosting configuration
+      operationId: CreateBoostedAdAssociation
+      parameters:
+      - name: ad-id
+        in: path
+        description: ID of the ad
+        required: true
+        schema:
+          type: string
+      - name: product-set-id
+        in: path
+        description: ID of the product set
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValueResourceInputOfBoostingConfigurationRequest'
+        x-bodyName: boostedAdProductSetAssociationRequest
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValueResourceOutcomeOfBoostedAdProductSet'
+        '201':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValueResourceOutcomeOfBoostedAdProductSet'
+      security:
+      - oauth:
+        - MarketingSolutions_Reco_Manage
+  /2026-07/marketing-solutions/ads/{ad-id}/product-filter:
+    delete:
+      tags:
+      - Reco
+      summary: /2026-07/marketing-solutions/ads/{ad-id}/product-filter
+      description: Disable product filtering for a given ad
+      operationId: DisableProductFiltering
+      parameters:
+      - name: ad-id
+        in: path
+        description: ID of the ad
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValueResourceOutcomeOfProductFilterConfig'
+      security:
+      - oauth:
+        - MarketingSolutions_Reco_Manage
+    get:
+      tags:
+      - Reco
+      summary: /2026-07/marketing-solutions/ads/{ad-id}/product-filter
+      description: Fetch product filtering configuration for a given ad
+      operationId: FetchProductFilteringConfig
+      parameters:
+      - name: ad-id
+        in: path
+        description: ID of the ad
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation. Returns the product filtering configuration if it exists, or empty data if it doesn't.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValueResourceOutcomeOfProductFilterConfig'
+      security:
+      - oauth:
+        - MarketingSolutions_Reco_Read
+    post:
+      tags:
+      - Reco
+      summary: /2026-07/marketing-solutions/ads/{ad-id}/product-filter
+      description: Enable product filtering for a given ad
+      operationId: EnableProductFiltering
+      parameters:
+      - name: ad-id
+        in: path
+        description: ID of the ad
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValueResourceInputOfCreateProductFilterRequest'
+        x-bodyName: createProductFilterRequest
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValueResourceOutcomeOfProductFilterConfig'
+      security:
+      - oauth:
+        - MarketingSolutions_Reco_Manage
+  /2026-07/marketing-solutions/dataset/{dataset-id}/product-boost:
+    get:
+      tags:
+      - Reco
+      summary: /2026-07/marketing-solutions/dataset/{dataset-id}/product-boost
+      description: Fetch boosting association and configuration for a given partner
+      operationId: FetchBoostedAdAssociationByPartnerId
+      parameters:
+      - name: client-type
+        in: query
+        description: Client type filter
+        schema:
+          enum:
+          - Unknown
+          - CGrowth
+          - CMax
+          type:
+          - string
+          - 'null'
+      - name: dataset-id
+        in: path
+        description: ID of the dataset
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValueResourceCollectionOutcomeOfBoostedAdProductSet'
+      security:
+      - oauth:
+        - MarketingSolutions_Reco_Read
+  /2026-07/marketing-solutions/product-sets:
+    post:
+      tags:
+      - Reco
+      summary: /2026-07/marketing-solutions/product-sets
+      description: Create a new product set
+      operationId: CreateProductSet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValueResourceInputOfCreateProductSetRequest'
+        required: true
+        x-bodyName: request
+      responses:
+        '200':
+          description: Product set created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceOutcomeOfProductSet'
+      security:
+      - oauth:
+        - MarketingSolutions_Reco_Manage
+  /2026-07/marketing-solutions/product-sets/{product-set-id}:
+    delete:
+      tags:
+      - Reco
+      summary: /2026-07/marketing-solutions/product-sets/{product-set-id}
+      description: Remove a product set
+      operationId: RemoveProductSet
+      parameters:
+      - name: product-set-id
+        in: path
+        description: ID of the product set to remove
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ProductSet removed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Outcome'
+      security:
+      - oauth:
+        - MarketingSolutions_Reco_Manage
+    get:
+      tags:
+      - Reco
+      summary: /2026-07/marketing-solutions/product-sets/{product-set-id}
+      description: Fetch an existing product set
+      operationId: FetchProductSet
+      parameters:
+      - name: product-set-id
+        in: path
+        description: ID of the product set
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Product set fetched successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceOutcomeOfProductSet'
+      security:
+      - oauth:
+        - MarketingSolutions_Reco_Read
+    patch:
+      tags:
+      - Reco
+      summary: /2026-07/marketing-solutions/product-sets/{product-set-id}
+      description: Patch an existing product set
+      operationId: PatchProductSet
+      parameters:
+      - name: product-set-id
+        in: path
+        description: ID of the product set
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValueResourceInputOfPatchProductSetRequest'
+        required: true
+        x-bodyName: request
+      responses:
+        '200':
+          description: Product set modified successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceOutcomeOfProductSet'
+      security:
+      - oauth:
+        - MarketingSolutions_Reco_Manage
+  /2026-07/marketing-solutions/product-sets/{product-set-id}/product-filters:
+    get:
+      tags:
+      - Reco
+      summary: /2026-07/marketing-solutions/product-sets/{product-set-id}/product-filters
+      description: Fetch product filtering usages for a given product set
+      operationId: FetchProductFilteringUsages
+      parameters:
+      - name: product-set-id
+        in: path
+        description: ID of the product set
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValueResourceCollectionOutcomeOfProductFilterConfig'
+      security:
+      - oauth:
+        - MarketingSolutions_Reco_Read
+  /2026-07/marketing-solutions/product-sets/dataset/{dataset-id}:
+    get:
+      tags:
+      - Reco
+      summary: /2026-07/marketing-solutions/product-sets/dataset/{dataset-id}
+      description: Fetch product sets of a given dataset
+      operationId: FetchProductSets
+      parameters:
+      - name: dataset-id
+        in: path
+        description: The ID of the dataset that should be used for product set retrieval
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Products sets fetched successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceCollectionOutcomeOfProductSet'
+      security:
+      - oauth:
+        - MarketingSolutions_Reco_Read
+components:
+  schemas:
+    CommonProblem:
+      type: object
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+          description: A machine-readable error code, expressed as a string value.
+        detail:
+          type:
+          - string
+          - 'null'
+          description: A human-readable explanation specific to this occurrence of the problem
+        instance:
+          type:
+          - string
+          - 'null'
+          description: A URI that identifies the specific occurrence of the problem.
+        source:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+          description: A machine-readable structure to reference to the exact location(s) causing the error(s)
+        stackTrace:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+          description: A short human-readable description of the problem type
+        traceId:
+          type:
+          - string
+          - 'null'
+          description: The request correlation ID this problem comes from.
+        traceIdentifier:
+          type:
+          - string
+          - 'null'
+          description: The request correlation ID this problem comes from. (deprecated, use traceId instead)
+        type:
+          enum:
+          - unknown
+          - access-control
+          - authentication
+          - authorization
+          - availability
+          - deprecation
+          - quota
+          - validation
+          type:
+          - string
+          - 'null'
+          description: The problem's category.
+      description: Common problem object.
+    ValueResourceOfBoostingConfigurationRequest:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/BoostingConfigurationRequest'
+        type:
+          type:
+          - string
+          - 'null'
+      description: A top-level object that encapsulates a Criteo API response for a single value.
+    BoostingConfigurationRequest:
+      required:
+      - boostingFactor
+      type: object
+      properties:
+        boostingFactor:
+          type: number
+          format: double
+      description: Encapsulate the parameters needed to create or update a boosting configuration
+    ValueResourceOfCreateProductSetRequest:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CreateProductSetRequest'
+        type:
+          type: string
+      description: A class that represents a ValueType in a guild compliant way
+    ValueResourceOutcomeOfBoostedAdProductSet:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ValueResourceOfBoostedAdProductSet'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for a single value.
+    BoostedAdProductSet:
+      required:
+      - adId
+      - boostingFactor
+      - modificationDate
+      - productSetId
+      type:
+      - object
+      - 'null'
+      properties:
+        adId:
+          type: string
+        boostingFactor:
+          type: number
+          format: double
+        modificationDate:
+          type: string
+        productSetId:
+          type: string
+      description: Encapsulate a boosted ad product set association and its configuration
+    CreateProductFilterRequest:
+      type: object
+      properties:
+        productSetId:
+          type:
+          - string
+          - 'null'
+      description: Encapsulate the parameters needed to enable product filtering
+    ProductFilterConfig:
+      required:
+      - adId
+      - productSetId
+      type:
+      - object
+      - 'null'
+      properties:
+        adId:
+          type: string
+        productSetId:
+          type: string
+      description: Entity to create a product filter configuration
+    ValueResourceCollectionOutcomeOfProductFilterConfig:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ValueResourceOfProductFilterConfig'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for several values.
+    ProductSetRule:
+      type: object
+      properties:
+        field:
+          enum:
+          - OBSOLETE_Extradata
+          - Category1
+          - Category2
+          - Category3
+          - ExternalItemId
+          - SalePrice
+          - Brand
+          - CustomLabel0
+          - CustomLabel1
+          - CustomLabel2
+          - CustomLabel3
+          - CustomLabel4
+          type:
+          - string
+          - 'null'
+          description: The field on which we want to apply the rule
+        operator:
+          enum:
+          - IsIn
+          - IsNotIn
+          - Between
+          - NotBetween
+          - LessThan
+          - GreaterThan
+          type:
+          - string
+          - 'null'
+          description: The operator used with the field
+        values:
+          uniqueItems: false
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: The values on which we want to apply the rule
+      description: Encapsulate a product rule
+    ValueResourceInputOfBoostingConfigurationRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ValueResourceOfBoostingConfigurationRequest'
+      description: A top-level object that encapsulates a Criteo API request for a single value.
+    PatchProductSetRequest:
+      type: object
+      properties:
+        isDraft:
+          type:
+          - boolean
+          - 'null'
+          description: '[optional] New value of product set segment status (draft or active)'
+        minimumNumberOfProducts:
+          type:
+          - integer
+          - 'null'
+          description: '[optional] New minimum number of products of the product set to be patched. This is used to determine if the rules are valid!'
+          format: int32
+        name:
+          type: string
+          description: '[optional]  New name that will be associated to the product set'
+        rules:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductSetRule'
+          description: '[optional] New rules that will be associated to the product set'
+      description: Entity to update a product set
+    ResourceCollectionOutcomeOfProductSet:
+      type: object
+      properties:
+        data:
+          uniqueItems: false
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ResourceOfProductSet'
+        errors:
+          uniqueItems: false
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          uniqueItems: false
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A class implementing the response  of the Criteo API as described in API Guild Guidelines with collection of entities as body
+    ProductSet:
+      required:
+      - clientType
+      - creationDate
+      - datasetId
+      - keepVariantProducts
+      - minimumNumberOfProducts
+      - name
+      - numberOfProducts
+      - rules
+      - status
+      type:
+      - object
+      - 'null'
+      properties:
+        clientType:
+          enum:
+          - Unknown
+          - CGrowth
+          - CMax
+          type: string
+          description: The client type of the product set
+        creationDate:
+          type: string
+          description: 'The creation date of the product set (UTC time in ISO8601 format). Example: "02/25/2022 14:51:26".
+
+            Can be null if the value isn''t available.'
+        datasetId:
+          type: string
+          description: The dataset to which the product set belong
+        id:
+          type:
+          - string
+          - 'null'
+        isFallbackAllowed:
+          type: boolean
+        keepVariantProducts:
+          type: boolean
+        minimumNumberOfProducts:
+          type: integer
+          description: 'Minimum amount of products that should match the product set to consider it valid.
+
+            Greater or equal than one.'
+          format: int32
+        name:
+          type: string
+          description: The name of the product set
+        numberOfProducts:
+          type:
+          - integer
+          - 'null'
+          description: 'The number of products matching the product set.
+
+            Can be null for newly created product set.'
+          format: int32
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductSetRule'
+          description: The rules identifying the product belonging to the set
+        status:
+          enum:
+          - Unknown
+          - Draft
+          - Pending
+          - Valid
+          - Invalid
+          - Deleted
+          type: string
+          description: The status of the product set
+      description: Encapsulate a group of product
+    ValueResourceOfPatchProductSetRequest:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/PatchProductSetRequest'
+        type:
+          type: string
+      description: A top-level object that encapsulates a Criteo API response for a single value
+    ValueResourceOutcomeOfProductFilterConfig:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ValueResourceOfProductFilterConfig'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for a single value.
+    ResourceOutcomeOfProductSet:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResourceOfProductSet'
+        errors:
+          uniqueItems: false
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          uniqueItems: false
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A class implementing the response of the Criteo API as described in API Guild Guidelines with a single entity as body
+    ValueResourceInputOfCreateProductSetRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ValueResourceOfCreateProductSetRequest'
+      description: 'Represents an API request message containing the usual valueResource data field,
+
+        i.e. data is not an entity (no id). This can be used for association objects.'
+      example:
+        data:
+          type: CreateProductSetRequest
+          attributes:
+            datasetId: '0'
+            name: My Product Set
+            isDraft: true
+            rules:
+            - operator: IsIn
+              field: Brand
+              values:
+              - MyBrand
+    CreateProductSetRequest:
+      type: object
+      properties:
+        datasetId:
+          type: string
+        isDraft:
+          type: boolean
+        name:
+          type: string
+        rules:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductSetRule'
+      description: Entity to create a product set
+    ValueResourceOfBoostedAdProductSet:
+      type:
+      - object
+      - 'null'
+      properties:
+        attributes:
+          $ref: '#/components/schemas/BoostedAdProductSet'
+        type:
+          type:
+          - string
+          - 'null'
+      description: A top-level object that encapsulates a Criteo API response for a single value.
+    ValueResourceOfCreateProductFilterRequest:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CreateProductFilterRequest'
+        type:
+          type:
+          - string
+          - 'null'
+      description: A top-level object that encapsulates a Criteo API response for a single value.
+    Outcome:
+      type: object
+      properties:
+        errors:
+          uniqueItems: false
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          uniqueItems: false
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A class implementing the body of a response without data of the Criteo API as described in API Guild Guidelines
+    ResourceOfProductSet:
+      type:
+      - object
+      - 'null'
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ProductSet'
+        id:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      description: A class that represents an entity in a guild compliant way
+    ValueResourceInputOfPatchProductSetRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ValueResourceOfPatchProductSetRequest'
+      description: A top-level object that encapsulates a Criteo API request for a single value
+    ValueResourceOfProductFilterConfig:
+      type:
+      - object
+      - 'null'
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ProductFilterConfig'
+        type:
+          type:
+          - string
+          - 'null'
+      description: A top-level object that encapsulates a Criteo API response for a single value.
+    ValueResourceInputOfCreateProductFilterRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ValueResourceOfCreateProductFilterRequest'
+      description: A top-level object that encapsulates a Criteo API request for a single value.
+    ValueResourceCollectionOutcomeOfBoostedAdProductSet:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ValueResourceOfBoostedAdProductSet'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for several values.
+  securitySchemes:
+    oauth:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.criteo.com/oauth2/token
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: https://api.criteo.com/oauth2
+          tokenUrl: https://api.criteo.com/oauth2/token
+          scopes: {}
+x-samples-languages:
+- java
+- python
+- php
+- csharp
+- javascript
+- curl
+- ruby

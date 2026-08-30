@@ -1,0 +1,255 @@
+openapi: 3.2.0
+info:
+  title: Criteo Advertiser API
+  description: Criteo API - MarketingSolutions
+  version: 2026-07
+servers:
+- url: https://api.criteo.com
+security:
+- oauth: []
+tags:
+- name: Advertiser
+paths:
+  /2026-07/advertisers/me:
+    get:
+      tags:
+      - Advertiser
+      summary: /2026-07/advertisers/me
+      description: Fetch the portfolio of Advertisers for this account
+      operationId: ListAdvertisers
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPortfolioResponse'
+              example:
+                data:
+                - type: advertiser
+                  id: '13'
+                  attributes:
+                    advertiserName: ClientName1
+                - type: advertiser
+                  id: '1352'
+                  attributes:
+                    advertiserName: ClientName2
+                - type: advertiser
+                  id: '73550'
+                  attributes:
+                    advertiserName: ClientName3
+                errors: []
+                warnings: []
+      security:
+      - oauth: []
+components:
+  schemas:
+    GetPortfolioResponse:
+      type: object
+      properties:
+        data:
+          uniqueItems: false
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EntityOfPortfolioMessage'
+          description: The response�s primary data
+        errors:
+          uniqueItems: false
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CriteoApiError'
+          description: 'Error list returned by the Criteo API
+
+            For successful requests it is empty'
+        warnings:
+          uniqueItems: false
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CriteoApiWarning'
+          description: 'Warnings list returned by the Criteo API
+
+            In some situations the operations are successful but it may be useful to issue warnings to the API consumer.
+
+            For example the endpoint, entity or field is deprecated. Warnings are like compiler warnings, they indicate that problems may occur in the future.'
+      description: Portfolio fetch Response
+    PortfolioMessage:
+      type:
+      - object
+      - 'null'
+      properties:
+        advertiserName:
+          type:
+          - string
+          - 'null'
+      description: Class with elementary info about advertiser
+    EntityOfPortfolioMessage:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/PortfolioMessage'
+        id:
+          type:
+          - string
+          - 'null'
+          description: A opaque string containing the unique Id of the entity
+        meta:
+          type:
+          - object
+          - 'null'
+          description: A meta object that contains application-specific metadata
+        type:
+          enum:
+          - campaign
+          - adset
+          - ad
+          - advertiser
+          - agency
+          - publisher
+          - address
+          - client
+          - contact
+          - industry
+          type:
+          - string
+          - 'null'
+          description: A string containing the entity type
+          example: campaign
+      description: Generic Criteo API successful data model
+    CriteoApiWarning:
+      type: object
+      properties:
+        code:
+          enum:
+          - internal-error
+          - deprecated-field
+          - endpoint-deprecated
+          - required-field
+          - invalid-date-format
+          - invalid
+          - invalid-ranged
+          - invalid-timespan
+          type:
+          - string
+          - 'null'
+          description: A machine-readable error code string in kabab-case. Unique across Criteo
+          example: internal-error
+        detail:
+          type:
+          - string
+          - 'null'
+          description: A human-readable explanation specific to this occurrence of the problem.
+        instance:
+          type:
+          - string
+          - 'null'
+          description: A URI reference that identifies the specific occurrence of the problem
+        title:
+          type:
+          - string
+          - 'null'
+          description: A short, human-readable remarks of the problem type.
+        traceId:
+          type:
+          - string
+          - 'null'
+          description: The correlation ID provided by the gateway
+        type:
+          enum:
+          - access_control
+          - authentication
+          - authorization
+          - availability
+          - deprecation
+          - quota
+          - validation
+          type:
+          - string
+          - 'null'
+          description: A machine-readable code specifying error category
+          example: access_control
+      description: Criteo API response warning
+    CriteoApiError:
+      type: object
+      properties:
+        code:
+          enum:
+          - internal-error
+          - deprecated-field
+          - endpoint-deprecated
+          - required-field
+          - invalid-date-format
+          - invalid
+          - invalid-ranged
+          - invalid-timespan
+          type:
+          - string
+          - 'null'
+          description: A machine-readable error code string in kabab-case. Unique across Criteo
+          example: internal-error
+        detail:
+          type:
+          - string
+          - 'null'
+          description: A human-readable explanation specific to this occurrence of the problem.
+        instance:
+          type:
+          - string
+          - 'null'
+          description: A URI reference that identifies the specific occurrence of the problem
+        source:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+          description: A machine-readable structure to reference to the exact location(s) causing the error(s).
+        title:
+          type:
+          - string
+          - 'null'
+          description: A short, human-readable remarks of the problem type.
+        traceId:
+          type:
+          - string
+          - 'null'
+          description: The correlation ID provided by the gateway
+        type:
+          enum:
+          - access_control
+          - authentication
+          - authorization
+          - availability
+          - deprecation
+          - quota
+          - validation
+          type:
+          - string
+          - 'null'
+          description: A machine-readable code specifying error category
+          example: access_control
+      description: Criteo API response error
+  securitySchemes:
+    oauth:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.criteo.com/oauth2/token
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: https://api.criteo.com/oauth2
+          tokenUrl: https://api.criteo.com/oauth2/token
+          scopes: {}
+x-samples-languages:
+- java
+- python
+- php
+- csharp
+- javascript
+- curl
+- ruby
