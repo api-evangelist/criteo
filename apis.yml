@@ -114,6 +114,8 @@ apis:
   humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
   baseURL: https://api.criteo.com/2026-07/retail-media
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -210,6 +212,8 @@ apis:
   humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
   baseURL: https://api.criteo.com/2026-07/retail-media
   tags:
+  - Balances
+  tags_raw:
   - Balance
   properties:
   - type: OpenAPI
