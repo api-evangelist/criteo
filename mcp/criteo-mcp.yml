@@ -142,3 +142,16 @@ summary:
   stdio_packages: 0
   anonymous_tools_enumerated: 3
   gated_servers: 1
+tools_count: 3
+tools:
+- name: search_criteo_docs
+  description: ''
+- name: query_docs_filesystem_criteo_docs
+  description: ''
+- name: submit_feedback
+  description: ''
+tools_source: live tools/list via initialize handshake, 2026-09-11 (signals/audit_mcp_authorship.py --probe)
+authorship: platform
+authorship_note: 'PLATFORM-AUTHORED: this tool shape is shared with at least one other provider in the
+  catalog, so it is a platform default appearing under this provider''s domain rather than an interface
+  this provider designed. Shared shape: (''query_docs_filesystem_*'', ''search_*'', ''submit_feedback'')'
