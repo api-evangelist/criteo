@@ -11,8 +11,20 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 1
+edge_count: 3
 edges:
+- tag: Campaign
+  spec_file: criteo-campaign-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.8
+  evidence: '"CreateAdSet", "StartAdSets", "StopAdSets", "PatchAdSetCategoryBids", schemas CampaignBudgetAutomationV23Q1,
+    CreateAdSetGeoLocationV26Q1'
+  reason: Creation, budgeting, bidding, targeting and start/stop control of advertising campaigns and
+    ad sets across retail media and marketing solutions — paid media campaign execution, which is digital
+    marketing management. Slight ambiguity only over whether demand generation is the better L2.
+  recovered_from: vertical-retail-consumer-goods-edges.json
 - tag: Creative
   spec_file: criteo-creative-api-openapi.yml
   capability_id: BC-3760.40
@@ -24,3 +36,15 @@ edges:
   reason: Operations create, edit, preview and delete ads, creatives and coupon creatives for advertisers
     on Criteo's ad platform — creative onboarding and ad build-out, i.e. ad trafficking and operations
     rather than inventory or measurement.
+- tag: Audience
+  spec_file: criteo-audience-api-openapi.yml
+  capability_id: BC-420.20
+  capability_id_l1: BC-420
+  capability_name: Customer Segmentation Management
+  confidence: 0.7
+  evidence: '"CreateAudienceSegments", "UpdateContactListByAudienceSegment", "ComputeAudienceSegmentsSizes",
+    schemas LookalikeCreateV1, ProspectingCreateV1, InMarketAudienceSegmentInterestEntityV1Resource'
+  reason: Creation and maintenance of audience segments (contact-list, lookalike, prospecting, in-market
+    interest) with size estimation — definition of customer segments for targeted treatment, i.e. customer
+    segmentation management. Some ambiguity with digital marketing execution keeps this at 0.7.
+  recovered_from: vertical-retail-consumer-goods-edges.json
