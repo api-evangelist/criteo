@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Criteo Analytics API
   version: 2026-07
-  description: 'Operations tagged Analytics across 2 of this provider''s published API definitions: criteo-marketing-solutions-api-openapi.yml, criteo-retail-media-api-openapi.yml. Each path carries the servers of the definition it was published in.'
+  description: 'Operations tagged Analytics across 2 of this provider''s published API definitions: criteo-marketing-solutions-2026-07-openapi-original.json, criteo-retail-media-2026-07-openapi-original.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.criteo.com
 security:
@@ -72,7 +72,6 @@ paths:
       summary: /2026-07/placements/report
       description: 'Your ads are placed in different domains (publishers) and environments (websites and apps). Thanks to the placements endpoint, you can analyse the performances for each publisher, comparing displays, clicks and sales generated.
 
-        <br/><br/>
 
         This endpoint supports data retrieval for up to three months in the past.'
       operationId: GetPlacementsReport
@@ -148,7 +147,6 @@ paths:
       summary: /2026-07/statistics/report
       description: 'This Statistics endpoint provides ad set related data. It is an upgrade of our previous Statistics endpoint, and includes new metrics and customization capabilities.
 
-        <br/><br/>
 
         This endpoint supports data retrieval for up to two years in the past.'
       operationId: GetAdsetReport
@@ -229,7 +227,6 @@ paths:
       summary: /2026-07/transactions/report
       description: 'This Transactions endpoint provides transactions id related data.
 
-        <br/><br/>
 
         This endpoint supports data retrieval for up to two years in the past.'
       operationId: GetTransactionsReport
@@ -346,7 +343,6 @@ paths:
       summary: /2026-07/retail-media/reports/attributed-transactions
       description: 'Creates an attributed-transactions async report. The request accepts explicit attributed-transaction dimensions, metrics, and filters.
 
-        <br />
 
         This endpoint is subject to specific rate limits.'
       operationId: GenerateAsyncAttributedTransactionsReport
@@ -376,7 +372,6 @@ paths:
       summary: /2026-07/retail-media/reports/fillrate
       description: 'Returns an asynchronous Fill Rate Report
 
-        <br />
 
         This endpoint is subject to specific rate limits.'
       operationId: GenerateAsyncFillRateReport
@@ -406,7 +401,6 @@ paths:
       summary: /2026-07/retail-media/reports/missed-opportunities
       description: 'Creates a missed-opportunities async report. The request accepts explicit missed-opportunities dimensions, metrics, and filters.
 
-        <br />
 
         This endpoint is subject to specific rate limits.'
       operationId: GenerateAsyncMissedOpportunitiesReport
@@ -436,7 +430,6 @@ paths:
       summary: /2026-07/retail-media/reports/performance
       description: 'Creates a performance DSP analytics async report. Dimensions and metrics select the output schema, and filters constrain eligible data.
 
-        <br />
 
         This endpoint is subject to specific rate limits.'
       operationId: GenerateAsyncPerformanceReport
@@ -466,7 +459,6 @@ paths:
       summary: /2026-07/retail-media/reports/revenue
       description: 'Returns an asynchronous Revenue Report
 
-        <br />
 
         This endpoint is subject to specific rate limits.'
       operationId: GenerateAsyncRevenueReport
@@ -574,7 +566,6 @@ paths:
       summary: /2026-07/retail-media/reports/sync/real-time-performance
       description: 'Returns a synchronous Real Time Performance Report. Returns empty rows; metadata includes dataCompleteThrough (latest time from streaming table in the request timezone).
 
-        <br />
 
         This endpoint is subject to specific rate limits.'
       operationId: GenerateSyncRealTimePerformanceReport
@@ -604,7 +595,6 @@ paths:
       summary: /2026-07/retail-media/reports/unfilled-placements
       description: 'Returns an asynchronous Unfilled Placements Report
 
-        <br />
 
         This endpoint is subject to specific rate limits.'
       operationId: GenerateAsyncUnfilledPlacementsReport
@@ -629,131 +619,6 @@ paths:
     - url: https://api.criteo.com
 components:
   schemas:
-    TransactionsReportQueryMessageListRequest:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/TransactionsReportQueryMessageResource'
-      additionalProperties: false
-      description: A top-level object that encapsulates a Criteo API request for several value objects.
-    CommonProblem:
-      type: object
-      properties:
-        code:
-          type:
-          - string
-          - 'null'
-          description: A machine-readable error code, expressed as a string value.
-        detail:
-          type:
-          - string
-          - 'null'
-          description: A human-readable explanation specific to this occurrence of the problem
-        instance:
-          type:
-          - string
-          - 'null'
-          description: A URI that identifies the specific occurrence of the problem.
-        source:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type: string
-          description: A machine-readable structure to reference to the exact location(s) causing the error(s)
-        stackTrace:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-          description: A short human-readable description of the problem type
-        traceId:
-          type:
-          - string
-          - 'null'
-          description: The request correlation ID this problem comes from.
-        traceIdentifier:
-          type:
-          - string
-          - 'null'
-          description: The request correlation ID this problem comes from. (deprecated, use traceId instead)
-        type:
-          enum:
-          - unknown
-          - access-control
-          - authentication
-          - authorization
-          - availability
-          - deprecation
-          - quota
-          - validation
-          type:
-          - string
-          - 'null'
-          description: The problem's category.
-      description: Common problem object.
-    PlacementsReportQueryMessageListRequest:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/PlacementsReportQueryMessageResource'
-      additionalProperties: false
-      description: A top-level object that encapsulates a Criteo API request for several value objects.
-    TransparencyReportFile:
-      required:
-      - fileName
-      - url
-      type: object
-      properties:
-        fileName:
-          type: string
-        url:
-          type: string
-      additionalProperties: false
-      description: This is the message defining the file response for Transparency report
-    TransparencyReportResource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/TransparencyReport'
-        type:
-          type:
-          - string
-          - 'null'
-          description: Type of the resource.
-      additionalProperties: false
-      description: A value resource exposed by the API.
-    TransparencyReport:
-      required:
-      - advertiserId
-      - files
-      - tokenValidUntil
-      type:
-      - object
-      - 'null'
-      properties:
-        advertiserId:
-          type: string
-        files:
-          type: array
-          items:
-            $ref: '#/components/schemas/TransparencyReportFile'
-        tokenValidUntil:
-          type: string
-          format: date-time
-      additionalProperties: false
-      description: This is the message defining the attribute response for Transparency report
     StatisticsReportQueryMessage:
       required:
       - advertiserIds
@@ -1086,6 +951,180 @@ components:
           default: UTC
       additionalProperties: false
       description: This is the message defining the query for Adset report
+    CommonProblem:
+      type: object
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+          description: A machine-readable error code, expressed as a string value.
+        detail:
+          type:
+          - string
+          - 'null'
+          description: A human-readable explanation specific to this occurrence of the problem
+        instance:
+          type:
+          - string
+          - 'null'
+          description: A URI that identifies the specific occurrence of the problem.
+        source:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+          description: A machine-readable structure to reference to the exact location(s) causing the error(s)
+        stackTrace:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+          description: A short human-readable description of the problem type
+        traceId:
+          type:
+          - string
+          - 'null'
+          description: The request correlation ID this problem comes from.
+        traceIdentifier:
+          type:
+          - string
+          - 'null'
+          description: The request correlation ID this problem comes from. (deprecated, use traceId instead)
+        type:
+          enum:
+          - unknown
+          - access-control
+          - authentication
+          - authorization
+          - availability
+          - deprecation
+          - quota
+          - validation
+          type:
+          - string
+          - 'null'
+          description: The problem's category.
+      description: Common problem object.
+    TransparencyQueryMessage:
+      required:
+      - endDate
+      - startDate
+      type: object
+      properties:
+        endDate:
+          type: string
+          description: End date of the report. Date component of ISO 8601 format, any time or timezone component is ignored.
+          format: date-time
+        shouldDisplayProductIds:
+          type: boolean
+          description: Specify if the product ids are displayed in the report.
+          default: false
+        startDate:
+          type: string
+          description: Start date of the report. Date component of ISO 8601 format, any time or timezone component is ignored. Must be ≤ endDate.
+          format: date-time
+      additionalProperties: false
+      description: This is the message defining the query for Transparency report
+    PlacementsReportQueryMessageResource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/PlacementsReportQueryMessage'
+        type:
+          type:
+          - string
+          - 'null'
+          description: Type of the resource.
+      additionalProperties: false
+      description: A value resource exposed by the API.
+    TransactionsReportQueryMessage:
+      required:
+      - advertiserIds
+      - currency
+      - endDate
+      - startDate
+      type: object
+      properties:
+        advertiserIds:
+          type: string
+          description: List of advertiser IDs to report on, provided as a single comma-separated string (e.g., "123,456,789"). The advertisers must already exist. If empty, all advertisers will be used.
+        currency:
+          type: string
+          description: The currency used for the report. ISO 4217 code (three-letter capitals).
+        endDate:
+          type: string
+          description: End date of the report. Date component of ISO 8601 format, any time or timezone component is ignored.
+          format: date-time
+        eventType:
+          enum:
+          - Click
+          - Display
+          type:
+          - string
+          - 'null'
+          description: Optional event type to filter on. If empty, all event types will be included.
+        format:
+          enum:
+          - csv
+          - excel
+          - xml
+          - json
+          type: string
+          description: Optional file format of the generated report.
+          default: json
+        startDate:
+          type: string
+          description: Start date of the report. Date component of ISO 8601 format, any time or timezone component is ignored. Must be ≤ endDate.
+          format: date-time
+        timezone:
+          type:
+          - string
+          - 'null'
+          description: Optional timezone used for the report. Timezone Database format (Tz).
+          default: UTC
+      additionalProperties: false
+      description: This is the message defining the query for Transaction report
+    TransparencyReportFile:
+      required:
+      - fileName
+      - url
+      type: object
+      properties:
+        fileName:
+          type: string
+        url:
+          type: string
+      additionalProperties: false
+      description: This is the message defining the file response for Transparency report
+    TransparencyReportResource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/TransparencyReport'
+        type:
+          type:
+          - string
+          - 'null'
+          description: Type of the resource.
+      additionalProperties: false
+      description: A value resource exposed by the API.
+    TransactionsReportQueryMessageResource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/TransactionsReportQueryMessage'
+        type:
+          type:
+          - string
+          - 'null'
+          description: Type of the resource.
+      additionalProperties: false
+      description: A value resource exposed by the API.
     PlacementsReportQueryMessage:
       required:
       - advertiserIds
@@ -1196,97 +1235,6 @@ components:
           default: UTC
       additionalProperties: false
       description: This is the message defining the query for Placements report
-    TransparencyQueryMessage:
-      required:
-      - endDate
-      - startDate
-      type: object
-      properties:
-        endDate:
-          type: string
-          description: End date of the report. Date component of ISO 8601 format, any time or timezone component is ignored.
-          format: date-time
-        shouldDisplayProductIds:
-          type: boolean
-          description: Specify if the product ids are displayed in the report.
-          default: false
-        startDate:
-          type: string
-          description: Start date of the report. Date component of ISO 8601 format, any time or timezone component is ignored. Must be ≤ endDate.
-          format: date-time
-      additionalProperties: false
-      description: This is the message defining the query for Transparency report
-    TransactionsReportQueryMessage:
-      required:
-      - advertiserIds
-      - currency
-      - endDate
-      - startDate
-      type: object
-      properties:
-        advertiserIds:
-          type: string
-          description: List of advertiser IDs to report on, provided as a single comma-separated string (e.g., "123,456,789"). The advertisers must already exist. If empty, all advertisers will be used.
-        currency:
-          type: string
-          description: The currency used for the report. ISO 4217 code (three-letter capitals).
-        endDate:
-          type: string
-          description: End date of the report. Date component of ISO 8601 format, any time or timezone component is ignored.
-          format: date-time
-        eventType:
-          enum:
-          - Click
-          - Display
-          type:
-          - string
-          - 'null'
-          description: Optional event type to filter on. If empty, all event types will be included.
-        format:
-          enum:
-          - csv
-          - excel
-          - xml
-          - json
-          type: string
-          description: Optional file format of the generated report.
-          default: json
-        startDate:
-          type: string
-          description: Start date of the report. Date component of ISO 8601 format, any time or timezone component is ignored. Must be ≤ endDate.
-          format: date-time
-        timezone:
-          type:
-          - string
-          - 'null'
-          description: Optional timezone used for the report. Timezone Database format (Tz).
-          default: UTC
-      additionalProperties: false
-      description: This is the message defining the query for Transaction report
-    PlacementsReportQueryMessageResource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/PlacementsReportQueryMessage'
-        type:
-          type:
-          - string
-          - 'null'
-          description: Type of the resource.
-      additionalProperties: false
-      description: A value resource exposed by the API.
-    TransactionsReportQueryMessageResource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/TransactionsReportQueryMessage'
-        type:
-          type:
-          - string
-          - 'null'
-          description: Type of the resource.
-      additionalProperties: false
-      description: A value resource exposed by the API.
     TransparencyReportListResponse:
       type: object
       properties:
@@ -1314,420 +1262,53 @@ components:
           readOnly: true
       additionalProperties: false
       description: A top-level object that encapsulates a Criteo API response for several value objects.
-    AsyncFillRateReport:
-      required:
-      - dimensions
-      - endDate
-      - metrics
-      - startDate
-      - supplyAccountIds
-      type: object
-      properties:
-        adServerType:
-          enum:
-          - all
-          - gam
-          - criteo
-          type: string
-          description: 'Filter on the type of the ad server: criteo, gam, all'
-          default: all
-        dimensions:
-          minItems: 1
-          type: array
-          items:
-            enum:
-            - date
-            - retailerId
-            - retailerName
-            - placementId
-            - placementName
-            - pageTypeName
-            - environment
-            - servedCategory
-            - retailerCategoryId
-            - retailerCategoryName
-            - adServerType
-            type: string
-          description: List of dimensions to report on
-        endDate:
-          type: string
-          description: End date
-          format: date-time
-        format:
-          enum:
-          - json
-          - json-compact
-          - json-newline
-          - csv
-          type: string
-          description: Format of the output
-          default: json
-        metrics:
-          minItems: 1
-          type: array
-          items:
-            enum:
-            - pageViews
-            - availablePlacements
-            - unfilledPlacements
-            - fillRate
-            - placementImpressions
-            - productImpressions
-            - impressions
-            - placementClicks
-            - productClicks
-            - clicks
-            - placementImpressionsCTR
-            - productImpressionsCTR
-            - cpm
-            - cpc
-            - placementImpressionsRevenue
-            - productClicksRevenue
-            - revenue
-            - workingMedia
-            - netRevenue
-            - nonDeliverablePlacements
-            - deliverablePlacements
-            - placementsWithCandidates
-            - coveredPlacements
-            - coverageRate
-            type: string
-          description: List of metrics to report on
-        startDate:
-          type: string
-          description: Start date
-          format: date-time
-        supplyAccountIds:
-          type: array
-          items:
-            type: string
-          description: Supply account ids to report on
-        timezone:
-          type: string
-          description: 'Time zone : see criteo developer portal for supported time zones'
-          default: UTC
-      description: Async FillRate report body request
-    SyncRealTimePerformanceReportRequest:
+    PlacementsReportQueryMessageListRequest:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/SyncRealTimePerformanceReportResource'
-      description: A top-level object that encapsulates a Criteo API request for a single value
-    AsyncRevenueReportResource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AsyncRevenueReport'
-        type:
-          type: string
-      description: A top-level object that encapsulates a Criteo API response for a single value
-    SyncRealTimePerformanceReportResource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/SyncRealTimePerformanceReport'
-        type:
-          type: string
-      description: A top-level object that encapsulates a Criteo API response for a single value
-    SyncAttributedTransactionsReport:
-      required:
-      - accountId
-      - endDate
-      - startDate
-      type: object
-      properties:
-        accountId:
-          type: string
-          description: Account id to report on
-        campaignIds:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
-            type: string
-          description: Campaign ids to filter
-        campaignType:
-          enum:
-          - all
-          - sponsoredProducts
-          - onSiteDisplays
-          type: string
-          description: 'Filter the type of campaigns to report on: sponsoredProducts or onSiteDisplays'
-          default: all
-        clickAttributionWindow:
-          enum:
-          - none
-          - 7D
-          - 14D
-          - 30D
-          type: string
-          description: Click attribution window
-          default: none
-        dimensions:
-          type: array
-          items:
-            enum:
-            - purchasedDate
-            - purchasedHour
-            - advDate
-            - advHour
-            - daysDifference
-            - campaignId
-            - campaignName
-            - lineItemId
-            - lineItemName
-            - advProductId
-            - advProductGtin
-            - advProductMpn
-            - advProductName
-            - advProductCategory
-            - purchasedProductId
-            - purchasedProductGtin
-            - purchasedProductMpn
-            - purchasedProductName
-            - purchasedProductCategory
-            - advEngagement
-            - advToPurchasedProductRelationship
-            - salesChannel
-            - retailerName
-            - pageTypeName
-            - keyword
-            - attributionWindow
-            - saleSellerId
-            - saleSellerName
-            - activitySellerId
-            - activitySellerName
-            type: string
-          description: List of dimensions to report on
-        endDate:
-          type: string
-          description: End date
-          format: date-time
-        lineItemIds:
-          type: array
-          items:
-            type: string
-          description: Line item ids to filter
-        mediaType:
-          enum:
-          - unknown
-          - video
-          - display
-          - all
-          type: string
-          description: 'Filter on the type of media: unknown, display, video'
-          default: all
-        metrics:
-          type: array
-          items:
-            enum:
-            - attributedUnits
-            - attributedSales
-            type: string
-          description: List of metrics to report on
-        salesChannel:
-          enum:
-          - online
-          - offline
-          - all
-          type: string
-          description: 'Filter on specific sales channel: offline or online'
-          default: all
-        startDate:
-          type: string
-          description: Start date
-          format: date-time
-        timezone:
-          type: string
-          description: 'Time zone : see criteo developer portal for supported time zones'
-          default: UTC
-        viewAttributionWindow:
-          enum:
-          - none
-          - 1D
-          - 7D
-          - 14D
-          - 30D
-          type: string
-          description: View attribution window
-          default: none
-      description: Attributed Transactions report body request
-    AsyncFillRateReportResource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AsyncFillRateReport'
-        type:
-          type: string
-      description: A top-level object that encapsulates a Criteo API response for a single value
-    AsyncMissedOpportunitiesReportRequest:
+            $ref: '#/components/schemas/PlacementsReportQueryMessageResource'
+      additionalProperties: false
+      description: A top-level object that encapsulates a Criteo API request for several value objects.
+    TransactionsReportQueryMessageListRequest:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/AsyncMissedOpportunitiesReportResource'
-      description: A top-level object that encapsulates a missed-opportunities async report create request.
-    StatusResponseResource:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/TransactionsReportQueryMessageResource'
+      additionalProperties: false
+      description: A top-level object that encapsulates a Criteo API request for several value objects.
+    TransparencyReport:
+      required:
+      - advertiserId
+      - files
+      - tokenValidUntil
       type:
       - object
       - 'null'
       properties:
-        attributes:
-          $ref: '#/components/schemas/StatusResponse'
-        id:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
-      description: A class that represents a domain entity exposed by an API
-    AsyncPerformanceReportRequest:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/AsyncPerformanceReportResource'
-      description: A top-level object that encapsulates a performance DSP analytics async report create request.
-    SyncAttributedTransactionsReportRequest:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/SyncAttributedTransactionsReportResource'
-      description: A top-level object that encapsulates a Criteo API request for a single value
-    SyncAttributedTransactionsReportResource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/SyncAttributedTransactionsReport'
-        type:
+        advertiserId:
           type: string
-      description: A top-level object that encapsulates a Criteo API response for a single value
-    AsyncUnfilledPlacementsReport:
-      required:
-      - dimensions
-      - endDate
-      - metrics
-      - startDate
-      - supplyAccountIds
-      type: object
-      properties:
-        adServerType:
-          enum:
-          - all
-          - gam
-          - criteo
-          type: string
-          description: 'Filter on the type of the ad server: criteo, gam, all'
-          default: all
-        campaignType:
-          enum:
-          - all
-          - sponsoredProducts
-          - onSiteDisplays
-          type: string
-          description: 'Filter on the type of the campaign: onsite display, onsite sponsored products, all'
-          default: all
-        dimensions:
-          minItems: 1
+        files:
           type: array
           items:
-            enum:
-            - date
-            - retailerId
-            - retailerName
-            - placementId
-            - placementName
-            - pageTypeName
-            - servedCategory
-            - environment
-            - retailerCategoryId
-            - retailerCategoryName
-            - adServerType
-            - campaignType
-            type: string
-          description: List of dimensions to report on
-        endDate:
+            $ref: '#/components/schemas/TransparencyReportFile'
+        tokenValidUntil:
           type: string
-          description: End date
           format: date-time
-        format:
-          enum:
-          - json
-          - json-compact
-          - json-newline
-          - csv
-          type: string
-          description: Format of the output
-          default: json
-        metrics:
-          minItems: 1
-          type: array
-          items:
-            enum:
-            - totalUnfilledPlacements
-            - unfilledUserOptOut
-            - unfilledNotEnoughDemand
-            - unfilledTotalAuctionSettings
-            - unfilledTotalAuctionConsiderations
-            - unfilledAdvertiserAuctionSettings
-            - unfilledRetailerAuctionSettings
-            - unfilledCriteoAuctionSettings
-            - unfilledReturnedButNotPainted
-            - nonDeliverableUnmappedCategories
-            - nonDeliverablePagesWithUnknownProducts
-            - nonDeliverableBlockedOptOut
-            - nonDeliverableBlockedPageCategory
-            - nonDeliverableInactivePlacement
-            - nonDeliverableInsufficientOrganicResults
-            - nonDeliverableInvalidTraffic
-            - nonDeliverableTestPlacement
-            - uncoveredUnusedFormats
-            - uncoveredSearchTermWithoutCategory
-            - uncoveredNoDemandBrandedKeywordConquestingEnabled
-            - uncoveredNoDemandBrandedKeywordConquestingDisabled
-            - uncoveredNoDemandUnbrandedInventory
-            - uncoveredNoDemandOptOut
-            - uncoveredFilteredOutDemand
-            - uncoveredBrokenPlacement
-            - uncoveredNotPainted
-            - availablePlacements
-            - fillRate
-            - placementImpressions
-            - productImpressions
-            - placementClicks
-            - productClicks
-            - clicks
-            - placementImpressionsCTR
-            - productImpressionsCTR
-            - cpm
-            - cpc
-            - placementImpressionsRevenue
-            - productClicksRevenue
-            - revenue
-            - nonDeliverablePlacements
-            - deliverablePlacements
-            - placementsWithCandidates
-            - coveredPlacements
-            - coverageRate
-            type: string
-          description: List of metrics to report on
-        startDate:
-          type: string
-          description: Start date
-          format: date-time
-        supplyAccountIds:
-          type: array
-          items:
-            type: string
-          description: Supply account ids to report on
-        timezone:
-          type: string
-          description: 'Time zone : see criteo developer portal for supported time zones'
-          default: UTC
-      description: Async Unfilled Placements report body request
-    ReportResponse:
+      additionalProperties: false
+      description: This is the message defining the attribute response for Transparency report
+    AsyncReportResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/ReportDataResponseResource'
+          $ref: '#/components/schemas/StatusResponseResource'
         errors:
           type:
           - array
@@ -1735,8 +1316,6 @@ components:
           items:
             $ref: '#/components/schemas/CommonProblem'
           readOnly: true
-        meta:
-          $ref: '#/components/schemas/ExportReportMetaData'
         warnings:
           type:
           - array
@@ -1744,52 +1323,91 @@ components:
           items:
             $ref: '#/components/schemas/CommonProblem'
           readOnly: true
-      description: Report response format
-    AsyncAttributedTransactionsReportResource:
+      description: Async Report response format
+    SyncRealTimePerformanceReport:
+      required:
+      - startDate
+      type: object
+      properties:
+        accountIds:
+          type: array
+          items:
+            type: string
+          description: Account ids to filter (plural; base has AccountId for single account).
+        campaignIds:
+          type: array
+          items:
+            type: string
+          description: Campaign ids to filter.
+        dimensions:
+          type: array
+          items:
+            enum:
+            - date
+            - hour
+            - accountId
+            - accountName
+            - campaignId
+            - campaignName
+            - lineItemId
+            - lineItemName
+            - retailerId
+            - retailerName
+            type: string
+            description: 'Dimensions supported by the real-time performance report (streaming + hourly stats).
+
+              Only these values are accepted; invalid values cause deserialization to fail.'
+          description: 'List of dimensions to report on (real-time: at least one required). Only the supported dimension values are valid.'
+        endDate:
+          type: string
+          description: 'Optional end date/time (inclusive in the request timezone). If empty or not provided, no end date filter is applied.
+
+            When provided, used as the inclusive upper bound for the report range.
+
+            Hides base Report.EndDate so this report can treat end date as optional (no [Required]).'
+          format: date-time
+        lineItemIds:
+          type: array
+          items:
+            type: string
+          description: Line item ids to filter.
+        metrics:
+          type: array
+          items:
+            enum:
+            - impressions
+            - clicks
+            - spend
+            type: string
+            description: 'Metrics supported by the real-time performance report (streaming + hourly stats).
+
+              Only these values are accepted; invalid values cause deserialization to fail.'
+          description: 'List of metrics to report on (real-time: at least one required). Only the supported metric values are valid.'
+        retailerIds:
+          type: array
+          items:
+            type: string
+          description: Retailer ids to filter. This is not used for security, so no need to check for > 0 elements
+        startDate:
+          type: string
+          description: 'Start date (real-time: must be within the last 7 days).'
+          format: date-time
+        timezone:
+          type: string
+          description: 'Time zone : see criteo developer portal for supported time zones'
+          default: UTC
+      description: 'Real Time Performance report body request (one sheeter: startDate, endDate (optional), RetailerIds, accountIds, campaignIds, lineItemIds, dimensions, metrics, timezones).
+
+        Extends SyncReport only (no default filters); adds entry filter arrays.
+
+        Dimensions and metrics are restricted to their supported enumerated values; invalid values cause deserialization to fail.'
+    AsyncFillRateReportResource:
       type: object
       properties:
         attributes:
-          $ref: '#/components/schemas/AsyncAttributedTransactionsReport'
+          $ref: '#/components/schemas/AsyncFillRateReport'
         type:
           type: string
-      description: A top-level object that encapsulates a Criteo API response for a single value
-    ExportReportMetaData:
-      type:
-      - object
-      - 'null'
-      properties:
-        columns:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ExportReportColumn'
-        dataCompleteThrough:
-          $ref: '#/components/schemas/DataCompleteThrough'
-        rows:
-          type:
-          - integer
-          - 'null'
-          format: int32
-      description: 'Metadata for a report response: data freshness, column descriptions, and row count.'
-    ReportDataResponseResource:
-      type:
-      - object
-      - 'null'
-      properties:
-        attributes:
-          type:
-          - array
-          - 'null'
-          items:
-            type: array
-            items:
-              type: object
-          description: Data response format
-        type:
-          type:
-          - string
-          - 'null'
       description: A top-level object that encapsulates a Criteo API response for a single value
     SyncCampaignsReport:
       required:
@@ -1914,6 +1532,145 @@ components:
           description: View attribution window
           default: none
       description: Campaigns report body request
+    AsyncAttributedTransactionsReport:
+      required:
+      - dimensions
+      - endDate
+      - filters
+      - metrics
+      - startDate
+      type: object
+      properties:
+        clickAttributionWindow:
+          enum:
+          - none
+          - 7D
+          - 14D
+          - 30D
+          type: string
+        clickMatchLevel:
+          enum:
+          - sameSku
+          - sameCategory
+          - sameBrand
+          - campaign
+          type: string
+          default: campaign
+        dimensions:
+          type: array
+          items:
+            enum:
+            - purchasedDate
+            - purchasedHour
+            - advertisedDate
+            - advertisedHour
+            - daysDifference
+            - accountId
+            - accountName
+            - campaignId
+            - campaignName
+            - lineItemId
+            - lineItemName
+            - advertisedProductId
+            - advertisedProductGtin
+            - advertisedProductMpn
+            - advertisedProductName
+            - advertisedProductCategory
+            - purchasedProductId
+            - purchasedProductGtin
+            - purchasedProductMpn
+            - purchasedProductName
+            - purchasedProductCategory
+            - advertisedEngagement
+            - advertisedToPurchasedProductRelationship
+            - salesChannel
+            - retailerId
+            - retailerName
+            - pageType
+            - keyword
+            - attributionWindow
+            - saleSellerId
+            - saleSellerName
+            - activitySellerId
+            - activitySellerName
+            type: string
+        endDate:
+          type: string
+          format: date-time
+        filters:
+          $ref: '#/components/schemas/AttributedTransactionsReportFilters'
+        format:
+          enum:
+          - json
+          - json-compact
+          - json-newline
+          - csv
+          type: string
+        metrics:
+          type: array
+          items:
+            enum:
+            - attributedUnits
+            - attributedSales
+            type: string
+        startDate:
+          type: string
+          format: date-time
+        timezone:
+          type: string
+          default: UTC
+        viewAttributionWindow:
+          enum:
+          - none
+          - 1D
+          - 7D
+          - 14D
+          - 30D
+          type: string
+        viewMatchLevel:
+          enum:
+          - sameSku
+          - sameCategory
+          - sameBrand
+          - campaign
+          type: string
+          default: campaign
+      description: Create payload attributes for an attributed-transactions async report.
+    AsyncMissedOpportunitiesReportResource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AsyncMissedOpportunitiesReport'
+        type:
+          type: string
+      description: A top-level object that encapsulates a Criteo API response for a single value
+    ReportDataResponseResource:
+      type:
+      - object
+      - 'null'
+      properties:
+        attributes:
+          type:
+          - array
+          - 'null'
+          items:
+            type: array
+            items:
+              type: object
+          description: Data response format
+        type:
+          type:
+          - string
+          - 'null'
+      description: A top-level object that encapsulates a Criteo API response for a single value
+    AsyncPerformanceReportResource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AsyncPerformanceReport'
+        type:
+          type: string
+      description: A top-level object that encapsulates a Criteo API response for a single value
     SyncLineItemsReport:
       required:
       - accountId
@@ -2042,36 +1799,38 @@ components:
           description: View attribution window
           default: none
       description: Line Items report body request
-    AsyncMissedOpportunitiesReportResource:
+    MissedOpportunitiesReportFilters:
       type: object
+      properties:
+        accountIds:
+          type: array
+          items:
+            type: string
+        campaignIds:
+          type: array
+          items:
+            type: string
+        lineItemIds:
+          type: array
+          items:
+            type: string
+      description: Array-valued constraints for missed-opportunities reporting. Exactly one of accountIds, campaignIds, or lineItemIds is required.
+    StatusResponseResource:
+      type:
+      - object
+      - 'null'
       properties:
         attributes:
-          $ref: '#/components/schemas/AsyncMissedOpportunitiesReport'
+          $ref: '#/components/schemas/StatusResponse'
+        id:
+          type:
+          - string
+          - 'null'
         type:
-          type: string
-      description: A top-level object that encapsulates a Criteo API response for a single value
-    AsyncAttributedTransactionsReportRequest:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/AsyncAttributedTransactionsReportResource'
-      description: A top-level object that encapsulates an attributed-transactions async report create request.
-    AsyncPerformanceReportResource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AsyncPerformanceReport'
-        type:
-          type: string
-      description: A top-level object that encapsulates a Criteo API response for a single value
-    AsyncUnfilledPlacementsReportResource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AsyncUnfilledPlacementsReport'
-        type:
-          type: string
-      description: A top-level object that encapsulates a Criteo API response for a single value
+          type:
+          - string
+          - 'null'
+      description: A class that represents a domain entity exposed by an API
     ExportReportColumn:
       required:
       - name
@@ -2133,59 +1892,121 @@ components:
           type: string
           description: Type of the column
       description: Description of a column from an async report request
-    StatusResponse:
-      type:
-      - object
-      - 'null'
+    SyncCampaignsReportResource:
+      type: object
       properties:
-        createdAt:
-          type:
-          - string
-          - 'null'
-        expiresAt:
-          type:
-          - string
-          - 'null'
-        fileSizeBytes:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        id:
-          type:
-          - string
-          - 'null'
-        md5CheckSum:
-          type:
-          - string
-          - 'null'
-        message:
-          type:
-          - string
-          - 'null'
-        rowCount:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        status:
+        attributes:
+          $ref: '#/components/schemas/SyncCampaignsReport'
+        type:
+          type: string
+      description: A top-level object that encapsulates a Criteo API response for a single value
+    AsyncFillRateReport:
+      required:
+      - dimensions
+      - endDate
+      - metrics
+      - startDate
+      - supplyAccountIds
+      type: object
+      properties:
+        adServerType:
           enum:
-          - pending
-          - success
-          - failure
-          - expired
-          type:
-          - string
-          - 'null'
-      description: Status of an async report request
-      x-criteo-canonical:
-        infoType: entity
-    AsyncRevenueReportRequest:
+          - all
+          - gam
+          - criteo
+          type: string
+          description: 'Filter on the type of the ad server: criteo, gam, all'
+          default: all
+        dimensions:
+          minItems: 1
+          type: array
+          items:
+            enum:
+            - date
+            - retailerId
+            - retailerName
+            - placementId
+            - placementName
+            - pageTypeName
+            - environment
+            - servedCategory
+            - retailerCategoryId
+            - retailerCategoryName
+            - adServerType
+            type: string
+          description: List of dimensions to report on
+        endDate:
+          type: string
+          description: End date
+          format: date-time
+        format:
+          enum:
+          - json
+          - json-compact
+          - json-newline
+          - csv
+          type: string
+          description: Format of the output
+          default: json
+        metrics:
+          minItems: 1
+          type: array
+          items:
+            enum:
+            - pageViews
+            - availablePlacements
+            - unfilledPlacements
+            - fillRate
+            - placementImpressions
+            - productImpressions
+            - impressions
+            - placementClicks
+            - productClicks
+            - clicks
+            - placementImpressionsCTR
+            - productImpressionsCTR
+            - cpm
+            - cpc
+            - placementImpressionsRevenue
+            - productClicksRevenue
+            - revenue
+            - workingMedia
+            - netRevenue
+            - nonDeliverablePlacements
+            - deliverablePlacements
+            - placementsWithCandidates
+            - coveredPlacements
+            - coverageRate
+            type: string
+          description: List of metrics to report on
+        startDate:
+          type: string
+          description: Start date
+          format: date-time
+        supplyAccountIds:
+          type: array
+          items:
+            type: string
+          description: Supply account ids to report on
+        timezone:
+          type: string
+          description: 'Time zone : see criteo developer portal for supported time zones'
+          default: UTC
+      description: Async FillRate report body request
+    AsyncFillRateReportRequest:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/AsyncRevenueReportResource'
+          $ref: '#/components/schemas/AsyncFillRateReportResource'
       description: A top-level object that encapsulates a Criteo API request for a single value
+    SyncLineItemsReportResource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/SyncLineItemsReport'
+        type:
+          type: string
+      description: A top-level object that encapsulates a Criteo API response for a single value
     PerformanceReportFilters:
       type: object
       properties:
@@ -2274,6 +2095,554 @@ components:
             - conquesting
             type: string
       description: Array-valued constraints for performance DSP analytics. Exactly one of accountIds, campaignIds, or lineItemIds is required.
+    AsyncMissedOpportunitiesReportRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AsyncMissedOpportunitiesReportResource'
+      description: A top-level object that encapsulates a missed-opportunities async report create request.
+    AsyncRevenueReportRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AsyncRevenueReportResource'
+      description: A top-level object that encapsulates a Criteo API request for a single value
+    SyncRealTimePerformanceReportRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/SyncRealTimePerformanceReportResource'
+      description: A top-level object that encapsulates a Criteo API request for a single value
+    DataCompleteThrough:
+      type:
+      - object
+      - 'null'
+      properties:
+        dateTime:
+          type:
+          - string
+          - 'null'
+          description: The instant through which data is complete, in the format "yyyy-MM-dd HH:mm:ss" in the timezone given by the {timezone} field.
+        timezone:
+          type:
+          - string
+          - 'null'
+          description: IANA timezone for the {dateTime} field (e.g. "UTC", "America/New_York"). Matches the query timezone.
+      description: 'Data freshness: the instant through which report data is complete, expressed in the report''s request timezone.'
+    AttributedTransactionsReportFilters:
+      type: object
+      properties:
+        accountIds:
+          type: array
+          items:
+            type: string
+        campaignIds:
+          type: array
+          items:
+            type: string
+        lineItemIds:
+          type: array
+          items:
+            type: string
+        mediaTypes:
+          type: array
+          items:
+            enum:
+            - unknown
+            - video
+            - display
+            - all
+            type: string
+      description: Array-valued constraints for attributed-transactions reporting. Exactly one of accountIds, campaignIds, or lineItemIds is required.
+    SyncAttributedTransactionsReport:
+      required:
+      - accountId
+      - endDate
+      - startDate
+      type: object
+      properties:
+        accountId:
+          type: string
+          description: Account id to report on
+        campaignIds:
+          type: array
+          items:
+            type: string
+          description: Campaign ids to filter
+        campaignType:
+          enum:
+          - all
+          - sponsoredProducts
+          - onSiteDisplays
+          type: string
+          description: 'Filter the type of campaigns to report on: sponsoredProducts or onSiteDisplays'
+          default: all
+        clickAttributionWindow:
+          enum:
+          - none
+          - 7D
+          - 14D
+          - 30D
+          type: string
+          description: Click attribution window
+          default: none
+        dimensions:
+          type: array
+          items:
+            enum:
+            - purchasedDate
+            - purchasedHour
+            - advDate
+            - advHour
+            - daysDifference
+            - campaignId
+            - campaignName
+            - lineItemId
+            - lineItemName
+            - advProductId
+            - advProductGtin
+            - advProductMpn
+            - advProductName
+            - advProductCategory
+            - purchasedProductId
+            - purchasedProductGtin
+            - purchasedProductMpn
+            - purchasedProductName
+            - purchasedProductCategory
+            - advEngagement
+            - advToPurchasedProductRelationship
+            - salesChannel
+            - retailerName
+            - pageTypeName
+            - keyword
+            - attributionWindow
+            - saleSellerId
+            - saleSellerName
+            - activitySellerId
+            - activitySellerName
+            type: string
+          description: List of dimensions to report on
+        endDate:
+          type: string
+          description: End date
+          format: date-time
+        lineItemIds:
+          type: array
+          items:
+            type: string
+          description: Line item ids to filter
+        mediaType:
+          enum:
+          - unknown
+          - video
+          - display
+          - all
+          type: string
+          description: 'Filter on the type of media: unknown, display, video'
+          default: all
+        metrics:
+          type: array
+          items:
+            enum:
+            - attributedUnits
+            - attributedSales
+            type: string
+          description: List of metrics to report on
+        salesChannel:
+          enum:
+          - online
+          - offline
+          - all
+          type: string
+          description: 'Filter on specific sales channel: offline or online'
+          default: all
+        startDate:
+          type: string
+          description: Start date
+          format: date-time
+        timezone:
+          type: string
+          description: 'Time zone : see criteo developer portal for supported time zones'
+          default: UTC
+        viewAttributionWindow:
+          enum:
+          - none
+          - 1D
+          - 7D
+          - 14D
+          - 30D
+          type: string
+          description: View attribution window
+          default: none
+      description: Attributed Transactions report body request
+    SyncCampaignsReportRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/SyncCampaignsReportResource'
+      description: A top-level object that encapsulates a Criteo API request for a single value
+    ExportReportMetaData:
+      type:
+      - object
+      - 'null'
+      properties:
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ExportReportColumn'
+        dataCompleteThrough:
+          $ref: '#/components/schemas/DataCompleteThrough'
+        rows:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      description: 'Metadata for a report response: data freshness, column descriptions, and row count.'
+    SyncLineItemsReportRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/SyncLineItemsReportResource'
+      description: A top-level object that encapsulates a Criteo API request for a single value
+    AsyncAttributedTransactionsReportRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AsyncAttributedTransactionsReportResource'
+      description: A top-level object that encapsulates an attributed-transactions async report create request.
+    AsyncPerformanceReportRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AsyncPerformanceReportResource'
+      description: A top-level object that encapsulates a performance DSP analytics async report create request.
+    AsyncAttributedTransactionsReportResource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AsyncAttributedTransactionsReport'
+        type:
+          type: string
+      description: A top-level object that encapsulates a Criteo API response for a single value
+    AsyncUnfilledPlacementsReportRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AsyncUnfilledPlacementsReportResource'
+      description: A top-level object that encapsulates a Criteo API request for a single value
+    AsyncUnfilledPlacementsReport:
+      required:
+      - dimensions
+      - endDate
+      - metrics
+      - startDate
+      - supplyAccountIds
+      type: object
+      properties:
+        adServerType:
+          enum:
+          - all
+          - gam
+          - criteo
+          type: string
+          description: 'Filter on the type of the ad server: criteo, gam, all'
+          default: all
+        campaignType:
+          enum:
+          - all
+          - sponsoredProducts
+          - onSiteDisplays
+          type: string
+          description: 'Filter on the type of the campaign: onsite display, onsite sponsored products, all'
+          default: all
+        dimensions:
+          minItems: 1
+          type: array
+          items:
+            enum:
+            - date
+            - retailerId
+            - retailerName
+            - placementId
+            - placementName
+            - pageTypeName
+            - servedCategory
+            - environment
+            - retailerCategoryId
+            - retailerCategoryName
+            - adServerType
+            - campaignType
+            type: string
+          description: List of dimensions to report on
+        endDate:
+          type: string
+          description: End date
+          format: date-time
+        format:
+          enum:
+          - json
+          - json-compact
+          - json-newline
+          - csv
+          type: string
+          description: Format of the output
+          default: json
+        metrics:
+          minItems: 1
+          type: array
+          items:
+            enum:
+            - totalUnfilledPlacements
+            - unfilledUserOptOut
+            - unfilledNotEnoughDemand
+            - unfilledTotalAuctionSettings
+            - unfilledTotalAuctionConsiderations
+            - unfilledAdvertiserAuctionSettings
+            - unfilledRetailerAuctionSettings
+            - unfilledCriteoAuctionSettings
+            - unfilledReturnedButNotPainted
+            - nonDeliverableUnmappedCategories
+            - nonDeliverablePagesWithUnknownProducts
+            - nonDeliverableBlockedOptOut
+            - nonDeliverableBlockedPageCategory
+            - nonDeliverableInactivePlacement
+            - nonDeliverableInsufficientOrganicResults
+            - nonDeliverableInvalidTraffic
+            - nonDeliverableTestPlacement
+            - uncoveredUnusedFormats
+            - uncoveredSearchTermWithoutCategory
+            - uncoveredNoDemandBrandedKeywordConquestingEnabled
+            - uncoveredNoDemandBrandedKeywordConquestingDisabled
+            - uncoveredNoDemandUnbrandedInventory
+            - uncoveredNoDemandOptOut
+            - uncoveredFilteredOutDemand
+            - uncoveredBrokenPlacement
+            - uncoveredNotPainted
+            - availablePlacements
+            - fillRate
+            - placementImpressions
+            - productImpressions
+            - placementClicks
+            - productClicks
+            - clicks
+            - placementImpressionsCTR
+            - productImpressionsCTR
+            - cpm
+            - cpc
+            - placementImpressionsRevenue
+            - productClicksRevenue
+            - revenue
+            - nonDeliverablePlacements
+            - deliverablePlacements
+            - placementsWithCandidates
+            - coveredPlacements
+            - coverageRate
+            type: string
+          description: List of metrics to report on
+        startDate:
+          type: string
+          description: Start date
+          format: date-time
+        supplyAccountIds:
+          type: array
+          items:
+            type: string
+          description: Supply account ids to report on
+        timezone:
+          type: string
+          description: 'Time zone : see criteo developer portal for supported time zones'
+          default: UTC
+      description: Async Unfilled Placements report body request
+    SyncAttributedTransactionsReportRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/SyncAttributedTransactionsReportResource'
+      description: A top-level object that encapsulates a Criteo API request for a single value
+    SyncAttributedTransactionsReportResource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/SyncAttributedTransactionsReport'
+        type:
+          type: string
+      description: A top-level object that encapsulates a Criteo API response for a single value
+    AsyncRevenueReportResource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AsyncRevenueReport'
+        type:
+          type: string
+      description: A top-level object that encapsulates a Criteo API response for a single value
+    AsyncPerformanceReport:
+      required:
+      - dimensions
+      - endDate
+      - filters
+      - metrics
+      - startDate
+      type: object
+      properties:
+        clickAttributionWindow:
+          enum:
+          - none
+          - 7D
+          - 14D
+          - 30D
+          type: string
+        clickMatchLevel:
+          enum:
+          - sameSku
+          - sameCategory
+          - sameBrand
+          - campaign
+          type: string
+          default: campaign
+        dimensions:
+          type: array
+          items:
+            enum:
+            - date
+            - hour
+            - accountId
+            - accountName
+            - campaignId
+            - campaignName
+            - campaignType
+            - lineItemId
+            - lineItemName
+            - retailerId
+            - retailerName
+            - brandId
+            - brandName
+            - productCategory
+            - productId
+            - productName
+            - salesChannel
+            - mediaType
+            - buyType
+            - budgetModel
+            - activationPlatform
+            - environment
+            - pageType
+            - pageCategory
+            - servedCategory
+            - keyword
+            - searchTerm
+            - searchTermType
+            - searchTermTargeting
+            - creativeId
+            - creativeName
+            - creativeType
+            - creativeTemplateId
+            - creativeTemplateName
+            - targetedKeywordType
+            type: string
+        endDate:
+          type: string
+          format: date-time
+        filters:
+          $ref: '#/components/schemas/PerformanceReportFilters'
+        format:
+          enum:
+          - json
+          - json-compact
+          - json-newline
+          - csv
+          type: string
+        metrics:
+          type: array
+          items:
+            enum:
+            - impressions
+            - clicks
+            - spend
+            - attributedSales
+            - attributedUnits
+            - attributedOrders
+            - assistedSales
+            - assistedUnits
+            - ctr
+            - cpc
+            - cpo
+            - cpm
+            - roas
+            - videoViews
+            - videosStarted
+            - videosPlayedTo25
+            - videosPlayedTo50
+            - videosPlayedTo75
+            - videosPlayedTo100
+            - videoPlayingRate
+            - videoCompletionRate
+            - videoImpressions
+            - videoMuted
+            - videoUnmuted
+            - videoPaused
+            - videoResumed
+            - videoAvgInteractionRate
+            - videoViewability
+            - videoStartingRate
+            - videoCPC
+            - videoCPCV
+            - newToBrandAttributedSales
+            - newToBrandAttributedSalesRate
+            - newToBrandAttributedUnits
+            - newToBrandAttributedUnitsRate
+            - uniqueVisitors
+            - frequency
+            - winRate
+            - sampledBidsWon
+            - sampledBidsParticipated
+            type: string
+        startDate:
+          type: string
+          format: date-time
+        timezone:
+          type: string
+          default: UTC
+        viewAttributionWindow:
+          enum:
+          - none
+          - 1D
+          - 7D
+          - 14D
+          - 30D
+          type: string
+        viewMatchLevel:
+          enum:
+          - sameSku
+          - sameCategory
+          - sameBrand
+          - campaign
+          type: string
+          default: campaign
+      description: Create payload attributes for a performance DSP analytics async report.
+    ReportResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ReportDataResponseResource'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        meta:
+          $ref: '#/components/schemas/ExportReportMetaData'
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: Report response format
     AsyncMissedOpportunitiesReport:
       required:
       - dimensions
@@ -2335,6 +2704,53 @@ components:
           type: string
           format: date-time
       description: Create payload attributes for a missed-opportunities async report.
+    StatusResponse:
+      type:
+      - object
+      - 'null'
+      properties:
+        createdAt:
+          type:
+          - string
+          - 'null'
+        expiresAt:
+          type:
+          - string
+          - 'null'
+        fileSizeBytes:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        id:
+          type:
+          - string
+          - 'null'
+        md5CheckSum:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+        rowCount:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        status:
+          enum:
+          - pending
+          - success
+          - failure
+          - expired
+          type:
+          - string
+          - 'null'
+      description: Status of an async report request
+      x-criteo-canonical:
+        infoType: entity
     AsyncRevenueReport:
       required:
       - endDate
@@ -2644,448 +3060,22 @@ components:
           description: 'View Match Level: Campaign, Same SKU, Same Category or Same Brand'
           default: campaign
       description: Async Revenue report body request
-    SyncCampaignsReportResource:
+    SyncRealTimePerformanceReportResource:
       type: object
       properties:
         attributes:
-          $ref: '#/components/schemas/SyncCampaignsReport'
+          $ref: '#/components/schemas/SyncRealTimePerformanceReport'
         type:
           type: string
       description: A top-level object that encapsulates a Criteo API response for a single value
-    AsyncFillRateReportRequest:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/AsyncFillRateReportResource'
-      description: A top-level object that encapsulates a Criteo API request for a single value
-    SyncRealTimePerformanceReport:
-      required:
-      - startDate
-      type: object
-      properties:
-        accountIds:
-          type: array
-          items:
-            type: string
-          description: Account ids to filter (plural; base has AccountId for single account).
-        campaignIds:
-          type: array
-          items:
-            type: string
-          description: Campaign ids to filter.
-        dimensions:
-          type: array
-          items:
-            enum:
-            - date
-            - hour
-            - accountId
-            - accountName
-            - campaignId
-            - campaignName
-            - lineItemId
-            - lineItemName
-            - retailerId
-            - retailerName
-            type: string
-            description: 'Dimensions supported by the real-time performance report (streaming + hourly stats).
-
-              Only these values are accepted; invalid values cause deserialization to fail.'
-          description: 'List of dimensions to report on (real-time: at least one required). Only the supported dimension values are valid.'
-        endDate:
-          type: string
-          description: 'Optional end date/time (inclusive in the request timezone). If empty or not provided, no end date filter is applied.
-
-            When provided, used as the inclusive upper bound for the report range.
-
-            Hides base Report.EndDate so this report can treat end date as optional (no [Required]).'
-          format: date-time
-        lineItemIds:
-          type: array
-          items:
-            type: string
-          description: Line item ids to filter.
-        metrics:
-          type: array
-          items:
-            enum:
-            - impressions
-            - clicks
-            - spend
-            type: string
-            description: 'Metrics supported by the real-time performance report (streaming + hourly stats).
-
-              Only these values are accepted; invalid values cause deserialization to fail.'
-          description: 'List of metrics to report on (real-time: at least one required). Only the supported metric values are valid.'
-        retailerIds:
-          type: array
-          items:
-            type: string
-          description: Retailer ids to filter. This is not used for security, so no need to check for > 0 elements
-        startDate:
-          type: string
-          description: 'Start date (real-time: must be within the last 7 days).'
-          format: date-time
-        timezone:
-          type: string
-          description: 'Time zone : see criteo developer portal for supported time zones'
-          default: UTC
-      description: 'Real Time Performance report body request (one sheeter: startDate, endDate (optional), RetailerIds, accountIds, campaignIds, lineItemIds, dimensions, metrics, timezones).
-
-        Extends SyncReport only (no default filters); adds entry filter arrays.
-
-        Dimensions and metrics are restricted to their supported enumerated values; invalid values cause deserialization to fail.'
-    AsyncUnfilledPlacementsReportRequest:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/AsyncUnfilledPlacementsReportResource'
-      description: A top-level object that encapsulates a Criteo API request for a single value
-    MissedOpportunitiesReportFilters:
-      type: object
-      properties:
-        accountIds:
-          type: array
-          items:
-            type: string
-        campaignIds:
-          type: array
-          items:
-            type: string
-        lineItemIds:
-          type: array
-          items:
-            type: string
-      description: Array-valued constraints for missed-opportunities reporting. Exactly one of accountIds, campaignIds, or lineItemIds is required.
-    SyncCampaignsReportRequest:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/SyncCampaignsReportResource'
-      description: A top-level object that encapsulates a Criteo API request for a single value
-    AttributedTransactionsReportFilters:
-      type: object
-      properties:
-        accountIds:
-          type: array
-          items:
-            type: string
-        campaignIds:
-          type: array
-          items:
-            type: string
-        lineItemIds:
-          type: array
-          items:
-            type: string
-        mediaTypes:
-          type: array
-          items:
-            enum:
-            - unknown
-            - video
-            - display
-            - all
-            type: string
-      description: Array-valued constraints for attributed-transactions reporting. Exactly one of accountIds, campaignIds, or lineItemIds is required.
-    AsyncPerformanceReport:
-      required:
-      - dimensions
-      - endDate
-      - filters
-      - metrics
-      - startDate
-      type: object
-      properties:
-        clickAttributionWindow:
-          enum:
-          - none
-          - 7D
-          - 14D
-          - 30D
-          type: string
-        clickMatchLevel:
-          enum:
-          - sameSku
-          - sameCategory
-          - sameBrand
-          - campaign
-          type: string
-          default: campaign
-        dimensions:
-          type: array
-          items:
-            enum:
-            - date
-            - hour
-            - accountId
-            - accountName
-            - campaignId
-            - campaignName
-            - campaignType
-            - lineItemId
-            - lineItemName
-            - retailerId
-            - retailerName
-            - brandId
-            - brandName
-            - productCategory
-            - productId
-            - productName
-            - salesChannel
-            - mediaType
-            - buyType
-            - budgetModel
-            - activationPlatform
-            - environment
-            - pageType
-            - pageCategory
-            - servedCategory
-            - keyword
-            - searchTerm
-            - searchTermType
-            - searchTermTargeting
-            - creativeId
-            - creativeName
-            - creativeType
-            - creativeTemplateId
-            - creativeTemplateName
-            - targetedKeywordType
-            type: string
-        endDate:
-          type: string
-          format: date-time
-        filters:
-          $ref: '#/components/schemas/PerformanceReportFilters'
-        format:
-          enum:
-          - json
-          - json-compact
-          - json-newline
-          - csv
-          type: string
-        metrics:
-          type: array
-          items:
-            enum:
-            - impressions
-            - clicks
-            - spend
-            - attributedSales
-            - attributedUnits
-            - attributedOrders
-            - assistedSales
-            - assistedUnits
-            - ctr
-            - cpc
-            - cpo
-            - cpm
-            - roas
-            - videoViews
-            - videosStarted
-            - videosPlayedTo25
-            - videosPlayedTo50
-            - videosPlayedTo75
-            - videosPlayedTo100
-            - videoPlayingRate
-            - videoCompletionRate
-            - videoImpressions
-            - videoMuted
-            - videoUnmuted
-            - videoPaused
-            - videoResumed
-            - videoAvgInteractionRate
-            - videoViewability
-            - videoStartingRate
-            - videoCPC
-            - videoCPCV
-            - newToBrandAttributedSales
-            - newToBrandAttributedSalesRate
-            - newToBrandAttributedUnits
-            - newToBrandAttributedUnitsRate
-            - uniqueVisitors
-            - frequency
-            - winRate
-            - sampledBidsWon
-            - sampledBidsParticipated
-            type: string
-        startDate:
-          type: string
-          format: date-time
-        timezone:
-          type: string
-          default: UTC
-        viewAttributionWindow:
-          enum:
-          - none
-          - 1D
-          - 7D
-          - 14D
-          - 30D
-          type: string
-        viewMatchLevel:
-          enum:
-          - sameSku
-          - sameCategory
-          - sameBrand
-          - campaign
-          type: string
-          default: campaign
-      description: Create payload attributes for a performance DSP analytics async report.
-    AsyncAttributedTransactionsReport:
-      required:
-      - dimensions
-      - endDate
-      - filters
-      - metrics
-      - startDate
-      type: object
-      properties:
-        clickAttributionWindow:
-          enum:
-          - none
-          - 7D
-          - 14D
-          - 30D
-          type: string
-        clickMatchLevel:
-          enum:
-          - sameSku
-          - sameCategory
-          - sameBrand
-          - campaign
-          type: string
-          default: campaign
-        dimensions:
-          type: array
-          items:
-            enum:
-            - purchasedDate
-            - purchasedHour
-            - advertisedDate
-            - advertisedHour
-            - daysDifference
-            - accountId
-            - accountName
-            - campaignId
-            - campaignName
-            - lineItemId
-            - lineItemName
-            - advertisedProductId
-            - advertisedProductGtin
-            - advertisedProductMpn
-            - advertisedProductName
-            - advertisedProductCategory
-            - purchasedProductId
-            - purchasedProductGtin
-            - purchasedProductMpn
-            - purchasedProductName
-            - purchasedProductCategory
-            - advertisedEngagement
-            - advertisedToPurchasedProductRelationship
-            - salesChannel
-            - retailerId
-            - retailerName
-            - pageType
-            - keyword
-            - attributionWindow
-            - saleSellerId
-            - saleSellerName
-            - activitySellerId
-            - activitySellerName
-            type: string
-        endDate:
-          type: string
-          format: date-time
-        filters:
-          $ref: '#/components/schemas/AttributedTransactionsReportFilters'
-        format:
-          enum:
-          - json
-          - json-compact
-          - json-newline
-          - csv
-          type: string
-        metrics:
-          type: array
-          items:
-            enum:
-            - attributedUnits
-            - attributedSales
-            type: string
-        startDate:
-          type: string
-          format: date-time
-        timezone:
-          type: string
-          default: UTC
-        viewAttributionWindow:
-          enum:
-          - none
-          - 1D
-          - 7D
-          - 14D
-          - 30D
-          type: string
-        viewMatchLevel:
-          enum:
-          - sameSku
-          - sameCategory
-          - sameBrand
-          - campaign
-          type: string
-          default: campaign
-      description: Create payload attributes for an attributed-transactions async report.
-    DataCompleteThrough:
-      type:
-      - object
-      - 'null'
-      properties:
-        dateTime:
-          type:
-          - string
-          - 'null'
-          description: The instant through which data is complete, in the format "yyyy-MM-dd HH:mm:ss" in the timezone given by the {timezone} field.
-        timezone:
-          type:
-          - string
-          - 'null'
-          description: IANA timezone for the {dateTime} field (e.g. "UTC", "America/New_York"). Matches the query timezone.
-      description: 'Data freshness: the instant through which report data is complete, expressed in the report''s request timezone.'
-    SyncLineItemsReportRequest:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/SyncLineItemsReportResource'
-      description: A top-level object that encapsulates a Criteo API request for a single value
-    SyncLineItemsReportResource:
+    AsyncUnfilledPlacementsReportResource:
       type: object
       properties:
         attributes:
-          $ref: '#/components/schemas/SyncLineItemsReport'
+          $ref: '#/components/schemas/AsyncUnfilledPlacementsReport'
         type:
           type: string
       description: A top-level object that encapsulates a Criteo API response for a single value
-    AsyncReportResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/StatusResponseResource'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        warnings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-      description: Async Report response format
   securitySchemes:
     oauth:
       type: oauth2
@@ -3098,8 +3088,8 @@ components:
           tokenUrl: https://api.criteo.com/oauth2/token
           scopes: {}
 x-refined-from:
-- criteo-marketing-solutions-api-openapi.yml
-- criteo-retail-media-api-openapi.yml
+- criteo-marketing-solutions-2026-07-openapi-original.json
+- criteo-retail-media-2026-07-openapi-original.json
 x-samples-languages:
 - java
 - python

@@ -87,6 +87,19 @@ components:
           type: string
           description: Identifies the store, for the customer
       description: References a store inventory to be deleted. See StoreInventoryUpsert
+    DeleteEntry:
+      required:
+      - attributes
+      - type
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/StoreInventoryDelete'
+        type:
+          enum:
+          - Delete
+          type: string
+      description: Defines a reference to inventory
     StoreInventoryUpsert:
       required:
       - availability
@@ -120,39 +133,6 @@ components:
           type: string
           description: Identifies the store, for the customer
       description: Defines a store inventory to be upserted. Inspired from google spec.See https://developers.google.com/shopping-content/reference/rest/v2.1/localinventory/custombatch#LocalinventoryCustomBatchRequestEntry
-    BatchStoreInventoryRequest:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/InsertEntry'
-      description: Batch to be stored in Store inventories
-    DeleteEntry:
-      required:
-      - attributes
-      - type
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/StoreInventoryDelete'
-        type:
-          enum:
-          - Delete
-          type: string
-      description: Defines a reference to inventory
-    BatchStoreInventoryDeleteRequest:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/DeleteEntry'
-      description: Batch to plan removals in Store inventory
     InsertEntry:
       required:
       - attributes
@@ -166,6 +146,26 @@ components:
           - Upsert
           type: string
       description: Defines a pack of inventories
+    BatchStoreInventoryDeleteRequest:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeleteEntry'
+      description: Batch to plan removals in Store inventory
+    BatchStoreInventoryRequest:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/InsertEntry'
+      description: Batch to be stored in Store inventories
   securitySchemes:
     oauth:
       type: oauth2

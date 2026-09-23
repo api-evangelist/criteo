@@ -39,7 +39,7 @@ paths:
     post:
       tags:
       - Segment
-      summary: /2026-01/commerce-grid/audience-segments/{audience-segment-id}/contact-list/add-remove
+      summary: /2026-01/commerce-grid/audience-segments/{audience-segment-id}/contact-list/add…
       description: Add/remove identifiers to or from a Commerce Grid audience segment of type Contact List.
       operationId: AddRemoveContactListByAudienceSegment
       parameters:
@@ -96,7 +96,7 @@ paths:
     post:
       tags:
       - Segment
-      summary: /2026-01/commerce-grid/audience-segments/{audience-segment-id}/contact-list/clear
+      summary: /2026-01/commerce-grid/audience-segments/{audience-segment-id}/contact-list/clea…
       description: Delete all identifiers from a Commerce Grid audience segment of type Contact List.
       operationId: ClearContactListByAudienceSegment
       parameters:
@@ -119,7 +119,7 @@ paths:
     get:
       tags:
       - Segment
-      summary: /2026-01/commerce-grid/audience-segments/{audience-segment-id}/contact-list/statistics
+      summary: /2026-01/commerce-grid/audience-segments/{audience-segment-id}/contact-list/stat…
       description: Returns the statistics of a contact list segment.
       operationId: getAudienceSegmentContactListStatistics
       parameters:
@@ -233,289 +233,12 @@ paths:
         - CommerceGrid_Segment_Read
 components:
   schemas:
-    CommonProblem:
-      type: object
-      properties:
-        code:
-          type:
-          - string
-          - 'null'
-          description: A machine-readable error code, expressed as a string value.
-        detail:
-          type:
-          - string
-          - 'null'
-          description: A human-readable explanation specific to this occurrence of the problem
-        instance:
-          type:
-          - string
-          - 'null'
-          description: A URI that identifies the specific occurrence of the problem.
-        source:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type: string
-          description: A machine-readable structure to reference to the exact location(s) causing the error(s)
-        stackTrace:
-          type:
-          - string
-          - 'null'
-          description: ''
-        title:
-          type:
-          - string
-          - 'null'
-          description: A short human-readable description of the problem type
-        traceId:
-          type:
-          - string
-          - 'null'
-          description: The request correlation ID this problem comes from.
-        traceIdentifier:
-          type:
-          - string
-          - 'null'
-          description: The request correlation ID this problem comes from. (deprecated, use traceId instead)
-        type:
-          enum:
-          - unknown
-          - access-control
-          - authentication
-          - authorization
-          - availability
-          - deprecation
-          - quota
-          - validation
-          type:
-          - string
-          - 'null'
-          description: The problem's category.
-      description: Common problem object.
-    CgContactListStatisticsEntityV1:
-      type:
-      - object
-      - 'null'
-      properties:
-        matchRate:
-          type:
-          - number
-          - 'null'
-          description: 'Percentage of matched identifiers in the contact list.
-
-            Can differ from matches/identifiers depending on the contact list type.'
-          format: double
-        numberOfIdentifiers:
-          type:
-          - integer
-          - 'null'
-          description: Number of identifiers in the contact list.
-          format: int32
-        numberOfMatches:
-          type:
-          - integer
-          - 'null'
-          description: Number of matched identifiers in the contact list.
-          format: int32
-      description: Contact list statistics.
-      x-criteo-canonical:
-        infoType: entity
-        name: ContactListStatistics
-        version: v1
-    CgAudienceSegmentUpdateEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/CgAudienceSegmentUpdateEntityV1'
-        id:
-          type: string
-          description: Id of the entity
-        type:
-          type: string
-      description: A class that represents a domain entity exposed by an API
-    CommerceGridContactlistOperationResponseAttributes:
-      required:
-      - attributes
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-          description: Contact List
-          example: AddRemoveContactlist
-        attributes:
-          required:
-          - operation
-          type: object
-          properties:
-            contactListId:
-              type:
-              - integer
-              - 'null'
-              description: the affected contact list ID
-              format: int64
-              readOnly: true
-            identifierType:
-              type:
-              - string
-              - 'null'
-              description: The schema specified for of the identifiers
-              readOnly: true
-            nbInvalidIdentifiers:
-              type:
-              - integer
-              - 'null'
-              description: How many identifiers were invalid for the specified schema
-              format: int32
-              readOnly: true
-            nbValidIdentifiers:
-              type:
-              - integer
-              - 'null'
-              description: How many identifiers were valid for the specified schema
-              format: int32
-              readOnly: true
-            operation:
-              type: string
-              description: The action recorded
-            requestDate:
-              type:
-              - string
-              - 'null'
-              description: When the action was recorded
-              format: date-time
-              readOnly: true
-            sampleInvalidIdentifiers:
-              type:
-              - array
-              - 'null'
-              items:
-                type: string
-              description: A sample of invalid identifiers if there is some
-              readOnly: true
-          description: Attributes of Commerce Grid contact list amendment
-      description: Response data of Commerce Grid contact list amendment
-    CgAudienceSegmentEntityV1ListResponse:
+    CgAudienceSegmentSearchInputV1:
       type: object
       properties:
         data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CgAudienceSegmentEntityV1Resource'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        warnings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-      description: A top-level object that encapsulates a Criteo API response for several entities
-    CgAudienceSegmentSearchMetadataV1:
-      type:
-      - object
-      - 'null'
-      properties:
-        limit:
-          type:
-          - integer
-          - 'null'
-          description: Max item of the current page
-          format: int32
-        offset:
-          type:
-          - integer
-          - 'null'
-          description: Number of item to skip
-          format: int32
-        totalItems:
-          type:
-          - integer
-          - 'null'
-          description: Total number of items
-          format: int32
-      description: Metadata for the audience segment search response.
-    CgContactListStatisticsEntityV1Response:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CgContactListStatisticsEntityV1Resource'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        warnings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-      description: A top-level object that encapsulates a Criteo API response for a single entity
-    CgAudienceSegmentEntityV1:
-      type:
-      - object
-      - 'null'
-      properties:
-        contactList:
-          $ref: '#/components/schemas/CgContactListV1'
-        createdAt:
-          type:
-          - string
-          - 'null'
-          description: ISO-8601 timestamp in UTC of segment creation (read-only)
-          format: date-time
-        dataProviderId:
-          type:
-          - string
-          - 'null'
-          description: Data provider associated to the segment (read-only)
-        description:
-          type:
-          - string
-          - 'null'
-          description: Description of the segment
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name of the segment
-        remoteId:
-          type:
-          - string
-          - 'null'
-          description: The ID used to identify the segment in the data provider's system (read-only)
-        type:
-          enum:
-          - Unknown
-          - ContactList
-          type:
-          - string
-          - 'null'
-          description: Type of segment (read-only)
-        updatedAt:
-          type:
-          - string
-          - 'null'
-          description: ISO-8601 timestamp in UTC of segment update (read-only)
-          format: date-time
-      description: Set of rules that defines specific people to target.
-      x-criteo-canonical:
-        infoType: entity
-        name: CommerceGridAudienceSegment
-        version: v1
+          $ref: '#/components/schemas/CgAudienceSegmentSearchEntityV1Resource'
+      description: A top-level object that encapsulates a Criteo API request for a single value.
     CgAudienceSegmentIdEntityV1ListResponse:
       type: object
       properties:
@@ -540,255 +263,7 @@ components:
             $ref: '#/components/schemas/CommonProblem'
           readOnly: true
       description: A top-level object that encapsulates a Criteo API response for several entities
-    CgAudienceSegmentBulkDeleteInputV1:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CgAudienceSegmentDeleteEntityV1Resource'
-      description: A top-level object that encapsulates a Criteo API request for several entities.
-    CgAudienceSegmentSearchEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/CgAudienceSegmentSearchEntityV1'
-        type:
-          type: string
-      description: A top-level object that encapsulates a Criteo API response for a single value
-    CgContactListV1:
-      type:
-      - object
-      - 'null'
-      description: Settings to target users with your contact lists.
-    CgAudienceSegmentCreateEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/CgAudienceSegmentCreateEntityV1'
-        type:
-          type: string
-      description: A top-level object that encapsulates a Criteo API response for a single value
-    CommerceGridContactlistAmendment:
-      required:
-      - attributes
-      type: object
-      properties:
-        attributes:
-          required:
-          - identifiers
-          - operation
-          type: object
-          properties:
-            identifiers:
-              type: array
-              items:
-                type: string
-              description: The users to add or remove, each in the schema specified
-            identifierType:
-              enum:
-              - Email
-              - MadId
-              - UserIdentifier
-              - IdentityLink
-              - BidSwitchId
-              - FTrackId
-              - PanoramaId
-              - HadronId
-              - IpAddressV4
-              - PageUrl
-              - PageDomain
-              - AppId
-              type: string
-              description: What type of identifiers are used
-            operation:
-              enum:
-              - Add
-              - Remove
-              type: string
-              description: Whether to add or remove users
-          description: Attributes of Commerce Grid contact list amendment
-        type:
-          type: string
-          description: Contact List
-          example: AddRemoveContactlist
-      description: Request data of Commerce Grid contact list amendment
-    CommerceGridContactlistAmendmentRequest:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CommerceGridContactlistAmendment'
-      description: Request of Commerce Grid contact list
-    CgAudienceSegmentSearchEntityV1:
-      type: object
-      properties:
-        audienceSegmentIds:
-          type: array
-          items:
-            type: string
-          description: List of segment ids
-        audienceSegmentTypes:
-          type: array
-          items:
-            enum:
-            - Unknown
-            - ContactList
-            type: string
-          description: List of segment types
-        dataProviderIds:
-          type: array
-          items:
-            type: string
-          description: List of data provider ids
-        remoteIds:
-          type: array
-          items:
-            type: string
-          description: List of ids used to identify the segment in the data provider's system
-      description: Available filters to perform a search on audience segments. If present, the filters are AND'ed together when applied.
-    CgAudienceSegmentDeleteEntityV1:
-      type: object
-      description: Segment to delete
-      x-criteo-canonical:
-        infoType: entity
-        name: CommerceGridAudienceSegment
-        version: v1
-    NillableString:
-      type:
-      - object
-      - 'null'
-      properties:
-        value:
-          type:
-          - string
-          - 'null'
-          description: The string's value. If missing or null the string's value is set to "null"
-      description: Placeholder object for string value  for which "null" is a valid business value
-    AudienceWarning:
-      required:
-      - code
-      - detail
-      - instance
-      - type
-      type: object
-      properties:
-        code:
-          type: string
-          description: (REQUIRED) A machine-readable unique error code, expressed as a string value. The format used must be kebab-case.
-        detail:
-          type: string
-          description: (REQUIRED) A human-readable explanation specific to this occurrence of the problem
-        instance:
-          type: string
-          description: (REQUIRED) A URI reference that identifies the specific occurrence of the problem
-        source:
-          type:
-          - object
-          - 'null'
-          description: (OPTIONAL) A machine-readable structure to reference to the exact location(s) causing the error(s)
-        stackTrace:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: (NEVER IN PRODUCTION) A human-readable stacktrace produced by the implementation technology
-        title:
-          type:
-          - string
-          - 'null'
-          description: (RECOMMENDED) A short, human-readable summary of the problem type
-        traceId:
-          type:
-          - string
-          - 'null'
-          description: (REQUIRED) The Correlation ID provided by the Gateway. It is also a unique identifier for this particular occurrence of the problem.
-        type:
-          enum:
-          - access-control
-          - authentication
-          - authorization
-          - availability
-          - deprecation
-          - quota
-          - validation
-          type: string
-          description: (REQUIRED) The classification of the error
-      description: Definition of the warning
-    CgAudienceSegmentBulkCreateInputV1:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CgAudienceSegmentCreateEntityV1Resource'
-      description: A top-level object that encapsulates a Criteo API request for several values.
-    CgAudienceSegmentDeleteEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/CgAudienceSegmentDeleteEntityV1'
-        id:
-          type: string
-          description: Id of the entity
-        type:
-          type: string
-      description: A class that represents a domain entity exposed by an API
-    CgAudienceSegmentSearchInputV1:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CgAudienceSegmentSearchEntityV1Resource'
-      description: A top-level object that encapsulates a Criteo API request for a single value.
-    CgContactListStatisticsEntityV1Resource:
-      type:
-      - object
-      - 'null'
-      properties:
-        attributes:
-          $ref: '#/components/schemas/CgContactListStatisticsEntityV1'
-        id:
-          type:
-          - string
-          - 'null'
-          description: Id of the entity
-        type:
-          type:
-          - string
-          - 'null'
-      description: A class that represents a domain entity exposed by an API
-    CgAudienceSegmentIdEntityV1:
-      type:
-      - object
-      - 'null'
-      description: Audience Segment entity only with its ID
-      x-criteo-canonical:
-        infoType: entity
-        name: CommerceGridAudienceSegment
-        version: v1
-    CgContactListCreateV1:
-      type: object
-      properties:
-        remoteId:
-          type: string
-          description: The ID owned by the client and used to identify the Audience Segment.
-      description: Settings to target users with your contact lists.
-    CgAudienceSegmentUpdateEntityV1:
-      type: object
-      properties:
-        description:
-          $ref: '#/components/schemas/NillableString'
-        name:
-          type: string
-          description: Name of the segment
-      description: Set of rules that defines specific people to target.
-      x-criteo-canonical:
-        infoType: entity
-        name: CommerceGridAudienceSegment
-        version: v1
-    CgAudienceSegmentEntityV1CgAudienceSegmentSearchMetadataV1ListResponse:
+    CgAudienceSegmentEntityV1ListResponse:
       type: object
       properties:
         data:
@@ -804,8 +279,6 @@ components:
           items:
             $ref: '#/components/schemas/CommonProblem'
           readOnly: true
-        meta:
-          $ref: '#/components/schemas/CgAudienceSegmentSearchMetadataV1'
         warnings:
           type:
           - array
@@ -813,7 +286,14 @@ components:
           items:
             $ref: '#/components/schemas/CommonProblem'
           readOnly: true
-      description: A top-level object that encapsulates a Criteo API response for several entities and metadata
+      description: A top-level object that encapsulates a Criteo API response for several entities
+    CgContactListCreateV1:
+      type: object
+      properties:
+        remoteId:
+          type: string
+          description: The ID owned by the client and used to identify the Audience Segment.
+      description: Settings to target users with your contact lists.
     CgAudienceSegmentCreateEntityV1:
       required:
       - dataProviderId
@@ -832,21 +312,37 @@ components:
           type: string
           description: Name of the segment
       description: Set of rules that defines specific people to target.
-    CgAudienceSegmentIdEntityV1Resource:
+    CgAudienceSegmentUpdateEntityV1Resource:
       type: object
       properties:
         attributes:
-          $ref: '#/components/schemas/CgAudienceSegmentIdEntityV1'
+          $ref: '#/components/schemas/CgAudienceSegmentUpdateEntityV1'
         id:
-          type:
-          - string
-          - 'null'
+          type: string
           description: Id of the entity
         type:
-          type:
-          - string
-          - 'null'
+          type: string
       description: A class that represents a domain entity exposed by an API
+    CgContactListStatisticsEntityV1Response:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CgContactListStatisticsEntityV1Resource'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for a single entity
     CgAudienceSegmentBulkUpdateInputV1:
       type: object
       properties:
@@ -855,11 +351,11 @@ components:
           items:
             $ref: '#/components/schemas/CgAudienceSegmentUpdateEntityV1Resource'
       description: A top-level object that encapsulates a Criteo API request for several entities.
-    CgAudienceSegmentEntityV1Resource:
+    CgAudienceSegmentIdEntityV1Resource:
       type: object
       properties:
         attributes:
-          $ref: '#/components/schemas/CgAudienceSegmentEntityV1'
+          $ref: '#/components/schemas/CgAudienceSegmentIdEntityV1'
         id:
           type:
           - string
@@ -922,6 +418,438 @@ components:
           type: string
           description: (REQUIRED) The classification of the error
       description: Definition of an audience error
+    CgAudienceSegmentDeleteEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CgAudienceSegmentDeleteEntityV1'
+        id:
+          type: string
+          description: Id of the entity
+        type:
+          type: string
+      description: A class that represents a domain entity exposed by an API
+    NillableString:
+      type:
+      - object
+      - 'null'
+      properties:
+        value:
+          type:
+          - string
+          - 'null'
+          description: The string's value. If missing or null the string's value is set to "null"
+      description: Placeholder object for string value  for which "null" is a valid business value
+    CgAudienceSegmentDeleteEntityV1:
+      type: object
+      description: Segment to delete
+      x-criteo-canonical:
+        infoType: entity
+        name: CommerceGridAudienceSegment
+        version: v1
+    CgAudienceSegmentSearchMetadataV1:
+      type:
+      - object
+      - 'null'
+      properties:
+        limit:
+          type:
+          - integer
+          - 'null'
+          description: Max item of the current page
+          format: int32
+        offset:
+          type:
+          - integer
+          - 'null'
+          description: Number of item to skip
+          format: int32
+        totalItems:
+          type:
+          - integer
+          - 'null'
+          description: Total number of items
+          format: int32
+      description: Metadata for the audience segment search response.
+    CgAudienceSegmentIdEntityV1:
+      type:
+      - object
+      - 'null'
+      description: Audience Segment entity only with its ID
+      x-criteo-canonical:
+        infoType: entity
+        name: CommerceGridAudienceSegment
+        version: v1
+    CommerceGridContactlistOperationResponseAttributes:
+      required:
+      - attributes
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+          description: Contact List
+          example: AddRemoveContactlist
+        attributes:
+          required:
+          - operation
+          type: object
+          properties:
+            contactListId:
+              type:
+              - integer
+              - 'null'
+              description: the affected contact list ID
+              format: int64
+              readOnly: true
+            identifierType:
+              type:
+              - string
+              - 'null'
+              description: The schema specified for of the identifiers
+              readOnly: true
+            nbInvalidIdentifiers:
+              type:
+              - integer
+              - 'null'
+              description: How many identifiers were invalid for the specified schema
+              format: int32
+              readOnly: true
+            nbValidIdentifiers:
+              type:
+              - integer
+              - 'null'
+              description: How many identifiers were valid for the specified schema
+              format: int32
+              readOnly: true
+            operation:
+              type: string
+              description: The action recorded
+            requestDate:
+              type:
+              - string
+              - 'null'
+              description: When the action was recorded
+              format: date-time
+              readOnly: true
+            sampleInvalidIdentifiers:
+              type:
+              - array
+              - 'null'
+              items:
+                type: string
+              description: A sample of invalid identifiers if there is some
+              readOnly: true
+          description: Attributes of Commerce Grid contact list amendment
+      description: Response data of Commerce Grid contact list amendment
+    CgContactListV1:
+      type:
+      - object
+      - 'null'
+      description: Settings to target users with your contact lists.
+    CgAudienceSegmentEntityV1:
+      type:
+      - object
+      - 'null'
+      properties:
+        contactList:
+          $ref: '#/components/schemas/CgContactListV1'
+        createdAt:
+          type:
+          - string
+          - 'null'
+          description: ISO-8601 timestamp in UTC of segment creation (read-only)
+          format: date-time
+        dataProviderId:
+          type:
+          - string
+          - 'null'
+          description: Data provider associated to the segment (read-only)
+        description:
+          type:
+          - string
+          - 'null'
+          description: Description of the segment
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the segment
+        remoteId:
+          type:
+          - string
+          - 'null'
+          description: The ID used to identify the segment in the data provider's system (read-only)
+        type:
+          enum:
+          - Unknown
+          - ContactList
+          type:
+          - string
+          - 'null'
+          description: Type of segment (read-only)
+        updatedAt:
+          type:
+          - string
+          - 'null'
+          description: ISO-8601 timestamp in UTC of segment update (read-only)
+          format: date-time
+      description: Set of rules that defines specific people to target.
+      x-criteo-canonical:
+        infoType: entity
+        name: CommerceGridAudienceSegment
+        version: v1
+    CgContactListStatisticsEntityV1:
+      type:
+      - object
+      - 'null'
+      properties:
+        matchRate:
+          type:
+          - number
+          - 'null'
+          description: 'Percentage of matched identifiers in the contact list.
+
+            Can differ from matches/identifiers depending on the contact list type.'
+          format: double
+        numberOfIdentifiers:
+          type:
+          - integer
+          - 'null'
+          description: Number of identifiers in the contact list.
+          format: int32
+        numberOfMatches:
+          type:
+          - integer
+          - 'null'
+          description: Number of matched identifiers in the contact list.
+          format: int32
+      description: Contact list statistics.
+      x-criteo-canonical:
+        infoType: entity
+        name: ContactListStatistics
+        version: v1
+    CgAudienceSegmentCreateEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CgAudienceSegmentCreateEntityV1'
+        type:
+          type: string
+      description: A top-level object that encapsulates a Criteo API response for a single value
+    AudienceWarning:
+      required:
+      - code
+      - detail
+      - instance
+      - type
+      type: object
+      properties:
+        code:
+          type: string
+          description: (REQUIRED) A machine-readable unique error code, expressed as a string value. The format used must be kebab-case.
+        detail:
+          type: string
+          description: (REQUIRED) A human-readable explanation specific to this occurrence of the problem
+        instance:
+          type: string
+          description: (REQUIRED) A URI reference that identifies the specific occurrence of the problem
+        source:
+          type:
+          - object
+          - 'null'
+          description: (OPTIONAL) A machine-readable structure to reference to the exact location(s) causing the error(s)
+        stackTrace:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: (NEVER IN PRODUCTION) A human-readable stacktrace produced by the implementation technology
+        title:
+          type:
+          - string
+          - 'null'
+          description: (RECOMMENDED) A short, human-readable summary of the problem type
+        traceId:
+          type:
+          - string
+          - 'null'
+          description: (REQUIRED) The Correlation ID provided by the Gateway. It is also a unique identifier for this particular occurrence of the problem.
+        type:
+          enum:
+          - access-control
+          - authentication
+          - authorization
+          - availability
+          - deprecation
+          - quota
+          - validation
+          type: string
+          description: (REQUIRED) The classification of the error
+      description: Definition of the warning
+    CgAudienceSegmentEntityV1CgAudienceSegmentSearchMetadataV1ListResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CgAudienceSegmentEntityV1Resource'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        meta:
+          $ref: '#/components/schemas/CgAudienceSegmentSearchMetadataV1'
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for several entities and metadata
+    CgAudienceSegmentBulkDeleteInputV1:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CgAudienceSegmentDeleteEntityV1Resource'
+      description: A top-level object that encapsulates a Criteo API request for several entities.
+    CgContactListStatisticsEntityV1Resource:
+      type:
+      - object
+      - 'null'
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CgContactListStatisticsEntityV1'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Id of the entity
+        type:
+          type:
+          - string
+          - 'null'
+      description: A class that represents a domain entity exposed by an API
+    CgAudienceSegmentBulkCreateInputV1:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CgAudienceSegmentCreateEntityV1Resource'
+      description: A top-level object that encapsulates a Criteo API request for several values.
+    CommonProblem:
+      type: object
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+          description: A machine-readable error code, expressed as a string value.
+        detail:
+          type:
+          - string
+          - 'null'
+          description: A human-readable explanation specific to this occurrence of the problem
+        instance:
+          type:
+          - string
+          - 'null'
+          description: A URI that identifies the specific occurrence of the problem.
+        source:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+          description: A machine-readable structure to reference to the exact location(s) causing the error(s)
+        stackTrace:
+          type:
+          - string
+          - 'null'
+          description: ''
+        title:
+          type:
+          - string
+          - 'null'
+          description: A short human-readable description of the problem type
+        traceId:
+          type:
+          - string
+          - 'null'
+          description: The request correlation ID this problem comes from.
+        traceIdentifier:
+          type:
+          - string
+          - 'null'
+          description: The request correlation ID this problem comes from. (deprecated, use traceId instead)
+        type:
+          enum:
+          - unknown
+          - access-control
+          - authentication
+          - authorization
+          - availability
+          - deprecation
+          - quota
+          - validation
+          type:
+          - string
+          - 'null'
+          description: The problem's category.
+      description: Common problem object.
+    CgAudienceSegmentSearchEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CgAudienceSegmentSearchEntityV1'
+        type:
+          type: string
+      description: A top-level object that encapsulates a Criteo API response for a single value
+    CgAudienceSegmentSearchEntityV1:
+      type: object
+      properties:
+        audienceSegmentIds:
+          type: array
+          items:
+            type: string
+          description: List of segment ids
+        audienceSegmentTypes:
+          type: array
+          items:
+            enum:
+            - Unknown
+            - ContactList
+            type: string
+          description: List of segment types
+        dataProviderIds:
+          type: array
+          items:
+            type: string
+          description: List of data provider ids
+        remoteIds:
+          type: array
+          items:
+            type: string
+          description: List of ids used to identify the segment in the data provider's system
+      description: Available filters to perform a search on audience segments. If present, the filters are AND'ed together when applied.
+    CommerceGridContactlistAmendmentRequest:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CommerceGridContactlistAmendment'
+      description: Request of Commerce Grid contact list
     CommerceGridContactlistOperation:
       required:
       - data
@@ -940,6 +868,78 @@ components:
           items:
             $ref: '#/components/schemas/AudienceWarning'
       description: Operation on Commerce Grid contact list
+    CgAudienceSegmentEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CgAudienceSegmentEntityV1'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Id of the entity
+        type:
+          type:
+          - string
+          - 'null'
+      description: A class that represents a domain entity exposed by an API
+    CommerceGridContactlistAmendment:
+      required:
+      - attributes
+      type: object
+      properties:
+        attributes:
+          required:
+          - identifiers
+          - operation
+          type: object
+          properties:
+            identifiers:
+              type: array
+              items:
+                type: string
+              description: The users to add or remove, each in the schema specified
+            identifierType:
+              enum:
+              - Email
+              - MadId
+              - UserIdentifier
+              - IdentityLink
+              - BidSwitchId
+              - FTrackId
+              - PanoramaId
+              - HadronId
+              - IpAddressV4
+              - PageUrl
+              - PageDomain
+              - AppId
+              type: string
+              description: What type of identifiers are used
+            operation:
+              enum:
+              - Add
+              - Remove
+              type: string
+              description: Whether to add or remove users
+          description: Attributes of Commerce Grid contact list amendment
+        type:
+          type: string
+          description: Contact List
+          example: AddRemoveContactlist
+      description: Request data of Commerce Grid contact list amendment
+    CgAudienceSegmentUpdateEntityV1:
+      type: object
+      properties:
+        description:
+          $ref: '#/components/schemas/NillableString'
+        name:
+          type: string
+          description: Name of the segment
+      description: Set of rules that defines specific people to target.
+      x-criteo-canonical:
+        infoType: entity
+        name: CommerceGridAudienceSegment
+        version: v1
   securitySchemes:
     oauth:
       type: oauth2

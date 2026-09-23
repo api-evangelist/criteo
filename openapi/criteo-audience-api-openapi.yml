@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Criteo Audience API
   version: 2026-07
-  description: 'Operations tagged Audience across 2 of this provider''s published API definitions: criteo-marketing-solutions-api-openapi.yml, criteo-retail-media-api-openapi.yml. Each path carries the servers of the definition it was published in.'
+  description: 'Operations tagged Audience across 2 of this provider''s published API definitions: criteo-marketing-solutions-2026-07-openapi-original.json, criteo-retail-media-2026-07-openapi-original.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.criteo.com
 security:
@@ -49,7 +49,7 @@ paths:
     delete:
       tags:
       - Audience
-      summary: /2026-07/marketing-solutions/audience-segments/{audience-segment-id}/contact-list
+      summary: /2026-07/marketing-solutions/audience-segments/{audience-segment-id}/contact-lis…
       description: Delete all identifiers from a contact list audience-segment.
       operationId: DeleteContactListByAudienceSegment
       responses:
@@ -77,7 +77,7 @@ paths:
     patch:
       tags:
       - Audience
-      summary: /2026-07/marketing-solutions/audience-segments/{audience-segment-id}/contact-list
+      summary: /2026-07/marketing-solutions/audience-segments/{audience-segment-id}/contact-lis…
       description: Add/remove identifiers to or from a contact list audience-segment.
       operationId: UpdateContactListByAudienceSegment
       requestBody:
@@ -123,7 +123,7 @@ paths:
     get:
       tags:
       - Audience
-      summary: /2026-07/marketing-solutions/audience-segments/{audience-segment-id}/contact-list/statistics
+      summary: /2026-07/marketing-solutions/audience-segments/{audience-segment-id}/contact-lis…
       description: Returns the statistics of a contact list segment.
       operationId: GetAudienceSegmentContactListStatistics
       parameters:
@@ -583,7 +583,7 @@ paths:
     get:
       tags:
       - Audience
-      summary: /2026-07/retail-media/accounts/{account-id}/audience-segments/{audience-segment-id}/contact-list
+      summary: /2026-07/retail-media/accounts/{account-id}/audience-segments/{audience-segment…
       description: Returns the statistics of a contact list segment.
       operationId: getAudienceSegmentContactListStatistics
       parameters:
@@ -783,7 +783,7 @@ paths:
     post:
       tags:
       - Audience
-      summary: /2026-07/retail-media/audience-segments/{audience-segment-id}/contact-list/add-remove
+      summary: /2026-07/retail-media/audience-segments/{audience-segment-id}/contact-list/add-r…
       description: Add/remove identifiers to or from a retail-media contact list audience-segment, with external audience segment id.
       operationId: AddRemoveContactListByAudienceSegment
       parameters:
@@ -864,20 +864,13 @@ paths:
     - url: https://api.criteo.com
 components:
   schemas:
-    AudienceIdEntityV1:
+    ContactListStatisticsEntityV1Resource:
       type:
       - object
       - 'null'
-      description: Audience entity with only its ID
-      x-criteo-canonical:
-        infoType: entity
-        name: Audience
-        version: v1
-    AudienceEntityV1Resource:
-      type: object
       properties:
         attributes:
-          $ref: '#/components/schemas/AudienceEntityV1'
+          $ref: '#/components/schemas/ContactListStatisticsEntityV1'
         id:
           type:
           - string
@@ -888,139 +881,83 @@ components:
           - string
           - 'null'
       description: A class that represents a domain entity exposed by an API
-    LookalikeCreateV1:
-      required:
-      - seedSegmentId
-      type: object
-      properties:
-        seedSegmentId:
-          type: string
-          description: Segment from which the Lookalike segment will be generated
-        targetSize:
-          type: integer
-          description: Desired size of the generated Lookalike segment
-          format: int64
-      description: Settings to target users close to a given seed segment.
-    AudienceSegmentUpdateEntityV1:
-      type: object
-      properties:
-        description:
-          $ref: '#/components/schemas/NillableString'
-        inMarket:
-          $ref: '#/components/schemas/InMarketUpdateV1'
-        location:
-          $ref: '#/components/schemas/LocationUpdateV1'
-        lookalike:
-          $ref: '#/components/schemas/LookalikeUpdateV1'
-        name:
-          type: string
-          description: Name of the segment
-        prospecting:
-          $ref: '#/components/schemas/ProspectingUpdateV1'
-        retargeting:
-          $ref: '#/components/schemas/RetargetingUpdateV1'
-      description: Set of rules that defines specific people to target.
-      x-criteo-canonical:
-        infoType: entity
-        name: AudienceSegment
-        version: v1
-    InMarketAudienceSegmentBrandEntityV1:
+    NillableInt32:
       type:
       - object
       - 'null'
       properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name of the in-market segment brand
-        size:
+        value:
           type:
           - integer
           - 'null'
-          description: Size of the in-market segment brand
+          description: The value. If missing or null the value is set to "null"
           format: int32
-      description: In-market segment brand entity
-      x-criteo-canonical:
-        infoType: entity
-        name: InMarketAudienceSegmentBrand
-        version: v1
-    AudienceSegmentSearchEntityV1Resource:
+      description: Placeholder object for value for which "null" is a valid business value
+    AudienceSegmentCreateEntityV1Resource:
       type: object
       properties:
         attributes:
-          $ref: '#/components/schemas/AudienceSegmentSearchEntityV1'
+          $ref: '#/components/schemas/AudienceSegmentCreateEntityV1'
         type:
           type: string
       description: A top-level object that encapsulates a Criteo API response for a single value
-    InMarketV1:
-      type:
-      - object
-      - 'null'
+    AudienceEstimateSizeEntityV1:
+      required:
+      - advertiserId
+      - algebra
+      type: object
       properties:
-        brandIds:
-          uniqueItems: true
-          type:
-          - array
-          - 'null'
+        advertiserId:
+          type: string
+          description: Advertiser associated to the audience
+        algebra:
+          $ref: '#/components/schemas/AlgebraNodeV1'
+      description: Audience of people of interest for a marketer.
+    AudienceSegmentSearchEntityV1:
+      type: object
+      properties:
+        advertiserIds:
+          type: array
           items:
             type: string
-          description: Choose the brands your segment might be interested in
-        buyingPower:
-          uniqueItems: true
-          type:
-          - array
-          - 'null'
-          items:
-            enum:
-            - Unknown
-            - Low
-            - Medium
-            - High
-            - VeryHigh
-            type: string
-          description: Reach people who frequently purchase high price range items to lower price range items
-        country:
-          type:
-          - string
-          - 'null'
-          description: Reach people of a specific country
-        gender:
-          enum:
-          - Unknown
-          - Male
-          - Female
-          type:
-          - string
-          - 'null'
-          description: Reach people who’ve shown interest in products made for a specific gender
-        interestIds:
-          uniqueItems: true
-          type:
-          - array
-          - 'null'
+          description: List of advertiser ids
+        audienceSegmentIds:
+          type: array
           items:
             type: string
-          description: Reach new people based on their interests
-        priceRange:
-          uniqueItems: true
-          type:
-          - array
-          - 'null'
+          description: List of segment ids
+        audienceSegmentTypes:
+          type: array
           items:
             enum:
             - Unknown
-            - Low
-            - Medium
-            - High
+            - InMarket
+            - Prospecting
+            - ContactList
+            - Location
+            - Behavioral
+            - Retargeting
+            - Lookalike
             type: string
-          description: Reach people who’ve shown interest in products within a specific price range
-      description: Settings to target users based on high shopping intents and demographics.
-    AudienceSegmentSizeEstimationV1Response:
+          description: List of segment types
+      description: Available filters to perform a search on audience segments. If present, the filters are AND'ed together when applied.
+    AudienceComputeSizesInputV1:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/AudienceSegmentSizeEstimationV1Resource'
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceComputeSizeEntityV1Resource'
+      description: Input to retrieve the size of one or more audiences.
+    AudienceSegmentEntityV1ListResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AudienceSegmentEntityV1Resource'
         errors:
           type:
           - array
@@ -1035,25 +972,60 @@ components:
           items:
             $ref: '#/components/schemas/CommonProblem'
           readOnly: true
-      description: A top-level object that encapsulates a Criteo API response for a single value
-    ContactListCreateV1:
-      type: object
-      description: Settings to target users with your contact lists.
-    AudienceSegmentDeleteEntityV1:
-      type: object
-      description: Segment to delete
-      x-criteo-canonical:
-        infoType: entity
-        name: AudienceSegment
-        version: v1
-    AudienceSearchEntityV1Resource:
+      description: A top-level object that encapsulates a Criteo API response for several entities
+    AudienceSegmentDeleteEntityV1Resource:
       type: object
       properties:
         attributes:
-          $ref: '#/components/schemas/AudienceSearchEntityV1'
+          $ref: '#/components/schemas/AudienceSegmentDeleteEntityV1'
+        id:
+          type: string
+          description: Id of the entity
         type:
           type: string
-      description: A top-level object that encapsulates a Criteo API response for a single value
+      description: A class that represents a domain entity exposed by an API
+    InMarketUpdateV1:
+      type: object
+      properties:
+        brandIds:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+          description: Choose the brands your segment might be interested in
+        buyingPower:
+          uniqueItems: true
+          type: array
+          items:
+            enum:
+            - Low
+            - Medium
+            - High
+            - VeryHigh
+            type: string
+          description: Reach people who frequently purchase high price range items to lower price range items
+        country:
+          type: string
+          description: Reach people of a specific country
+        gender:
+          $ref: '#/components/schemas/NillableGenderV1'
+        interestIds:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+          description: Reach new people based on their interests
+        priceRange:
+          uniqueItems: true
+          type: array
+          items:
+            enum:
+            - Low
+            - Medium
+            - High
+            type: string
+          description: Reach people who’ve shown interest in products within a specific price range
+      description: Settings to target users based on high shopping intents and demographics.
     AudienceNameDescription:
       type:
       - object
@@ -1070,6 +1042,330 @@ components:
           - 'null'
           description: The name to designate the audience by
       description: Description of an audience with name and detailed description
+    AudienceSegmentEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AudienceSegmentEntityV1'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Id of the entity
+        type:
+          type:
+          - string
+          - 'null'
+      description: A class that represents a domain entity exposed by an API
+    AudienceUpdateEntityV1:
+      type: object
+      properties:
+        algebra:
+          $ref: '#/components/schemas/AlgebraNodeV1'
+        description:
+          $ref: '#/components/schemas/NillableString'
+        name:
+          type: string
+          description: Name of the audience
+      description: Audience of people of interest for a marketer.
+      x-criteo-canonical:
+        infoType: entity
+        name: Audience
+        version: v1
+    AudienceSegmentSizeEstimationV1Resource:
+      type:
+      - object
+      - 'null'
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AudienceSegmentSizeEstimationV1'
+        type:
+          type:
+          - string
+          - 'null'
+      description: A top-level object that encapsulates a Criteo API response for a single value
+    LocationV1:
+      type:
+      - object
+      - 'null'
+      properties:
+        pointsOfInterest:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PointOfInterestV1'
+          description: Reach users which have been historically located in the given coordinates
+        radiusInKm:
+          type:
+          - integer
+          - 'null'
+          description: The expected maximum distance in kilometers between a user and a point of interest
+          format: int32
+        registryType:
+          enum:
+          - Unknown
+          - PointOfInterest
+          type:
+          - string
+          - 'null'
+          description: The kind of Location audience
+      description: Settings to target users based on their location.
+    AudienceSegmentSearchMetadataV1:
+      type:
+      - object
+      - 'null'
+      properties:
+        limit:
+          type:
+          - integer
+          - 'null'
+          description: Max item of the current page
+          format: int32
+        offset:
+          type:
+          - integer
+          - 'null'
+          description: Number of item to skip
+          format: int32
+        totalItems:
+          type:
+          - integer
+          - 'null'
+          description: Total number of items
+          format: int32
+      description: Metadata for the audience segment search response.
+    ContactListStatisticsEntityV1:
+      type:
+      - object
+      - 'null'
+      properties:
+        matchRate:
+          type:
+          - number
+          - 'null'
+          description: 'Percentage of matched identifiers in the contact list.
+
+            Can differ from matches/identifiers depending on the contact list type.'
+          format: double
+        numberOfIdentifiers:
+          type:
+          - integer
+          - 'null'
+          description: Number of identifiers in the contact list.
+          format: int32
+        numberOfMatches:
+          type:
+          - integer
+          - 'null'
+          description: Number of matched identifiers in the contact list.
+          format: int32
+      description: Contact list statistics.
+      x-criteo-canonical:
+        infoType: entity
+        name: ContactListStatistics
+        version: v1
+    AudienceIdEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AudienceIdEntityV1'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Id of the entity
+        type:
+          type:
+          - string
+          - 'null'
+      description: A class that represents a domain entity exposed by an API
+    AudienceEntityV1:
+      type:
+      - object
+      - 'null'
+      properties:
+        adSetIds:
+          uniqueItems: true
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Ad sets associated to the audience
+        advertiserId:
+          type:
+          - string
+          - 'null'
+          description: Advertiser associated to the audience
+        algebra:
+          $ref: '#/components/schemas/AlgebraNodeV1'
+        createdAt:
+          type:
+          - string
+          - 'null'
+          description: ISO-8601 timestamp in UTC of audience creation (read-only)
+          format: date-time
+        description:
+          type:
+          - string
+          - 'null'
+          description: Description of the audience
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the audience
+        updatedAt:
+          type:
+          - string
+          - 'null'
+          description: ISO-8601 timestamp in UTC of audience update (read-only)
+          format: date-time
+      description: Audience of people of interest for a marketer.
+      x-criteo-canonical:
+        infoType: entity
+        name: Audience
+        version: v1
+    AudienceSearchEntityV1:
+      type: object
+      properties:
+        adSetIds:
+          type: array
+          items:
+            type: string
+          description: List of AdSet ids
+        advertiserIds:
+          type: array
+          items:
+            type: string
+          description: List of advertiser ids
+        audienceIds:
+          type: array
+          items:
+            type: string
+          description: List of audience ids
+        audienceSegmentIds:
+          type: array
+          items:
+            type: string
+          description: List of segment ids (linked to the result audiences)
+      description: Available filters to perform a search on segments. If present, the filters are AND'ed together when applied.
+    AudienceSegmentIdEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AudienceSegmentIdEntityV1'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Id of the entity
+        type:
+          type:
+          - string
+          - 'null'
+      description: A class that represents a domain entity exposed by an API
+    BasicAudienceDefinition:
+      required:
+      - id
+      - type
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AudienceNameDescription'
+        id:
+          type: string
+          description: the id of the entity type
+        type:
+          type: string
+          description: the name of the entity type
+      description: Common definition of an audience
+    AudienceEntityV1ListResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AudienceEntityV1Resource'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for several entities
+    AudienceSizeEstimationV1Resource:
+      type:
+      - object
+      - 'null'
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AudienceSizeEstimationV1'
+        type:
+          type:
+          - string
+          - 'null'
+      description: A top-level object that encapsulates a Criteo API response for a single value
+    AudienceSegmentComputeSizesInputV1:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceSegmentComputeSizeEntityV1Resource'
+      description: Input to retrieve the size of one or more segments.
+    AudienceBulkCreateInputV1:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceCreateEntityV1Resource'
+      description: Input to create one or more audiences.
+    RetargetingUpdateV1:
+      type: object
+      properties:
+        daysSinceLastVisitMax:
+          type: integer
+          description: Maximum number of days since last visit to partner.
+          format: int32
+        daysSinceLastVisitMin:
+          type: integer
+          description: Minimum number of days since last visit to partner.
+          format: int32
+        visitorsType:
+          enum:
+          - All
+          - Buyers
+          - NonBuyers
+          type: string
+          description: Types of visitors.
+      description: Settings to target users based on its type and days since last visit.
+    ProspectingUpdateV1:
+      type: object
+      properties:
+        daysSinceLastVisitMax:
+          $ref: '#/components/schemas/NillableInt32'
+        daysSinceLastVisitMin:
+          $ref: '#/components/schemas/NillableInt32'
+        usersType:
+          enum:
+          - Prospects
+          - ProspectsOrNonBuyers
+          type: string
+          description: Type of users to target
+      description: Settings to target prospecting users to website visitors.
     InMarketSizeEstimationV1:
       required:
       - country
@@ -1112,180 +1408,110 @@ components:
             - High
             type: string
       description: Settings to target users based on high shopping intents and demographics.
-    ProspectingCreateV1:
-      required:
-      - usersType
-      type: object
-      properties:
-        daysSinceLastVisitMax:
-          type: integer
-          description: When non buyers are included, include users who visited your website after this number of days
-          format: int32
-        daysSinceLastVisitMin:
-          type: integer
-          description: When non buyers are included, include users who visited your website before this number of days
-          format: int32
-        usersType:
-          enum:
-          - Prospects
-          - ProspectsOrNonBuyers
-          type: string
-          description: Type of users to target
-      description: Settings to target prospecting users to website visitors.
-    AudienceSegmentSizeEntityV1ListResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/AudienceSegmentSizeEntityV1Resource'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        warnings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-      description: A top-level object that encapsulates a Criteo API response for several entities
-    AudienceBulkUpdateInputV1:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AudienceUpdateEntityV1Resource'
-      description: Input to update one or more audiences.
-    AudienceUpdateEntityV1:
-      type: object
-      properties:
-        algebra:
-          $ref: '#/components/schemas/AlgebraNodeV1'
-        description:
-          $ref: '#/components/schemas/NillableString'
-        name:
-          type: string
-          description: Name of the audience
-      description: Audience of people of interest for a marketer.
-      x-criteo-canonical:
-        infoType: entity
-        name: Audience
-        version: v1
-    ContactlistAmendmentRequest:
+    ModifyAudienceResponse:
       required:
       - data
+      - errors
+      - warnings
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/ContactlistAmendment'
-      description: Request for a contactlist amendment
-    ContactlistAmendment:
+          $ref: '#/components/schemas/ContactlistOperation'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceError'
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceWarning'
+      description: Parameters to modify an audience
+    AudienceError:
       required:
-      - attributes
+      - code
+      - instance
       - type
       type: object
       properties:
-        attributes:
-          required:
-          - identifiers
-          - operation
-          type: object
-          properties:
-            gumCallerId:
-              type: integer
-              description: The Gum caller id of the advertiser patching identifiers of type Gum
-            identifiers:
-              type: array
-              items:
-                type: string
-              description: The users to add or remove, each in the schema specified
-            identifierType:
-              enum:
-              - email
-              - madid
-              - identityLink
-              - gum
-              - phoneNumber
-              type: string
-              description: What type of identifiers are used
-            operation:
-              enum:
-              - add
-              - remove
-              type: string
-              description: Operation to add or remove users
-          description: the name of the entity type
-        type:
+        code:
           type: string
-          description: User List
-          example: ContactlistAmendment
-      description: Parameters for the amendment of a contactlist
-    InMarketAudienceSegmentInterestEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/InMarketAudienceSegmentInterestEntityV1'
-        id:
+          description: (REQUIRED) A machine-readable unique error code, expressed as a string value. The format used must be kebab-case.
+        detail:
           type:
           - string
           - 'null'
-          description: Id of the entity
-        type:
+          description: (RECOMMENDED) A human-readable explanation specific to this occurrence of the problem
+        instance:
+          type: string
+          description: (REQUIRED) A URI reference that identifies the specific occurrence of the problem
+        source:
           type:
-          - string
+          - object
           - 'null'
-      description: A class that represents a domain entity exposed by an API
-    NillableString:
-      type:
-      - object
-      - 'null'
-      properties:
-        value:
-          type:
-          - string
-          - 'null'
-          description: The string's value. If missing or null the string's value is set to "null"
-      description: Placeholder object for string value  for which "null" is a valid business value
-    AlgebraNodeV1:
-      type:
-      - object
-      - 'null'
-      properties:
-        and:
+          description: (OPTIONAL) A machine-readable structure to reference to the exact location(s) causing the error(s)
+        stackTrace:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/AlgebraNodeV1'
-        audienceSegmentId:
+            type: string
+          description: (NEVER IN PRODUCTION) A human-readable stacktrace produced by the implementation technology
+        title:
           type:
           - string
           - 'null'
-        not:
-          $ref: '#/components/schemas/AlgebraNodeV1'
-        or:
+          description: (RECOMMENDED) A short, human-readable summary of the problem type
+        traceId:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/AlgebraNodeV1'
-      description: Node in the audience algebra definition.
-    AudienceCreateEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AudienceCreateEntityV1'
+          description: (REQUIRED) The Correlation ID provided by the Gateway. It is also a unique identifier for this particular occurrence of the problem.
         type:
+          enum:
+          - access-control
+          - authentication
+          - authorization
+          - availability
+          - deprecation
+          - quota
+          - validation
           type: string
-      description: A top-level object that encapsulates a Criteo API response for a single value
+          description: (REQUIRED) The classification of the error
+      description: Definition of an audience error
+    BehavioralV1:
+      required:
+      - category
+      type:
+      - object
+      - 'null'
+      properties:
+        category:
+          enum:
+          - Unknown
+          - Lifestyles
+          - LifeEvents
+          - Seasonal
+          - BuyingPatterns
+          type: string
+          description: The type of behavioral
+        country:
+          type:
+          - string
+          - 'null'
+          description: The users' country
+        endDate:
+          type:
+          - string
+          - 'null'
+          description: Desired date when the behavioral will end
+          format: date-time
+        startDate:
+          type:
+          - string
+          - 'null'
+          description: Desired date when the behavioral will start
+          format: date-time
+      description: Settings of a behavioral set of users provided by Criteo.
     AudienceSegmentEntityV1:
       type:
       - object
@@ -1351,99 +1577,61 @@ components:
         infoType: entity
         name: AudienceSegment
         version: v1
-    AudienceSegmentSearchInputV1:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/AudienceSegmentSearchEntityV1Resource'
-      description: Audience segment search parameter
-    PointOfInterestV1:
-      type: object
-      properties:
-        latitude:
-          type:
-          - number
-          - 'null'
-          description: ISO-6709 latitude (rounded at 5 decimals)
-          format: double
-        longitude:
-          type:
-          - number
-          - 'null'
-          description: ISO-6709 longitude (rounded at 5 decimals)
-          format: double
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name of the point of interest
-      description: 'Named coordinate defined by its latitude and longitude.
-
-        Latitude and Longitude are rounded at 5 decimals.'
-    AudienceSegmentEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AudienceSegmentEntityV1'
-        id:
-          type:
-          - string
-          - 'null'
-          description: Id of the entity
-        type:
-          type:
-          - string
-          - 'null'
-      description: A class that represents a domain entity exposed by an API
-    RetargetingCreateV1:
-      required:
-      - daysSinceLastVisitMax
-      - daysSinceLastVisitMin
-      - visitorsType
-      type: object
-      properties:
-        daysSinceLastVisitMax:
-          type: integer
-          description: Maximum number of days since last visit to partner.
-          format: int32
-        daysSinceLastVisitMin:
-          type: integer
-          description: Minimum number of days since last visit to partner.
-          format: int32
-        visitorsType:
-          enum:
-          - All
-          - Buyers
-          - NonBuyers
-          type: string
-          description: Types of visitors.
-      description: Settings to target users based on its type and days since last visit.
-    InMarketAudienceSegmentBrandEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/InMarketAudienceSegmentBrandEntityV1'
-        id:
-          type:
-          - string
-          - 'null'
-          description: Id of the entity
-        type:
-          type:
-          - string
-          - 'null'
-      description: A class that represents a domain entity exposed by an API
-    AudienceSizeEstimationV1:
+    NillableString:
       type:
       - object
       - 'null'
       properties:
-        size:
+        value:
           type:
-          - integer
+          - string
           - 'null'
-          format: int64
-      description: Audience size estimation
+          description: The string's value. If missing or null the string's value is set to "null"
+      description: Placeholder object for string value  for which "null" is a valid business value
+    AlgebraNodeV1:
+      type:
+      - object
+      - 'null'
+      properties:
+        and:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AlgebraNodeV1'
+        audienceSegmentId:
+          type:
+          - string
+          - 'null'
+        not:
+          $ref: '#/components/schemas/AlgebraNodeV1'
+        or:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AlgebraNodeV1'
+      description: Node in the audience algebra definition.
+    ContactListStatisticsEntityV1Response:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ContactListStatisticsEntityV1Resource'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for a single entity
     LocationUpdateV1:
       type: object
       properties:
@@ -1462,241 +1650,6 @@ components:
           type: string
           description: The kind of Location audience
       description: Settings to target users based on their location.
-    AudienceEntityV1ListResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/AudienceEntityV1Resource'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        warnings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-      description: A top-level object that encapsulates a Criteo API response for several entities
-    AudienceSegmentSizeEstimationV1:
-      type:
-      - object
-      - 'null'
-      properties:
-        size:
-          type:
-          - integer
-          - 'null'
-          format: int64
-      description: Segment size estimation
-    InMarketAudienceSegmentBrandEntityV1ListResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/InMarketAudienceSegmentBrandEntityV1Resource'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        warnings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-      description: A top-level object that encapsulates a Criteo API response for several entities
-    NillableGenderV1:
-      type:
-      - object
-      - 'null'
-      properties:
-        value:
-          enum:
-          - Male
-          - Female
-          type:
-          - string
-          - 'null'
-          description: The value. If missing or null the value is set to "null"
-      description: Placeholder object for value for which "null" is a valid business value
-    AudienceSizeEstimationV1Response:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/AudienceSizeEstimationV1Resource'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        warnings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-      description: A top-level object that encapsulates a Criteo API response for a single value
-    AudienceSearchEntityV1:
-      type: object
-      properties:
-        adSetIds:
-          type: array
-          items:
-            type: string
-          description: List of AdSet ids
-        advertiserIds:
-          type: array
-          items:
-            type: string
-          description: List of advertiser ids
-        audienceIds:
-          type: array
-          items:
-            type: string
-          description: List of audience ids
-        audienceSegmentIds:
-          type: array
-          items:
-            type: string
-          description: List of segment ids (linked to the result audiences)
-      description: Available filters to perform a search on segments. If present, the filters are AND'ed together when applied.
-    AudienceSegmentEstimateSizeInputV1:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/AudienceSegmentSizeEstimationEntityV1Resource'
-      description: Input to estimate the size of an audience segment..
-    AudienceIdEntityV1ListResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/AudienceIdEntityV1Resource'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        warnings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-      description: A top-level object that encapsulates a Criteo API response for several entities
-    ModifyAudienceResponse:
-      required:
-      - data
-      - errors
-      - warnings
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ContactlistOperation'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/AudienceError'
-        warnings:
-          type: array
-          items:
-            $ref: '#/components/schemas/AudienceWarning'
-      description: Parameters to modify an audience
-    AudienceSearchInputV1:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/AudienceSearchEntityV1Resource'
-      description: Audience search parameter
-    ContactListStatisticsEntityV1Resource:
-      type:
-      - object
-      - 'null'
-      properties:
-        attributes:
-          $ref: '#/components/schemas/ContactListStatisticsEntityV1'
-        id:
-          type:
-          - string
-          - 'null'
-          description: Id of the entity
-        type:
-          type:
-          - string
-          - 'null'
-      description: A class that represents a domain entity exposed by an API
-    AudienceEntityV1:
-      type:
-      - object
-      - 'null'
-      properties:
-        adSetIds:
-          uniqueItems: true
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: Ad sets associated to the audience
-        advertiserId:
-          type:
-          - string
-          - 'null'
-          description: Advertiser associated to the audience
-        algebra:
-          $ref: '#/components/schemas/AlgebraNodeV1'
-        createdAt:
-          type:
-          - string
-          - 'null'
-          description: ISO-8601 timestamp in UTC of audience creation (read-only)
-          format: date-time
-        description:
-          type:
-          - string
-          - 'null'
-          description: Description of the audience
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name of the audience
-        updatedAt:
-          type:
-          - string
-          - 'null'
-          description: ISO-8601 timestamp in UTC of audience update (read-only)
-          format: date-time
-      description: Audience of people of interest for a marketer.
-      x-criteo-canonical:
-        infoType: entity
-        name: Audience
-        version: v1
     AudienceEntityV1AudienceSearchMetadataV1ListResponse:
       type: object
       properties:
@@ -1723,89 +1676,53 @@ components:
             $ref: '#/components/schemas/CommonProblem'
           readOnly: true
       description: A top-level object that encapsulates a Criteo API response for several entities and metadata
-    LookalikeV1:
-      type:
-      - object
-      - 'null'
-      properties:
-        seedSegmentId:
-          type:
-          - string
-          - 'null'
-          description: Segment from which the Lookalike segment will be generated
-        targetSize:
-          type:
-          - integer
-          - 'null'
-          description: Desired size of the generated Lookalike segment
-          format: int64
-      description: Settings to target users that behave like a given seed segment
-    ContactListStatisticsEntityV1:
-      type:
-      - object
-      - 'null'
-      properties:
-        matchRate:
-          type:
-          - number
-          - 'null'
-          description: 'Percentage of matched identifiers in the contact list.
-
-            Can differ from matches/identifiers depending on the contact list type.'
-          format: double
-        numberOfIdentifiers:
-          type:
-          - integer
-          - 'null'
-          description: Number of identifiers in the contact list.
-          format: int32
-        numberOfMatches:
-          type:
-          - integer
-          - 'null'
-          description: Number of matched identifiers in the contact list.
-          format: int32
-      description: Contact list statistics.
-      x-criteo-canonical:
-        infoType: entity
-        name: ContactListStatistics
-        version: v1
-    LocationCreateV1:
-      required:
-      - pointsOfInterest
-      - radiusInKm
-      type: object
-      properties:
-        pointsOfInterest:
-          type: array
-          items:
-            $ref: '#/components/schemas/PointOfInterestV1'
-          description: Reach users which have been historically located in the given coordinates
-        radiusInKm:
-          type: integer
-          description: The expected maximum distance in kilometers between a user and a point of interest
-          format: int32
-      description: Settings to target users based on their location.
-    AudienceComputeSizesInputV1:
+    AudienceSegmentSizeEstimationV1Response:
       type: object
       properties:
         data:
-          type: array
+          $ref: '#/components/schemas/AudienceSegmentSizeEstimationV1Resource'
+        errors:
+          type:
+          - array
+          - 'null'
           items:
-            $ref: '#/components/schemas/AudienceComputeSizeEntityV1Resource'
-      description: Input to retrieve the size of one or more audiences.
-    NillableInt32:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for a single value
+    ProspectingV1:
       type:
       - object
       - 'null'
       properties:
-        value:
+        daysSinceLastVisitMax:
           type:
           - integer
           - 'null'
-          description: The value. If missing or null the value is set to "null"
+          description: When non buyers are included, include users who visited your website after this number of days
           format: int32
-      description: Placeholder object for value for which "null" is a valid business value
+        daysSinceLastVisitMin:
+          type:
+          - integer
+          - 'null'
+          description: When non buyers are included, include users who visited your website before this number of days
+          format: int32
+        usersType:
+          enum:
+          - Unknown
+          - Prospects
+          - ProspectsOrNonBuyers
+          type:
+          - string
+          - 'null'
+          description: Type of users to target
+      description: Settings to target prospecting users to website visitors.
     InMarketCreateV1:
       required:
       - country
@@ -1854,74 +1771,30 @@ components:
             type: string
           description: Reach people who’ve shown interest in products within a specific price range
       description: Settings to target users based on high shopping intents and demographics.
-    AudienceBulkDeleteInputV1:
+    AudienceIdEntityV1ListResponse:
       type: object
       properties:
         data:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
-            $ref: '#/components/schemas/AudienceDeleteEntityV1Resource'
-      description: Input to delete one or more audiences.
-    AudienceSizeEntityV1:
-      type:
-      - object
-      - 'null'
-      properties:
-        size:
+            $ref: '#/components/schemas/AudienceIdEntityV1Resource'
+        errors:
           type:
-          - integer
+          - array
           - 'null'
-          format: int64
-      description: Audience entity only with its size
-      x-criteo-canonical:
-        infoType: entity
-        name: AudienceSize
-        version: v1
-    AudienceSegmentSizeEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AudienceSegmentSizeEntityV1'
-        id:
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
           type:
-          - string
+          - array
           - 'null'
-          description: Id of the entity
-        type:
-          type:
-          - string
-          - 'null'
-      description: A class that represents a domain entity exposed by an API
-    AudienceIdEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AudienceIdEntityV1'
-        id:
-          type:
-          - string
-          - 'null'
-          description: Id of the entity
-        type:
-          type:
-          - string
-          - 'null'
-      description: A class that represents a domain entity exposed by an API
-    AudienceSegmentIdEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AudienceSegmentIdEntityV1'
-        id:
-          type:
-          - string
-          - 'null'
-          description: Id of the entity
-        type:
-          type:
-          - string
-          - 'null'
-      description: A class that represents a domain entity exposed by an API
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for several entities
     InMarketAudienceSegmentInterestEntityV1:
       type:
       - object
@@ -1937,432 +1810,6 @@ components:
         infoType: entity
         name: InMarketAudienceSegmentInterest
         version: v1
-    AudienceCreateEntityV1:
-      required:
-      - advertiserId
-      - algebra
-      - name
-      type: object
-      properties:
-        advertiserId:
-          type: string
-          description: Advertiser associated to the audience
-        algebra:
-          $ref: '#/components/schemas/AlgebraNodeV1'
-        description:
-          type: string
-          description: Description of the audience
-        name:
-          type: string
-          description: Name of the audience
-      description: Audience of people of interest for a marketer.
-    LocationSizeEstimationV1:
-      required:
-      - pointsOfInterest
-      - radiusInKm
-      type: object
-      properties:
-        pointsOfInterest:
-          type: array
-          items:
-            $ref: '#/components/schemas/PointOfInterestV1'
-        radiusInKm:
-          type: integer
-          format: int32
-      description: Settings to define your audience based on their location.
-    AudienceEstimateSizeEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AudienceEstimateSizeEntityV1'
-        type:
-          type: string
-      description: A top-level object that encapsulates a Criteo API response for a single value
-    AudienceSegmentUpdateEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AudienceSegmentUpdateEntityV1'
-        id:
-          type: string
-          description: Id of the entity
-        type:
-          type: string
-      description: A class that represents a domain entity exposed by an API
-    AudienceSegmentComputeSizesInputV1:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AudienceSegmentComputeSizeEntityV1Resource'
-      description: Input to retrieve the size of one or more segments.
-    BasicAudienceDefinition:
-      required:
-      - id
-      - type
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AudienceNameDescription'
-        id:
-          type: string
-          description: the id of the entity type
-        type:
-          type: string
-          description: the name of the entity type
-      description: Common definition of an audience
-    AudienceSegmentSizeEntityV1:
-      type:
-      - object
-      - 'null'
-      properties:
-        size:
-          type:
-          - integer
-          - 'null'
-          format: int64
-      description: Set of rules that defines specific people to target.
-      x-criteo-canonical:
-        infoType: entity
-        name: AudienceSegmentSize
-        version: v1
-    AudienceDeleteEntityV1:
-      type: object
-      description: Audience to delete
-      x-criteo-canonical:
-        infoType: entity
-        name: Audience
-        version: v1
-    AudienceSegmentBulkDeleteInputV1:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AudienceSegmentDeleteEntityV1Resource'
-      description: Input to delete one or more segments.
-    AudienceSizeEntityV1ListResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/AudienceSizeEntityV1Resource'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        warnings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-      description: A top-level object that encapsulates a Criteo API response for several entities
-    AudienceEstimateSizeEntityV1:
-      required:
-      - advertiserId
-      - algebra
-      type: object
-      properties:
-        advertiserId:
-          type: string
-          description: Advertiser associated to the audience
-        algebra:
-          $ref: '#/components/schemas/AlgebraNodeV1'
-      description: Audience of people of interest for a marketer.
-    AudienceSegmentComputeSizeEntityV1:
-      type: object
-      description: Set of rules that defines specific people to target.
-      x-criteo-canonical:
-        infoType: entity
-        name: AudienceSegment
-        version: v1
-    AudienceBulkCreateInputV1:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AudienceCreateEntityV1Resource'
-      description: Input to create one or more audiences.
-    InMarketUpdateV1:
-      type: object
-      properties:
-        brandIds:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-          description: Choose the brands your segment might be interested in
-        buyingPower:
-          uniqueItems: true
-          type: array
-          items:
-            enum:
-            - Low
-            - Medium
-            - High
-            - VeryHigh
-            type: string
-          description: Reach people who frequently purchase high price range items to lower price range items
-        country:
-          type: string
-          description: Reach people of a specific country
-        gender:
-          $ref: '#/components/schemas/NillableGenderV1'
-        interestIds:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-          description: Reach new people based on their interests
-        priceRange:
-          uniqueItems: true
-          type: array
-          items:
-            enum:
-            - Low
-            - Medium
-            - High
-            type: string
-          description: Reach people who’ve shown interest in products within a specific price range
-      description: Settings to target users based on high shopping intents and demographics.
-    ContactListStatisticsEntityV1Response:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ContactListStatisticsEntityV1Resource'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        warnings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-      description: A top-level object that encapsulates a Criteo API response for a single entity
-    AudienceSegmentCreateEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AudienceSegmentCreateEntityV1'
-        type:
-          type: string
-      description: A top-level object that encapsulates a Criteo API response for a single value
-    DeleteAudienceContactListResponse:
-      required:
-      - data
-      - errors
-      - warnings
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/BasicAudienceDefinition'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/AudienceError'
-        warnings:
-          type: array
-          items:
-            $ref: '#/components/schemas/AudienceWarning'
-      description: Response of a contactlist deletion
-    AudienceSegmentIdEntityV1:
-      type:
-      - object
-      - 'null'
-      description: Audience Segment entity only with its ID
-      x-criteo-canonical:
-        infoType: entity
-        name: AudienceSegment
-        version: v1
-    RetargetingUpdateV1:
-      type: object
-      properties:
-        daysSinceLastVisitMax:
-          type: integer
-          description: Maximum number of days since last visit to partner.
-          format: int32
-        daysSinceLastVisitMin:
-          type: integer
-          description: Minimum number of days since last visit to partner.
-          format: int32
-        visitorsType:
-          enum:
-          - All
-          - Buyers
-          - NonBuyers
-          type: string
-          description: Types of visitors.
-      description: Settings to target users based on its type and days since last visit.
-    AudienceError:
-      required:
-      - code
-      - instance
-      - type
-      type: object
-      properties:
-        code:
-          type: string
-          description: (REQUIRED) A machine-readable unique error code, expressed as a string value. The format used must be kebab-case.
-        detail:
-          type:
-          - string
-          - 'null'
-          description: (RECOMMENDED) A human-readable explanation specific to this occurrence of the problem
-        instance:
-          type: string
-          description: (REQUIRED) A URI reference that identifies the specific occurrence of the problem
-        source:
-          type:
-          - object
-          - 'null'
-          description: (OPTIONAL) A machine-readable structure to reference to the exact location(s) causing the error(s)
-        stackTrace:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: (NEVER IN PRODUCTION) A human-readable stacktrace produced by the implementation technology
-        title:
-          type:
-          - string
-          - 'null'
-          description: (RECOMMENDED) A short, human-readable summary of the problem type
-        traceId:
-          type:
-          - string
-          - 'null'
-          description: (REQUIRED) The Correlation ID provided by the Gateway. It is also a unique identifier for this particular occurrence of the problem.
-        type:
-          enum:
-          - access-control
-          - authentication
-          - authorization
-          - availability
-          - deprecation
-          - quota
-          - validation
-          type: string
-          description: (REQUIRED) The classification of the error
-      description: Definition of an audience error
-    AudienceSegmentIdEntityV1ListResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/AudienceSegmentIdEntityV1Resource'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        warnings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-      description: A top-level object that encapsulates a Criteo API response for several entities
-    AudienceSearchMetadataV1:
-      type:
-      - object
-      - 'null'
-      properties:
-        limit:
-          type:
-          - integer
-          - 'null'
-          description: Max item of the current page
-          format: int32
-        offset:
-          type:
-          - integer
-          - 'null'
-          description: Number of item to skip
-          format: int32
-        totalItems:
-          type:
-          - integer
-          - 'null'
-          description: Total number of items
-          format: int32
-      description: Metadata for the audience search response.
-    AudienceSegmentEntityV1AudienceSegmentSearchMetadataV1ListResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/AudienceSegmentEntityV1Resource'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        meta:
-          $ref: '#/components/schemas/AudienceSegmentSearchMetadataV1'
-        warnings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-      description: A top-level object that encapsulates a Criteo API response for several entities and metadata
-    RetargetingV1:
-      type:
-      - object
-      - 'null'
-      properties:
-        daysSinceLastVisitMax:
-          type:
-          - integer
-          - 'null'
-          description: Maximum number of days since last visit to partner.
-          format: int32
-        daysSinceLastVisitMin:
-          type:
-          - integer
-          - 'null'
-          description: Minimum number of days since last visit to partner.
-          format: int32
-        visitorsType:
-          enum:
-          - Unknown
-          - All
-          - Buyers
-          - NonBuyers
-          type:
-          - string
-          - 'null'
-          description: Types of visitors.
-      description: Settings to target users based on its type and days since last visit.
     CommonProblem:
       type: object
       properties:
@@ -2422,30 +1869,516 @@ components:
           - 'null'
           description: The problem's category.
       description: Common problem object.
-    AudienceSizeEstimationV1Resource:
+    AudienceSegmentEntityV1AudienceSegmentSearchMetadataV1ListResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AudienceSegmentEntityV1Resource'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        meta:
+          $ref: '#/components/schemas/AudienceSegmentSearchMetadataV1'
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for several entities and metadata
+    AudienceComputeSizeEntityV1:
+      type: object
+      description: Audience of people of interest for a marketer.
+      x-criteo-canonical:
+        infoType: entity
+        name: Audience
+        version: v1
+    InMarketV1:
       type:
       - object
       - 'null'
       properties:
-        attributes:
-          $ref: '#/components/schemas/AudienceSizeEstimationV1'
-        type:
+        brandIds:
+          uniqueItems: true
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Choose the brands your segment might be interested in
+        buyingPower:
+          uniqueItems: true
+          type:
+          - array
+          - 'null'
+          items:
+            enum:
+            - Unknown
+            - Low
+            - Medium
+            - High
+            - VeryHigh
+            type: string
+          description: Reach people who frequently purchase high price range items to lower price range items
+        country:
           type:
           - string
           - 'null'
-      description: A top-level object that encapsulates a Criteo API response for a single value
-    AudienceSegmentSizeEstimationV1Resource:
+          description: Reach people of a specific country
+        gender:
+          enum:
+          - Unknown
+          - Male
+          - Female
+          type:
+          - string
+          - 'null'
+          description: Reach people who’ve shown interest in products made for a specific gender
+        interestIds:
+          uniqueItems: true
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Reach new people based on their interests
+        priceRange:
+          uniqueItems: true
+          type:
+          - array
+          - 'null'
+          items:
+            enum:
+            - Unknown
+            - Low
+            - Medium
+            - High
+            type: string
+          description: Reach people who’ve shown interest in products within a specific price range
+      description: Settings to target users based on high shopping intents and demographics.
+    AudienceSizeEstimationV1:
       type:
       - object
       - 'null'
       properties:
+        size:
+          type:
+          - integer
+          - 'null'
+          format: int64
+      description: Audience size estimation
+    LocationSizeEstimationV1:
+      required:
+      - pointsOfInterest
+      - radiusInKm
+      type: object
+      properties:
+        pointsOfInterest:
+          type: array
+          items:
+            $ref: '#/components/schemas/PointOfInterestV1'
+        radiusInKm:
+          type: integer
+          format: int32
+      description: Settings to define your audience based on their location.
+    InMarketAudienceSegmentBrandEntityV1Resource:
+      type: object
+      properties:
         attributes:
-          $ref: '#/components/schemas/AudienceSegmentSizeEstimationV1'
+          $ref: '#/components/schemas/InMarketAudienceSegmentBrandEntityV1'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Id of the entity
         type:
           type:
           - string
           - 'null'
+      description: A class that represents a domain entity exposed by an API
+    AudienceSizeEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AudienceSizeEntityV1'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Id of the entity
+        type:
+          type:
+          - string
+          - 'null'
+      description: A class that represents a domain entity exposed by an API
+    AudienceSegmentSizeEntityV1ListResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AudienceSegmentSizeEntityV1Resource'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for several entities
+    AudienceSearchEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AudienceSearchEntityV1'
+        type:
+          type: string
       description: A top-level object that encapsulates a Criteo API response for a single value
+    AudienceSegmentBulkCreateInputV1:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceSegmentCreateEntityV1Resource'
+      description: Input to create one or more audience segments.
+    AudienceSegmentBulkUpdateInputV1:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceSegmentUpdateEntityV1Resource'
+      description: Input to update one or more segments.
+    AudienceSegmentUpdateEntityV1:
+      type: object
+      properties:
+        description:
+          $ref: '#/components/schemas/NillableString'
+        inMarket:
+          $ref: '#/components/schemas/InMarketUpdateV1'
+        location:
+          $ref: '#/components/schemas/LocationUpdateV1'
+        lookalike:
+          $ref: '#/components/schemas/LookalikeUpdateV1'
+        name:
+          type: string
+          description: Name of the segment
+        prospecting:
+          $ref: '#/components/schemas/ProspectingUpdateV1'
+        retargeting:
+          $ref: '#/components/schemas/RetargetingUpdateV1'
+      description: Set of rules that defines specific people to target.
+      x-criteo-canonical:
+        infoType: entity
+        name: AudienceSegment
+        version: v1
+    AudienceSegmentEstimateSizeInputV1:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AudienceSegmentSizeEstimationEntityV1Resource'
+      description: Input to estimate the size of an audience segment..
+    AudienceBulkDeleteInputV1:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceDeleteEntityV1Resource'
+      description: Input to delete one or more audiences.
+    InMarketAudienceSegmentBrandEntityV1:
+      type:
+      - object
+      - 'null'
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the in-market segment brand
+        size:
+          type:
+          - integer
+          - 'null'
+          description: Size of the in-market segment brand
+          format: int32
+      description: In-market segment brand entity
+      x-criteo-canonical:
+        infoType: entity
+        name: InMarketAudienceSegmentBrand
+        version: v1
+    AudienceIdEntityV1:
+      type:
+      - object
+      - 'null'
+      description: Audience entity with only its ID
+      x-criteo-canonical:
+        infoType: entity
+        name: Audience
+        version: v1
+    LookalikeCreateV1:
+      required:
+      - seedSegmentId
+      type: object
+      properties:
+        seedSegmentId:
+          type: string
+          description: Segment from which the Lookalike segment will be generated
+        targetSize:
+          type: integer
+          description: Desired size of the generated Lookalike segment
+          format: int64
+      description: Settings to target users close to a given seed segment.
+    ContactListV1:
+      type:
+      - object
+      - 'null'
+      properties:
+        isReadOnly:
+          type:
+          - boolean
+          - 'null'
+          description: Is the segment read-only
+      description: Settings to target users with your contact lists.
+    DeleteAudienceContactListResponse:
+      required:
+      - data
+      - errors
+      - warnings
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/BasicAudienceDefinition'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceError'
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceWarning'
+      description: Response of a contactlist deletion
+    AudienceSearchMetadataV1:
+      type:
+      - object
+      - 'null'
+      properties:
+        limit:
+          type:
+          - integer
+          - 'null'
+          description: Max item of the current page
+          format: int32
+        offset:
+          type:
+          - integer
+          - 'null'
+          description: Number of item to skip
+          format: int32
+        totalItems:
+          type:
+          - integer
+          - 'null'
+          description: Total number of items
+          format: int32
+      description: Metadata for the audience search response.
+    AudienceSegmentIdEntityV1ListResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AudienceSegmentIdEntityV1Resource'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for several entities
+    AudienceSegmentSizeEstimationEntityV1:
+      required:
+      - advertiserId
+      type: object
+      properties:
+        advertiserId:
+          type: string
+          description: Advertiser associated to the segment
+        inMarket:
+          $ref: '#/components/schemas/InMarketSizeEstimationV1'
+        location:
+          $ref: '#/components/schemas/LocationSizeEstimationV1'
+      description: Set of rules that defines specific people to target.
+    AudienceSegmentUpdateEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AudienceSegmentUpdateEntityV1'
+        id:
+          type: string
+          description: Id of the entity
+        type:
+          type: string
+      description: A class that represents a domain entity exposed by an API
+    InMarketAudienceSegmentInterestEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/InMarketAudienceSegmentInterestEntityV1'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Id of the entity
+        type:
+          type:
+          - string
+          - 'null'
+      description: A class that represents a domain entity exposed by an API
+    RetargetingV1:
+      type:
+      - object
+      - 'null'
+      properties:
+        daysSinceLastVisitMax:
+          type:
+          - integer
+          - 'null'
+          description: Maximum number of days since last visit to partner.
+          format: int32
+        daysSinceLastVisitMin:
+          type:
+          - integer
+          - 'null'
+          description: Minimum number of days since last visit to partner.
+          format: int32
+        visitorsType:
+          enum:
+          - Unknown
+          - All
+          - Buyers
+          - NonBuyers
+          type:
+          - string
+          - 'null'
+          description: Types of visitors.
+      description: Settings to target users based on its type and days since last visit.
+    AudienceSegmentComputeSizeEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AudienceSegmentComputeSizeEntityV1'
+        id:
+          type: string
+          description: Id of the entity
+        type:
+          type: string
+      description: A class that represents a domain entity exposed by an API
+    AudienceSearchInputV1:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AudienceSearchEntityV1Resource'
+      description: Audience search parameter
+    AudienceComputeSizeEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AudienceComputeSizeEntityV1'
+        id:
+          type: string
+          description: Id of the entity
+        type:
+          type: string
+      description: A class that represents a domain entity exposed by an API
+    AudienceSegmentCreateEntityV1:
+      required:
+      - advertiserId
+      - name
+      type: object
+      properties:
+        advertiserId:
+          type: string
+          description: Advertiser associated to the segment
+        contactList:
+          $ref: '#/components/schemas/ContactListCreateV1'
+        description:
+          type: string
+          description: Description of the segment
+        inMarket:
+          $ref: '#/components/schemas/InMarketCreateV1'
+        location:
+          $ref: '#/components/schemas/LocationCreateV1'
+        lookalike:
+          $ref: '#/components/schemas/LookalikeCreateV1'
+        name:
+          type: string
+          description: Name of the segment
+        prospecting:
+          $ref: '#/components/schemas/ProspectingCreateV1'
+        retargeting:
+          $ref: '#/components/schemas/RetargetingCreateV1'
+      description: Set of rules that defines specific people to target.
+    LookalikeUpdateV1:
+      type: object
+      properties:
+        targetSize:
+          type: integer
+          description: Desired size of the generated Lookalike segment
+          format: int64
+      description: Settings to target users that behave like a given seed segment
+    PointOfInterestV1:
+      type: object
+      properties:
+        latitude:
+          type:
+          - number
+          - 'null'
+          description: ISO-6709 latitude (rounded at 5 decimals)
+          format: double
+        longitude:
+          type:
+          - number
+          - 'null'
+          description: ISO-6709 longitude (rounded at 5 decimals)
+          format: double
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the point of interest
+      description: 'Named coordinate defined by its latitude and longitude.
+
+        Latitude and Longitude are rounded at 5 decimals.'
     InMarketAudienceSegmentInterestEntityV1ListResponse:
       type: object
       properties:
@@ -2470,136 +2403,281 @@ components:
             $ref: '#/components/schemas/CommonProblem'
           readOnly: true
       description: A top-level object that encapsulates a Criteo API response for several entities
-    ContactListV1:
-      type:
-      - object
-      - 'null'
-      properties:
-        isReadOnly:
-          type:
-          - boolean
-          - 'null'
-          description: Is the segment read-only
-      description: Settings to target users with your contact lists.
-    LookalikeUpdateV1:
-      type: object
-      properties:
-        targetSize:
-          type: integer
-          description: Desired size of the generated Lookalike segment
-          format: int64
-      description: Settings to target users that behave like a given seed segment
-    AudienceSegmentComputeSizeEntityV1Resource:
+    AudienceSegmentSearchEntityV1Resource:
       type: object
       properties:
         attributes:
-          $ref: '#/components/schemas/AudienceSegmentComputeSizeEntityV1'
+          $ref: '#/components/schemas/AudienceSegmentSearchEntityV1'
+        type:
+          type: string
+      description: A top-level object that encapsulates a Criteo API response for a single value
+    AudienceDeleteEntityV1:
+      type: object
+      description: Audience to delete
+      x-criteo-canonical:
+        infoType: entity
+        name: Audience
+        version: v1
+    AudienceSegmentSizeEstimationEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AudienceSegmentSizeEstimationEntityV1'
+        type:
+          type: string
+      description: A top-level object that encapsulates a Criteo API response for a single value
+    AudienceDeleteEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AudienceDeleteEntityV1'
         id:
           type: string
           description: Id of the entity
         type:
           type: string
       description: A class that represents a domain entity exposed by an API
-    AudienceSegmentBulkCreateInputV1:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AudienceSegmentCreateEntityV1Resource'
-      description: Input to create one or more audience segments.
-    AudienceSegmentSizeEstimationEntityV1:
+    AudienceCreateEntityV1:
       required:
       - advertiserId
+      - algebra
+      - name
       type: object
       properties:
         advertiserId:
           type: string
-          description: Advertiser associated to the segment
-        inMarket:
-          $ref: '#/components/schemas/InMarketSizeEstimationV1'
-        location:
-          $ref: '#/components/schemas/LocationSizeEstimationV1'
-      description: Set of rules that defines specific people to target.
-    AudienceSegmentSearchEntityV1:
-      type: object
-      properties:
-        advertiserIds:
-          type: array
-          items:
-            type: string
-          description: List of advertiser ids
-        audienceSegmentIds:
-          type: array
-          items:
-            type: string
-          description: List of segment ids
-        audienceSegmentTypes:
-          type: array
-          items:
-            enum:
-            - Unknown
-            - InMarket
-            - Prospecting
-            - ContactList
-            - Location
-            - Behavioral
-            - Retargeting
-            - Lookalike
-            type: string
-          description: List of segment types
-      description: Available filters to perform a search on audience segments. If present, the filters are AND'ed together when applied.
-    ProspectingV1:
+          description: Advertiser associated to the audience
+        algebra:
+          $ref: '#/components/schemas/AlgebraNodeV1'
+        description:
+          type: string
+          description: Description of the audience
+        name:
+          type: string
+          description: Name of the audience
+      description: Audience of people of interest for a marketer.
+    AudienceSegmentSizeEstimationV1:
       type:
       - object
       - 'null'
       properties:
-        daysSinceLastVisitMax:
+        size:
           type:
           - integer
           - 'null'
-          description: When non buyers are included, include users who visited your website after this number of days
-          format: int32
-        daysSinceLastVisitMin:
-          type:
-          - integer
-          - 'null'
-          description: When non buyers are included, include users who visited your website before this number of days
-          format: int32
-        usersType:
+          format: int64
+      description: Segment size estimation
+    ContactListCreateV1:
+      type: object
+      description: Settings to target users with your contact lists.
+    NillableGenderV1:
+      type:
+      - object
+      - 'null'
+      properties:
+        value:
           enum:
-          - Unknown
-          - Prospects
-          - ProspectsOrNonBuyers
+          - Male
+          - Female
           type:
           - string
           - 'null'
-          description: Type of users to target
-      description: Settings to target prospecting users to website visitors.
-    AudienceSegmentSearchMetadataV1:
+          description: The value. If missing or null the value is set to "null"
+      description: Placeholder object for value for which "null" is a valid business value
+    AudienceSizeEntityV1:
       type:
       - object
       - 'null'
       properties:
-        limit:
+        size:
           type:
           - integer
           - 'null'
-          description: Max item of the current page
-          format: int32
-        offset:
+          format: int64
+      description: Audience entity only with its size
+      x-criteo-canonical:
+        infoType: entity
+        name: AudienceSize
+        version: v1
+    AudienceSegmentComputeSizeEntityV1:
+      type: object
+      description: Set of rules that defines specific people to target.
+      x-criteo-canonical:
+        infoType: entity
+        name: AudienceSegment
+        version: v1
+    AudienceSegmentSizeEntityV1:
+      type:
+      - object
+      - 'null'
+      properties:
+        size:
           type:
           - integer
           - 'null'
-          description: Number of item to skip
+          format: int64
+      description: Set of rules that defines specific people to target.
+      x-criteo-canonical:
+        infoType: entity
+        name: AudienceSegmentSize
+        version: v1
+    AudienceSizeEstimationV1Response:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AudienceSizeEstimationV1Resource'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for a single value
+    AudienceSegmentSearchInputV1:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AudienceSegmentSearchEntityV1Resource'
+      description: Audience segment search parameter
+    AudienceSegmentSizeEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AudienceSegmentSizeEntityV1'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Id of the entity
+        type:
+          type:
+          - string
+          - 'null'
+      description: A class that represents a domain entity exposed by an API
+    AudienceSizeEntityV1ListResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AudienceSizeEntityV1Resource'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for several entities
+    AudienceEstimateSizeInputV1:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AudienceEstimateSizeEntityV1Resource'
+      description: Input to estimate the size of an audience.
+    RetargetingCreateV1:
+      required:
+      - daysSinceLastVisitMax
+      - daysSinceLastVisitMin
+      - visitorsType
+      type: object
+      properties:
+        daysSinceLastVisitMax:
+          type: integer
+          description: Maximum number of days since last visit to partner.
           format: int32
-        totalItems:
+        daysSinceLastVisitMin:
+          type: integer
+          description: Minimum number of days since last visit to partner.
+          format: int32
+        visitorsType:
+          enum:
+          - All
+          - Buyers
+          - NonBuyers
+          type: string
+          description: Types of visitors.
+      description: Settings to target users based on its type and days since last visit.
+    AudienceSegmentDeleteEntityV1:
+      type: object
+      description: Segment to delete
+      x-criteo-canonical:
+        infoType: entity
+        name: AudienceSegment
+        version: v1
+    InMarketAudienceSegmentBrandEntityV1ListResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/InMarketAudienceSegmentBrandEntityV1Resource'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for several entities
+    AudienceEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AudienceEntityV1'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Id of the entity
+        type:
+          type:
+          - string
+          - 'null'
+      description: A class that represents a domain entity exposed by an API
+    LookalikeV1:
+      type:
+      - object
+      - 'null'
+      properties:
+        seedSegmentId:
+          type:
+          - string
+          - 'null'
+          description: Segment from which the Lookalike segment will be generated
+        targetSize:
           type:
           - integer
           - 'null'
-          description: Total number of items
-          format: int32
-      description: Metadata for the audience segment search response.
+          description: Desired size of the generated Lookalike segment
+          format: int64
+      description: Settings to target users that behave like a given seed segment
     ContactlistOperation:
       required:
       - attributes
@@ -2652,75 +2730,22 @@ components:
           type: string
           description: the name of the entity type
       description: Response definition of a contactlist operation
-    BehavioralV1:
+    ContactlistAmendmentRequest:
       required:
-      - category
-      type:
-      - object
-      - 'null'
-      properties:
-        category:
-          enum:
-          - Unknown
-          - Lifestyles
-          - LifeEvents
-          - Seasonal
-          - BuyingPatterns
-          type: string
-          description: The type of behavioral
-        country:
-          type:
-          - string
-          - 'null'
-          description: The users' country
-        endDate:
-          type:
-          - string
-          - 'null'
-          description: Desired date when the behavioral will end
-          format: date-time
-        startDate:
-          type:
-          - string
-          - 'null'
-          description: Desired date when the behavioral will start
-          format: date-time
-      description: Settings of a behavioral set of users provided by Criteo.
-    AudienceComputeSizeEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AudienceComputeSizeEntityV1'
-        id:
-          type: string
-          description: Id of the entity
-        type:
-          type: string
-      description: A class that represents a domain entity exposed by an API
-    AudienceSegmentEntityV1ListResponse:
+      - data
       type: object
       properties:
         data:
-          type:
-          - array
-          - 'null'
+          $ref: '#/components/schemas/ContactlistAmendment'
+      description: Request for a contactlist amendment
+    AudienceBulkUpdateInputV1:
+      type: object
+      properties:
+        data:
+          type: array
           items:
-            $ref: '#/components/schemas/AudienceSegmentEntityV1Resource'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        warnings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-      description: A top-level object that encapsulates a Criteo API response for several entities
+            $ref: '#/components/schemas/AudienceUpdateEntityV1Resource'
+      description: Input to update one or more audiences.
     AudienceWarning:
       required:
       - code
@@ -2772,133 +2797,14 @@ components:
           type: string
           description: (REQUIRED) The classification of the error
       description: Definition of the warning
-    AudienceSizeEntityV1Resource:
+    AudienceEstimateSizeEntityV1Resource:
       type: object
       properties:
         attributes:
-          $ref: '#/components/schemas/AudienceSizeEntityV1'
-        id:
-          type:
-          - string
-          - 'null'
-          description: Id of the entity
-        type:
-          type:
-          - string
-          - 'null'
-      description: A class that represents a domain entity exposed by an API
-    AudienceSegmentDeleteEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AudienceSegmentDeleteEntityV1'
-        id:
-          type: string
-          description: Id of the entity
-        type:
-          type: string
-      description: A class that represents a domain entity exposed by an API
-    AudienceDeleteEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AudienceDeleteEntityV1'
-        id:
-          type: string
-          description: Id of the entity
-        type:
-          type: string
-      description: A class that represents a domain entity exposed by an API
-    AudienceSegmentSizeEstimationEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AudienceSegmentSizeEstimationEntityV1'
+          $ref: '#/components/schemas/AudienceEstimateSizeEntityV1'
         type:
           type: string
       description: A top-level object that encapsulates a Criteo API response for a single value
-    AudienceEstimateSizeInputV1:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/AudienceEstimateSizeEntityV1Resource'
-      description: Input to estimate the size of an audience.
-    LocationV1:
-      type:
-      - object
-      - 'null'
-      properties:
-        pointsOfInterest:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/PointOfInterestV1'
-          description: Reach users which have been historically located in the given coordinates
-        radiusInKm:
-          type:
-          - integer
-          - 'null'
-          description: The expected maximum distance in kilometers between a user and a point of interest
-          format: int32
-        registryType:
-          enum:
-          - Unknown
-          - PointOfInterest
-          type:
-          - string
-          - 'null'
-          description: The kind of Location audience
-      description: Settings to target users based on their location.
-    ProspectingUpdateV1:
-      type: object
-      properties:
-        daysSinceLastVisitMax:
-          $ref: '#/components/schemas/NillableInt32'
-        daysSinceLastVisitMin:
-          $ref: '#/components/schemas/NillableInt32'
-        usersType:
-          enum:
-          - Prospects
-          - ProspectsOrNonBuyers
-          type: string
-          description: Type of users to target
-      description: Settings to target prospecting users to website visitors.
-    AudienceComputeSizeEntityV1:
-      type: object
-      description: Audience of people of interest for a marketer.
-      x-criteo-canonical:
-        infoType: entity
-        name: Audience
-        version: v1
-    AudienceSegmentCreateEntityV1:
-      required:
-      - advertiserId
-      - name
-      type: object
-      properties:
-        advertiserId:
-          type: string
-          description: Advertiser associated to the segment
-        contactList:
-          $ref: '#/components/schemas/ContactListCreateV1'
-        description:
-          type: string
-          description: Description of the segment
-        inMarket:
-          $ref: '#/components/schemas/InMarketCreateV1'
-        location:
-          $ref: '#/components/schemas/LocationCreateV1'
-        lookalike:
-          $ref: '#/components/schemas/LookalikeCreateV1'
-        name:
-          type: string
-          description: Name of the segment
-        prospecting:
-          $ref: '#/components/schemas/ProspectingCreateV1'
-        retargeting:
-          $ref: '#/components/schemas/RetargetingCreateV1'
-      description: Set of rules that defines specific people to target.
     AudienceUpdateEntityV1Resource:
       type: object
       properties:
@@ -2910,205 +2816,108 @@ components:
         type:
           type: string
       description: A class that represents a domain entity exposed by an API
-    AudienceSegmentBulkUpdateInputV1:
+    AudienceSegmentBulkDeleteInputV1:
       type: object
       properties:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/AudienceSegmentUpdateEntityV1Resource'
-      description: Input to update one or more segments.
-    RmAudienceSegmentIdEntityV1:
+            $ref: '#/components/schemas/AudienceSegmentDeleteEntityV1Resource'
+      description: Input to delete one or more segments.
+    ProspectingCreateV1:
+      required:
+      - usersType
+      type: object
+      properties:
+        daysSinceLastVisitMax:
+          type: integer
+          description: When non buyers are included, include users who visited your website after this number of days
+          format: int32
+        daysSinceLastVisitMin:
+          type: integer
+          description: When non buyers are included, include users who visited your website before this number of days
+          format: int32
+        usersType:
+          enum:
+          - Prospects
+          - ProspectsOrNonBuyers
+          type: string
+          description: Type of users to target
+      description: Settings to target prospecting users to website visitors.
+    LocationCreateV1:
+      required:
+      - pointsOfInterest
+      - radiusInKm
+      type: object
+      properties:
+        pointsOfInterest:
+          type: array
+          items:
+            $ref: '#/components/schemas/PointOfInterestV1'
+          description: Reach users which have been historically located in the given coordinates
+        radiusInKm:
+          type: integer
+          description: The expected maximum distance in kilometers between a user and a point of interest
+          format: int32
+      description: Settings to target users based on their location.
+    ContactlistAmendment:
+      required:
+      - attributes
+      - type
+      type: object
+      properties:
+        attributes:
+          required:
+          - identifiers
+          - operation
+          type: object
+          properties:
+            gumCallerId:
+              type: integer
+              description: The Gum caller id of the advertiser patching identifiers of type Gum
+            identifiers:
+              type: array
+              items:
+                type: string
+              description: The users to add or remove, each in the schema specified
+            identifierType:
+              enum:
+              - email
+              - madid
+              - identityLink
+              - gum
+              - phoneNumber
+              type: string
+              description: What type of identifiers are used
+            operation:
+              enum:
+              - add
+              - remove
+              type: string
+              description: Operation to add or remove users
+          description: the name of the entity type
+        type:
+          type: string
+          description: User List
+          example: ContactlistAmendment
+      description: Parameters for the amendment of a contactlist
+    AudienceCreateEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AudienceCreateEntityV1'
+        type:
+          type: string
+      description: A top-level object that encapsulates a Criteo API response for a single value
+    AudienceSegmentIdEntityV1:
       type:
       - object
       - 'null'
       description: Audience Segment entity only with its ID
       x-criteo-canonical:
         infoType: entity
-        name: RetailMediaAudienceSegment
+        name: AudienceSegment
         version: v1
-    RmEventsCreateV1:
-      required:
-      - lookbackDays
-      - shopperActivity
-      type: object
-      properties:
-        brandIds:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-          description: Choose the brands your segment might be interested in
-        categoryIds:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-          description: Choose the categories your segment might be interested in
-        lookbackDays:
-          enum:
-          - Last7Days
-          - Last14Days
-          - Last30Days
-          - Last45Days
-          - Last60Days
-          - Last90Days
-          - Last120Days
-          - Last150Days
-          - Last180Days
-          type: string
-          description: Number of days of the lookback windows
-        maxPrice:
-          type: number
-          description: Reach people who’ve shown interest in products with a maximum price
-          format: double
-        minPrice:
-          type: number
-          description: Reach people who’ve shown interest in products with a minimum price
-          format: double
-        shopperActivity:
-          enum:
-          - View
-          - Buy
-          - AddToCart
-          type: string
-          description: Types of shopper activity.
-      description: Settings to target users based on their behavior
-    RmAudienceSegmentBulkCreateInputV1:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/RmAudienceSegmentCreateEntityV1Resource'
-      description: A top-level object that encapsulates a Criteo API request for several values.
-    RmAudienceSegmentEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/RmAudienceSegmentEntityV1'
-        id:
-          type:
-          - string
-          - 'null'
-          description: Id of the entity
-        type:
-          type:
-          - string
-          - 'null'
-      description: A class that represents a domain entity exposed by an API
-    RmContactListUpdateV1:
-      type: object
-      description: Settings to update the contact list of the segment
-    RmAudienceEntityV1RmAudienceSearchMetadataV1ListResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/RmAudienceEntityV1Resource'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        meta:
-          $ref: '#/components/schemas/RmAudienceSearchMetadataV1'
-        warnings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-      description: A top-level object that encapsulates a Criteo API response for several entities and metadata
-    NillableDecimal:
-      type:
-      - object
-      - 'null'
-      properties:
-        value:
-          type:
-          - number
-          - 'null'
-          description: The value. If missing or null the value is set to "null"
-          format: double
-      description: Placeholder object for value for which "null" is a valid business value
-    RmAudienceSearchEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/RmAudienceSearchEntityV1'
-        type:
-          type: string
-      description: A top-level object that encapsulates a Criteo API response for a single value
-    RmAudienceSegmentBulkDeleteInputV1:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/RmAudienceSegmentDeleteEntityV1Resource'
-      description: A top-level object that encapsulates a Criteo API request for several entities.
-    RmAudienceSegmentCreateEntityV1:
-      required:
-      - name
-      - retailerId
-      type: object
-      properties:
-        contactList:
-          $ref: '#/components/schemas/RmContactListCreateV1'
-        description:
-          type: string
-          description: Description of the segment
-        events:
-          $ref: '#/components/schemas/RmEventsCreateV1'
-        name:
-          type: string
-          description: Name of the segment
-        retailerId:
-          type: string
-          description: Retailer  associated to the segment
-      description: Set of rules that defines specific people to target.
-    RmAudienceSegmentDeleteEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/RmAudienceSegmentDeleteEntityV1'
-        id:
-          type: string
-          description: Id of the entity
-        type:
-          type: string
-      description: A class that represents a domain entity exposed by an API
-    RmAudienceSegmentIdEntityV1ListResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/RmAudienceSegmentIdEntityV1Resource'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        warnings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-      description: A top-level object that encapsulates a Criteo API response for several entities
     RmAudienceSegmentEntityV1ListResponse:
       type: object
       properties:
@@ -3133,83 +2942,94 @@ components:
             $ref: '#/components/schemas/CommonProblem'
           readOnly: true
       description: A top-level object that encapsulates a Criteo API response for several entities
-    RmContactListV1:
+    RmAudienceSearchEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/RmAudienceSearchEntityV1'
+        type:
+          type: string
+      description: A top-level object that encapsulates a Criteo API response for a single value
+    NillableDecimal:
       type:
       - object
       - 'null'
       properties:
-        identifierType:
-          enum:
-          - Unknown
-          - Email
-          - UserIdentifier
-          - IdentityLink
-          - CustomerId
-          - PhoneNumber
+        value:
           type:
-          - string
+          - number
           - 'null'
-          description: Indicates contact list identifier's type
-        isReadOnly:
-          type:
-          - boolean
-          - 'null'
-          description: Is the segment read-only
-        sharingStatus:
-          enum:
-          - Unknown
-          - NotShared
-          - SharedWithAll
-          - SharedWithDemandAccounts
-          type:
-          - string
-          - 'null'
-          description: Indicates if the contact list is shared with other accounts
-      description: Settings to target users with your contact lists.
-    RmAudienceSegmentSearchInputV1:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/RmAudienceSegmentSearchEntityV1Resource'
-      description: A top-level object that encapsulates a Criteo API request for a single value.
-    RetailMediaContactlistAmendment:
-      required:
-      - attributes
+          description: The value. If missing or null the value is set to "null"
+          format: double
+      description: Placeholder object for value for which "null" is a valid business value
+    RmAudienceSegmentCreateEntityV1Resource:
       type: object
       properties:
         attributes:
-          required:
-          - identifiers
-          - operation
-          type: object
-          properties:
-            identifiers:
-              type: array
-              items:
-                type: string
-              description: The users to add or remove, each in the schema specified
-            identifierType:
-              enum:
-              - Email
-              - UserIdentifier
-              - IdentityLink
-              - Gum
-              - CustomerId
-              - PhoneNumber
-              type: string
-              description: What type of identifiers are used
-            operation:
-              enum:
-              - add
-              - remove
-              type: string
-              description: Whether to add or remove users
-          description: Attributes of retail media contact list amendment
+          $ref: '#/components/schemas/RmAudienceSegmentCreateEntityV1'
         type:
           type: string
-          description: User List
-          example: AddRemoveContactlist
-      description: Request data of retail media contact list amendment
+      description: A top-level object that encapsulates a Criteo API response for a single value
+    RmAudienceSegmentBulkUpdateInputV1:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/RmAudienceSegmentUpdateEntityV1Resource'
+      description: A top-level object that encapsulates a Criteo API request for several entities.
+    RmAudienceSegmentEntityV1RmAudienceSegmentSearchMetadataV1ListResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RmAudienceSegmentEntityV1Resource'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        meta:
+          $ref: '#/components/schemas/RmAudienceSegmentSearchMetadataV1'
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for several entities and metadata
+    RmAudienceSegmentCreateEntityV1:
+      required:
+      - name
+      - retailerId
+      type: object
+      properties:
+        contactList:
+          $ref: '#/components/schemas/RmContactListCreateV1'
+        description:
+          type: string
+          description: Description of the segment
+        events:
+          $ref: '#/components/schemas/RmEventsCreateV1'
+        name:
+          type: string
+          description: Name of the segment
+        retailerId:
+          type: string
+          description: Retailer  associated to the segment
+      description: Set of rules that defines specific people to target.
+    RmAudienceSearchInputV1:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RmAudienceSearchEntityV1Resource'
+      description: A top-level object that encapsulates a Criteo API request for a single value.
     RmEventsV1:
       type:
       - object
@@ -3268,158 +3088,23 @@ components:
           - 'null'
           description: Reach people who performed specific action
       description: Settings to target users based on their behavior
-    RetailMediaContactlistAmendmentRequest:
-      required:
-      - data
+    RmAudienceSegmentUpdateEntityV1:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/RetailMediaContactlistAmendment'
-      description: Request of Retail Media contactlist
-    RmContactListStatisticsEntityV1Response:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/RmContactListStatisticsEntityV1Resource'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        warnings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-      description: A top-level object that encapsulates a Criteo API response for a single entity
-    RmAudienceSegmentIdEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/RmAudienceSegmentIdEntityV1'
-        id:
-          type:
-          - string
-          - 'null'
-          description: Id of the entity
-        type:
-          type:
-          - string
-          - 'null'
-      description: A class that represents a domain entity exposed by an API
-    RmAudienceSegmentSearchEntityV1:
-      type: object
-      properties:
-        audienceSegmentIds:
-          type: array
-          items:
-            type: string
-          description: List of segment ids
-        audienceSegmentTypes:
-          type: array
-          items:
-            enum:
-            - Unknown
-            - ContactList
-            - Events
-            type: string
-          description: List of segment types
-        retailerIds:
-          type: array
-          items:
-            type: string
-          description: List of retailer ids
-      description: Available filters to perform a search on audience segments. If present, the filters are AND'ed together when applied.
-    RmAudienceSearchEntityV1:
-      type: object
-      properties:
-        audienceIds:
-          type: array
-          items:
-            type: string
-          description: List of audience ids
-        audienceSegmentIds:
-          type: array
-          items:
-            type: string
-          description: List of segment ids (linked to the result audiences)
-        retailerIds:
-          type: array
-          items:
-            type: string
-          description: List of retailer ids
-      description: Available filters to perform a search on audiences. If present, the filters are AND'ed together when applied.
-    RmAudienceSearchMetadataV1:
-      type:
-      - object
-      - 'null'
-      properties:
-        limit:
-          type:
-          - integer
-          - 'null'
-          description: Max item of the current page
-          format: int32
-        offset:
-          type:
-          - integer
-          - 'null'
-          description: Number of item to skip
-          format: int32
-        totalItems:
-          type:
-          - integer
-          - 'null'
-          description: Total number of items
-          format: int32
-      description: Metadata for the audience search response.
-    RmContactListStatisticsEntityV1Resource:
-      type:
-      - object
-      - 'null'
-      properties:
-        attributes:
-          $ref: '#/components/schemas/RmContactListStatisticsEntityV1'
-        id:
-          type:
-          - string
-          - 'null'
-          description: Id of the entity
-        type:
-          type:
-          - string
-          - 'null'
-      description: A class that represents a domain entity exposed by an API
-    RmAudienceSegmentEntityV1RmAudienceSegmentSearchMetadataV1ListResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/RmAudienceSegmentEntityV1Resource'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        meta:
-          $ref: '#/components/schemas/RmAudienceSegmentSearchMetadataV1'
-        warnings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-      description: A top-level object that encapsulates a Criteo API response for several entities and metadata
+        contactList:
+          $ref: '#/components/schemas/RmContactListUpdateV1'
+        description:
+          $ref: '#/components/schemas/NillableString'
+        events:
+          $ref: '#/components/schemas/RmEventsUpdateV1'
+        name:
+          type: string
+          description: Name of the segment
+      description: Set of rules that defines specific people to target.
+      x-criteo-canonical:
+        infoType: entity
+        name: RetailMediaAudienceSegment
+        version: v1
     RetailMediaContactlistOperationResponseAttributes:
       required:
       - contactListId
@@ -3463,14 +3148,116 @@ components:
             type: string
           description: A sample of invalid identifiers if there is some
       description: The attributes of Retail Media contact list operation
-    RmAudienceSegmentCreateEntityV1Resource:
+    RmAudienceSearchMetadataV1:
+      type:
+      - object
+      - 'null'
+      properties:
+        limit:
+          type:
+          - integer
+          - 'null'
+          description: Max item of the current page
+          format: int32
+        offset:
+          type:
+          - integer
+          - 'null'
+          description: Number of item to skip
+          format: int32
+        totalItems:
+          type:
+          - integer
+          - 'null'
+          description: Total number of items
+          format: int32
+      description: Metadata for the audience search response.
+    RmContactListStatisticsEntityV1Response:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RmContactListStatisticsEntityV1Resource'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for a single entity
+    RmAudienceSegmentSearchEntityV1Resource:
       type: object
       properties:
         attributes:
-          $ref: '#/components/schemas/RmAudienceSegmentCreateEntityV1'
+          $ref: '#/components/schemas/RmAudienceSegmentSearchEntityV1'
         type:
           type: string
       description: A top-level object that encapsulates a Criteo API response for a single value
+    RmAudienceSegmentBulkDeleteInputV1:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/RmAudienceSegmentDeleteEntityV1Resource'
+      description: A top-level object that encapsulates a Criteo API request for several entities.
+    RmAudienceEntityV1RmAudienceSearchMetadataV1ListResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RmAudienceEntityV1Resource'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        meta:
+          $ref: '#/components/schemas/RmAudienceSearchMetadataV1'
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for several entities and metadata
+    RmAudienceSegmentIdEntityV1ListResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RmAudienceSegmentIdEntityV1Resource'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for several entities
     RmAudienceSegmentEntityV1:
       type:
       - object
@@ -3542,30 +3329,180 @@ components:
         infoType: entity
         name: RetailMediaAudienceSegment
         version: v1
-    RmAudienceSegmentSearchMetadataV1:
+    RmContactListV1:
       type:
       - object
       - 'null'
       properties:
-        limit:
+        identifierType:
+          enum:
+          - Unknown
+          - Email
+          - UserIdentifier
+          - IdentityLink
+          - CustomerId
+          - PhoneNumber
           type:
-          - integer
+          - string
           - 'null'
-          description: Max item of the current page
-          format: int32
-        offset:
+          description: Indicates contact list identifier's type
+        isReadOnly:
           type:
-          - integer
+          - boolean
           - 'null'
-          description: Number of item to skip
-          format: int32
-        totalItems:
+          description: Is the segment read-only
+        sharingStatus:
+          enum:
+          - Unknown
+          - NotShared
+          - SharedWithAll
+          - SharedWithDemandAccounts
           type:
-          - integer
+          - string
           - 'null'
-          description: Total number of items
-          format: int32
-      description: Metadata for the audience segment search response.
+          description: Indicates if the contact list is shared with other accounts
+      description: Settings to target users with your contact lists.
+    RmAudienceSegmentIdEntityV1:
+      type:
+      - object
+      - 'null'
+      description: Audience Segment entity only with its ID
+      x-criteo-canonical:
+        infoType: entity
+        name: RetailMediaAudienceSegment
+        version: v1
+    RmEventsCreateV1:
+      required:
+      - lookbackDays
+      - shopperActivity
+      type: object
+      properties:
+        brandIds:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+          description: Choose the brands your segment might be interested in
+        categoryIds:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+          description: Choose the categories your segment might be interested in
+        lookbackDays:
+          enum:
+          - Last7Days
+          - Last14Days
+          - Last30Days
+          - Last45Days
+          - Last60Days
+          - Last90Days
+          - Last120Days
+          - Last150Days
+          - Last180Days
+          type: string
+          description: Number of days of the lookback windows
+        maxPrice:
+          type: number
+          description: Reach people who’ve shown interest in products with a maximum price
+          format: double
+        minPrice:
+          type: number
+          description: Reach people who’ve shown interest in products with a minimum price
+          format: double
+        shopperActivity:
+          enum:
+          - View
+          - Buy
+          - AddToCart
+          type: string
+          description: Types of shopper activity.
+      description: Settings to target users based on their behavior
+    RetailMediaContactlistAmendmentRequest:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RetailMediaContactlistAmendment'
+      description: Request of Retail Media contactlist
+    RmAudienceSegmentIdEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/RmAudienceSegmentIdEntityV1'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Id of the entity
+        type:
+          type:
+          - string
+          - 'null'
+      description: A class that represents a domain entity exposed by an API
+    RetailMediaContactlistAmendment:
+      required:
+      - attributes
+      type: object
+      properties:
+        attributes:
+          required:
+          - identifiers
+          - operation
+          type: object
+          properties:
+            identifiers:
+              type: array
+              items:
+                type: string
+              description: The users to add or remove, each in the schema specified
+            identifierType:
+              enum:
+              - Email
+              - UserIdentifier
+              - IdentityLink
+              - Gum
+              - CustomerId
+              - PhoneNumber
+              type: string
+              description: What type of identifiers are used
+            operation:
+              enum:
+              - add
+              - remove
+              type: string
+              description: Whether to add or remove users
+          description: Attributes of retail media contact list amendment
+        type:
+          type: string
+          description: User List
+          example: AddRemoveContactlist
+      description: Request data of retail media contact list amendment
+    RmContactListStatisticsEntityV1Resource:
+      type:
+      - object
+      - 'null'
+      properties:
+        attributes:
+          $ref: '#/components/schemas/RmContactListStatisticsEntityV1'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Id of the entity
+        type:
+          type:
+          - string
+          - 'null'
+      description: A class that represents a domain entity exposed by an API
+    RmAudienceSegmentDeleteEntityV1:
+      type: object
+      description: Segment to delete
+      x-criteo-canonical:
+        infoType: entity
+        name: RetailMediaAudienceSegment
+        version: v1
     RmAlgebraNodeV1:
       type:
       - object
@@ -3590,60 +3527,95 @@ components:
           items:
             $ref: '#/components/schemas/RmAlgebraNodeV1'
       description: Node in the audience algebra definition.
-    RmAudienceSegmentUpdateEntityV1:
-      type: object
-      properties:
-        contactList:
-          $ref: '#/components/schemas/RmContactListUpdateV1'
-        description:
-          $ref: '#/components/schemas/NillableString'
-        events:
-          $ref: '#/components/schemas/RmEventsUpdateV1'
-        name:
-          type: string
-          description: Name of the segment
-      description: Set of rules that defines specific people to target.
-      x-criteo-canonical:
-        infoType: entity
-        name: RetailMediaAudienceSegment
-        version: v1
-    RetailMediaContactlistOperation:
-      required:
-      - data
-      - errors
-      - warnings
+    RmAudienceSegmentBulkCreateInputV1:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/RetailMediaContactlistOperationResponseAttributes'
-        errors:
           type: array
           items:
-            $ref: '#/components/schemas/AudienceError'
+            $ref: '#/components/schemas/RmAudienceSegmentCreateEntityV1Resource'
+      description: A top-level object that encapsulates a Criteo API request for several values.
+    RmAudienceSearchEntityV1:
+      type: object
+      properties:
+        audienceIds:
+          type: array
+          items:
+            type: string
+          description: List of audience ids
+        audienceSegmentIds:
+          type: array
+          items:
+            type: string
+          description: List of segment ids (linked to the result audiences)
+        retailerIds:
+          type: array
+          items:
+            type: string
+          description: List of retailer ids
+      description: Available filters to perform a search on audiences. If present, the filters are AND'ed together when applied.
+    RmAudienceSegmentSearchEntityV1:
+      type: object
+      properties:
+        audienceSegmentIds:
+          type: array
+          items:
+            type: string
+          description: List of segment ids
+        audienceSegmentTypes:
+          type: array
+          items:
+            enum:
+            - Unknown
+            - ContactList
+            - Events
+            type: string
+          description: List of segment types
+        retailerIds:
+          type: array
+          items:
+            type: string
+          description: List of retailer ids
+      description: Available filters to perform a search on audience segments. If present, the filters are AND'ed together when applied.
+    RmAudienceSegmentEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/RmAudienceSegmentEntityV1'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Id of the entity
         type:
           type:
           - string
           - 'null'
-          description: the name of the entity type
-          example: AddRemoveContactlistResult
-        warnings:
-          type: array
-          items:
-            $ref: '#/components/schemas/AudienceWarning'
-      description: Operation on Retail Media contact list
-    RmContactListCreateV1:
-      type: object
+      description: A class that represents a domain entity exposed by an API
+    RmAudienceSegmentSearchMetadataV1:
+      type:
+      - object
+      - 'null'
       properties:
-        identifierType:
-          enum:
-          - Email
-          - UserIdentifier
-          - IdentityLink
-          - CustomerId
-          - PhoneNumber
-          type: string
-          description: Indicates contact list type
-      description: Settings to target users with your contact lists.
+        limit:
+          type:
+          - integer
+          - 'null'
+          description: Max item of the current page
+          format: int32
+        offset:
+          type:
+          - integer
+          - 'null'
+          description: Number of item to skip
+          format: int32
+        totalItems:
+          type:
+          - integer
+          - 'null'
+          description: Total number of items
+          format: int32
+      description: Metadata for the audience segment search response.
     RmAudienceSegmentUpdateEntityV1Resource:
       type: object
       properties:
@@ -3655,67 +3627,15 @@ components:
         type:
           type: string
       description: A class that represents a domain entity exposed by an API
-    RmAudienceSegmentSearchEntityV1Resource:
+    RmContactListUpdateV1:
       type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/RmAudienceSegmentSearchEntityV1'
-        type:
-          type: string
-      description: A top-level object that encapsulates a Criteo API response for a single value
-    RmAudienceEntityV1Resource:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/RmAudienceEntityV1'
-        id:
-          type:
-          - string
-          - 'null'
-          description: Id of the entity
-        type:
-          type:
-          - string
-          - 'null'
-      description: A class that represents a domain entity exposed by an API
-    RmContactListStatisticsEntityV1:
-      type:
-      - object
-      - 'null'
-      properties:
-        matchRate:
-          type:
-          - number
-          - 'null'
-          description: 'Percentage of matched identifiers in the contact list.
-
-            Can differ from matches/identifiers depending on the contact list type.'
-          format: double
-        numberOfIdentifiers:
-          type:
-          - integer
-          - 'null'
-          description: Number of identifiers in the contact list.
-          format: int32
-        numberOfMatches:
-          type:
-          - integer
-          - 'null'
-          description: Number of matched identifiers in the contact list.
-          format: int32
-      description: Contact list statistics.
-      x-criteo-canonical:
-        infoType: entity
-        name: ContactListStatistics
-        version: v1
-    RmAudienceSegmentBulkUpdateInputV1:
+      description: Settings to update the contact list of the segment
+    RmAudienceSegmentSearchInputV1:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/RmAudienceSegmentUpdateEntityV1Resource'
-      description: A top-level object that encapsulates a Criteo API request for several entities.
+          $ref: '#/components/schemas/RmAudienceSegmentSearchEntityV1Resource'
+      description: A top-level object that encapsulates a Criteo API request for a single value.
     RmAudienceEntityV1:
       type:
       - object
@@ -3776,12 +3696,19 @@ components:
         infoType: entity
         name: RetailMediaAudience
         version: v1
-    RmAudienceSearchInputV1:
+    RmContactListCreateV1:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/RmAudienceSearchEntityV1Resource'
-      description: A top-level object that encapsulates a Criteo API request for a single value.
+        identifierType:
+          enum:
+          - Email
+          - UserIdentifier
+          - IdentityLink
+          - CustomerId
+          - PhoneNumber
+          type: string
+          description: Indicates contact list type
+      description: Settings to target users with your contact lists.
     RmEventsUpdateV1:
       type: object
       properties:
@@ -3820,13 +3747,86 @@ components:
           type: string
           description: Types of shopper activity.
       description: Settings to target users based on their behavior
-    RmAudienceSegmentDeleteEntityV1:
-      type: object
-      description: Segment to delete
+    RmContactListStatisticsEntityV1:
+      type:
+      - object
+      - 'null'
+      properties:
+        matchRate:
+          type:
+          - number
+          - 'null'
+          description: 'Percentage of matched identifiers in the contact list.
+
+            Can differ from matches/identifiers depending on the contact list type.'
+          format: double
+        numberOfIdentifiers:
+          type:
+          - integer
+          - 'null'
+          description: Number of identifiers in the contact list.
+          format: int32
+        numberOfMatches:
+          type:
+          - integer
+          - 'null'
+          description: Number of matched identifiers in the contact list.
+          format: int32
+      description: Contact list statistics.
       x-criteo-canonical:
         infoType: entity
-        name: RetailMediaAudienceSegment
+        name: ContactListStatistics
         version: v1
+    RmAudienceSegmentDeleteEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/RmAudienceSegmentDeleteEntityV1'
+        id:
+          type: string
+          description: Id of the entity
+        type:
+          type: string
+      description: A class that represents a domain entity exposed by an API
+    RetailMediaContactlistOperation:
+      required:
+      - data
+      - errors
+      - warnings
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RetailMediaContactlistOperationResponseAttributes'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceError'
+        type:
+          type:
+          - string
+          - 'null'
+          description: the name of the entity type
+          example: AddRemoveContactlistResult
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceWarning'
+      description: Operation on Retail Media contact list
+    RmAudienceEntityV1Resource:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/RmAudienceEntityV1'
+        id:
+          type:
+          - string
+          - 'null'
+          description: Id of the entity
+        type:
+          type:
+          - string
+          - 'null'
+      description: A class that represents a domain entity exposed by an API
   securitySchemes:
     oauth:
       type: oauth2
@@ -3839,8 +3839,8 @@ components:
           tokenUrl: https://api.criteo.com/oauth2/token
           scopes: {}
 x-refined-from:
-- criteo-marketing-solutions-api-openapi.yml
-- criteo-retail-media-api-openapi.yml
+- criteo-marketing-solutions-2026-07-openapi-original.json
+- criteo-retail-media-2026-07-openapi-original.json
 x-samples-languages:
 - java
 - python

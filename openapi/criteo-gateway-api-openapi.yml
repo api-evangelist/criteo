@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Criteo Gateway API
   version: '1.0'
-  description: 'Operations tagged Gateway across 3 of this provider''s published API definitions: criteo-commerce-grid-api-openapi.yml, criteo-marketing-solutions-api-openapi.yml, criteo-retail-media-api-openapi.yml. Each path carries the servers of the definition it was published in.'
+  description: 'Operations tagged Gateway across 3 of this provider''s published API definitions: criteo-commerce-grid-2026-01-openapi-original.json, criteo-marketing-solutions-2026-07-openapi-original.json, criteo-retail-media-2026-07-openapi-original.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.criteo.com
 security:
@@ -316,9 +316,9 @@ components:
           tokenUrl: https://api.criteo.com/oauth2/token
           scopes: {}
 x-refined-from:
-- criteo-commerce-grid-api-openapi.yml
-- criteo-marketing-solutions-api-openapi.yml
-- criteo-retail-media-api-openapi.yml
+- criteo-commerce-grid-2026-01-openapi-original.json
+- criteo-marketing-solutions-2026-07-openapi-original.json
+- criteo-retail-media-2026-07-openapi-original.json
 x-samples-languages:
 - java
 - python

@@ -1,34 +1,54 @@
 {
   "provider": "criteo",
   "sources": [
-    "criteo-accounts-api-openapi.yml",
-    "criteo-audiences-api-openapi.yml",
-    "criteo-authentication-api-openapi.yml",
-    "criteo-balances-api-openapi.yml",
-    "criteo-campaigns-api-openapi.yml",
-    "criteo-catalogs-api-openapi.yml",
-    "criteo-categories-api-openapi.yml",
-    "criteo-keywords-api-openapi.yml",
-    "criteo-lineitems-api-openapi.yml",
-    "criteo-products-api-openapi.yml",
-    "criteo-reports-api-openapi.yml"
+    "_original/criteo-commerce-grid-2026-01-openapi-original.json",
+    "_original/criteo-marketing-solutions-2026-07-openapi-original.json",
+    "_original/criteo-retail-media-2026-07-openapi-original.json"
   ],
   "outputs": [
+    "criteo-gateway-api-openapi.yml",
+    "criteo-segment-api-openapi.yml",
+    "criteo-advertiser-api-openapi.yml",
+    "criteo-analytics-api-openapi.yml",
+    "criteo-audience-api-openapi.yml",
+    "criteo-campaign-api-openapi.yml",
+    "criteo-creative-api-openapi.yml",
+    "criteo-reco-api-openapi.yml",
     "criteo-accounts-api-openapi.yml",
-    "criteo-audiences-api-openapi.yml",
-    "criteo-authentication-api-openapi.yml",
-    "criteo-balances-api-openapi.yml",
-    "criteo-campaigns-api-openapi.yml",
-    "criteo-catalogs-api-openapi.yml",
-    "criteo-categories-api-openapi.yml",
-    "criteo-keywords-api-openapi.yml",
-    "criteo-lineitems-api-openapi.yml",
-    "criteo-products-api-openapi.yml",
-    "criteo-reports-api-openapi.yml"
+    "criteo-balance-api-openapi.yml",
+    "criteo-billing-api-openapi.yml",
+    "criteo-catalog-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "3 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "criteo-commerce-grid-2026-01-openapi-original.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "criteo-marketing-solutions-2026-07-openapi-original.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "criteo-retail-media-2026-07-openapi-original.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "tag 'Gateway' spans 3 source specs (criteo-commerce-grid-2026-01-openapi-original.json, criteo-marketing-solutions-2026-07-openapi-original.json, criteo-retail-media-2026-07-openapi-original.json): per-path servers applied",
+    "tag 'Analytics' spans 2 source specs (criteo-marketing-solutions-2026-07-openapi-original.json, criteo-retail-media-2026-07-openapi-original.json): per-path servers applied",
+    "tag 'Audience' spans 2 source specs (criteo-marketing-solutions-2026-07-openapi-original.json, criteo-retail-media-2026-07-openapi-original.json): per-path servers applied",
+    "tag 'Campaign' spans 2 source specs (criteo-marketing-solutions-2026-07-openapi-original.json, criteo-retail-media-2026-07-openapi-original.json): per-path servers applied",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "_original/criteo-retail-media-api-openapi.yml: archived document superseded by a larger archived document",
+    "_original/criteo-marketing-solutions-api-openapi.yml: archived document superseded by a larger archived document",
+    "_original/criteo-commerce-grid-api-openapi.yml: archived document superseded by a larger archived document",
+    "criteo-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "criteo-advertiser-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "criteo-analytics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "criteo-audience-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "criteo-balance-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "criteo-billing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "criteo-campaign-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "criteo-catalog-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "criteo-creative-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "criteo-gateway-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "criteo-reco-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "criteo-segment-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
