@@ -39,6 +39,9 @@ accessModel:
   generated: '2026-07-22'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/criteo.png
+x-docs-platform: mintlify
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-24
 tags:
 - Advertising
 - Agent Skills
@@ -58,6 +61,8 @@ tags:
 - Retail
 - Retail Media
 - Sponsored Products
+- A2A
+- AdTech
 tags_raw:
 - Advertising
 - Agent Skills
@@ -77,6 +82,7 @@ tags_raw:
 - Retail
 - Retail Media
 - Sponsored Products
+- A2A
 created: '2025-03-01'
 modified: '2026-08-13'
 specificationVersion: '0.23'
