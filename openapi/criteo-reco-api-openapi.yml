@@ -396,50 +396,6 @@ paths:
         - MarketingSolutions_Reco_Read
 components:
   schemas:
-    ValueResourceOutcomeOfProductFilterConfig:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ValueResourceOfProductFilterConfig'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        warnings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-      description: A top-level object that encapsulates a Criteo API response for a single value.
-    ValueResourceCollectionOutcomeOfProductFilterConfig:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ValueResourceOfProductFilterConfig'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        warnings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-      description: A top-level object that encapsulates a Criteo API response for several values.
     CreateProductFilterRequest:
       type: object
       properties:
@@ -448,33 +404,34 @@ components:
           - string
           - 'null'
       description: Encapsulate the parameters needed to enable product filtering
-    ValueResourceOfPatchProductSetRequest:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/PatchProductSetRequest'
-        type:
-          type: string
-      description: A top-level object that encapsulates a Criteo API response for a single value
-    ValueResourceInputOfCreateProductFilterRequest:
+    ValueResourceInputOfBoostingConfigurationRequest:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/ValueResourceOfCreateProductFilterRequest'
+          $ref: '#/components/schemas/ValueResourceOfBoostingConfigurationRequest'
       description: A top-level object that encapsulates a Criteo API request for a single value.
-    ProductFilterConfig:
-      required:
-      - adId
-      - productSetId
-      type:
-      - object
-      - 'null'
+    ResourceOutcomeOfProductSet:
+      type: object
       properties:
-        adId:
-          type: string
-        productSetId:
-          type: string
-      description: Entity to create a product filter configuration
+        data:
+          $ref: '#/components/schemas/ResourceOfProductSet'
+        errors:
+          uniqueItems: false
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          uniqueItems: false
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A class implementing the response of the Criteo API as described in API Guild Guidelines with a single entity as body
     ProductSet:
       required:
       - clientType
@@ -546,6 +503,26 @@ components:
           type: string
           description: The status of the product set
       description: Encapsulate a group of product
+    ValueResourceOutcomeOfProductFilterConfig:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ValueResourceOfProductFilterConfig'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for a single value.
     ValueResourceOfProductFilterConfig:
       type:
       - object
@@ -558,6 +535,53 @@ components:
           - string
           - 'null'
       description: A top-level object that encapsulates a Criteo API response for a single value.
+    BoostedAdProductSet:
+      required:
+      - adId
+      - boostingFactor
+      - modificationDate
+      - productSetId
+      type:
+      - object
+      - 'null'
+      properties:
+        adId:
+          type: string
+        boostingFactor:
+          type: number
+          format: double
+        modificationDate:
+          type: string
+        productSetId:
+          type: string
+      description: Encapsulate a boosted ad product set association and its configuration
+    ResourceCollectionOutcomeOfProductSet:
+      type: object
+      properties:
+        data:
+          uniqueItems: false
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ResourceOfProductSet'
+        errors:
+          uniqueItems: false
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          uniqueItems: false
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A class implementing the response  of the Criteo API as described in API Guild Guidelines with collection of entities as body
     CreateProductSetRequest:
       type: object
       properties:
@@ -573,14 +597,40 @@ components:
           items:
             $ref: '#/components/schemas/ProductSetRule'
       description: Entity to create a product set
-    ValueResourceOfCreateProductSetRequest:
+    ValueResourceOfCreateProductFilterRequest:
       type: object
       properties:
         attributes:
-          $ref: '#/components/schemas/CreateProductSetRequest'
+          $ref: '#/components/schemas/CreateProductFilterRequest'
         type:
-          type: string
-      description: A class that represents a ValueType in a guild compliant way
+          type:
+          - string
+          - 'null'
+      description: A top-level object that encapsulates a Criteo API response for a single value.
+    ValueResourceCollectionOutcomeOfProductFilterConfig:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ValueResourceOfProductFilterConfig'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for several values.
     Outcome:
       type: object
       properties:
@@ -601,82 +651,16 @@ components:
             $ref: '#/components/schemas/CommonProblem'
           readOnly: true
       description: A class implementing the body of a response without data of the Criteo API as described in API Guild Guidelines
-    ValueResourceCollectionOutcomeOfBoostedAdProductSet:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ValueResourceOfBoostedAdProductSet'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        warnings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-      description: A top-level object that encapsulates a Criteo API response for several values.
-    ValueResourceOfCreateProductFilterRequest:
+    ValueResourceOfBoostingConfigurationRequest:
       type: object
       properties:
         attributes:
-          $ref: '#/components/schemas/CreateProductFilterRequest'
+          $ref: '#/components/schemas/BoostingConfigurationRequest'
         type:
           type:
           - string
           - 'null'
       description: A top-level object that encapsulates a Criteo API response for a single value.
-    ValueResourceInputOfCreateProductSetRequest:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ValueResourceOfCreateProductSetRequest'
-      description: 'Represents an API request message containing the usual valueResource data field,
-
-        i.e. data is not an entity (no id). This can be used for association objects.'
-      example:
-        data:
-          type: CreateProductSetRequest
-          attributes:
-            datasetId: '0'
-            name: My Product Set
-            isDraft: true
-            rules:
-            - operator: IsIn
-              field: Brand
-              values:
-              - MyBrand
-    ResourceOutcomeOfProductSet:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResourceOfProductSet'
-        errors:
-          uniqueItems: false
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        warnings:
-          uniqueItems: false
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-      description: A class implementing the response of the Criteo API as described in API Guild Guidelines with a single entity as body
     PatchProductSetRequest:
       type: object
       properties:
@@ -701,6 +685,12 @@ components:
             $ref: '#/components/schemas/ProductSetRule'
           description: '[optional] New rules that will be associated to the product set'
       description: Entity to update a product set
+    ValueResourceInputOfCreateProductFilterRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ValueResourceOfCreateProductFilterRequest'
+      description: A top-level object that encapsulates a Criteo API request for a single value.
     ValueResourceOutcomeOfBoostedAdProductSet:
       type: object
       properties:
@@ -721,11 +711,49 @@ components:
             $ref: '#/components/schemas/CommonProblem'
           readOnly: true
       description: A top-level object that encapsulates a Criteo API response for a single value.
-    BoostedAdProductSet:
+    ValueResourceOfPatchProductSetRequest:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/PatchProductSetRequest'
+        type:
+          type: string
+      description: A top-level object that encapsulates a Criteo API response for a single value
+    ValueResourceInputOfCreateProductSetRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ValueResourceOfCreateProductSetRequest'
+      description: 'Represents an API request message containing the usual valueResource data field,
+
+        i.e. data is not an entity (no id). This can be used for association objects.'
+      example:
+        data:
+          type: CreateProductSetRequest
+          attributes:
+            datasetId: '0'
+            name: My Product Set
+            isDraft: true
+            rules:
+            - operator: IsIn
+              field: Brand
+              values:
+              - MyBrand
+    ValueResourceOfBoostedAdProductSet:
+      type:
+      - object
+      - 'null'
+      properties:
+        attributes:
+          $ref: '#/components/schemas/BoostedAdProductSet'
+        type:
+          type:
+          - string
+          - 'null'
+      description: A top-level object that encapsulates a Criteo API response for a single value.
+    ProductFilterConfig:
       required:
       - adId
-      - boostingFactor
-      - modificationDate
       - productSetId
       type:
       - object
@@ -733,14 +761,24 @@ components:
       properties:
         adId:
           type: string
+        productSetId:
+          type: string
+      description: Entity to create a product filter configuration
+    ValueResourceInputOfPatchProductSetRequest:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ValueResourceOfPatchProductSetRequest'
+      description: A top-level object that encapsulates a Criteo API request for a single value
+    BoostingConfigurationRequest:
+      required:
+      - boostingFactor
+      type: object
+      properties:
         boostingFactor:
           type: number
           format: double
-        modificationDate:
-          type: string
-        productSetId:
-          type: string
-      description: Encapsulate a boosted ad product set association and its configuration
+      description: Encapsulate the parameters needed to create or update a boosting configuration
     CommonProblem:
       type: object
       properties:
@@ -800,67 +838,22 @@ components:
           - 'null'
           description: The problem's category.
       description: Common problem object.
-    ValueResourceOfBoostingConfigurationRequest:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/BoostingConfigurationRequest'
-        type:
-          type:
-          - string
-          - 'null'
-      description: A top-level object that encapsulates a Criteo API response for a single value.
-    ValueResourceOfBoostedAdProductSet:
+    ResourceOfProductSet:
       type:
       - object
       - 'null'
       properties:
         attributes:
-          $ref: '#/components/schemas/BoostedAdProductSet'
+          $ref: '#/components/schemas/ProductSet'
+        id:
+          type:
+          - string
+          - 'null'
         type:
           type:
           - string
           - 'null'
-      description: A top-level object that encapsulates a Criteo API response for a single value.
-    ResourceCollectionOutcomeOfProductSet:
-      type: object
-      properties:
-        data:
-          uniqueItems: false
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ResourceOfProductSet'
-        errors:
-          uniqueItems: false
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        warnings:
-          uniqueItems: false
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-      description: A class implementing the response  of the Criteo API as described in API Guild Guidelines with collection of entities as body
-    ValueResourceInputOfBoostingConfigurationRequest:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ValueResourceOfBoostingConfigurationRequest'
-      description: A top-level object that encapsulates a Criteo API request for a single value.
-    ValueResourceInputOfPatchProductSetRequest:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ValueResourceOfPatchProductSetRequest'
-      description: A top-level object that encapsulates a Criteo API request for a single value
+      description: A class that represents an entity in a guild compliant way
     ProductSetRule:
       type: object
       properties:
@@ -903,31 +896,38 @@ components:
             type: string
           description: The values on which we want to apply the rule
       description: Encapsulate a product rule
-    ResourceOfProductSet:
-      type:
-      - object
-      - 'null'
-      properties:
-        attributes:
-          $ref: '#/components/schemas/ProductSet'
-        id:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
-      description: A class that represents an entity in a guild compliant way
-    BoostingConfigurationRequest:
-      required:
-      - boostingFactor
+    ValueResourceOfCreateProductSetRequest:
       type: object
       properties:
-        boostingFactor:
-          type: number
-          format: double
-      description: Encapsulate the parameters needed to create or update a boosting configuration
+        attributes:
+          $ref: '#/components/schemas/CreateProductSetRequest'
+        type:
+          type: string
+      description: A class that represents a ValueType in a guild compliant way
+    ValueResourceCollectionOutcomeOfBoostedAdProductSet:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ValueResourceOfBoostedAdProductSet'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for several values.
   securitySchemes:
     oauth:
       type: oauth2

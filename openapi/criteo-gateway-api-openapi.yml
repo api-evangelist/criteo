@@ -34,7 +34,7 @@ paths:
       - Gateway
       summary: /2026-07/marketing-solutions/me
       description: Get information about the currently logged application
-      operationId: GetCurrentApplication
+      operationId: get202607MarketingSolutionsMe
       responses:
         '200':
           description: Success
@@ -44,6 +44,8 @@ paths:
                 $ref: '#/components/schemas/ApplicationSummaryModelResponse'
       security:
       - oauth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: GetCurrentApplication
     servers:
     - url: https://api.criteo.com
   /2026-07/retail-media/me:
@@ -52,7 +54,7 @@ paths:
       - Gateway
       summary: /2026-07/retail-media/me
       description: Get information about the currently logged application
-      operationId: GetCurrentApplication
+      operationId: get202607RetailMediaMe
       responses:
         '200':
           description: Success
@@ -62,38 +64,12 @@ paths:
                 $ref: '#/components/schemas/ApplicationSummaryModelResponse'
       security:
       - oauth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: GetCurrentApplication
     servers:
     - url: https://api.criteo.com
 components:
   schemas:
-    ApplicationSummaryModel:
-      type:
-      - object
-      - 'null'
-      properties:
-        applicationId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        criteoService:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        organizationId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-      description: Used for the /me endpoint. Contains information about the currently authenticated application that we accept to give to our clients
     CommonProblem:
       type: object
       properties:
@@ -154,6 +130,34 @@ components:
           - 'null'
           description: The problem's category.
       description: Common problem object.
+    ApplicationSummaryModel:
+      type:
+      - object
+      - 'null'
+      properties:
+        applicationId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        criteoService:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        organizationId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      description: Used for the /me endpoint. Contains information about the currently authenticated application that we accept to give to our clients
     ApplicationSummaryModelResource:
       type:
       - object

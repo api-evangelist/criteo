@@ -83,6 +83,7 @@ tags_raw:
 - Retail Media
 - Sponsored Products
 - A2A
+- AdTech
 created: '2025-03-01'
 modified: '2026-08-13'
 specificationVersion: '0.23'
@@ -517,3 +518,10 @@ x-enrichment:
   status: enriched
   artifacts_added: 32
   pass: local-v1
+x-a2a:
+  verified: true
+  probed: '2026-09-26'
+  url: "https://developers.criteo.com/.well-known/agent-card.json"
+  grade: "conformant"
+  protocol_version: "0.3"
+  control: 404
