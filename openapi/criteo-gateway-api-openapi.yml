@@ -70,6 +70,54 @@ paths:
     - url: https://api.criteo.com
 components:
   schemas:
+    ApplicationSummaryModelResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ApplicationSummaryModelResource'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+      description: A top-level object that encapsulates a Criteo API response for a single value
+    ApplicationSummaryModel:
+      type:
+      - object
+      - 'null'
+      properties:
+        applicationId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        criteoService:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        organizationId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      description: Used for the /me endpoint. Contains information about the currently authenticated application that we accept to give to our clients
     CommonProblem:
       type: object
       properties:
@@ -130,34 +178,6 @@ components:
           - 'null'
           description: The problem's category.
       description: Common problem object.
-    ApplicationSummaryModel:
-      type:
-      - object
-      - 'null'
-      properties:
-        applicationId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        criteoService:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        organizationId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-      description: Used for the /me endpoint. Contains information about the currently authenticated application that we accept to give to our clients
     ApplicationSummaryModelResource:
       type:
       - object
@@ -169,26 +189,6 @@ components:
           type:
           - string
           - 'null'
-      description: A top-level object that encapsulates a Criteo API response for a single value
-    ApplicationSummaryModelResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ApplicationSummaryModelResource'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        warnings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
       description: A top-level object that encapsulates a Criteo API response for a single value
     CommonProblem_2:
       type: object

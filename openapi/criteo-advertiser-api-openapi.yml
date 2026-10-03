@@ -78,6 +78,69 @@ components:
 
             For example the endpoint, entity or field is deprecated. Warnings are like compiler warnings, they indicate that problems may occur in the future.'
       description: Portfolio fetch Response
+    PortfolioMessage:
+      type:
+      - object
+      - 'null'
+      properties:
+        advertiserName:
+          type:
+          - string
+          - 'null'
+      description: Class with elementary info about advertiser
+    CriteoApiWarning:
+      type: object
+      properties:
+        code:
+          enum:
+          - internal-error
+          - deprecated-field
+          - endpoint-deprecated
+          - required-field
+          - invalid-date-format
+          - invalid
+          - invalid-ranged
+          - invalid-timespan
+          type:
+          - string
+          - 'null'
+          description: A machine-readable error code string in kabab-case. Unique across Criteo
+          example: internal-error
+        detail:
+          type:
+          - string
+          - 'null'
+          description: A human-readable explanation specific to this occurrence of the problem.
+        instance:
+          type:
+          - string
+          - 'null'
+          description: A URI reference that identifies the specific occurrence of the problem
+        title:
+          type:
+          - string
+          - 'null'
+          description: A short, human-readable remarks of the problem type.
+        traceId:
+          type:
+          - string
+          - 'null'
+          description: The correlation ID provided by the gateway
+        type:
+          enum:
+          - access_control
+          - authentication
+          - authorization
+          - availability
+          - deprecation
+          - quota
+          - validation
+          type:
+          - string
+          - 'null'
+          description: A machine-readable code specifying error category
+          example: access_control
+      description: Criteo API response warning
     CriteoApiError:
       type: object
       properties:
@@ -138,59 +201,6 @@ components:
           description: A machine-readable code specifying error category
           example: access_control
       description: Criteo API response error
-    CriteoApiWarning:
-      type: object
-      properties:
-        code:
-          enum:
-          - internal-error
-          - deprecated-field
-          - endpoint-deprecated
-          - required-field
-          - invalid-date-format
-          - invalid
-          - invalid-ranged
-          - invalid-timespan
-          type:
-          - string
-          - 'null'
-          description: A machine-readable error code string in kabab-case. Unique across Criteo
-          example: internal-error
-        detail:
-          type:
-          - string
-          - 'null'
-          description: A human-readable explanation specific to this occurrence of the problem.
-        instance:
-          type:
-          - string
-          - 'null'
-          description: A URI reference that identifies the specific occurrence of the problem
-        title:
-          type:
-          - string
-          - 'null'
-          description: A short, human-readable remarks of the problem type.
-        traceId:
-          type:
-          - string
-          - 'null'
-          description: The correlation ID provided by the gateway
-        type:
-          enum:
-          - access_control
-          - authentication
-          - authorization
-          - availability
-          - deprecation
-          - quota
-          - validation
-          type:
-          - string
-          - 'null'
-          description: A machine-readable code specifying error category
-          example: access_control
-      description: Criteo API response warning
     EntityOfPortfolioMessage:
       type: object
       properties:
@@ -224,16 +234,6 @@ components:
           description: A string containing the entity type
           example: campaign
       description: Generic Criteo API successful data model
-    PortfolioMessage:
-      type:
-      - object
-      - 'null'
-      properties:
-        advertiserName:
-          type:
-          - string
-          - 'null'
-      description: Class with elementary info about advertiser
   securitySchemes:
     oauth:
       type: oauth2
