@@ -70,25 +70,17 @@ paths:
     - url: https://api.criteo.com
 components:
   schemas:
-    ApplicationSummaryModelResponse:
-      type: object
+    ApplicationSummaryModelResource:
+      type:
+      - object
+      - 'null'
       properties:
-        data:
-          $ref: '#/components/schemas/ApplicationSummaryModelResource'
-        errors:
+        attributes:
+          $ref: '#/components/schemas/ApplicationSummaryModel'
+        type:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
-        warnings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommonProblem'
-          readOnly: true
       description: A top-level object that encapsulates a Criteo API response for a single value
     ApplicationSummaryModel:
       type:
@@ -178,17 +170,25 @@ components:
           - 'null'
           description: The problem's category.
       description: Common problem object.
-    ApplicationSummaryModelResource:
-      type:
-      - object
-      - 'null'
+    ApplicationSummaryModelResponse:
+      type: object
       properties:
-        attributes:
-          $ref: '#/components/schemas/ApplicationSummaryModel'
-        type:
+        data:
+          $ref: '#/components/schemas/ApplicationSummaryModelResource'
+        errors:
           type:
-          - string
+          - array
           - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommonProblem'
+          readOnly: true
       description: A top-level object that encapsulates a Criteo API response for a single value
     CommonProblem_2:
       type: object
