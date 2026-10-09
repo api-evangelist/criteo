@@ -1,48 +1,33 @@
-generated: '2026-08-13'
+generated: '2026-09-23'
 method: generated
-source: openapi/criteo-commerce-grid-api-openapi.yml, openapi/criteo-marketing-solutions-api-openapi.yml,
-  openapi/criteo-retail-media-api-openapi.yml
+source: openapi/criteo-accounts-api-openapi.yml, openapi/criteo-advertiser-api-openapi.yml,
+  openapi/criteo-analytics-api-openapi.yml, openapi/criteo-audience-api-openapi.yml, openapi/criteo-balance-api-openapi.yml,
+  openapi/criteo-billing-api-openapi.yml, openapi/criteo-campaign-api-openapi.yml, openapi/criteo-catalog-api-openapi.yml,
+  openapi/criteo-creative-api-openapi.yml, openapi/criteo-gateway-api-openapi.yml, openapi/criteo-reco-api-openapi.yml,
+  openapi/criteo-segment-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 219
   by_action_class:
-    acting: 132
-    connected: 87
+    acting: 114
+    connected: 105
   by_consequence:
-    write: 128
-    read: 87
+    write: 110
+    read: 105
     safety-critical: 4
   human_in_the_loop_required: 4
 operations:
-- path: /2026-01/commerce-grid/audience-segments
-  method: patch
-  operationId: bulkUpdateAudienceSegments
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - CommerceGrid_Segment_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-01/commerce-grid/audience-segments/{audience-segment-id}/contact-list/add-remove
+- path: /2026-07/retail-media/account-management/accounts/{accountId}/brands/add
   method: post
-  operationId: AddRemoveContactListByAudienceSegment
+  operationId: AddBrands
   x-agentic-access:
     action-class: acting
     consequence: write
     subject: required
     scope:
-    - CommerceGrid_Segment_Manage
+    - RetailMedia_Accounts_Manage
     audience: null
     token:
       max-ttl: 900
@@ -52,15 +37,15 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /2026-01/commerce-grid/audience-segments/{audience-segment-id}/contact-list/clear
+- path: /2026-07/retail-media/account-management/accounts/{accountId}/brands/remove
   method: post
-  operationId: ClearContactListByAudienceSegment
+  operationId: RemoveBrands
   x-agentic-access:
     action-class: acting
     consequence: write
     subject: required
     scope:
-    - CommerceGrid_Segment_Manage
+    - RetailMedia_Accounts_Manage
     audience: null
     token:
       max-ttl: 900
@@ -70,27 +55,63 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /2026-01/commerce-grid/audience-segments/{audience-segment-id}/contact-list/statistics
+- path: /2026-07/retail-media/account-management/accounts/{accountId}/create-brand-account
+  method: post
+  operationId: CreatePrivateMarketDemandBrandAccount
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - RetailMedia_Accounts_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/retail-media/account-management/accounts/{accountId}/create-seller-account
+  method: post
+  operationId: CreatePrivateMarketDemandSellerAccount
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - RetailMedia_Accounts_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/retail-media/account-management/accounts/{accountId}/private-market-child-accounts
   method: get
-  operationId: getAudienceSegmentContactListStatistics
+  operationId: GetPrivateMarketChildAccountsByAccountId
   x-agentic-access:
     action-class: connected
     consequence: read
     subject: optional
     scope:
-    - CommerceGrid_Segment_Read
+    - RetailMedia_Accounts_Read
     token:
       max-ttl: 3600
     audit: none
-- path: /2026-01/commerce-grid/audience-segments/create
-  method: post
-  operationId: bulkCreateAudienceSegments
+- path: /2026-07/retail-media/account-management/accounts/{accountId}/sellers
+  method: put
+  operationId: UpdateSellers
   x-agentic-access:
     action-class: acting
     consequence: write
     subject: required
     scope:
-    - CommerceGrid_Segment_Manage
+    - RetailMedia_Accounts_Manage
     audience: null
     token:
       max-ttl: 900
@@ -100,49 +121,93 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /2026-01/commerce-grid/audience-segments/delete
-  method: post
-  operationId: bulkDeleteAudienceSegments
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - CommerceGrid_Segment_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-01/commerce-grid/audience-segments/search
-  method: post
-  operationId: searchAudienceSegments
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - CommerceGrid_Segment_Read
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-01/commerce-grid/me
+- path: /2026-07/retail-media/accounts
   method: get
-  operationId: GetCurrentApplication
+  operationId: GetAccounts
   x-agentic-access:
     action-class: connected
     consequence: read
     subject: optional
+    scope:
+    - RetailMedia_Accounts_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/retail-media/accounts/{accountId}/grant-consent
+  method: post
+  operationId: GrantConsent
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - RetailMedia_Accounts_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/retail-media/accounts/fees/search
+  method: post
+  operationId: AccountFeesSearch
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - RetailMedia_Accounts_Read
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/retail-media/accounts/fees/update
+  method: post
+  operationId: UpdateAccountFees
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - RetailMedia_Accounts_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/retail-media/accounts/sellers/search
+  method: post
+  operationId: SearchSellers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - RetailMedia_Accounts_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/retail-media/brands/search
+  method: post
+  operationId: SearchBrands
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - RetailMedia_Accounts_Read
     token:
       max-ttl: 3600
     audit: none
@@ -160,221 +225,83 @@ operations:
   method: post
   operationId: GetTransparencyReport
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
+    action-class: connected
+    consequence: read
+    subject: optional
     scope:
     - MarketingSolutions_Analytics_Read
-    audience: null
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/marketing-solutions/ad-sets
-  method: patch
-  operationId: PatchAdSets
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - MarketingSolutions_Campaign_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/marketing-solutions/ad-sets
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/placements/report
   method: post
-  operationId: CreateAdSet
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - MarketingSolutions_Campaign_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/marketing-solutions/ad-sets/{ad-set-id}
-  method: get
-  operationId: GetAdSet
+  operationId: GetPlacementsReport
   x-agentic-access:
     action-class: connected
     consequence: read
     subject: optional
     scope:
-    - MarketingSolutions_Campaign_Read
+    - MarketingSolutions_Analytics_Read
     token:
       max-ttl: 3600
     audit: none
-- path: /2026-07/marketing-solutions/ad-sets/{ad-set-id}/audience
-  method: put
-  operationId: UpdateAdSetAudience
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - MarketingSolutions_Campaign_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/marketing-solutions/ad-sets/{ad-set-id}/category-bids
-  method: get
-  operationId: GetAdSetCategoryBids
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - MarketingSolutions_Campaign_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/marketing-solutions/ad-sets/{ad-set-id}/category-bids
-  method: patch
-  operationId: PatchAdSetCategoryBids
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - MarketingSolutions_Campaign_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/marketing-solutions/ad-sets/{ad-set-id}/display-multipliers
-  method: get
-  operationId: GetDisplayMultipliers
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - MarketingSolutions_Campaign_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/marketing-solutions/ad-sets/{ad-set-id}/display-multipliers
-  method: patch
-  operationId: PatchDisplayMultipliers
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - MarketingSolutions_Campaign_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/marketing-solutions/ad-sets/search
+- path: /2026-07/statistics/report
   method: post
-  operationId: SearchAdSets
+  operationId: GetAdsetReport
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
+    action-class: connected
+    consequence: read
+    subject: optional
     scope:
-    - MarketingSolutions_Campaign_Read
-    audience: null
+    - MarketingSolutions_Analytics_Read
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/marketing-solutions/ad-sets/start
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/transactions/report
   method: post
-  operationId: StartAdSets
+  operationId: GetTransactionsReport
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
+    action-class: connected
+    consequence: read
+    subject: optional
     scope:
-    - MarketingSolutions_Campaign_Manage
-    audience: null
+    - MarketingSolutions_Analytics_Read
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/marketing-solutions/ad-sets/stop
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/retail-media/reports/{reportId}/output
+  method: get
+  operationId: GetAsyncExportOutput
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - RetailMedia_Analytics_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/retail-media/reports/{reportId}/status
+  method: get
+  operationId: GetAsyncExportStatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - RetailMedia_Analytics_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/retail-media/reports/attributed-transactions
   method: post
-  operationId: StopAdSets
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    scope:
-    - MarketingSolutions_Campaign_Manage
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /2026-07/marketing-solutions/ads/{ad-id}/product-boost
-  method: get
-  operationId: FetchBoostedAdAssociations
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - MarketingSolutions_Reco_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/marketing-solutions/ads/{ad-id}/product-boost/{product-set-id}
-  method: delete
-  operationId: DeleteBoostedAdAssociation
+  operationId: GenerateAsyncAttributedTransactionsReport
   x-agentic-access:
     action-class: acting
     consequence: write
     subject: required
     scope:
-    - MarketingSolutions_Reco_Manage
+    - RetailMedia_Analytics_Read
     audience: null
     token:
       max-ttl: 900
@@ -384,27 +311,15 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /2026-07/marketing-solutions/ads/{ad-id}/product-boost/{product-set-id}
-  method: get
-  operationId: FetchBoostedAdAssociation
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - MarketingSolutions_Reco_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/marketing-solutions/ads/{ad-id}/product-boost/{product-set-id}
+- path: /2026-07/retail-media/reports/fillrate
   method: post
-  operationId: CreateBoostedAdAssociation
+  operationId: GenerateAsyncFillRateReport
   x-agentic-access:
     action-class: acting
     consequence: write
     subject: required
     scope:
-    - MarketingSolutions_Reco_Manage
+    - RetailMedia_Analytics_Read
     audience: null
     token:
       max-ttl: 900
@@ -414,45 +329,15 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /2026-07/marketing-solutions/ads/{ad-id}/product-filter
-  method: delete
-  operationId: DisableProductFiltering
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    scope:
-    - MarketingSolutions_Reco_Manage
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /2026-07/marketing-solutions/ads/{ad-id}/product-filter
-  method: get
-  operationId: FetchProductFilteringConfig
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - MarketingSolutions_Reco_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/marketing-solutions/ads/{ad-id}/product-filter
+- path: /2026-07/retail-media/reports/missed-opportunities
   method: post
-  operationId: EnableProductFiltering
+  operationId: GenerateAsyncMissedOpportunitiesReport
   x-agentic-access:
     action-class: acting
     consequence: write
     subject: required
     scope:
-    - MarketingSolutions_Reco_Manage
+    - RetailMedia_Analytics_Read
     audience: null
     token:
       max-ttl: 900
@@ -462,57 +347,15 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /2026-07/marketing-solutions/ads/{id}
-  method: delete
-  operationId: DeleteAd
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - MarketingSolutions_Creative_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/marketing-solutions/ads/{id}
-  method: get
-  operationId: GetAd
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - MarketingSolutions_Creative_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/marketing-solutions/advertisers/{advertiser-id}/ads
-  method: get
-  operationId: GetAdvertiserAds
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - MarketingSolutions_Creative_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/marketing-solutions/advertisers/{advertiser-id}/ads
+- path: /2026-07/retail-media/reports/performance
   method: post
-  operationId: CreateAdvertiserAd
+  operationId: GenerateAsyncPerformanceReport
   x-agentic-access:
     action-class: acting
     consequence: write
     subject: required
     scope:
-    - MarketingSolutions_Creative_Manage
+    - RetailMedia_Analytics_Read
     audience: null
     token:
       max-ttl: 900
@@ -522,27 +365,15 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons
-  method: get
-  operationId: GetAdvertiserCoupons
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - MarketingSolutions_Creative_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons
+- path: /2026-07/retail-media/reports/revenue
   method: post
-  operationId: CreateAdvertiserCoupon
+  operationId: GenerateAsyncRevenueReport
   x-agentic-access:
     action-class: acting
     consequence: write
     subject: required
     scope:
-    - MarketingSolutions_Creative_Manage
+    - RetailMedia_Analytics_Read
     audience: null
     token:
       max-ttl: 900
@@ -552,99 +383,87 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons-supported-sizes
-  method: get
-  operationId: GetAdvertiserCouponSupportedSizes
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - MarketingSolutions_Creative_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons/{id}
-  method: delete
-  operationId: DeleteAdvertiserCoupon
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - MarketingSolutions_Creative_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons/{id}
-  method: get
-  operationId: GetAdvertiserCoupon
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - MarketingSolutions_Creative_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons/{id}
-  method: put
-  operationId: EditAdvertiserCoupon
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - MarketingSolutions_Creative_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons/{id}/preview
-  method: get
-  operationId: GetAdvertiserCouponPreview
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - MarketingSolutions_Creative_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/marketing-solutions/advertisers/{advertiser-id}/creatives
-  method: get
-  operationId: GetAdvertiserCreatives
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - MarketingSolutions_Creative_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/marketing-solutions/advertisers/{advertiser-id}/creatives
+- path: /2026-07/retail-media/reports/sync/attributed-transactions
   method: post
-  operationId: CreateAdvertiserCreative
+  operationId: GenerateSyncAttributedTransactionsReport
   x-agentic-access:
     action-class: acting
     consequence: write
     subject: required
     scope:
-    - MarketingSolutions_Creative_Manage
+    - RetailMedia_Analytics_Read
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/retail-media/reports/sync/campaigns
+  method: post
+  operationId: GenerateSyncCampaignsReport
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - RetailMedia_Analytics_Read
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/retail-media/reports/sync/line-items
+  method: post
+  operationId: GenerateSyncLineItemsReport
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - RetailMedia_Analytics_Read
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/retail-media/reports/sync/real-time-performance
+  method: post
+  operationId: GenerateSyncRealTimePerformanceReport
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - RetailMedia_Analytics_Read
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/retail-media/reports/unfilled-placements
+  method: post
+  operationId: GenerateAsyncUnfilledPlacementsReport
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - RetailMedia_Analytics_Read
     audience: null
     token:
       max-ttl: 900
@@ -820,20 +639,14 @@ operations:
   method: post
   operationId: SearchAudienceSegments
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
+    action-class: connected
+    consequence: read
+    subject: optional
     scope:
     - MarketingSolutions_Audience_Read
-    audience: null
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /2026-07/marketing-solutions/audiences
   method: patch
   operationId: UpdateAudiences
@@ -928,11 +741,23 @@ operations:
   method: post
   operationId: SearchAudiences
   x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - MarketingSolutions_Audience_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/retail-media/accounts/{account-id}/audience-segments
+  method: patch
+  operationId: bulkUpdateAudienceSegments
+  x-agentic-access:
     action-class: acting
     consequence: write
     subject: required
     scope:
-    - MarketingSolutions_Audience_Read
+    - RetailMedia_Audience_Manage
     audience: null
     token:
       max-ttl: 900
@@ -941,6 +766,462 @@ operations:
       triggers:
       - abnormal
       - high-value
+    audit: required
+- path: /2026-07/retail-media/accounts/{account-id}/audience-segments/{audience-segment-id}/contact-list
+  method: get
+  operationId: getAudienceSegmentContactListStatistics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - RetailMedia_Audience_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/retail-media/accounts/{account-id}/audience-segments/create
+  method: post
+  operationId: bulkCreateAudienceSegments
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - RetailMedia_Audience_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/retail-media/accounts/{account-id}/audience-segments/delete
+  method: post
+  operationId: bulkDeleteAudienceSegments
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - RetailMedia_Audience_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/retail-media/accounts/{account-id}/audience-segments/search
+  method: post
+  operationId: searchAudienceSegments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - RetailMedia_Audience_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/retail-media/accounts/{account-id}/audiences/search
+  method: post
+  operationId: searchAudiences
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - RetailMedia_Audience_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/retail-media/audience-segments/{audience-segment-id}/contact-list/add-remove
+  method: post
+  operationId: AddRemoveContactListByAudienceSegment
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - RetailMedia_Audience_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/retail-media/audience-segments/{audience-segment-id}/contact-list/clear
+  method: post
+  operationId: ClearContactListByAudienceSegment
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - RetailMedia_Audience_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/retail-media/accounts/{account-id}/balances
+  method: post
+  operationId: CreateBalanceByAccountId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - RetailMedia_Balance_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/retail-media/accounts/{account-id}/balances/{balance-id}
+  method: patch
+  operationId: UpdateBalanceV1
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - RetailMedia_Balance_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/retail-media/accounts/{account-id}/balances/{balance-id}
+  method: get
+  operationId: GetBalanceByAccountAndBalanceId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - RetailMedia_Balance_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/retail-media/accounts/{account-id}/balances/{balance-id}/add-funds
+  method: post
+  operationId: AddFundsByAccountAndBalanceId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - RetailMedia_Balance_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/retail-media/accounts/{account-id}/balances/{balance-id}/change-dates
+  method: post
+  operationId: ChangeDatesByAccountAndBalanceId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - RetailMedia_Balance_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/retail-media/accounts/{accountId}/balances
+  method: get
+  operationId: GetPageOfBalancesV1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - RetailMedia_Balance_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/retail-media/balances/{balance-id}/campaigns
+  method: get
+  operationId: GetCampaignsByBalanceId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - RetailMedia_Balance_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/retail-media/balances/{balanceId}
+  method: get
+  operationId: GetBalanceV1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - RetailMedia_Balance_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/retail-media/balances/{balanceId}/history
+  method: get
+  operationId: GetBalanceHistoryV1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - RetailMedia_Balance_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/retail-media/billing/partner-report
+  method: post
+  operationId: CreatePartnerBillingReportRequestV1
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - RetailMedia_Billing_Read
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/retail-media/billing/partner-report/{requestId}/output
+  method: get
+  operationId: GetPartnerBillingReportOutputV1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - RetailMedia_Billing_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/retail-media/billing/partner-report/{requestId}/status
+  method: get
+  operationId: GetPartnerBillingReportStatusV1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - RetailMedia_Billing_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/marketing-solutions/ad-sets
+  method: patch
+  operationId: PatchAdSets
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - MarketingSolutions_Campaign_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/marketing-solutions/ad-sets
+  method: post
+  operationId: CreateAdSet
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - MarketingSolutions_Campaign_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/marketing-solutions/ad-sets/{ad-set-id}
+  method: get
+  operationId: GetAdSet
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - MarketingSolutions_Campaign_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/marketing-solutions/ad-sets/{ad-set-id}/audience
+  method: put
+  operationId: UpdateAdSetAudience
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - MarketingSolutions_Campaign_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/marketing-solutions/ad-sets/{ad-set-id}/category-bids
+  method: get
+  operationId: GetAdSetCategoryBids
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - MarketingSolutions_Campaign_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/marketing-solutions/ad-sets/{ad-set-id}/category-bids
+  method: patch
+  operationId: PatchAdSetCategoryBids
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - MarketingSolutions_Campaign_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/marketing-solutions/ad-sets/{ad-set-id}/display-multipliers
+  method: get
+  operationId: GetDisplayMultipliers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - MarketingSolutions_Campaign_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/marketing-solutions/ad-sets/{ad-set-id}/display-multipliers
+  method: patch
+  operationId: PatchDisplayMultipliers
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - MarketingSolutions_Campaign_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/marketing-solutions/ad-sets/search
+  method: post
+  operationId: SearchAdSets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - MarketingSolutions_Campaign_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/marketing-solutions/ad-sets/start
+  method: post
+  operationId: StartAdSets
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - MarketingSolutions_Campaign_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/marketing-solutions/ad-sets/stop
+  method: post
+  operationId: StopAdSets
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    scope:
+    - MarketingSolutions_Campaign_Manage
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
     audit: required
 - path: /2026-07/marketing-solutions/campaigns
   method: patch
@@ -994,95 +1275,11 @@ operations:
   method: post
   operationId: SearchCampaigns
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
+    action-class: connected
+    consequence: read
+    subject: optional
     scope:
     - MarketingSolutions_Campaign_Read
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/marketing-solutions/creatives/{id}
-  method: delete
-  operationId: DeleteCreative
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - MarketingSolutions_Creative_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/marketing-solutions/creatives/{id}
-  method: get
-  operationId: GetCreative
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - MarketingSolutions_Creative_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/marketing-solutions/creatives/{id}
-  method: put
-  operationId: EditCreative
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - MarketingSolutions_Creative_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/marketing-solutions/creatives/{id}/preview
-  method: post
-  operationId: GenerateCreativePreview
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - MarketingSolutions_Creative_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/marketing-solutions/dataset/{dataset-id}/product-boost
-  method: get
-  operationId: FetchBoostedAdAssociationByPartnerId
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - MarketingSolutions_Reco_Read
     token:
       max-ttl: 3600
     audit: none
@@ -1174,20 +1371,14 @@ operations:
   method: post
   operationId: GetMarketplaceSellersByAdvertiser
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
+    action-class: connected
+    consequence: read
+    subject: optional
     scope:
     - MarketingSolutions_Campaign_Manage
-    audience: null
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /2026-07/marketing-solutions/marketplace-performance-outcomes/advertisers/preview-limit
   method: get
   operationId: GetMarketplaceAdvertiserPreviewLimits
@@ -1452,460 +1643,6 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /2026-07/marketing-solutions/me
-  method: get
-  operationId: GetCurrentApplication
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/marketing-solutions/product-sets
-  method: post
-  operationId: CreateProductSet
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - MarketingSolutions_Reco_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/marketing-solutions/product-sets/{product-set-id}
-  method: delete
-  operationId: RemoveProductSet
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - MarketingSolutions_Reco_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/marketing-solutions/product-sets/{product-set-id}
-  method: get
-  operationId: FetchProductSet
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - MarketingSolutions_Reco_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/marketing-solutions/product-sets/{product-set-id}
-  method: patch
-  operationId: PatchProductSet
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - MarketingSolutions_Reco_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/marketing-solutions/product-sets/{product-set-id}/product-filters
-  method: get
-  operationId: FetchProductFilteringUsages
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - MarketingSolutions_Reco_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/marketing-solutions/product-sets/dataset/{dataset-id}
-  method: get
-  operationId: FetchProductSets
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - MarketingSolutions_Reco_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/placements/report
-  method: post
-  operationId: GetPlacementsReport
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - MarketingSolutions_Analytics_Read
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/statistics/report
-  method: post
-  operationId: GetAdsetReport
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - MarketingSolutions_Analytics_Read
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/transactions/report
-  method: post
-  operationId: GetTransactionsReport
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - MarketingSolutions_Analytics_Read
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/account-management/accounts/{accountId}/brands/add
-  method: post
-  operationId: AddBrands
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Accounts_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/account-management/accounts/{accountId}/brands/remove
-  method: post
-  operationId: RemoveBrands
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Accounts_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/account-management/accounts/{accountId}/create-brand-account
-  method: post
-  operationId: CreatePrivateMarketDemandBrandAccount
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Accounts_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/account-management/accounts/{accountId}/create-seller-account
-  method: post
-  operationId: CreatePrivateMarketDemandSellerAccount
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Accounts_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/account-management/accounts/{accountId}/private-market-child-accounts
-  method: get
-  operationId: GetPrivateMarketChildAccountsByAccountId
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - RetailMedia_Accounts_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/retail-media/account-management/accounts/{accountId}/sellers
-  method: put
-  operationId: UpdateSellers
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Accounts_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/accounts
-  method: get
-  operationId: GetAccounts
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - RetailMedia_Accounts_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/retail-media/accounts/{account-id}/audience-segments
-  method: patch
-  operationId: bulkUpdateAudienceSegments
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Audience_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/accounts/{account-id}/audience-segments/{audience-segment-id}/contact-list
-  method: get
-  operationId: getAudienceSegmentContactListStatistics
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - RetailMedia_Audience_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/retail-media/accounts/{account-id}/audience-segments/create
-  method: post
-  operationId: bulkCreateAudienceSegments
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Audience_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/accounts/{account-id}/audience-segments/delete
-  method: post
-  operationId: bulkDeleteAudienceSegments
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Audience_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/accounts/{account-id}/audience-segments/search
-  method: post
-  operationId: searchAudienceSegments
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Audience_Read
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/accounts/{account-id}/audiences/search
-  method: post
-  operationId: searchAudiences
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Audience_Read
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/accounts/{account-id}/balances
-  method: post
-  operationId: CreateBalanceByAccountId
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Balance_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/accounts/{account-id}/balances/{balance-id}
-  method: patch
-  operationId: UpdateBalanceV1
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Balance_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/accounts/{account-id}/balances/{balance-id}
-  method: get
-  operationId: GetBalanceByAccountAndBalanceId
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - RetailMedia_Balance_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/retail-media/accounts/{account-id}/balances/{balance-id}/add-funds
-  method: post
-  operationId: AddFundsByAccountAndBalanceId
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Balance_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/accounts/{account-id}/balances/{balance-id}/change-dates
-  method: post
-  operationId: ChangeDatesByAccountAndBalanceId
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Balance_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /2026-07/retail-media/accounts/{account-id}/campaigns
   method: get
   operationId: GetCampaignsByAccountId
@@ -2038,18 +1775,6 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /2026-07/retail-media/accounts/{accountId}/balances
-  method: get
-  operationId: GetPageOfBalancesV1
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - RetailMedia_Balance_Read
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /2026-07/retail-media/accounts/{accountId}/brand-catalog-export
   method: post
   operationId: CreateBrandCatalogExport
@@ -2116,42 +1841,18 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /2026-07/retail-media/accounts/{accountId}/grant-consent
-  method: post
-  operationId: GrantConsent
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Accounts_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /2026-07/retail-media/accounts/{accountId}/retailers/search
   method: post
   operationId: SearchAccountRetailers
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
+    action-class: connected
+    consequence: read
+    subject: optional
     scope:
     - RetailMedia_Campaign_Read
-    audience: null
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /2026-07/retail-media/accounts/{accountId}/seller-catalog-export
   method: post
   operationId: CreateSellerCatalogExport
@@ -2161,60 +1862,6 @@ operations:
     subject: required
     scope:
     - RetailMedia_Campaign_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/accounts/fees/search
-  method: post
-  operationId: AccountFeesSearch
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Accounts_Read
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/accounts/fees/update
-  method: post
-  operationId: UpdateAccountFees
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Accounts_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/accounts/sellers/search
-  method: post
-  operationId: SearchSellers
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Accounts_Read
     audience: null
     token:
       max-ttl: 900
@@ -2272,66 +1919,6 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /2026-07/retail-media/audience-segments/{audience-segment-id}/contact-list/add-remove
-  method: post
-  operationId: AddRemoveContactListByAudienceSegment
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Audience_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/audience-segments/{audience-segment-id}/contact-list/clear
-  method: post
-  operationId: ClearContactListByAudienceSegment
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Audience_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/balances/{balance-id}/campaigns
-  method: get
-  operationId: GetCampaignsByBalanceId
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - RetailMedia_Balance_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/retail-media/balances/{balanceId}
-  method: get
-  operationId: GetBalanceV1
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - RetailMedia_Balance_Read
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /2026-07/retail-media/balances/{balanceId}/campaigns/append
   method: post
   operationId: AppendCampaignsToBalanceV1
@@ -2359,78 +1946,6 @@ operations:
     subject: required
     scope:
     - RetailMedia_Campaign_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/balances/{balanceId}/history
-  method: get
-  operationId: GetBalanceHistoryV1
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - RetailMedia_Balance_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/retail-media/billing/partner-report
-  method: post
-  operationId: CreatePartnerBillingReportRequestV1
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Billing_Read
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/billing/partner-report/{requestId}/output
-  method: get
-  operationId: GetPartnerBillingReportOutputV1
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - RetailMedia_Billing_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/retail-media/billing/partner-report/{requestId}/status
-  method: get
-  operationId: GetPartnerBillingReportStatusV1
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - RetailMedia_Billing_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/retail-media/brands/search
-  method: post
-  operationId: SearchBrands
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Accounts_Read
     audience: null
     token:
       max-ttl: 900
@@ -2559,42 +2074,6 @@ operations:
       proof-of-possession: true
     escalation:
       human-in-the-loop: required
-    audit: required
-- path: /2026-07/retail-media/catalog/merchants/{merchantId}/store-inventory/delete
-  method: post
-  operationId: DeleteStoreInventoryPerMerchantId
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Catalog_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/catalog/merchants/{merchantId}/store-inventory/upsert
-  method: post
-  operationId: UpsertStoreInventoryPerMerchantId
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Catalog_Manage
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
     audit: required
 - path: /2026-07/retail-media/catalogs/{catalogId}/output
   method: get
@@ -2878,16 +2357,6 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /2026-07/retail-media/me
-  method: get
-  operationId: GetCurrentApplication
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /2026-07/retail-media/preferred-line-items/{line-item-id}
   method: get
   operationId: GetPreferredLineItemsByLineItemId
@@ -3116,210 +2585,6 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /2026-07/retail-media/reports/{reportId}/output
-  method: get
-  operationId: GetAsyncExportOutput
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - RetailMedia_Analytics_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/retail-media/reports/{reportId}/status
-  method: get
-  operationId: GetAsyncExportStatus
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - RetailMedia_Analytics_Read
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /2026-07/retail-media/reports/attributed-transactions
-  method: post
-  operationId: GenerateAsyncAttributedTransactionsReport
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Analytics_Read
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/reports/fillrate
-  method: post
-  operationId: GenerateAsyncFillRateReport
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Analytics_Read
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/reports/missed-opportunities
-  method: post
-  operationId: GenerateAsyncMissedOpportunitiesReport
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Analytics_Read
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/reports/performance
-  method: post
-  operationId: GenerateAsyncPerformanceReport
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Analytics_Read
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/reports/revenue
-  method: post
-  operationId: GenerateAsyncRevenueReport
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Analytics_Read
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/reports/sync/attributed-transactions
-  method: post
-  operationId: GenerateSyncAttributedTransactionsReport
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Analytics_Read
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/reports/sync/campaigns
-  method: post
-  operationId: GenerateSyncCampaignsReport
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Analytics_Read
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/reports/sync/line-items
-  method: post
-  operationId: GenerateSyncLineItemsReport
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Analytics_Read
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/reports/sync/real-time-performance
-  method: post
-  operationId: GenerateSyncRealTimePerformanceReport
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Analytics_Read
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /2026-07/retail-media/reports/unfilled-placements
-  method: post
-  operationId: GenerateAsyncUnfilledPlacementsReport
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - RetailMedia_Analytics_Read
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /2026-07/retail-media/retailers/{retailer-id}/templates
   method: get
   operationId: GetRetailerCreativeTemplates
@@ -3348,38 +2613,26 @@ operations:
   method: post
   operationId: SearchCategory
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
+    action-class: connected
+    consequence: read
+    subject: optional
     scope:
     - RetailMedia_Campaign_Read
-    audience: null
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /2026-07/retail-media/retailers/{retailerId}/cpc-min-bids
   method: post
   operationId: GetCpcMinBidsBySkuIdsV1
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
+    action-class: connected
+    consequence: read
+    subject: optional
     scope:
     - RetailMedia_Campaign_Manage
-    audience: null
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /2026-07/retail-media/retailers/{retailerId}/pages
   method: get
   operationId: RetailerApi_GetApi202110ExternalRetailerPagesByRetailerId
@@ -3396,20 +2649,14 @@ operations:
   method: post
   operationId: GetRecommendedCategories
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
+    action-class: connected
+    consequence: read
+    subject: optional
     scope:
     - RetailMedia_Campaign_Read
-    audience: null
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /2026-07/retail-media/retailers/{retailerId}/recommend-keywords
   method: post
   operationId: RecommendedKeywords
@@ -3428,3 +2675,651 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /2026-07/retail-media/catalog/merchants/{merchantId}/store-inventory/delete
+  method: post
+  operationId: DeleteStoreInventoryPerMerchantId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - RetailMedia_Catalog_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/retail-media/catalog/merchants/{merchantId}/store-inventory/upsert
+  method: post
+  operationId: UpsertStoreInventoryPerMerchantId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - RetailMedia_Catalog_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/marketing-solutions/ads/{id}
+  method: delete
+  operationId: DeleteAd
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - MarketingSolutions_Creative_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/marketing-solutions/ads/{id}
+  method: get
+  operationId: GetAd
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - MarketingSolutions_Creative_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/marketing-solutions/advertisers/{advertiser-id}/ads
+  method: get
+  operationId: GetAdvertiserAds
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - MarketingSolutions_Creative_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/marketing-solutions/advertisers/{advertiser-id}/ads
+  method: post
+  operationId: CreateAdvertiserAd
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - MarketingSolutions_Creative_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons
+  method: get
+  operationId: GetAdvertiserCoupons
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - MarketingSolutions_Creative_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons
+  method: post
+  operationId: CreateAdvertiserCoupon
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - MarketingSolutions_Creative_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons-supported-sizes
+  method: get
+  operationId: GetAdvertiserCouponSupportedSizes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - MarketingSolutions_Creative_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons/{id}
+  method: delete
+  operationId: DeleteAdvertiserCoupon
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - MarketingSolutions_Creative_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons/{id}
+  method: get
+  operationId: GetAdvertiserCoupon
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - MarketingSolutions_Creative_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons/{id}
+  method: put
+  operationId: EditAdvertiserCoupon
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - MarketingSolutions_Creative_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/marketing-solutions/advertisers/{advertiser-id}/coupons/{id}/preview
+  method: get
+  operationId: GetAdvertiserCouponPreview
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - MarketingSolutions_Creative_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/marketing-solutions/advertisers/{advertiser-id}/creatives
+  method: get
+  operationId: GetAdvertiserCreatives
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - MarketingSolutions_Creative_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/marketing-solutions/advertisers/{advertiser-id}/creatives
+  method: post
+  operationId: CreateAdvertiserCreative
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - MarketingSolutions_Creative_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/marketing-solutions/creatives/{id}
+  method: delete
+  operationId: DeleteCreative
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - MarketingSolutions_Creative_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/marketing-solutions/creatives/{id}
+  method: get
+  operationId: GetCreative
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - MarketingSolutions_Creative_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/marketing-solutions/creatives/{id}
+  method: put
+  operationId: EditCreative
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - MarketingSolutions_Creative_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/marketing-solutions/creatives/{id}/preview
+  method: post
+  operationId: GenerateCreativePreview
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - MarketingSolutions_Creative_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-01/commerce-grid/me
+  method: get
+  operationId: GetCurrentApplication
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/marketing-solutions/me
+  method: get
+  operationId: GetCurrentApplication
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/retail-media/me
+  method: get
+  operationId: GetCurrentApplication
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/marketing-solutions/ads/{ad-id}/product-boost
+  method: get
+  operationId: FetchBoostedAdAssociations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - MarketingSolutions_Reco_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/marketing-solutions/ads/{ad-id}/product-boost/{product-set-id}
+  method: delete
+  operationId: DeleteBoostedAdAssociation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - MarketingSolutions_Reco_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/marketing-solutions/ads/{ad-id}/product-boost/{product-set-id}
+  method: get
+  operationId: FetchBoostedAdAssociation
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - MarketingSolutions_Reco_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/marketing-solutions/ads/{ad-id}/product-boost/{product-set-id}
+  method: post
+  operationId: CreateBoostedAdAssociation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - MarketingSolutions_Reco_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/marketing-solutions/ads/{ad-id}/product-filter
+  method: delete
+  operationId: DisableProductFiltering
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    scope:
+    - MarketingSolutions_Reco_Manage
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /2026-07/marketing-solutions/ads/{ad-id}/product-filter
+  method: get
+  operationId: FetchProductFilteringConfig
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - MarketingSolutions_Reco_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/marketing-solutions/ads/{ad-id}/product-filter
+  method: post
+  operationId: EnableProductFiltering
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - MarketingSolutions_Reco_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/marketing-solutions/dataset/{dataset-id}/product-boost
+  method: get
+  operationId: FetchBoostedAdAssociationByPartnerId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - MarketingSolutions_Reco_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/marketing-solutions/product-sets
+  method: post
+  operationId: CreateProductSet
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - MarketingSolutions_Reco_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/marketing-solutions/product-sets/{product-set-id}
+  method: delete
+  operationId: RemoveProductSet
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - MarketingSolutions_Reco_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/marketing-solutions/product-sets/{product-set-id}
+  method: get
+  operationId: FetchProductSet
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - MarketingSolutions_Reco_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/marketing-solutions/product-sets/{product-set-id}
+  method: patch
+  operationId: PatchProductSet
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - MarketingSolutions_Reco_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-07/marketing-solutions/product-sets/{product-set-id}/product-filters
+  method: get
+  operationId: FetchProductFilteringUsages
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - MarketingSolutions_Reco_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-07/marketing-solutions/product-sets/dataset/{dataset-id}
+  method: get
+  operationId: FetchProductSets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - MarketingSolutions_Reco_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-01/commerce-grid/audience-segments
+  method: patch
+  operationId: bulkUpdateAudienceSegments
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - CommerceGrid_Segment_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-01/commerce-grid/audience-segments/{audience-segment-id}/contact-list/add-remove
+  method: post
+  operationId: AddRemoveContactListByAudienceSegment
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - CommerceGrid_Segment_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-01/commerce-grid/audience-segments/{audience-segment-id}/contact-list/clear
+  method: post
+  operationId: ClearContactListByAudienceSegment
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - CommerceGrid_Segment_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-01/commerce-grid/audience-segments/{audience-segment-id}/contact-list/statistics
+  method: get
+  operationId: getAudienceSegmentContactListStatistics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - CommerceGrid_Segment_Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2026-01/commerce-grid/audience-segments/create
+  method: post
+  operationId: bulkCreateAudienceSegments
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - CommerceGrid_Segment_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-01/commerce-grid/audience-segments/delete
+  method: post
+  operationId: bulkDeleteAudienceSegments
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - CommerceGrid_Segment_Manage
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /2026-01/commerce-grid/audience-segments/search
+  method: post
+  operationId: searchAudienceSegments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - CommerceGrid_Segment_Read
+    token:
+      max-ttl: 3600
+    audit: none
