@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/criteo/integrations
+- https://n8n.io/integrations/criteo/
+- https://composio.dev/toolkits/criteo
+- https://monid.ai/tools/criteo
+checked:
+- https://composio.dev/toolkits/criteo
+- https://monid.ai/tools/criteo
+- https://n8n.io/integrations/criteo/
+- https://zapier.com/apps/criteo/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
