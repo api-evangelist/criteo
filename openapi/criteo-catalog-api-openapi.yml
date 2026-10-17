@@ -70,6 +70,16 @@ paths:
         - RetailMedia_Catalog_Manage
 components:
   schemas:
+    BatchStoreInventoryRequest:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/InsertEntry'
+      description: Batch to be stored in Store inventories
     InsertEntry:
       required:
       - attributes
@@ -83,16 +93,23 @@ components:
           - Upsert
           type: string
       description: Defines a pack of inventories
-    BatchStoreInventoryRequest:
+    StoreInventoryDelete:
       required:
-      - data
+      - batchId
+      - productId
+      - storeId
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/InsertEntry'
-      description: Batch to be stored in Store inventories
+        batchId:
+          type: string
+          description: Identifies this array entry
+        productId:
+          type: string
+          description: ' Identifies a product'
+        storeId:
+          type: string
+          description: Identifies the store, for the customer
+      description: References a store inventory to be deleted. See StoreInventoryUpsert
     StoreInventoryUpsert:
       required:
       - availability
@@ -139,23 +156,6 @@ components:
           - Delete
           type: string
       description: Defines a reference to inventory
-    StoreInventoryDelete:
-      required:
-      - batchId
-      - productId
-      - storeId
-      type: object
-      properties:
-        batchId:
-          type: string
-          description: Identifies this array entry
-        productId:
-          type: string
-          description: ' Identifies a product'
-        storeId:
-          type: string
-          description: Identifies the store, for the customer
-      description: References a store inventory to be deleted. See StoreInventoryUpsert
     BatchStoreInventoryDeleteRequest:
       required:
       - data
