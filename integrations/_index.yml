@@ -121,7 +121,7 @@
     - connectors/applications/criteo-retail-media
     vendor_link: https://www.criteo.com/
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: criteo-meltano
   label: Meltano
@@ -154,5 +154,5 @@
     - silver
     - unknown
     builder: 'community (Meltano Hub variant maintainers: edgarrmondragon, jude188, uptilab2)'
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
