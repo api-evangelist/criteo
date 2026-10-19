@@ -156,3 +156,52 @@
     builder: 'community (Meltano Hub variant maintainers: edgarrmondragon, jude188, uptilab2)'
   status: not-a-workflow
   arazzo: null
+- slug: criteo-maven-central
+  label: Maven Central
+  partner: maven-central
+  partner_name: Maven Central
+  category: official SDK (Java/JVM)
+  type: register
+  channel: package-registry
+  evidence: https://central.sonatype.com/artifact/com.criteo/criteo-api-commercegrid-sdk
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Maven Central (public registry JSON)
+    spec_file: null
+    language: Java/JVM
+    packages:
+    - name: com.criteo:criteo-api-commercegrid-sdk
+      version: 2027.01.0.261005
+      released: '2026-10-05'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/com.criteo/criteo-api-commercegrid-sdk
+      repo_leg: shared-github-org:criteo
+      publisher_leg: groupId:criteo.com
+      matched_by: domain+name-among-holders
+    - name: com.criteo:criteo-api-marketingsolutions-sdk
+      version: 2027.01.0.261005
+      released: '2026-10-05'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/com.criteo/criteo-api-marketingsolutions-sdk
+      repo_leg: shared-github-org:criteo
+      publisher_leg: groupId:criteo.com
+      matched_by: domain+name-among-holders
+    - name: com.criteo:criteo-api-retailmedia-sdk
+      version: 2027.01.0.261005
+      released: '2026-10-05'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/com.criteo/criteo-api-retailmedia-sdk
+      repo_leg: shared-github-org:criteo
+      publisher_leg: groupId:criteo.com
+      matched_by: domain+name-among-holders
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
