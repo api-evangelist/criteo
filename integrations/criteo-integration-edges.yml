@@ -25,9 +25,126 @@ checked:
 - https://vendor-list.consensu.org/v3/vendor-list.json
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/actions-criteo-audiences
 - https://zapier.com/apps/criteo/integrations
+- google-play/integrations/google-play-integration-edges.yml
 summary: null
 marketplace_apps: []
 edges:
+- partner_name: IAB Europe TCF Global Vendor List
+  partner: null
+  partner_match: domain+product
+  type: contract
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://vendor-list.consensu.org/v3/vendor-list.json
+  contract_reference:
+    register: IAB Europe TCF Global Vendor List
+    spec_file: null
+    role: tcf-vendor
+    registered_name: Criteo SA
+    register_id: '91'
+    products:
+    - Criteo SA
+    matched_domain: criteo.com
+    api_families:
+    - feature-1
+    - feature-2
+    - feature-3
+    - purpose-1
+    - purpose-10
+    - purpose-2
+    - purpose-3
+    - purpose-4
+    - purpose-7
+    - purpose-9
+    - special-purpose-1
+    - special-purpose-3
+    api_families_basis: TCF purposes, special purposes, features and special features declared on the registration
+    detected_by: sweep-adtech.py
+    detected: '2026-10-14'
+  detected_by: sweep-adtech.py
+  detected: '2026-10-14'
+- partner_name: Maven Central
+  partner: maven-central
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Java/JVM)
+  evidence: https://central.sonatype.com/artifact/com.criteo/criteo-api-commercegrid-sdk
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Maven Central (public registry JSON)
+    spec_file: null
+    language: Java/JVM
+    packages:
+    - name: com.criteo:criteo-api-commercegrid-sdk
+      version: 2027.01.0.261005
+      released: '2026-10-05'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/com.criteo/criteo-api-commercegrid-sdk
+      repo_leg: shared-github-org:criteo
+      publisher_leg: groupId:criteo.com
+      matched_by: domain+name-among-holders
+    - name: com.criteo:criteo-api-marketingsolutions-sdk
+      version: 2027.01.0.261005
+      released: '2026-10-05'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/com.criteo/criteo-api-marketingsolutions-sdk
+      repo_leg: shared-github-org:criteo
+      publisher_leg: groupId:criteo.com
+      matched_by: domain+name-among-holders
+    - name: com.criteo:criteo-api-retailmedia-sdk
+      version: 2027.01.0.261005
+      released: '2026-10-05'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/com.criteo/criteo-api-retailmedia-sdk
+      repo_leg: shared-github-org:criteo
+      publisher_leg: groupId:criteo.com
+      matched_by: domain+name-among-holders
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: A2A protocol (own Agent Card)
+  partner: null
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: A2A agent
+  evidence: https://developers.criteo.com/.well-known/agent-card.json
+  channel: provider-built
+  relationship: compatible
+  shape: a2a
+  evidence_kind: own-wellknown
+  degree: conformant
+  report_only: true
+  a2a_card:
+    grade: conformant
+    verdict: live
+    protocol_version: '0.3'
+    deviations:
+    - supportedInterfaces-instead-of-additionalInterfaces
+    card_subject: api
+  contract_reference:
+    register: provider's own /.well-known/agent-card.json
+    spec_file: null
+    standard: A2A
+    role: a2a-agent-card
+    registered_name: Criteo Docs
+    organization: Criteo Docs
+    matched_domain: criteo.com
+    matched_by: own-domain
+    detected_by: sweep-ai-agents.py
+    detected: '2026-10-19'
+  detected_by: sweep-ai-agents.py
+  first_seen: '2026-10-15'
 - partner_name: Twilio Segment
   partner: segment
   partner_match: aggregator
@@ -102,74 +219,6 @@ edges:
       - remove
   detected_by: sweep-cdp.py
   first_seen: '2026-10-14'
-- partner_name: IAB Europe TCF Global Vendor List
-  partner: null
-  partner_match: domain+product
-  type: contract
-  channel: standard-directory
-  relationship: standard-participant
-  direction: partner-built
-  evidence: https://vendor-list.consensu.org/v3/vendor-list.json
-  contract_reference:
-    register: IAB Europe TCF Global Vendor List
-    spec_file: null
-    role: tcf-vendor
-    registered_name: Criteo SA
-    register_id: '91'
-    products:
-    - Criteo SA
-    matched_domain: criteo.com
-    api_families:
-    - feature-1
-    - feature-2
-    - feature-3
-    - purpose-1
-    - purpose-10
-    - purpose-2
-    - purpose-3
-    - purpose-4
-    - purpose-7
-    - purpose-9
-    - special-purpose-1
-    - special-purpose-3
-    api_families_basis: TCF purposes, special purposes, features and special features declared on the registration
-    detected_by: sweep-adtech.py
-    detected: '2026-10-14'
-  detected_by: sweep-adtech.py
-  detected: '2026-10-14'
-- partner_name: A2A protocol (own Agent Card)
-  partner: null
-  partner_match: register
-  type: register
-  direction: provider-built
-  category: A2A agent
-  evidence: https://developers.criteo.com/.well-known/agent-card.json
-  channel: provider-built
-  relationship: compatible
-  shape: a2a
-  evidence_kind: own-wellknown
-  degree: conformant
-  report_only: true
-  a2a_card:
-    grade: conformant
-    verdict: live
-    protocol_version: '0.3'
-    deviations:
-    - supportedInterfaces-instead-of-additionalInterfaces
-    card_subject: api
-  contract_reference:
-    register: provider's own /.well-known/agent-card.json
-    spec_file: null
-    standard: A2A
-    role: a2a-agent-card
-    registered_name: Criteo Docs
-    organization: Criteo Docs
-    matched_domain: criteo.com
-    matched_by: own-domain
-    detected_by: sweep-ai-agents.py
-    detected: '2026-10-15'
-  detected_by: sweep-ai-agents.py
-  first_seen: '2026-10-15'
 - partner_name: Fivetran
   partner: fivetran
   partner_match: aggregator
@@ -230,52 +279,24 @@ edges:
     builder: 'community (Meltano Hub variant maintainers: edgarrmondragon, jude188, uptilab2)'
   detected_by: sweep-data-integration.py
   first_seen: '2026-10-18'
-- partner_name: Maven Central
-  partner: maven-central
-  partner_match: register
-  type: register
-  direction: provider-built
-  category: official SDK (Java/JVM)
-  evidence: https://central.sonatype.com/artifact/com.criteo/criteo-api-commercegrid-sdk
-  channel: package-registry
-  relationship: distribution-channel
-  contract_reference:
-    register: Maven Central (public registry JSON)
-    spec_file: null
-    language: Java/JVM
-    packages:
-    - name: com.criteo:criteo-api-commercegrid-sdk
-      version: 2027.01.0.261005
-      released: '2026-10-05'
-      released_field: lastUpdated
-      lapsed: false
-      page: https://central.sonatype.com/artifact/com.criteo/criteo-api-commercegrid-sdk
-      repo_leg: shared-github-org:criteo
-      publisher_leg: groupId:criteo.com
-      matched_by: domain+name-among-holders
-    - name: com.criteo:criteo-api-marketingsolutions-sdk
-      version: 2027.01.0.261005
-      released: '2026-10-05'
-      released_field: lastUpdated
-      lapsed: false
-      page: https://central.sonatype.com/artifact/com.criteo/criteo-api-marketingsolutions-sdk
-      repo_leg: shared-github-org:criteo
-      publisher_leg: groupId:criteo.com
-      matched_by: domain+name-among-holders
-    - name: com.criteo:criteo-api-retailmedia-sdk
-      version: 2027.01.0.261005
-      released: '2026-10-05'
-      released_field: lastUpdated
-      lapsed: false
-      page: https://central.sonatype.com/artifact/com.criteo/criteo-api-retailmedia-sdk
-      repo_leg: shared-github-org:criteo
-      publisher_leg: groupId:criteo.com
-      matched_by: domain+name-among-holders
-    current: true
-    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
-      24 months'
-    detected_by: sweep-official-sdks.py
-    detected: '2026-10-18'
-  detected_by: sweep-official-sdks.py
-  first_seen: '2026-10-18'
+- partner_name: Google Play Developer (Google Play SDK Index)
+  partner: google-play
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: Google Play SDK Index
+  evidence: https://play.google.com/sdks/details/com-criteo-publisher-mraid-bridge
+  mirror_of: google-play/integrations/google-play-integration-edges.yml
+  apps:
+  - Criteo Mraid Bridge
+  - Criteo Publisher SDK
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: mobile SDK (ads)
+  publisher_verified:
+  - Registered in Google Play SDK Console
 templates: []
