@@ -26,6 +26,9 @@ checked:
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/actions-criteo-audiences
 - https://zapier.com/apps/criteo/integrations
 - google-play/integrations/google-play-integration-edges.yml
+- https://hex.pm/api
+- https://packagist.org/packages
+- https://pub.dev/api
 summary: null
 marketplace_apps: []
 edges:
@@ -299,4 +302,72 @@ edges:
   category: mobile SDK (ads)
   publisher_verified:
   - Registered in Google Play SDK Console
+- partner_name: Packagist
+  partner: packagist
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (PHP)
+  evidence: https://packagist.org/packages/criteo/criteo-api-commercegrid-sdk
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Packagist (public registry JSON)
+    spec_file: null
+    language: PHP
+    packages:
+    - name: criteo/criteo-api-commercegrid-sdk
+      version: 2026.01.0.261022
+      released: '2026-10-22'
+      released_field: time
+      lapsed: false
+      page: https://packagist.org/packages/criteo/criteo-api-commercegrid-sdk
+      repo_leg: domain:criteo.com
+      publisher_leg: org:criteo
+      matched_by: domain+name-among-holders
+    - name: criteo/criteo-api-marketingsolutions-sdk
+      version: 0.0.261022-patch1
+      released: '2026-10-22'
+      released_field: time
+      lapsed: false
+      page: https://packagist.org/packages/criteo/criteo-api-marketingsolutions-sdk
+      repo_leg: domain:criteo.com
+      publisher_leg: org:criteo
+      matched_by: domain+name-among-holders
+    - name: criteo/criteo-api-retailmedia-sdk
+      version: 2026.07.0.261022
+      released: '2026-10-22'
+      released_field: time
+      lapsed: false
+      page: https://packagist.org/packages/criteo/criteo-api-retailmedia-sdk
+      repo_leg: domain:criteo.com
+      publisher_leg: org:criteo
+      matched_by: domain+name-among-holders
+    - name: criteo/criteo-php-marketing-sdk
+      version: 1.0.47
+      released: '2020-12-02'
+      released_field: time
+      lapsed: true
+      page: https://packagist.org/packages/criteo/criteo-php-marketing-sdk
+      repo_leg: domain:criteo.com
+      publisher_leg: org:criteo
+      matched_by: domain+name-among-holders
+      abandoned: true
+    - name: criteo/criteo-php-marketing-transition-sdk
+      version: 1.0.3
+      released: '2021-06-14'
+      released_field: time
+      lapsed: true
+      page: https://packagist.org/packages/criteo/criteo-php-marketing-transition-sdk
+      repo_leg: domain:criteo.com
+      publisher_leg: org:criteo
+      matched_by: domain+name-among-holders
+      abandoned: true
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-php-dart-elixir-package-registries.py
+    detected: '2026-10-22'
+  detected_by: sweep-php-dart-elixir-package-registries.py
+  first_seen: '2026-10-22'
 templates: []
