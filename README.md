@@ -1,4 +1,4 @@
-# Criteo (criteo)
+# Criteo
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,101 +64,170 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Criteo is a global commerce media company best known for its Retail Media platform, enabling retailers, brands, agencies, and partners to create, launch, and measure on-site and off-site retail media campaigns. The Criteo Retail Media API surface provides programmatic access to campaign management, audience segmentation, line item bidding and budgeting, retailer catalogs, balances and billing, and demand-side and supply-side reporting. Criteo's APIs use OAuth 2.0 with client credentials, authorization code, and PKCE flows and ship with a published Swagger specification and Postman collection.
+Criteo is a global commerce media company whose Retail Media, Marketing Solutions and Commerce Grid platforms let retailers, brands, agencies and partners create, launch and measure onsite and offsite commerce advertising. Criteo publishes three live OpenAPI 3.0.1 documents at api.criteo.com covering 219 operations: campaign and line-item management, keyword and promoted-product targeting, audience segments and contact lists, retailer catalogs, account and brand hierarchies, balances and billing, creative and product-boost management, and demand-side and supply-side analytics. Authentication is OAuth 2.0 with client-credentials and authorization-code grants and 22 scopes of the form <Service>_<Domain>_<Level>. Criteo ships officially supported Python, PHP and Java SDKs, a public Postman workspace, an llms.txt docs index, an A2A agent card, a published Agent Skill, and two remote MCP servers — an anonymous documentation server and an OAuth-protected API server at mcp.criteo.com.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/criteo/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/criteo/refs/heads/main/apis.yml)
+**Areas:** Advertising · Agent Skills · Analytics · Audiences · Campaigns · Catalog · Commerce · Commerce Media · Display Advertising · Marketing · MCP · Media
 
-## Scope
+## Criteo on APIs.io
 
-- **Type:** Index
-- **Position:** Consuming
-- **Access:** 3rd-Party
+Everything profiled for Criteo is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/criteo/](https://apis.io/providers/criteo/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (13)
 
-- Advertising
-- Audiences
-- Campaigns
-- Catalog
-- Commerce
-- Display Advertising
-- Marketing
-- Media
-- OAuth 2.0
-- Reporting
-- Retail
-- Retail Media
+- [Criteo MCP Servers](https://apis.io/apis/criteo/criteo-mcp/) — Criteo operates two remote Model Context Protocol servers. The documentation server at developers.criteo.com/mcp is anonymous and was introspected live:…
+- [Criteo Accounts API](https://apis.io/apis/criteo/criteo-accounts-api/) — The Accounts API from Criteo — 12 operation(s) for accounts.
+- [Criteo Advertiser API](https://apis.io/apis/criteo/criteo-advertiser-api/) — The Advertiser API from Criteo — 1 operation(s) for advertiser.
+- [Criteo Analytics API](https://apis.io/apis/criteo/criteo-analytics-api/) — The Analytics API from Criteo — 16 operation(s) for analytics.
+- [Criteo Audience API](https://apis.io/apis/criteo/criteo-audience-api/) — The Audience API from Criteo — 24 operation(s) for audience.
+- [Criteo Balance API](https://apis.io/apis/criteo/criteo-balance-api/) — The Balance API from Criteo — 8 operation(s) for balance.
+- [Criteo Billing API](https://apis.io/apis/criteo/criteo-billing-api/) — The Billing API from Criteo — 3 operation(s) for billing.
+- [Criteo Campaign API](https://apis.io/apis/criteo/criteo-campaign-api/) — The Campaign API from Criteo — 86 operation(s) for campaign.
+- [Criteo Catalog API](https://apis.io/apis/criteo/criteo-catalog-api/) — The Catalog API from Criteo — 2 operation(s) for catalog.
+- [Criteo Creative API](https://apis.io/apis/criteo/criteo-creative-api/) — The Creative API from Criteo — 9 operation(s) for creative.
+- [Criteo Gateway API](https://apis.io/apis/criteo/criteo-gateway-api/) — The Gateway API from Criteo — 3 operation(s) for gateway.
+- [Criteo Reco API](https://apis.io/apis/criteo/criteo-reco-api/) — The Reco API from Criteo — 8 operation(s) for reco.
+- [Criteo Segment API](https://apis.io/apis/criteo/criteo-segment-api/) — The Segment API from Criteo — 7 operation(s) for segment.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-03-01
-- **Modified:** 2026-04-28
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### GraphQL (1)
 
-### Criteo Retail Media API
+GraphQL schemas.
 
-The Criteo Retail Media API is a REST API that lets retailers, brands, and agencies build retail media campaigns programmatically. It exposes operations for creating and updating campaigns and line items, managing audiences and audience algebra nodes, configuring partner and retailer accounts, browsing the retailer product catalog, and retrieving demand-side and supply-side analytics including balances and billing reports. Authentication uses OAuth 2.0 client credentials, authorization code, or authorization code with PKCE.
+- [Moved to /providers/criteo/](https://apis.io/graphqls/criteo/criteo-graphql/)
 
-- **Human URL:** [https://developers.criteo.com/retail-media/docs/welcome-to-criteo](https://developers.criteo.com/retail-media/docs/welcome-to-criteo)
+#### MCP servers (1)
 
-#### Tags
+Model Context Protocol servers that expose the API to agents.
 
-- Audiences
-- Campaigns
-- Catalog
-- Line Items
-- Reporting
-- Retail Media
+- [criteo-mcp.yml](https://apis.io/servers/criteo/criteo-mcp-yml/)
 
-#### Properties
+#### Agentic access (1)
 
-- [Documentation](https://developers.criteo.com/retail-media/docs/welcome-to-criteo)
-- [Reference](https://developers.criteo.com/retail-media/reference)
-- [Changelog](https://developers.criteo.com/retail-media/changelog)
-- [Authentication](https://developers.criteo.com/retail-media/docs/api-authorization)
-- [Postman Collection](collections/criteo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/criteo.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### Criteo Marketing Solutions API
+- [Criteo Agentic Access](https://apis.io/agentic-access/criteo/criteo-agentic-access/)
 
-The Criteo Marketing Solutions API provides programmatic access to Criteo's commerce media platform for advertisers and agencies running acquisition and retention campaigns. It covers advertiser accounts, campaigns and budgets, audience targeting, creative management, analytics, and Criteo's Commerce Growth and Commerce Max products.
+#### Collections (4)
 
-- **Human URL:** [https://developers.criteo.com/marketing-solutions/docs/welcome](https://developers.criteo.com/marketing-solutions/docs/welcome)
+Postman and Open Collection request collections.
 
-#### Tags
+- [Criteo Retail Media API](https://apis.io/collections/criteo/open-criteo/)
+- [Criteo API](https://apis.io/collections/criteo/open-criteo-commerce-grid-api/)
+- [Criteo API](https://apis.io/collections/criteo/open-criteo-marketing-solutions-api/)
+- [Criteo API](https://apis.io/collections/criteo/open-criteo-retail-media-api/)
 
-- Advertising
-- Audiences
-- Budgets
-- Campaigns
-- Creatives
-- Marketing Solutions
+#### Overlays (3)
 
-#### Properties
+OpenAPI overlays, including conversational phrasing for each operation.
 
-- [Documentation](https://developers.criteo.com/marketing-solutions/docs/welcome)
-- [Reference](https://developers.criteo.com/marketing-solutions/reference)
-- [Changelog](https://developers.criteo.com/marketing-solutions/changelog)
-- [Postman Collection](collections/criteo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/criteo.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Criteo Commerce Grid Overlay](https://apis.io/overlays/criteo/criteo-commerce-grid-overlay/)
+- [Criteo Marketing Solutions Overlay](https://apis.io/overlays/criteo/criteo-marketing-solutions-overlay/)
+- [Criteo Retail Media Overlay](https://apis.io/overlays/criteo/criteo-retail-media-overlay/)
 
-## Common Properties
+#### Security (4)
 
-- [GitHub Organization](https://github.com/criteo)
-- [LinkedIn](https://www.linkedin.com/company/criteo)
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Criteo Authentication](https://apis.io/security/criteo/criteo-authentication/)
+- [Criteo Domain Security](https://apis.io/security/criteo/criteo-domain-security/)
+- [Criteo Trust Center](https://apis.io/security/criteo/criteo-trust-center/)
+- [Criteo Vulnerability Disclosure](https://apis.io/security/criteo/criteo-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Criteo Scopes](https://apis.io/scopes/criteo/criteo-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Criteo Plans Pricing](https://apis.io/plans/criteo/criteo-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Criteo Rate Limits](https://apis.io/rate-limits/criteo/criteo-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Criteo Finops](https://apis.io/finops/criteo/criteo-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.criteo.com/)
-- [Developer Portal](https://developers.criteo.com/)
 - [Documentation](https://developers.criteo.com/retail-media/docs/welcome-to-criteo)
-- [Sign Up](https://developers.criteo.com/signup)
-- [Support Center](https://support.criteo.com/)
+- [Getting started](https://developers.criteo.com/criteo-apis/docs/connect-to-the-api)
+- [API reference](https://developers.criteo.com/criteo-apis/docs/overview)
+- [Support](https://help.criteo.com/)
 - [Blog](https://www.criteo.com/blog/)
-- [Privacy Policy](https://www.criteo.com/privacy/)
-- [Terms of Service](https://www.criteo.com/legal/)
-- [Integrations](https://www.criteo.com/partners/)
-- [L L Ms Txt](https://developers.criteo.com/llms.txt)
+- [Security](https://www.criteo.com/.well-known/security.txt)
+- [Compliance](https://security.criteo.com/)
+- [Terms of service](https://www.criteo.com/legal/)
+- [Privacy policy](https://www.criteo.com/privacy/)
+- [GitHub](https://github.com/criteo)
+- [Status](https://status.criteo.com)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 59.2** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 80.0 |
+| Contract quality | 45.3 |
+| Contract governance | 18.2 |
+| Operational transparency | 78.9 |
+| Developer ergonomics | 63.7 |
+| Access clarity | 43.4 |
+
+**Agent readiness 39.3** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | flavored (partial credit) |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | — |
+
+**Regulatory alignment 45.1** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/criteo/](https://apis.io/providers/criteo/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Criteo: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/criteo/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
