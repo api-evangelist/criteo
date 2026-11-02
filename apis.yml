@@ -1,0 +1,529 @@
+aid: criteo
+name: Criteo
+kind: company
+description: >-
+  Criteo is a global commerce media company whose Retail Media, Marketing Solutions and Commerce Grid
+  platforms let retailers, brands, agencies and partners create, launch and measure onsite and offsite
+  commerce advertising. Criteo publishes three live OpenAPI 3.0.1 documents at api.criteo.com covering
+  219 operations: campaign and line-item management, keyword and promoted-product targeting, audience
+  segments and contact lists, retailer catalogs, account and brand hierarchies, balances and billing,
+  creative and product-boost management, and demand-side and supply-side analytics. Authentication
+  is OAuth 2.0 with client-credentials and authorization-code grants and 22 scopes of the form <Service>_<Domain>_<Level>.
+  Criteo ships officially supported Python, PHP and Java SDKs, a public Postman workspace, an llms.txt
+  docs index, an A2A agent card, a published Agent Skill, and two remote MCP servers — an anonymous
+  documentation server and an OAuth-protected API server at mcp.criteo.com.
+url: https://raw.githubusercontent.com/api-evangelist/criteo/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/criteo.png
+x-docs-platform: mintlify
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-24
+tags:
+- Advertising
+- Agent Skills
+- Analytics
+- Audiences
+- Campaigns
+- Catalog
+- Commerce
+- Commerce Media
+- Display Advertising
+- Marketing
+- MCP
+- Media
+- OAuth
+- OpenAPI
+- Reporting
+- Retail
+- Retail Media
+- Sponsored Products
+- A2A
+- AdTech
+- Authentication
+tags_raw:
+- Advertising
+- Agent Skills
+- Analytics
+- Audiences
+- Campaigns
+- Catalog
+- Commerce
+- Commerce Media
+- Display Advertising
+- Marketing
+- MCP
+- Media
+- OAuth 2.0
+- OpenAPI
+- Reporting
+- Retail
+- Retail Media
+- Sponsored Products
+- A2A
+- AdTech
+- Authentication
+created: '2025-03-01'
+modified: '2026-08-13'
+specificationVersion: '0.23'
+type: Index
+access: 3rd-Party
+position: Consuming
+apis:
+- aid: criteo:criteo-mcp
+  name: Criteo MCP Servers
+  description: >-
+    Criteo operates two remote Model Context Protocol servers. The documentation server at developers.criteo.com/mcp
+    is anonymous and was introspected live: three tools (search_criteo_docs, query_docs_filesystem_criteo_docs,
+    submit_feedback) and one resource exposing Criteo's published Agent Skill. The API server at mcp.criteo.com/mcp
+    is OAuth-protected, publishes RFC 8414 and RFC 9728 metadata, and returns 401 to an anonymous tools/list,
+    so its tool set is not enumerated here.
+  humanURL: https://developers.criteo.com/
+  baseURL: https://developers.criteo.com/mcp
+  properties:
+  - type: MCPServer
+    url: mcp/criteo-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/criteo-tool-crosswalk.yml
+  tags:
+  - Agents
+  - Documentation
+  - MCP
+  tags_raw:
+  - Agents
+  - Documentation
+  - MCP
+  - Model Context Protocol
+- aid: criteo:criteo-accounts-api
+  name: Criteo Accounts API
+  description: The Accounts API from Criteo — 12 operation(s) for accounts.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  baseURL: https://api.criteo.com/2026-07/retail-media
+  tags:
+  - Account
+  tags_raw:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  - type: APIReference
+    url: https://developers.criteo.com/retail-media/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/retail-media/changelog
+  - type: Authentication
+    url: https://developers.criteo.com/criteo-apis/docs/api-authorization
+  - type: Documentation
+    url: https://developers.criteo.com/marketing-solutions/docs/welcome
+  - type: APIReference
+    url: https://developers.criteo.com/marketing-solutions/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/marketing-solutions/changelog
+- aid: criteo:criteo-advertiser-api
+  name: Criteo Advertiser API
+  description: The Advertiser API from Criteo — 1 operation(s) for advertiser.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  baseURL: https://api.criteo.com/2026-07/retail-media
+  tags:
+  - Advertisers
+  tags_raw:
+  - Advertiser
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-advertiser-api-openapi.yml
+  - type: Documentation
+    url: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  - type: APIReference
+    url: https://developers.criteo.com/retail-media/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/retail-media/changelog
+  - type: Authentication
+    url: https://developers.criteo.com/criteo-apis/docs/api-authorization
+  - type: Documentation
+    url: https://developers.criteo.com/marketing-solutions/docs/welcome
+  - type: APIReference
+    url: https://developers.criteo.com/marketing-solutions/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/marketing-solutions/changelog
+- aid: criteo:criteo-analytics-api
+  name: Criteo Analytics API
+  description: The Analytics API from Criteo — 16 operation(s) for analytics.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  baseURL: https://api.criteo.com/2026-07/retail-media
+  tags:
+  - Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-analytics-api-openapi.yml
+  - type: Documentation
+    url: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  - type: APIReference
+    url: https://developers.criteo.com/retail-media/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/retail-media/changelog
+  - type: Authentication
+    url: https://developers.criteo.com/criteo-apis/docs/api-authorization
+  - type: Documentation
+    url: https://developers.criteo.com/marketing-solutions/docs/welcome
+  - type: APIReference
+    url: https://developers.criteo.com/marketing-solutions/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/marketing-solutions/changelog
+- aid: criteo:criteo-audience-api
+  name: Criteo Audience API
+  description: The Audience API from Criteo — 24 operation(s) for audience.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  baseURL: https://api.criteo.com/2026-07/retail-media
+  tags:
+  - Audiences
+  tags_raw:
+  - Audience
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-audience-api-openapi.yml
+  - type: Documentation
+    url: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  - type: APIReference
+    url: https://developers.criteo.com/retail-media/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/retail-media/changelog
+  - type: Authentication
+    url: https://developers.criteo.com/criteo-apis/docs/api-authorization
+  - type: Documentation
+    url: https://developers.criteo.com/marketing-solutions/docs/welcome
+  - type: APIReference
+    url: https://developers.criteo.com/marketing-solutions/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/marketing-solutions/changelog
+- aid: criteo:criteo-balance-api
+  name: Criteo Balance API
+  description: The Balance API from Criteo — 8 operation(s) for balance.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  baseURL: https://api.criteo.com/2026-07/retail-media
+  tags:
+  - Balances
+  tags_raw:
+  - Balance
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-balance-api-openapi.yml
+  - type: Documentation
+    url: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  - type: APIReference
+    url: https://developers.criteo.com/retail-media/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/retail-media/changelog
+  - type: Authentication
+    url: https://developers.criteo.com/criteo-apis/docs/api-authorization
+  - type: Documentation
+    url: https://developers.criteo.com/marketing-solutions/docs/welcome
+  - type: APIReference
+    url: https://developers.criteo.com/marketing-solutions/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/marketing-solutions/changelog
+- aid: criteo:criteo-billing-api
+  name: Criteo Billing API
+  description: The Billing API from Criteo — 3 operation(s) for billing.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  baseURL: https://api.criteo.com/2026-07/retail-media
+  tags:
+  - Billing
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-billing-api-openapi.yml
+  - type: Documentation
+    url: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  - type: APIReference
+    url: https://developers.criteo.com/retail-media/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/retail-media/changelog
+  - type: Authentication
+    url: https://developers.criteo.com/criteo-apis/docs/api-authorization
+  - type: Documentation
+    url: https://developers.criteo.com/marketing-solutions/docs/welcome
+  - type: APIReference
+    url: https://developers.criteo.com/marketing-solutions/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/marketing-solutions/changelog
+- aid: criteo:criteo-campaign-api
+  name: Criteo Campaign API
+  description: The Campaign API from Criteo — 86 operation(s) for campaign.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  baseURL: https://api.criteo.com/2026-07/retail-media
+  tags:
+  - Campaign
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-campaign-api-openapi.yml
+  - type: Documentation
+    url: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  - type: APIReference
+    url: https://developers.criteo.com/retail-media/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/retail-media/changelog
+  - type: Authentication
+    url: https://developers.criteo.com/criteo-apis/docs/api-authorization
+  - type: Documentation
+    url: https://developers.criteo.com/marketing-solutions/docs/welcome
+  - type: APIReference
+    url: https://developers.criteo.com/marketing-solutions/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/marketing-solutions/changelog
+- aid: criteo:criteo-catalog-api
+  name: Criteo Catalog API
+  description: The Catalog API from Criteo — 2 operation(s) for catalog.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  baseURL: https://api.criteo.com/2026-07/retail-media
+  tags:
+  - Catalog
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-catalog-api-openapi.yml
+  - type: Documentation
+    url: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  - type: APIReference
+    url: https://developers.criteo.com/retail-media/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/retail-media/changelog
+  - type: Authentication
+    url: https://developers.criteo.com/criteo-apis/docs/api-authorization
+  - type: Documentation
+    url: https://developers.criteo.com/marketing-solutions/docs/welcome
+  - type: APIReference
+    url: https://developers.criteo.com/marketing-solutions/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/marketing-solutions/changelog
+- aid: criteo:criteo-creative-api
+  name: Criteo Creative API
+  description: The Creative API from Criteo — 9 operation(s) for creative.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  baseURL: https://api.criteo.com/2026-07/retail-media
+  tags:
+  - Creative
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-creative-api-openapi.yml
+  - type: Documentation
+    url: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  - type: APIReference
+    url: https://developers.criteo.com/retail-media/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/retail-media/changelog
+  - type: Authentication
+    url: https://developers.criteo.com/criteo-apis/docs/api-authorization
+  - type: Documentation
+    url: https://developers.criteo.com/marketing-solutions/docs/welcome
+  - type: APIReference
+    url: https://developers.criteo.com/marketing-solutions/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/marketing-solutions/changelog
+- aid: criteo:criteo-gateway-api
+  name: Criteo Gateway API
+  description: The Gateway API from Criteo — 3 operation(s) for gateway.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  baseURL: https://api.criteo.com/2026-07/retail-media
+  tags:
+  - Gateways
+  tags_raw:
+  - Gateway
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-gateway-api-openapi.yml
+  - type: Documentation
+    url: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  - type: APIReference
+    url: https://developers.criteo.com/retail-media/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/retail-media/changelog
+  - type: Authentication
+    url: https://developers.criteo.com/criteo-apis/docs/api-authorization
+  - type: Documentation
+    url: https://developers.criteo.com/marketing-solutions/docs/welcome
+  - type: APIReference
+    url: https://developers.criteo.com/marketing-solutions/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/marketing-solutions/changelog
+- aid: criteo:criteo-reco-api
+  name: Criteo Reco API
+  description: The Reco API from Criteo — 8 operation(s) for reco.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  baseURL: https://api.criteo.com/2026-07/retail-media
+  tags:
+  - Reco
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-reco-api-openapi.yml
+  - type: Documentation
+    url: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  - type: APIReference
+    url: https://developers.criteo.com/retail-media/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/retail-media/changelog
+  - type: Authentication
+    url: https://developers.criteo.com/criteo-apis/docs/api-authorization
+  - type: Documentation
+    url: https://developers.criteo.com/marketing-solutions/docs/welcome
+  - type: APIReference
+    url: https://developers.criteo.com/marketing-solutions/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/marketing-solutions/changelog
+- aid: criteo:criteo-segment-api
+  name: Criteo Segment API
+  description: The Segment API from Criteo — 7 operation(s) for segment.
+  humanURL: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  baseURL: https://api.criteo.com/2026-07/retail-media
+  tags:
+  - Segment
+  properties:
+  - type: OpenAPI
+    url: openapi/criteo-segment-api-openapi.yml
+  - type: Documentation
+    url: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+  - type: APIReference
+    url: https://developers.criteo.com/retail-media/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/retail-media/changelog
+  - type: Authentication
+    url: https://developers.criteo.com/criteo-apis/docs/api-authorization
+  - type: Documentation
+    url: https://developers.criteo.com/marketing-solutions/docs/welcome
+  - type: APIReference
+    url: https://developers.criteo.com/marketing-solutions/reference
+  - type: ChangeLog
+    url: https://developers.criteo.com/marketing-solutions/changelog
+common:
+- type: CapabilityMap
+  url: capabilities/criteo-capability-edges.yml
+  name: Criteo Business Capability Map
+- type: Overlay
+  url: overlays/criteo-marketing-solutions-overlay.yaml
+- type: Overlay
+  url: overlays/criteo-commerce-grid-overlay.yaml
+- type: AgenticAccess
+  url: agentic-access/criteo-agentic-access.yml
+- type: TrustCenter
+  url: security/criteo-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/criteo-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/criteo-domain-security.yml
+- type: Authentication
+  url: authentication/criteo-authentication.yml
+- type: OAuthScopes
+  url: scopes/criteo-scopes.yml
+- type: GitHubOrganization
+  url: https://github.com/criteo
+- type: LinkedIn
+  url: https://www.linkedin.com/company/criteo
+- type: Website
+  url: https://www.criteo.com/
+- type: DeveloperPortal
+  url: https://developers.criteo.com/
+- type: Documentation
+  url: https://developers.criteo.com/retail-media/docs/welcome-to-criteo
+- type: Blog
+  url: https://www.criteo.com/blog/
+- type: PrivacyPolicy
+  url: https://www.criteo.com/privacy/
+- type: TermsOfService
+  url: https://www.criteo.com/legal/
+- type: Integrations
+  url: https://www.criteo.com/partners/
+- type: LlmsText
+  url: https://developers.criteo.com/llms.txt
+- type: Packages
+  url: packages/criteo-packages.yml
+- type: SDKs
+  url: packages/criteo-packages.yml
+- type: WellKnown
+  url: well-known/criteo-well-known.yml
+- type: SecurityTxt
+  url: well-known/criteo-security.txt
+- type: AgentCard
+  url: a2a/criteo-a2a.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/criteo-llms.txt
+- type: Conformance
+  url: conformance/criteo-conformance.yml
+- type: Compliance
+  url: https://security.criteo.com/
+- type: ErrorCatalog
+  url: errors/criteo-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/criteo-lifecycle.yml
+- type: StatusPage
+  url: https://status.criteo.com
+- type: Deprecation
+  url: https://developers.criteo.com/criteo-apis/docs/versioning-policy
+- type: Conventions
+  url: conventions/criteo-conventions.yml
+- type: ChangeLog
+  url: changelog/criteo-changelog.yml
+- type: Components
+  url: components/criteo-components.yml
+- type: DataModel
+  url: data-model/criteo-data-model.yml
+- type: Plans
+  url: plans/criteo-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/criteo-rate-limits.yml
+- type: Security
+  url: https://www.criteo.com/.well-known/security.txt
+- type: FinOps
+  url: finops/criteo-finops.yml
+- type: Postman
+  url: https://www.postman.com/realcriteo/workspace/criteo/overview
+- type: APIReference
+  url: https://developers.criteo.com/criteo-apis/docs/overview
+- type: GettingStarted
+  url: https://developers.criteo.com/criteo-apis/docs/connect-to-the-api
+- type: Support
+  url: https://help.criteo.com/
+- type: Login
+  url: https://partners.criteo.com/
+- type: Overlay
+  url: overlays/criteo-retail-media-overlay.yaml
+integrations:
+- name: Criteo
+- name: Simon AI
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 32
+  pass: local-v1
+x-a2a:
+  verified: true
+  probed: '2026-09-26'
+  url: "https://developers.criteo.com/.well-known/agent-card.json"
+  grade: "conformant"
+  protocol_version: "0.3"
+  control: 404
