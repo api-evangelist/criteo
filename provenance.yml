@@ -17,6 +17,12 @@ artifacts:
   capabilities/criteo-capability-edges.yml:
     method: unknown
     evidence: no authorship recorded
+  certification/observations-2026-11-11.jsonl:
+    method: unknown
+    evidence: no authorship recorded
+  certification/status.yml:
+    method: unknown
+    evidence: no authorship recorded
   changelog/criteo-changelog.yml:
     method: searched
     evidence: declared in the artifact
@@ -53,8 +59,14 @@ artifacts:
   conventions/criteo-conventions.yml:
     method: searched
     evidence: declared in the artifact
+  data-license/criteo-data-license.yml:
+    method: harvested
+    evidence: declared in the artifact
   data-model/criteo-data-model.yml:
     method: derived
+    evidence: declared in the artifact
+  deprecation/criteo-deprecation-policy.yml:
+    method: harvested
     evidence: declared in the artifact
   errors/criteo-problem-types.yml:
     method: searched
@@ -71,6 +83,9 @@ artifacts:
   heartbeat/2026-11-06.yml:
     method: unknown
     evidence: no authorship recorded
+  heartbeat/2026-11-13.yml:
+    method: unknown
+    evidence: no authorship recorded
   integrations/_index.yml:
     method: generated
     evidence: carries an API Evangelist house phrase
@@ -80,7 +95,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-02T082323.yml:
+  kin/checks-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -144,6 +159,9 @@ artifacts:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-11-02T082323.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   lifecycle/criteo-lifecycle.yml:
@@ -238,6 +256,9 @@ artifacts:
     evidence: declared in the artifact
   plans/criteo-plans-pricing.yml:
     method: searched
+    evidence: declared in the artifact
+  privacy/criteo-privacy-policy.yml:
+    method: harvested
     evidence: declared in the artifact
   rate-limits/criteo-rate-limits.yml:
     method: searched

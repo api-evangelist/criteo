@@ -41,7 +41,7 @@ accessModel:
   - scopes
   - rate-limits
   - security
-  generated: '2026-11-06'
+  generated: '2026-11-13'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/criteo.png
 x-docs-platform: mintlify
@@ -514,6 +514,12 @@ common:
   url: https://partners.criteo.com/
 - type: Overlay
   url: overlays/criteo-retail-media-overlay.yaml
+- type: DataProcessing
+  url: privacy/criteo-privacy-policy.yml
+- type: DeprecationSchedule
+  url: deprecation/criteo-deprecation-policy.yml
+- type: DataLicense
+  url: data-license/criteo-data-license.yml
 integrations:
 - name: Criteo
 - name: Simon AI
