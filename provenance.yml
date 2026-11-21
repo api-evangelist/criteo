@@ -86,6 +86,9 @@ artifacts:
   heartbeat/2026-11-13.yml:
     method: unknown
     evidence: no authorship recorded
+  heartbeat/2026-11-20.yml:
+    method: unknown
+    evidence: no authorship recorded
   integrations/_index.yml:
     method: generated
     evidence: carries an API Evangelist house phrase
@@ -95,7 +98,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-06T143934.yml:
+  kin/checks-2026-11-13T214628.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -162,6 +165,9 @@ artifacts:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-11-06T143934.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-13T214628.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   lifecycle/criteo-lifecycle.yml:
@@ -239,15 +245,48 @@ artifacts:
   openapi/criteo-segment-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  overlays/criteo-accounts-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/criteo-advertiser-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/criteo-analytics-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/criteo-audience-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/criteo-balance-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/criteo-billing-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/criteo-catalog-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/criteo-commerce-grid-overlay.yaml:
     method: derived
     evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/criteo-creative-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/criteo-gateway-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/criteo-marketing-solutions-overlay.yaml:
     method: derived
     evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/criteo-reco-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/criteo-retail-media-overlay.yaml:
     method: derived
     evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/criteo-segment-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   packages/criteo-packages.yml:
     method: searched
     evidence: declared in the artifact
